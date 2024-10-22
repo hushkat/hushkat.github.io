@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web Security on hushkat</title><link>https://hushkat.github.io/categories/web-security/</link><description>Recent content in Web Security on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 29 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/categories/web-security/index.xml" rel="self" type="application/rss+xml"/><item><title>Web Enumeration</title><link>https://hushkat.github.io/p/web-enumeration/</link><pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/web-enumeration/</guid><description>&lt;img src="https://hushkat.github.io/p/web-enumeration/Web.jpg" alt="Featured image of post Web Enumeration" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Hello friend :) I know it has been a while but, welcome to another writeup from a challenge discovered at one of the best learning platforms for hackers &lt;a class="link" href="https://academy.hackthebox.com/" target="_blank" rel="noopener"
+>HackTheBox&lt;/a>. This challenge is part of the &lt;strong>Getting Started&lt;/strong> module and can be found &lt;a class="link" href="https://academy.hackthebox.com/course/preview/getting-started" target="_blank" rel="noopener"
+>here&lt;/a>. It is an excellent starting point for those interested in offensive security or red teaming.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="web-enumeration-challenge">Web Enumeration Challenge.
+&lt;/h3>&lt;p>&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration.jpg"
+width="1018"
+height="261"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration_hu8515057553585735834.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration_hu11465272349736749952.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="390"
+data-flex-basis="936px"
+>
+The challenge instructions were straightforward: &amp;ldquo;Try running some of the web enumeration techniques you learned in this section on the server above, and use the info you get to get the flag.&amp;rdquo; The focus of the challenge was to apply web enumeration techniques to assess the security of websites. By copying the target IP address and visiting the associated webpage, We are greeted with some welcome text to the &amp;ldquo;HTB blog page&amp;rdquo;.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration0.jpg"
+width="1920"
+height="878"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration0_hu16122848629764167035.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration0_hu8267798658238640275.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="524px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Upon first inspection, there wasn&amp;rsquo;t much information visible on the webpage. My next step was to inspect the page&amp;rsquo;s underlying code, which is often a good starting point for such challenges. Unfortunately, even after inspecting the code, I didn&amp;rsquo;t find anything substantial. So, I decided to leverage the tool &lt;a class="link" href="https://www.kali.org/tools/gobuster/" target="_blank" rel="noopener"
+>gobuster&lt;/a> to perform a brute-force attack on the website and find other directories.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration1.jpg"
+width="1920"
+height="516"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration1_hu15035713072342324124.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration1_hu3462159937791897608.jpg 1024w"
+loading="lazy"
+alt="Gobuster bruteforce"
+class="gallery-image"
+data-flex-grow="372"
+data-flex-basis="893px"
+>&lt;/p>
+&lt;p>This approach paid off as I discovered a directory. Navigating this directory revealed a page that appeared to be under construction, possibly an incomplete WordPress site.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration2.jpg"
+width="1920"
+height="878"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration2_hu2192201098653058149.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration2_hu16459381043555446653.jpg 1024w"
+loading="lazy"
+alt="Wordpress"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="524px"
+>&lt;/p>
+&lt;p>Once again, I decided to inspect the page&amp;rsquo;s code, hoping to find something useful. This time, I stumbled upon a section related to web crawlers. Web crawlers, also known as spiders or spiderbots, systematically browse the World Wide Web on behalf of search engines for indexing purposes. Websites often use a file called robots.txt to instruct or block these crawlers from accessing certain web directories.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration3.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration3_hu8448233419615401878.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration3_hu953760390495453459.jpg 1024w"
+loading="lazy"
+alt="wordpress inspection"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;p>Armed with this knowledge, I attempted to access the robots.txt file to view its contents.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration4.jpg"
+width="1920"
+height="300"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration4_hu6422896200408462688.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration4_hu3405148104871446228.jpg 1024w"
+loading="lazy"
+alt="robots.txt"
+class="gallery-image"
+data-flex-grow="640"
+data-flex-basis="1536px"
+>&lt;/p>
+&lt;p>Once again, I inspected the code of this page and came across some interesting comments. It seemed that the web developer forgot to remove the comments containing login credentials for the admin user.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration5.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration5_hu154472781002745671.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration5_hu1116697367029928119.jpg 1024w"
+loading="lazy"
+alt="admin login"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;p>Page code inspection follows:
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration6.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration6_hu15791100942695350022.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration6_hu5673465598561160528.jpg 1024w"
+loading="lazy"
+alt="adminpage inspection"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Using the credentials found in the comments, I successfully logged in as an admin user, which led me to a new page containing the flag for the challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In conclusion, this challenge provided a great opportunity to apply web enumeration techniques to uncover hidden information and identify potential vulnerabilities. The process involved inspecting the underlying code, using gobuster for directory enumeration, understanding the significance of robots.txt files, and recognizing the importance of secure coding practices.&lt;/p>
+&lt;p>As a hacker, it&amp;rsquo;s crucial to continuously explore and learn new techniques. Happy hacking, and never stop learning!&lt;/p>
+&lt;p>dr0idbot out.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on hushkat</title><link>https://hushkat.github.io/categories/tryhackme/</link><description>Recent content in TryHackMe on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 31 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>SimpleCTF</title><link>https://hushkat.github.io/p/simplectf/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/simplectf/</guid><description>&lt;img src="https://hushkat.github.io/p/simplectf/Banner.png" alt="Featured image of post SimpleCTF" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Hello guys, it has been quite some time since I made a CTF writeup and I figured it&amp;rsquo;s time to share some of my notes with you. Like many of you, I am a beginner and I am still learning and exploring stuff in cyber security. Just recently I got interviewed by &lt;a class="link" href="https://cybershujaa.co.ke/" target="_blank" rel="noopener"
+>CyberShujaa&lt;/a> as I had applied to be a scholar in their program for the Security Analyst path. I am happy to say that I have been shortlisted for the program. As part of the admission process, I was required to try out this beginner-level CTF challenge and I thought it wise to take some notes while solving it. You can find the challenge &lt;a class="link" href="https://tryhackme.com/room/easyctf#" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="simplectf-challenge">SimpleCTF Challenge.
+&lt;/h3>&lt;p>After clicking the start machine icon on the challenge webpage, you are presented with an IP of the vulnerable target, the first thing I normally do is to ping the target just to see if it is alive.
+&lt;img src="https://hushkat.github.io/p/simplectf/Ping.png"
+width="587"
+height="387"
+srcset="https://hushkat.github.io/p/simplectf/Ping_hu11934381292864045091.png 480w, https://hushkat.github.io/p/simplectf/Ping_hu3340511572765206794.png 1024w"
+loading="lazy"
+alt="ping_results"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="364px"
+>&lt;/p>
+&lt;p>Since we have replies from the target we will now proceed to the next step of exploration.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>We begin by scanning the target using the tool &lt;a class="link" href="https://en.wikipedia.org/wiki/Nmap" target="_blank" rel="noopener"
+>Nmap&lt;/a> to find open ports running on it and also identify the services running on those ports. to do that, we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nmap -sV 10.10.64.42
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>Note&lt;/strong> If you&amp;rsquo;re following through the tutorial, make sure you use the target&amp;rsquo;s machine&amp;rsquo;s IP provided once you click the start machine icon on the challenge webpage. Here are the results from our scan.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/nmap.png"
+width="588"
+height="386"
+srcset="https://hushkat.github.io/p/simplectf/nmap_hu14250893488308016027.png 480w, https://hushkat.github.io/p/simplectf/nmap_hu4673209647940780563.png 1024w"
+loading="lazy"
+alt="nmap_results"
+class="gallery-image"
+data-flex-grow="152"
+data-flex-basis="365px"
+>&lt;/p>
+&lt;p>Notice that we have three open ports.&lt;/p>
+&lt;ul>
+&lt;li>Port 22 running ftp&lt;/li>
+&lt;li>Port 80 running HTTP&lt;/li>
+&lt;li>Port 2222 running SSH&lt;/li>
+&lt;/ul>
+&lt;p>Now we try accessing the webpage running on port 80 by pasting the IP and port number (80) for the service on the browser and we are welcomed with this page:
+&lt;img src="https://hushkat.github.io/p/simplectf/website.png"
+width="1366"
+height="551"
+srcset="https://hushkat.github.io/p/simplectf/website_hu9464286092775566823.png 480w, https://hushkat.github.io/p/simplectf/website_hu13735766564153080760.png 1024w"
+loading="lazy"
+alt="apache"
+class="gallery-image"
+data-flex-grow="247"
+data-flex-basis="594px"
+>&lt;/p>
+&lt;p>There is not much going on here so I decided to brute force the target&amp;rsquo;s website to see if I can find other web pages that might be helpful in this quest. For this, I use &lt;a class="link" href="https://en.wikipedia.org/wiki/Gobuster" target="_blank" rel="noopener"
+>Gobuster&lt;/a> using this command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">gobuster dir -u http://10.10.64.42:80 -w /usr/share/wordlists/directory-list-2.3-small.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here are the results from the brute force attack:
+&lt;img src="https://hushkat.github.io/p/simplectf/gobuster.png"
+width="587"
+height="388"
+srcset="https://hushkat.github.io/p/simplectf/gobuster_hu6855201962006906557.png 480w, https://hushkat.github.io/p/simplectf/gobuster_hu14448011310243076717.png 1024w"
+loading="lazy"
+alt="gobuster"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="363px"
+>&lt;/p>
+&lt;p>We discover a directory &lt;em>/simple&lt;/em> that we now visit on the browser and find this:
+&lt;img src="https://hushkat.github.io/p/simplectf/website-simple.png"
+width="1366"
+height="550"
+srcset="https://hushkat.github.io/p/simplectf/website-simple_hu8276637217836940552.png 480w, https://hushkat.github.io/p/simplectf/website-simple_hu2677722812758154988.png 1024w"
+loading="lazy"
+alt="website-simple"
+class="gallery-image"
+data-flex-grow="248"
+data-flex-basis="596px"
+>
+When we scroll down to the footer of the webpage, we find something interesting:
+&lt;img src="https://hushkat.github.io/p/simplectf/website-footer.png"
+width="1163"
+height="253"
+srcset="https://hushkat.github.io/p/simplectf/website-footer_hu4022532982380505735.png 480w, https://hushkat.github.io/p/simplectf/website-footer_hu16567824872642488471.png 1024w"
+loading="lazy"
+alt="website-footer"
+class="gallery-image"
+data-flex-grow="459"
+data-flex-basis="1103px"
+>
+What comes to sight is the version number of the tool that was used to build this website. So I run a quick Google search about its vulnerabilities and possible exploits. It is discovered that CMS Made simple version 2.2.10 and below are vulnerable to SQL Injection. I found a good Python script that can be used to exploit this vulnerability &lt;a class="link" href="https://gist.github.com/kriss-u/321f0418778697e2ec919f04664ceb4b" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>I download the script and try to run it to see its usage:
+&lt;img src="https://hushkat.github.io/p/simplectf/exploit.png"
+width="585"
+height="390"
+srcset="https://hushkat.github.io/p/simplectf/exploit_hu1411204553333355899.png 480w, https://hushkat.github.io/p/simplectf/exploit_hu7594895834032728074.png 1024w"
+loading="lazy"
+alt="exploit"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>.&lt;/p>
+&lt;p>After seeing its usage, we can now decide the syntax to use for the exploit to work on the target depending on our needs. so we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python3 cmsexploit.py -u http://10.10.64.42:80 --crack -w /usr/share/wordlists/rockyou.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>After running for a while we get the following output as shown below, and it contains:&lt;/p>
+&lt;ul>
+&lt;li>The salt for the password some identified user&lt;/li>
+&lt;li>The user&amp;rsquo;s username&lt;/li>
+&lt;li>Their email address&lt;/li>
+&lt;li>Hashed password&lt;/li>
+&lt;li>The cracked password&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/cracked-password.png"
+width="587"
+height="384"
+srcset="https://hushkat.github.io/p/simplectf/cracked-password_hu7127840276280196896.png 480w, https://hushkat.github.io/p/simplectf/cracked-password_hu12715217755113741403.png 1024w"
+loading="lazy"
+alt="exploited"
+class="gallery-image"
+data-flex-grow="152"
+data-flex-basis="366px"
+>&lt;/p>
+&lt;p>Now that we have some credentials let&amp;rsquo;s try them out on another service that we found running on the target &lt;strong>SSH&lt;/strong>. The command for logging in on ssh using the username and password that we found is:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh mitch@10.10.64.42 -p2222
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then type yes and accept to proceed and provide the acquired password. A successful login should land you at a terminal like this:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/ssh_login.png"
+width="585"
+height="388"
+srcset="https://hushkat.github.io/p/simplectf/ssh_login_hu436655457076897800.png 480w, https://hushkat.github.io/p/simplectf/ssh_login_hu4014861553840122208.png 1024w"
+loading="lazy"
+alt="ssh_login"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="361px"
+>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Now that we are logged in as Mitch I try to list the contents of his home directory and voila, we capture our first flag which is in the user.txt file.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/userflag.png"
+width="585"
+height="391"
+srcset="https://hushkat.github.io/p/simplectf/userflag_hu14528835887931504774.png 480w, https://hushkat.github.io/p/simplectf/userflag_hu9153826645290678400.png 1024w"
+loading="lazy"
+alt="userflag"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="359px"
+>&lt;/p>
+&lt;p>I then try to go back to see if there is any other user on this machine and if I have access to their directory. I found another user &lt;strong>sunbath&lt;/strong> but have no access to his directory. I moved back to another directory and tried to gain access to the root&amp;rsquo;s directory but again, I hit a wall.
+&lt;img src="https://hushkat.github.io/p/simplectf/permission.png"
+width="586"
+height="387"
+srcset="https://hushkat.github.io/p/simplectf/permission_hu7620822677214108421.png 480w, https://hushkat.github.io/p/simplectf/permission_hu8541432378118730111.png 1024w"
+loading="lazy"
+alt="permission"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="363px"
+>&lt;/p>
+&lt;p>I run the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -l
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>to see what permissions Mitch has or what he can run as root without having to provide a password. The results:
+&lt;img src="https://hushkat.github.io/p/simplectf/rootshell.png"
+width="588"
+height="389"
+srcset="https://hushkat.github.io/p/simplectf/rootshell_hu4025918024668027563.png 480w, https://hushkat.github.io/p/simplectf/rootshell_hu6935428685584410311.png 1024w"
+loading="lazy"
+alt="rootshell"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="362px"
+>&lt;/p>
+&lt;p>We gain access to the root shell after finding out that he can access vim as root. To find the custom command to cater to your needs use &lt;a class="link" href="https://gtfobins.github.io/" target="_blank" rel="noopener"
+>this&lt;/a> website. Now that we&amp;rsquo;re root, let&amp;rsquo;s confirm that and see if we have access to the root&amp;rsquo;s directory.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/rootflag.png"
+width="586"
+height="390"
+srcset="https://hushkat.github.io/p/simplectf/rootflag_hu9574899870373771047.png 480w, https://hushkat.github.io/p/simplectf/rootflag_hu17196132550477595885.png 1024w"
+loading="lazy"
+alt="rootflag"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging the use of tools and exploits, directory permissions, and sudo privileges, we elevate our access and seize the flags.&lt;/p>
+&lt;p>Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item></channel></rss>

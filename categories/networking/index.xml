@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Networking on hushkat</title><link>https://hushkat.github.io/categories/networking/</link><description>Recent content in Networking on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/categories/networking/index.xml" rel="self" type="application/rss+xml"/><item><title>WIFI Hacking 101</title><link>https://hushkat.github.io/p/wifi-hacking-101/</link><pubDate>Tue, 19 Mar 2024 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/wifi-hacking-101/</guid><description>&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/cover.jpg" alt="Featured image of post WIFI Hacking 101" />&lt;h2 id="introduction">Introduction
+&lt;/h2>&lt;p>We all use Wi-Fi on a day-to-day basis. There is a lot that happens under the hood of this technology that we are all fond of and rely on every day. This room goes through some of the basics of this technology before we start learning about how to attack such network setups. Let’s dig in. If you wish to follow through, check out the room on TryHackMe called &lt;a class="link" href="https://tryhackme.com/room/wifihacking101" target="_blank" rel="noopener"
+>WIFIHacking101&lt;/a>&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="an-intro-to-wpa">An Intro to WPA
+&lt;/h3>&lt;p>In this section, we go through some of the basics of WIFI technology by going through some terminologies. Some of the discussed terminologies are:&lt;/p>
+&lt;ul>
+&lt;li>Wi-Fi Protected Access (WPA) is a security standard for computing devices with wireless internet connections. Very susceptible to brute force attacks.&lt;/li>
+&lt;li>WPA2-PSK: Wifi networks that you connect to by providing a password that&amp;rsquo;s the same for everyone.
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/PSK.png"
+width="1867"
+height="940"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/PSK_hu6048886162574053503.png 480w, https://hushkat.github.io/p/wifi-hacking-101/PSK_hu5925554058726720867.png 1024w"
+loading="lazy"
+alt="PSK"
+class="gallery-image"
+data-flex-grow="198"
+data-flex-basis="476px"
+>
+Take note that PSK stands for Pre-Shared-Key and is essentially what we commonly refer to as the WIFI password. Its also important to note that it has a minimum number of characters requirement as shown below:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/8.png"
+width="1918"
+height="397"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/8_hu14956186084248452118.png 480w, https://hushkat.github.io/p/wifi-hacking-101/8_hu16171692287165961589.png 1024w"
+loading="lazy"
+alt="Minimum_chars"
+class="gallery-image"
+data-flex-grow="483"
+data-flex-basis="1159px"
+>&lt;/li>
+&lt;li>WPA2-EAP: Wifi networks that you authenticate to by providing a username and password, which is sent to a RADIUS server.&lt;/li>
+&lt;li>RADIUS: A server for authenticating clients, not just for wifi.&lt;/li>
+&lt;li>SSID: The network &amp;ldquo;name&amp;rdquo; that you see when you try and connect.&lt;/li>
+&lt;li>ESSID: An SSID that &lt;em>may&lt;/em> apply to multiple access points, eg a company office, normally forming a bigger network. For Aircrack they normally refer to the network you&amp;rsquo;re attacking.&lt;/li>
+&lt;li>BSSID: An access point MAC (hardware) address&lt;/li>
+&lt;/ul>
+&lt;h2 id="capturing-packets-to-attack">Capturing Packets to attack
+&lt;/h2>&lt;p>The most common tools used in WIFI hacking are found in the aircrack-ng suite which comes which consists of tools such as:&lt;/p>
+&lt;ul>
+&lt;li>Aircrack-ng&lt;/li>
+&lt;li>Airodump-ng&lt;/li>
+&lt;li>Airmon-ng&lt;/li>
+&lt;/ul>
+&lt;p>which mostly attack WPA(2) networks. You also need to ensure you have a monitor mode Network Interface Card (NIC) to capture the 4-way handshake used by WPA networks. If you need results fast, it is good to use injection mode, which de-authenticates a client from the WIFI and forces the handshake to re-occur as the client tries to reconnect to the network.&lt;/p>
+&lt;p>Most of the commands used for tools within this suite can be found on &lt;a class="link" href="https://www.aircrack-ng.org/doku.php?id=airmon-ng" target="_blank" rel="noopener"
+>this&lt;/a> page. We are going to go through some of the basic ones below. But first, here is an overview and summary of things we can do to exploit WPA/WPA2 networks in a flowchart:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/flowchart.png"
+width="1458"
+height="1526"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/flowchart_hu15528369864324406632.png 480w, https://hushkat.github.io/p/wifi-hacking-101/flowchart_hu13113333263973561700.png 1024w"
+loading="lazy"
+alt="flowchart"
+class="gallery-image"
+data-flex-grow="95"
+data-flex-basis="229px"
+>
+The image above is courtesy of &lt;a class="link" href="https://www.stationx.net/how-to-use-aircrack-ng-tutorial/" target="_blank" rel="noopener"
+>StationX&lt;/a>. Note that we are not going to go through everything in this chart but just the basics.
+To enable monitor mode on our NIC we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">airmon-ng start wlan0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Which will give you an output like so:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/MonitorMode.png"
+width="1920"
+height="968"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/MonitorMode_hu14237311070394653862.png 480w, https://hushkat.github.io/p/wifi-hacking-101/MonitorMode_hu11604116934177434524.png 1024w"
+loading="lazy"
+alt="airmon_start"
+class="gallery-image"
+data-flex-grow="198"
+data-flex-basis="476px"
+>
+We can see that the interface name changes to wlan0mon. Oftentimes, there might be other processes currently using the network adapter we want to use or intend to use, therefore it’s a common practice to run this command first:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">airmon-ng check kill
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Which will kill all interfering processes and give you a similar output to this one:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/CheckKill.png"
+width="1920"
+height="716"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/CheckKill_hu5093708330976648798.png 480w, https://hushkat.github.io/p/wifi-hacking-101/CheckKill_hu11701722993677736059.png 1024w"
+loading="lazy"
+alt="check_kill"
+class="gallery-image"
+data-flex-grow="268"
+data-flex-basis="643px"
+>
+Now that our machine&amp;rsquo;s Network Interface Card(NIC) is in monitor mode, we need to capture some packets that we can use for our attack. But what tool in the suite do we use, let&amp;rsquo;s do a quick search on google:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/Airodump-ng.png"
+width="1919"
+height="663"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/Airodump-ng_hu17192919710611102079.png 480w, https://hushkat.github.io/p/wifi-hacking-101/Airodump-ng_hu3738720949582808004.png 1024w"
+loading="lazy"
+alt="Airodump-ng"
+class="gallery-image"
+data-flex-grow="289"
+data-flex-basis="694px"
+>
+As shown above, we have a tool from the aircrack-ng suite for this exact task, the tool is called: airodump-ng
+Let’s have a look at its usage by viewing its help menu. We do that by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo airodump-ng --help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/-W.png"
+width="1919"
+height="996"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/-W_hu12551988124252123410.png 480w, https://hushkat.github.io/p/wifi-hacking-101/-W_hu10662864401539046297.png 1024w"
+loading="lazy"
+alt="Airodump-help"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="462px"
+>
+Notice the -w option or flag that writes the captured packets to a file. Scrolling down further, we notice other useful flags that we can use:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL.png"
+width="1919"
+height="1005"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu2725155774288984339.png 480w, https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu1760809146546519621.png 1024w"
+loading="lazy"
+alt="BSSIDCHANNEL"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="458px"
+>
+The –bssid flag is used to set the BSSID to monitor and the –channel flag that sets the channel. There are many options that can be of use while working with this tool. All are listed on the help menu, which we can access using&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo airodump-ng –-help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Let’s dive into a more practical part of it which is also the last bit. We can now assume that we managed to capture some traffic for a network that we intended to attack. In our case, we have the capturing part done for us, since we maybe don&amp;rsquo;t have a NIC that can go to monitor mode or don&amp;rsquo;t have a wireless adapter to do the capturing or injection. We are going to use a packet capture file that is provided to us, so let&amp;rsquo;s first extract it:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL.png"
+width="1919"
+height="1005"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu2725155774288984339.png 480w, https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu1760809146546519621.png 1024w"
+loading="lazy"
+alt="BSSIDCHANNEL"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="458px"
+>
+Notice the NinjaJ-01.cap file, which is what we are going to use next to create a file that will help us crack the password. To do that, we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">aircrack-ng -j wifi NinjaJc01.cap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>aircrack-ng: Tool from suite that we are using for this task&lt;/li>
+&lt;li>The flag -j: flag that specifies generation of a file from the pcap file specified into one that can be used to crack the password by aircrack-ng or hashcat.&lt;/li>
+&lt;li>wifi: name of new file to be generated if the command successfully runs.&lt;/li>
+&lt;li>NinjaJc01.cap: The file we are generating our new file from.&lt;/li>
+&lt;/ul>
+&lt;p>In the output below, notice that we now have the MAC address and Name of the WIFI network that we are trying to gain access by cracking the WIFI’s password.
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX.png"
+width="1920"
+height="981"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu16591752724194049856.png 480w, https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu7548454055341128968.png 1024w"
+loading="lazy"
+alt="HCCAPX"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>
+The command successfully executes, meaning we can move forward and attempt cracking the password. As shown below, we can see that a new file names wifi.hccapx has been generated for us to use in our next step. We can now run the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">aircrack-ng -a2 -b 02:1A:11:FF:D9:BD -w /usr/share/wordlists/rockyou.txt wifi.hccapx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX.png"
+width="1920"
+height="981"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu16591752724194049856.png 480w, https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu7548454055341128968.png 1024w"
+loading="lazy"
+alt="HCCAPX"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>
+Let’s break down the command to bits:&lt;/p>
+&lt;ul>
+&lt;li>aircrack-ng: Main command for Aircrack-ng tool usage from the main suite.&lt;/li>
+&lt;li>The flag -a2: This option specifies the attack mode. In this case, -a2 indicates a dictionary attack. A dictionary attack involves trying each word from a provided wordlist (dictionary) to crack the passphrase.&lt;/li>
+&lt;li>The flag -b 02:1A:11:FF:D9:BD: This option specifies the BSSID (MAC address of the access point) of the target network. The -b option is followed by the BSSID of the target network to focus the attack on a specific network.&lt;/li>
+&lt;li>The flag -w /usr/share/wordlists/rockyou.txt: This option specifies the wordlist (dictionary) to use for the dictionary attack.&lt;/li>
+&lt;li>wifi.hccapx: This is the name of the capture file containing the handshake packets captured from the target Wi-Fi network. Aircrack-ng uses this file as input for the cracking process.
+After letting this run for a while, we are now able to get the password for this WIFI as shown in the output below:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/Cracked.png"
+width="1919"
+height="1006"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/Cracked_hu4624091832608917468.png 480w, https://hushkat.github.io/p/wifi-hacking-101/Cracked_hu279623069244314728.png 1024w"
+loading="lazy"
+alt="Cracked"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="457px"
+>
+With that, we are done covering the basics of WIFI hacking. It is important to know that password cracking is a resource-intensive process and therefore works faster on GPUs as opposed to CPU usage.&lt;/li>
+&lt;/ul>
+&lt;h2 id="conclusion">CONCLUSION
+&lt;/h2>&lt;p>We covered the basics of WIFI hacking by starting us off with basic terminologies that we were to hear mentions of in the walkthrough, which was a lot of interesting theory. Then gradually moved to the practical bit of the work. It was fun to interact with some of the tools within the airmon-ng suite for WIFI or wireless attacks and I hope we all learned a thing or two along the way.&lt;/p></description></item></channel></rss>

