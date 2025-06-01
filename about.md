@@ -28,6 +28,6 @@ Whether you're a seasoned cybersecurity professional, a fellow newbie, or someon
 
 ## Conclusion
 
-Welcome to dr0idbot's cybersecurity journey! Together, let's embark on an exhilarating exploration of CTFs, where we'll tackle challenges, unravel mysteries, and celebrate every step of progress. While I may be new to this realm, my dedication and enthusiasm will drive me forward, and I hope you'll find inspiration in my story. Stay tuned for upcoming posts filled with valuable insights, thrilling adventures, and perhaps a few surprises along the way. Let the journey begin!
+Welcome to hushkat's cybersecurity journey! Together, let's embark on an exhilarating exploration of CTFs, where we'll tackle challenges, unravel mysteries, and celebrate every step of progress. While I may be new to this realm, my dedication and enthusiasm will drive me forward, and I hope you'll find inspiration in my story. Stay tuned for upcoming posts filled with valuable insights, thrilling adventures, and perhaps a few surprises along the way. Let the journey begin!
 
 Disclaimer: The content presented in my articles is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.
