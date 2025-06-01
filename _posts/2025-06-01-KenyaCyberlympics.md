@@ -76,10 +76,11 @@ Connection: close
         
     </div>
 <----------------------------------SNIP------------------------------------>
+```
+
 Can you spot the flag: `Ado0re :acdfctf{I_4DoRe_Id0Rs}`
 
 ---
-
 # OwntheLib: S3A
 ## Description
 Points: 100
@@ -157,5 +158,4 @@ python3 crypt.py
 [+] Key found: my_secure_aeskey
 [+] Plaintext: acdfCTF{34sy_43S_3ncrypt10n}
 ```
-
 ---
