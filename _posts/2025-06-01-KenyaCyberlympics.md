@@ -25,7 +25,7 @@ An attacker can:
 
 For this challenge, my Exploitation Tool of choice was - Burpsuite. I created an account on the target website and signed in. I was welcomed by this dashboard:
 
-/assets/images/KenyaCyberlympics/Dashboard.png
+![Dashboard](/assets/images/KenyaCyberlympics/Dashboard.png)
 
 I will immediately say, what caught my eye is the reference used to my personal account using that ID on the URL. So I Interecepted a request to my account dashboard using burpsuite:
 
@@ -80,7 +80,6 @@ Connection: close
 
 Can you spot the flag: `Ado0re :acdfctf{I_4DoRe_Id0Rs}`
 
----
 # OwntheLib: S3A
 ## Description
 Points: 100
@@ -158,4 +157,3 @@ python3 crypt.py
 [+] Key found: my_secure_aeskey
 [+] Plaintext: acdfCTF{34sy_43S_3ncrypt10n}
 ```
----
