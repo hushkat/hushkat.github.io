@@ -10,8 +10,10 @@ tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 
 # OwntheLib: Ado0re
 ## Description
-Points: 100
-Web URL: http://173.212.253.48:6061
+- Points: 100
+- Web URL: http://173.212.253.48:6061
+
+
 This was an easy web challenge focused on IDOR vulnerability. 
 
 ## What is IDOR?
@@ -82,12 +84,11 @@ Can you spot the flag: `Ado0re :acdfctf{I_4DoRe_Id0Rs}`
 
 # OwntheLib: S3A
 ## Description
-
-Points: 100
-I might just leave this right here as a bonus flag but what could that two star {*} mean 🤨.
-IV: bb751cd8c0b8b08978cea57ed9a1933f
-Hex: 33a3267fac260a140588bf9a461c85e25a8e04c304ac82d2d26ad64090105e34
-Key: my_secure_aesk**
+- Points: 100
+- I might just leave this right here as a bonus flag but what could that two star {*} mean 🤨.
+- IV: bb751cd8c0b8b08978cea57ed9a1933f
+- Hex: 33a3267fac260a140588bf9a461c85e25a8e04c304ac82d2d26ad64090105e34
+- Key: my_secure_aesk**
 
 ## Breaking AES with Partial Key Brute Force
 ## Challenge Summary
