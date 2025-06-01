@@ -82,6 +82,7 @@ Can you spot the flag: `Ado0re :acdfctf{I_4DoRe_Id0Rs}`
 
 # OwntheLib: S3A
 ## Description
+
 Points: 100
 I might just leave this right here as a bonus flag but what could that two star {*} mean 🤨.
 IV: bb751cd8c0b8b08978cea57ed9a1933f
