@@ -1,7 +1,7 @@
 ---
 title: Welcome Blog
 icon: fas fa-info-circle
-order: 4
+order: 2
 ---
 
 ## Introduction
