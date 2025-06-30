@@ -175,3 +175,76 @@ echo 54484d7b5375357373737d | xxd -r -p # Command used
 THM{Su5sss} # Subsequent Output
 ```
 
+## OSINT 2
+
+### Description:
+
+> Great work on uncovering that suspicious subdomain, Hexline. 
+> However, your work here isn’t done yet, we believe there is more.
+
+After uncovering an initial suspicious subdomain (`stage0.virelia-water.it.com`), further analysis led to the discovery of an external script and a fallback communication mechanism used by the attacker’s infrastructure. The goal of OSINT 2 was to **pivot from stage0 and uncover hidden indicators of compromise** using DNS and passive reconnaissance techniques.
+
+### Investigation Steps
+
+### 1. **Visited `stage0.virelia-water.it.com`**
+
+- Discovered a spoofed ICS operator console web interface.
+- It attempted to load a remote JavaScript file from:
+
+```bash
+https://raw.githubusercontent.com/SanTzu/uplink-config/main/init.js
+```
+
+You could see this from reviewing the page’s source code.
+
+### Analyzed `init.js`
+
+- Contained a hardcoded object:
+
+```bash
+var beacon = {
+  session_id: "O-TX-11-403",
+  fallback_dns: "uplink-fallback.virelia-water.it.com",
+  token: "JBSWY3DPEBLW64TMMQQQ=="
+};
+```
+
+- The `token` decoded (Base32) to: `Hello123` (possibly a password or operator key).
+- Revealed the next lead: `uplink-fallback.virelia-water.it.com`
+
+### 3. Queried the Fallback Subdomain
+
+- `A` and `CNAME` queries returned **no IP** — typical of dormant or DNS-only infrastructure.
+- However, a `TXT` record was present:
+
+```bash
+dig uplink-fallback.virelia-water.it.com TXT
+
+; <<>> DiG 9.20.2-1-Debian <<>> uplink-fallback.virelia-water.it.com TXT
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37332
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;uplink-fallback.virelia-water.it.com. IN TXT
+
+;; ANSWER SECTION:
+uplink-fallback.virelia-water.it.com. 1799 IN TXT "eyJzZXNzaW9uIjoiVC1DTjEtMTcyIiwiZmxhZyI6IlRITXt1cGxpbmtfY2hhbm5lbF9jb25maXJtZWR9In0="
+
+;; Query time: 135 msec
+;; SERVER: 10.255.255.254#53(10.255.255.254) (UDP)
+;; WHEN: Mon Jun 30 15:56:14 EAT 2025
+;; MSG SIZE  rcvd: 151
+```
+
+- Decoded it to JSON:
+
+```bash
+json
+CopyEdit
+{
+  "session": "T-CN1-172",
+  "flag": "THM{uplink_channel_confirmed}"
+}
+```
