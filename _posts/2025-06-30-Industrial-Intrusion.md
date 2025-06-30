@@ -92,7 +92,7 @@ As seen below, this triggered a response from the **TryHackMe bot** — and bing
 > Network captures reveal unusual traffic from a suspicious host scanning PLC memory over TCP port 502.
 > Analyse the provided PCAP and uncover what data the attacker retrieved during their register scans.
 
-### Why port 502?**
+### Why port 502?
 
 The capture was taken in an **ICS/SCADA** setting.
 
@@ -165,7 +165,7 @@ Process DNSdumpster-8:
 stage0.virelia-water.it.com
 ```
 
-### **Findings:**
+### Findings:
 
 Two subdomains were discovered:
 
@@ -174,15 +174,13 @@ Two subdomains were discovered:
 
 The first appeared to be encoded.
 
-### **Analysis:**
+### Analysis:
 
 - The subdomain `54484d7b5375357373737d` was identified as hex.
-- Decoding it with `xxd` revealed a CTF flag:
-    
-    ```bash
-    echo 54484d7b5375357373737d | xxd -r -p # Command used
-    THM{Su5sss} # Subsequent Output
-    
-    ```
+- Decoding it with `xxd` revealed a CTF flag: 
+```bash
+echo 54484d7b5375357373737d | xxd -r -p # Command used
+THM{Su5sss} # Subsequent Output
+```
 
 ---
