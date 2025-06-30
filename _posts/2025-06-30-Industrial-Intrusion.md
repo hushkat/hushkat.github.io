@@ -10,7 +10,7 @@ tags:  [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, 
 
 ## Breach
 
-**Description:**
+**Description**
 
 > This engagement aims to find a way to open the gate by bypassing the badge authentication system.
 > The control infrastructure may hold a weakness: Dig in, explore, and see if you have what it takes to exploit it.
@@ -58,7 +58,7 @@ That got me the Flag for this challenge:
 
 ## Discord
 
-### Description:
+### Description
 
 > Join our Discord server and find the flag?
 
@@ -79,7 +79,7 @@ As seen below, this triggered a response from the **TryHackMe bot** — and bing
 
 ## Rogue Poller
 
-### Description:
+### Description
 
 > An intruder has breached the internal OT network and systematically probed industrial devices for sensitive data. 
 > Network captures reveal unusual traffic from a suspicious host scanning PLC memory over TCP port 502.
@@ -111,17 +111,17 @@ Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3rs}`
 
 ## OSINT 1
 
-### Description:
+### Description
 
 > Hexline, we need your help investigating the phishing attack from 3 months ago. 
 > We believe the threat actor managed to hijack our domain virelia-water.it.com and used it to host some of their infrastructure at the time. 
 > Use your OSINT skills to find information about the infrastructure they used during their campaign.
 
-### Objective:
+### Objective
 
 Investigate potential infrastructure used in a phishing campaign tied to the hijacked domain `virelia-water.it.com`.
 
-### Approach:
+### Approach
 
 Using OSINT tools like `Sublist3r` and `crt.sh`, subdomain enumeration was performed to identify any attacker-controlled assets.
 
@@ -156,7 +156,7 @@ Process DNSdumpster-8:
 stage0.virelia-water.it.com
 ```
 
-### Findings:
+### Findings
 
 Two subdomains were discovered:
 
@@ -165,7 +165,7 @@ Two subdomains were discovered:
 
 The first appeared to be encoded.
 
-### Analysis:
+### Analysis
 
 - The subdomain `54484d7b5375357373737d` was identified as hex.
 - Decoding it with `xxd` revealed a CTF flag: 
@@ -176,7 +176,7 @@ THM{Su5sss} # Subsequent Output
 
 ## OSINT 2
 
-### Description:
+### Description
 
 > Great work on uncovering that suspicious subdomain, Hexline. 
 > However, your work here isn’t done yet, we believe there is more.
@@ -196,7 +196,7 @@ https://raw.githubusercontent.com/SanTzu/uplink-config/main/init.js
 
 You could see this from reviewing the page’s source code.
 
-### Analyzed `init.js`
+### 2. Analyzed `init.js`
 
 - Contained a hardcoded object:
 
@@ -250,7 +250,7 @@ CopyEdit
 
 ## ORCAM
 
-### Description:
+### Description
 
 > Dr. Ayaka Hirano loves to swim with the sharks. 
 > So when the attackers from Virelia successfully retaliated against one of our own, it was up to the good doctor to take on the case. 
@@ -274,7 +274,7 @@ The email contains:
     > "Please use the following template for the upcoming Project. The file will not work unless you open it using administrative privileges. When prompted, enable macros in order to get all of the details."
 - Attachment:`Project_Template.docm`(a Word document with macros enabled).
 
-### Observations:
+### Observations
 
 - The email is suspicious because:
     - It urges the recipient to enable macros (a common malware delivery method).
@@ -349,7 +349,7 @@ print(shellcode.decode('ascii', errors='ignore'))
 
 The key used above was found on the Macros.
 
-### Output Analysis:
+### Output Analysis
 
 Running the script reveals:
 
@@ -380,7 +380,7 @@ THM{Ev1l_M@Cr0}ubuntu@tryhackme:~$
 
 ## Chess Industry
 
-### Description:
+### Description
 
 > This was a Boot2Root challenge, I forgot to copy its description but will update it here as soon as I stumble upon it!
 
@@ -422,7 +422,7 @@ root@ip-10-10-187-39:~#
 
 Visiting **`http://10.10.94.121`** reveals a chess-themed IoT control panel.
 
-### Key Observations:
+### Key Observations
 
 - **Under Construction** banner (possible incomplete security)
 - **Team Members** (potential usernames: **`magnus`**, **`fabiano`**, **`hikaru`**)
@@ -555,7 +555,7 @@ Files with capabilities (limited to 50):
 
 **`cap_setuid`** allows Python to **set UID to root**! Therefore, we can exploit it to get a root shell.
 
-**Exploiting Python Capabilities:**
+**Exploiting Python Capabilities**
 
 ```bash
 fabiano@tryhackme-2204:/tmp$ /usr/bin/python3.10 -c 'import os; os.setuid(0); os.system("/bin/bash")'
@@ -577,7 +577,7 @@ root@tryhackme-2204:/tmp#
 
 ## Under Construction
 
-### Description:
+### Description
 
 > ZeroTrace wastes no time: one misstep in the plant's login routine, and she's in. Credentials, shells, root, factory systems fall in quick succession. 
 
