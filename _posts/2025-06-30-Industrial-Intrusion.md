@@ -55,6 +55,29 @@ Leveraging some online research, I learnt that there is a UI page for the servic
 
 ![OT_Dashboard](/assets/images/THM/Breach/OT_dashboard.png)
 
+# Discord
+
+## Challenge Overview
+
+**Description:**
+
+> Join our Discord server and find the flag?
+
+### Step 1: Following the Trail from the Channel Description
+
+The journey started in the `#industrial-intrusion-ctf` channel. While browsing through the channel list, I noticed something unusual in the **channel description**. As shown below, the description of the channel wasn’t just text — it included a **URL** ending with: `/secret-function` :
+
+![DiscordTHM.png](/assets/images/THM/Discord/DiscordTHM.png)
+
+### Step 2: Executing the Secret Function
+
+After seeing the `/secret-function` clue, I suspected it might be a **custom slash command** integrated into the TryHackMe Discord bot. Discord supports slash commands which can be triggered by typing `/` followed by the command name.
+
+So, I typed: `/secret-function` . 
+As seen below, this triggered a response from the **TryHackMe bot** — and bingo! It revealed the flag:
+
+![DiscordTHM.png](/assets/images/THM/Discord/DiscordFlag.png)
+
 That got me the Flag for this challenge:
 
 ![Flag](/assets/images/THM/Breach/Flag_Breach.png)
