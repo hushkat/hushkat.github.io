@@ -86,13 +86,13 @@ As seen below, this triggered a response from the **TryHackMe bot** — and bing
 > Network captures reveal unusual traffic from a suspicious host scanning PLC memory over TCP port 502.
 > Analyse the provided PCAP and uncover what data the attacker retrieved during their register scans.
 
-## Why port 502?
+**Why port 502?**
 
 The capture was taken in an **ICS/SCADA** setting.
 
 Industrial controllers often speak **Modbus‑TCP**, and Modbus always defaults to **TCP port 502**. If something suspicious is happening in a poller/PLC scenario, 502 is the first place to look. Filter for the said port: `tcp.port == 502` , Click on the first packet and follow TCP stream:
 
-## Re‑assemble the conversation
+**Re‑assemble the conversation**
 
 1. **Click the first packet** in the list (frame 33 in my capture).
 2. **Right‑click ▸ Follow ▸ TCP Stream**.
