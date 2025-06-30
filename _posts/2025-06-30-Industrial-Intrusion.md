@@ -8,7 +8,6 @@ categories: [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, 
 tags:  [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, Industrial Control Systems]
 ---
 
-
 ## Breach
 
 **Description:**
@@ -483,7 +482,6 @@ I tried decoding this string:
 root@ip-10-10-187-39:~# echo "ZmFiaWFubzpvM2pWVGt0YXJHUUkwN3E=" | base64 -d
 fabiano:o3jVTktarGQI07qroot@ip-10-10-187-39:~# 
 ```
-
 This decodes to something that looks like credentials for SSH. 
 
 ### Step 4: Initial Foothold via SSH
