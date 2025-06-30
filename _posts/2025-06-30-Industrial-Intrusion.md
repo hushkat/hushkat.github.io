@@ -385,7 +385,7 @@ THM{Ev1l_M@Cr0}ubuntu@tryhackme:~$
 
 > This was a Boot2Root challenge, I forgot to copy its description but will update it here as soon as I stumble upon it!
 
-### **Step 1: Reconnaissance (Port Scanning)**
+### Step 1: Reconnaissance (Port Scanning)
 
 We start by scanning the target machine (**`10.10.94.121`**) to identify open ports and services.
 
@@ -419,7 +419,7 @@ root@ip-10-10-187-39:~#
 - **Port 80 (HTTP)** - Apache 2.4.52 (Ubuntu)
     - Website: **PrecisionChess IoT - Smart Chessboard Control**
 
-### **Step 2: Web Enumeration**
+### Step 2: Web Enumeration
 
 Visiting **`http://10.10.94.121`** reveals a chess-themed IoT control panel.
 
@@ -431,13 +431,13 @@ Visiting **`http://10.10.94.121`** reveals a chess-themed IoT control panel.
 
 ![Webpage.png](/assets/images/THM/Chess_Industry/Webpage.png)
 
-### **Step 3: Exploiting the Finger Service (Port 79)**
+### Step 3: Exploiting the Finger Service (Port 79)
 
 The **finger service** (**`fingerd`**) is an old but fascinating protocol that reveals information about users on a system. It was commonly used in early UNIX systems (1970s-1990s) but is rarely seen today due to security risks.
 
 ---
 
-### **What is the Finger Protocol?**
+### What is the Finger Protocol?
 
 - **Purpose**: Provides user information (login name, real name, terminal, idle time, etc.).
 - **Port**: **TCP/79**
@@ -569,8 +569,6 @@ root@tryhackme-2204:/tmp# cat /root/root.txt
 THM{check_check_check_mate}
 root@tryhackme-2204:/tmp# 
 ```
-
-### Final Thoughts
 
 ### Attack Path Summary
 
