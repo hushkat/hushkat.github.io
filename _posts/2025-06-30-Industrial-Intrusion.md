@@ -536,8 +536,11 @@ user.txt
 fabiano@tryhackme-2204:~$ cat user.txt
 THM{bishop_to_c4_check}
 ```
+That gives us a foothold on to the target and we secure our first flag for this challenge.
 
-I then I downloaded the `linpeas.sh` script to my attacker machine and sent it to the vulnerable target using a python web server. I then uncovered something when I ran the script:
+### Step 5: Privilege escalation
+
+From here, I downloaded the `linpeas.sh` script to my attacker machine and sent it to the vulnerable target using a python web server. I then uncovered something when I ran the script:
 
 ```bash
 <-----------------------SNIP---------------------->
