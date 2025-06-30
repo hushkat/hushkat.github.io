@@ -10,7 +10,6 @@ tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 
 ---
 # Breach
-
 ## Challenge Overview
 
 **Description:**
@@ -60,7 +59,6 @@ That got me the Flag for this challenge:
 ![Flag](/assets/images/THM/Breach/Flag_Breach.png)
 
 # Discord
-
 ## Challenge Overview
 
 **Description:**
