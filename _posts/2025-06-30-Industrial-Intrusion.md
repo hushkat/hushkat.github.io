@@ -429,7 +429,7 @@ Visiting **`http://10.10.94.121`** reveals a chess-themed IoT control panel.
 - **Team Members** (potential usernames: **`magnus`**, **`fabiano`**, **`hikaru`**)
 - **Chessboard Status** (Board-001 to Board-004, one offline)
 
-![Webpage.png](attachment:b8a65598-501a-4801-a2bd-7b71832733a0:Webpage.png)
+![Webpage.png](/assets/images/THM/Chess_Industry/Webpage.png)
 
 ### **Step 3: Exploiting the Finger Service (Port 79)**
 
