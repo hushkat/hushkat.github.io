@@ -109,3 +109,73 @@ Every printable byte is exactly one character of the flag – they’re merely s
 - Delete the whitespace → the same string emerges.
 
 Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3rs}`
+
+## OSINT 1
+
+### Description:
+
+> “Hexline, we need your help investigating the phishing attack from 3 months ago. 
+> We believe the threat actor managed to hijack our domain virelia-water.it.com and used it to host some of their infrastructure at the time. 
+> Use your OSINT skills to find information about the infrastructure they used during their campaign.”
+
+### Objective:
+
+Investigate potential infrastructure used in a phishing campaign tied to the hijacked domain `virelia-water.it.com`.
+
+### Approach:
+
+Using OSINT tools like `Sublist3r` and `crt.sh`, subdomain enumeration was performed to identify any attacker-controlled assets.
+
+```bash
+sublist3r -d virelia-water.it.com
+
+                 ____        _     _ _     _   _____
+                / ___| _   _| |__ | (_)___| |_|___ / _ __
+                \___ \| | | | '_ \| | / __| __| |_ \| '__|
+                 ___) | |_| | |_) | | \__ \ |_ ___) | |
+                |____/ \__,_|_.__/|_|_|___/\__|____/|_|
+
+                # Coded By Ahmed Aboul-Ela - @aboul3la
+
+[-] Enumerating subdomains now for virelia-water.it.com
+[-] Searching now in Baidu..
+[-] Searching now in Yahoo..
+[-] Searching now in Google..
+[-] Searching now in Bing..
+[-] Searching now in Ask..
+[-] Searching now in Netcraft..
+[-] Searching now in DNSdumpster..
+[-] Searching now in Virustotal..
+[-] Searching now in ThreatCrowd..
+[-] Searching now in SSL Certificates..
+[-] Searching now in PassiveDNS..
+[!] Error: Virustotal probably now is blocking our requests
+Process DNSdumpster-8:
+<========================SNIP=====================>
+[-] Total Unique Subdomains Found: 2
+54484d7b5375357373737d.virelia-water.it.com
+stage0.virelia-water.it.com
+```
+
+### **Findings:**
+
+Two subdomains were discovered:
+
+- `54484d7b5375357373737d.virelia-water.it.com`
+- `stage0.virelia-water.it.com`
+
+The first appeared to be encoded.
+
+---
+
+### **Analysis:**
+
+- The subdomain `54484d7b5375357373737d` was identified as hex.
+- Decoding it with `xxd` revealed a CTF flag:
+    
+    ```bash
+    echo 54484d7b5375357373737d | xxd -r -p # Command used
+    THM{Su5sss} # Subsequent Output
+    
+    ``` 
+---
