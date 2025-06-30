@@ -55,6 +55,10 @@ Leveraging some online research, I learnt that there is a UI page for the servic
 
 ![OT_Dashboard](/assets/images/THM/Breach/OT_dashboard.png)
 
+That got me the Flag for this challenge:
+
+![Flag](/assets/images/THM/Breach/Flag_Breach.png)
+
 # Discord
 
 ## Challenge Overview
@@ -77,7 +81,3 @@ So, I typed: `/secret-function` .
 As seen below, this triggered a response from the **TryHackMe bot** — and bingo! It revealed the flag:
 
 ![DiscordTHM.png](/assets/images/THM/Discord/DiscordFlag.png)
-
-That got me the Flag for this challenge:
-
-![Flag](/assets/images/THM/Breach/Flag_Breach.png)
