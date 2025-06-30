@@ -273,7 +273,6 @@ The email contains:
 - **Body:**
     
     > "Please use the following template for the upcoming Project. The file will not work unless you open it using administrative privileges. When prompted, enable macros in order to get all of the details."
-    > 
 - Attachment:`Project_Template.docm`(a Word document with macros enabled).
 
 ### Observations:
