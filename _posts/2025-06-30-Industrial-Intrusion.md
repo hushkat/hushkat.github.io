@@ -263,7 +263,7 @@ CopyEdit
 
 Analyze the provided **`.eml`** file (email) and uncover the hidden flag in the format **`THM{...}`**
 
-## Step 1: Analyzing the Email (Writing_Template.eml)
+### Step 1: Analyzing the Email (Writing_Template.eml)
 
 The email contains:
 
@@ -276,12 +276,12 @@ The email contains:
     > 
 - Attachment:`Project_Template.docm`(a Word document with macros enabled).
 
-### **Observations:**
+### Observations:
 
 - The email is suspicious because:
     - It urges the recipient to enable macros (a common malware delivery method).
     - It asks for administrative privileges (unusual for a simple document).
-- The **`.docm`** extension confirms it contains macros.
+- The `.docm` extension confirms it contains macros.
 
 ```bash
 cat writing_template.eml 
@@ -311,7 +311,7 @@ I extracted the email attachment by copying the base64 text from the `.eml`  fil
 cat artifact.txt | base64 -d > Project_Template.docm 
 ```
 
-## Step 2: Extracting the Malicious Macro
+### Step 2: Extracting the Malicious Macro
 
 Since opening the file in LibreOffice gave macro errors, we need to manually inspect the VBA code.
 
@@ -323,13 +323,13 @@ The document looked like this:
 
 I then went ahead to open Macros:
 
-![Uncovered Macros.png](/assets/images/THM/Orcam/Uncovered_Macros.png)
+![Uncovered_Macros.png](/assets/images/THM/Orcam/Uncovered_Macros.png)
 
-## **Step 3: Decrypting the Shellcode**
+### Step 3: Decrypting the Shellcode
 
-The shellcode is hidden in the **`buf`** array, XOR-encrypted with **`"l33t"`**.
+The shellcode is hidden in the `buf` array, XOR-encrypted with `"l33t"`.
 
-### **Python Decryption Script:**
+### Python Decryption Script:
 
 I copied this Section of the code and tried to decode it using this python script:
 
