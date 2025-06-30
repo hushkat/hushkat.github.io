@@ -9,6 +9,8 @@ tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 ---
 
 ---
+
+
 ## Breach
 
 **Description:**
@@ -57,9 +59,11 @@ That got me the Flag for this challenge:
 
 ![Flag](/assets/images/THM/Breach/Flag_Breach.png)
 
+---
+
 ## Discord
 
-**Description:**
+### Description:
 
 > Join our Discord server and find the flag?
 
@@ -78,21 +82,23 @@ As seen below, this triggered a response from the **TryHackMe bot** — and bing
 
 ![DiscordTHM.png](/assets/images/THM/Discord/DiscordFlag.png)
 
+---
+
 ## Rogue Poller
 
-**Description:**
+### Description:
 
 > An intruder has breached the internal OT network and systematically probed industrial devices for sensitive data. 
 > Network captures reveal unusual traffic from a suspicious host scanning PLC memory over TCP port 502.
 > Analyse the provided PCAP and uncover what data the attacker retrieved during their register scans.
 
-**Why port 502?**
+### Why port 502?**
 
 The capture was taken in an **ICS/SCADA** setting.
 
 Industrial controllers often speak **Modbus‑TCP**, and Modbus always defaults to **TCP port 502**. If something suspicious is happening in a poller/PLC scenario, 502 is the first place to look. Filter for the said port: `tcp.port == 502` , Click on the first packet and follow TCP stream:
 
-**Re‑assemble the conversation**
+### Re‑assemble the conversation
 
 1. **Click the first packet** in the list (frame 33 in my capture).
 2. **Right‑click ▸ Follow ▸ TCP Stream**.
@@ -109,6 +115,8 @@ Every printable byte is exactly one character of the flag – they’re merely s
 - Delete the whitespace → the same string emerges.
 
 Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3rs}`
+
+---
 
 ## OSINT 1
 
@@ -166,8 +174,6 @@ Two subdomains were discovered:
 
 The first appeared to be encoded.
 
----
-
 ### **Analysis:**
 
 - The subdomain `54484d7b5375357373737d` was identified as hex.
@@ -177,5 +183,6 @@ The first appeared to be encoded.
     echo 54484d7b5375357373737d | xxd -r -p # Command used
     THM{Su5sss} # Subsequent Output
     
-    ``` 
+    ```
+
 ---
