@@ -8,9 +8,6 @@ categories: [Web, Misc, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, In
 tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 ---
 
----
-
-
 ## Breach
 
 **Description:**
@@ -59,8 +56,6 @@ That got me the Flag for this challenge:
 
 ![Flag](/assets/images/THM/Breach/Flag_Breach.png)
 
----
-
 ## Discord
 
 ### Description:
@@ -81,8 +76,6 @@ So, I typed: `/secret-function` .
 As seen below, this triggered a response from the **TryHackMe bot** — and bingo! It revealed the flag:
 
 ![DiscordTHM.png](/assets/images/THM/Discord/DiscordFlag.png)
-
----
 
 ## Rogue Poller
 
@@ -115,8 +108,6 @@ Every printable byte is exactly one character of the flag – they’re merely s
 - Delete the whitespace → the same string emerges.
 
 Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3rs}`
-
----
 
 ## OSINT 1
 
@@ -182,5 +173,3 @@ The first appeared to be encoded.
 echo 54484d7b5375357373737d | xxd -r -p # Command used
 THM{Su5sss} # Subsequent Output
 ```
-
----
