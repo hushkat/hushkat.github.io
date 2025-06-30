@@ -79,3 +79,36 @@ So, I typed: `/secret-function` .
 As seen below, this triggered a response from the **TryHackMe bot** — and bingo! It revealed the flag:
 
 ![DiscordTHM.png](/assets/images/THM/Discord/DiscordFlag.png)
+
+# Rogue Poller
+## Challenge Overview
+
+**Description:**
+
+> An intruder has breached the internal OT network and systematically probed industrial devices for sensitive data. 
+> Network captures reveal unusual traffic from a suspicious host scanning PLC memory over TCP port 502.
+> Analyse the provided PCAP and uncover what data the attacker retrieved during their register scans.
+
+## Why port 502?
+
+The capture was taken in an **ICS/SCADA** setting.
+
+Industrial controllers often speak **Modbus‑TCP**, and Modbus always defaults to **TCP port 502**. If something suspicious is happening in a poller/PLC scenario, 502 is the first place to look. Filter for the said port: `tcp.port == 502` , Click on the first packet and follow TCP stream:
+
+## Re‑assemble the conversation
+
+1. **Click the first packet** in the list (frame 33 in my capture).
+2. **Right‑click ▸ Follow ▸ TCP Stream**.
+
+Wireshark stitches every segment of that TCP session together and shows it in a single window.
+
+Make sure the *Show data as* drop‑down is set to **ASCII** – Modbus payloads are plain bytes, so ASCII is the quickest view when you’re hunting for embedded strings.
+
+![RoguePoller_Flag.png](/assets/images/THM/RoguePoller/RoguePoller_Flag.png)
+
+Every printable byte is exactly one character of the flag – they’re merely separated by unprintable padding bytes (typical when registers are filled two bytes at a time).
+
+- In the Follow‑Stream window copy just the visible characters (ignore dots and line breaks) into a text editor.
+- Delete the whitespace → the same string emerges.
+
+Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3r$}`
