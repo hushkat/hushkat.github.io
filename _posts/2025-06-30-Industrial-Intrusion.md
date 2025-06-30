@@ -111,4 +111,4 @@ Every printable byte is exactly one character of the flag – they’re merely s
 - In the Follow‑Stream window copy just the visible characters (ignore dots and line breaks) into a text editor.
 - Delete the whitespace → the same string emerges.
 
-Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3r$}`
+Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3rs}`
