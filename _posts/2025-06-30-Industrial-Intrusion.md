@@ -9,9 +9,9 @@ tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 ---
 
 ---
-## Challenge Overview
+## Breach
 
-**Title:** Breach
+**Title:** Challenge Overview
 
 **Description:**
 
@@ -49,12 +49,12 @@ HTTP on port 80 and 8080 both running Werkzeug Python servers (versions 3.1.3 an
 Werkzeug is a Python WSGI utility library often used with Flask apps, so these could be web applications worth exploring for vulnerabilities or misconfigurations.
 
 Visiting port 80:
-/assets/images/THM/Breach/Port80.png
+![Por80](/assets/images/THM/Breach/Port80.png)
 
 Leveraging some online research, I learnt that there is a UI page for the service running on port 1880 which is Node-RED. On visiting the discovered UI endpoint, I changed the status of these switches:
 
-/assets/images/THM/Breach/OT dashboard.png
+![OT_Dashboard](/assets/images/THM/Breach/OT dashboard.png)
 
-That got me the Flag:
+That got me the Flag for this challenge:
 
-/assets/images/THM/Breach/Flag_Breach.png
+![Flag](/assets/images/THM/Breach/Flag_Breach.png)
