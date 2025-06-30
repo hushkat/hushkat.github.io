@@ -53,7 +53,7 @@ Visiting port 80:
 
 Leveraging some online research, I learnt that there is a UI page for the service running on port 1880 which is Node-RED. On visiting the discovered UI endpoint, I changed the status of these switches:
 
-![OT_Dashboard](/assets/images/THM/Breach/OT dashboard.png)
+![OT_Dashboard](/assets/images/THM/Breach/OT_dashboard.png)
 
 That got me the Flag for this challenge:
 
