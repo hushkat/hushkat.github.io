@@ -4,9 +4,10 @@ date: 2025-06-30 01:09:33 +0300
 author: [hushkat]
 description: Tryhackme Industrial Intrusion Writeups
 image: /assets/images/THM/Industrial_Intrusion.jpg
-categories: [Web, Misc, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, Industrial Control Systems]
-tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
+categories: [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, Industrial Control Systems]
+tags:  [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, Industrial Control Systems]
 ---
+
 
 ## Breach
 
@@ -113,9 +114,9 @@ Reconstruct the flag: `THM{1nDu5tr14l_r3g1$t3rs}`
 
 ### Description:
 
-> “Hexline, we need your help investigating the phishing attack from 3 months ago. 
+> Hexline, we need your help investigating the phishing attack from 3 months ago. 
 > We believe the threat actor managed to hijack our domain virelia-water.it.com and used it to host some of their infrastructure at the time. 
-> Use your OSINT skills to find information about the infrastructure they used during their campaign.”
+> Use your OSINT skills to find information about the infrastructure they used during their campaign.
 
 ### Objective:
 
@@ -173,3 +174,4 @@ The first appeared to be encoded.
 echo 54484d7b5375357373737d | xxd -r -p # Command used
 THM{Su5sss} # Subsequent Output
 ```
+
