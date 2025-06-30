@@ -8,6 +8,11 @@ categories: [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, 
 tags:  [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, Industrial Control Systems]
 ---
 
+> Over the weekend, I took on the challenge to participate in Industrial Intrusion CTF by TryHackMe, it was a challenge that blends classic offensive security tactics with the niche world of Industrial Control Systems (ICS).
+> It offered a fun and insightful mix of categories including Web exploitation, OSINT, Forensics, and a light Boot2Root (B2R) experience—perfect for anyone looking to dip their toes into ICS-focused challenges.
+> These writeups walk through my step-by-step approach in solving some of the easiest challenges, how I navigated each section, and what made this ICS-themed room both accessible and educational.
+> Whether you're new to TryHackMe or curious about the crossover between IT and OT security, this is a solid place to start.
+
 ## Breach
 
 **Description**
