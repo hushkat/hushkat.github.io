@@ -9,8 +9,7 @@ tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 ---
 
 ---
-# Breach
-## Challenge Overview
+## Breach
 
 **Description:**
 
@@ -20,7 +19,7 @@ tags: [WEB, Cryptography, Easy, KenyaCyberlympics]
 
 **Target IP:** `10.10.123.189`
 
-## Enumeration
+**Enumeration**
 
 I did an NMAP scan and these were the results:
 
@@ -58,8 +57,7 @@ That got me the Flag for this challenge:
 
 ![Flag](/assets/images/THM/Breach/Flag_Breach.png)
 
-# Discord
-## Challenge Overview
+## Discord
 
 **Description:**
 
@@ -80,8 +78,7 @@ As seen below, this triggered a response from the **TryHackMe bot** — and bing
 
 ![DiscordTHM.png](/assets/images/THM/Discord/DiscordFlag.png)
 
-# Rogue Poller
-## Challenge Overview
+## Rogue Poller
 
 **Description:**
 
