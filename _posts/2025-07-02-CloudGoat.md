@@ -9,10 +9,11 @@ tags:  [AWS, IAM, PRIVILEGE ESCALATION, Cloudgoat]
 ---
 
 ## ⚠️ Important Disclaimer
-> This tutorial is for educational purposes only. All AWS access keys, credentials, and ARNs shown in screenshots or examples:
-> 🔒 Were immediately deactivated after this demonstration.
-> 🚫 Should never be used to access any AWS resources.
-> ⚠️ Are from intentionally vulnerable lab environments (CloudGoat) and not real systems.
+> This tutorial is for educational purposes only.
+> All AWS access keys, credentials, and ARNs shown in screenshots or examples:
+> - Were immediately deactivated after this demonstration.
+> - Should never be used to access any AWS resources.
+> - Are from intentionally vulnerable lab environments (CloudGoat) and not real systems.
 
 
 ## Ethical Use Notice:
@@ -41,7 +42,7 @@ However, before we do that, let's setup our environment:
 
 ## Lab Setup: Preparing Our Environment
 ### Prerequisites for the IAM Privilege Escalation Lab
-Base Environment
+Base Environment:
 ✅ Kali Linux Virtual Machine
 (Recommended: Latest version, fresh install with internet access)
 (Note: This tutorial assumes a Kali VM, but any Linux distro with these tools will work)
