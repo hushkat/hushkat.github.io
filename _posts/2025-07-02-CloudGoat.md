@@ -241,7 +241,7 @@ Expected output:
 
 ## Analyzing the Dangerous Policy
 
-This IAM policy is very interesting, and dangerous, from a security perspective. It's explicitly crafted to allow privilege escalation via the "rollback" method. Let’s break it down.
+This IAM policy is very interesting, and dangerous, from a security perspective. It's explicitly crafted to allow privilege escalation via the "rollback" method. Let’s break it down:
 **iam:Get* + iam:List*:** Allows reading IAM configurations
 These permissions allow:
 - Reading IAM users, roles, groups, and policies.
@@ -251,6 +251,7 @@ This visibility is key for enumeration during privilege escalation.
 
 **iam:SetDefaultPolicyVersion**: Allows rolling back to previous policy versions
 This is the most critical and potentially dangerous permission.
+
 It allows a user to:
 - Roll back a managed IAM policy to an earlier version, even if that version has AdministratorAccess orsome other over-permissive access.
 - The rollback doesn't change the policy, it just sets a previously approved version as the default.
@@ -261,8 +262,8 @@ This is a classic IAM Privilege Escalation Technique:
 - Later, it was restricted (e.g., in version 5).
 - The attacker uses **iam:SetDefaultPolicyVersion** to revert to version 1.
 - Now their user/role has admin access, without modifying the policy directly.
-
 That is exactly what we are going to do when we run the first command below.
+
 ### Executing the Privilege Escalation
 ```bash
 aws iam set-default-policy-version \
@@ -288,13 +289,12 @@ aws iam list-users
 The output should look like this:
 ![ListingUsers](/assets/images/CloudGoat/ListingUsers.png)
 
-## Why This Worked:
+## Why This Worked
 - The policy was tightened over time, but older versions weren’t deleted.
 - The user had **iam:SetDefaultPolicyVersion** permission (a common misconfiguration).
-
 That sum's up the objectives or goals that we had for this particular lab.
 
-## Defense Recommendations:
+## Defense Recommendations
 - Always delete old policy versions when updating IAM policies.
 - Never grant **iam:SetDefaultPolicyVersion** to low-privilege users.
 
@@ -305,5 +305,4 @@ profile default
 aws configure set aws_access_key_id "" && aws configure set
 aws_secret_access_key ""
 ```
-
 Happy hacking, see you on the next post.
