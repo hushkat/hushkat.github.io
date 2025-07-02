@@ -45,6 +45,7 @@ However, before we do that, let's setup our environment:
 
 1. Visit the [AWS CLI installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions) from [aws.amazon.com/cli](https://aws.amazon.com/cli)
 2. Run these commands to install the AWS CLI on your Kali VM:
+
 ```bash
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -52,8 +53,9 @@ sudo ./aws/install
 ```
 
 Here is what a successful Installation looks like, verifying with commands like: 
+
 ```bash
-aws –version or
+aws --version or
 which aws
 ```
 ![SuccessfullyInstalledCLI](/assets/images/CloudGoat/AWSCLI_Installed.png)
