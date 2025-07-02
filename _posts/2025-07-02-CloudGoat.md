@@ -36,3 +36,40 @@ In this hands-on walkthrough, we'll explore how attackers can exploit an often-o
 
 Here is a simple exploitation route that we are going to take in this walkthrough:
 ![Exploitation_Route](/assets/images/CloudGoat/ExploitationRoute.png)
+
+However, before we do that, let's setup our environment:
+
+## Lab Setup: Preparing Our Environment
+
+### Installing and Configuring the AWS CLI
+
+1. Visit the [AWS CLI installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions) from [aws.amazon.com/cli](https://aws.amazon.com/cli)
+2. Run these commands to install the AWS CLI on your Kali VM:
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+
+Here is what a successful Installation looks like, verifying with commands like: 
+```bash
+aws –version or
+which aws
+```
+![SuccessfullyInstalledCLI](/assets/images/CloudGoat/AWSCLI_Installed.png)
+
+### Creating a CLI User
+1. Log into the AWS Console
+2. Search for and open IAM
+3. Click "Users" → "Create user"
+![IAM_Console](/assets/images/CloudGoat/IAM_Console.png)
+4. Set username as cli-user and proceed
+5. Set permissions with Administrator Access
+![SettingUserPermissions](/assets/images/CloudGoat/SettingUserPermissions.png)
+6. Review and create the user
+
+**Notice that we gave the user Administrator Access and then click on next to proceed to the review page.**
+ 
+On the last page, we can go ahead and review our configurations and just click on create user once we have confirmed everything is set. Once the user has been created successfully, we can click on their username from the list of IAM users from our console, for further configs. 
+
+**It’s important to note that, we know that the user has successfully been created when we see the green notification at the top of the console page.**
