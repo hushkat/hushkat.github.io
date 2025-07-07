@@ -47,5 +47,3 @@ Using the credentials found in the comments, I successfully logged in as an admi
 In conclusion, this challenge provided a great opportunity to apply web enumeration techniques to uncover hidden information and identify potential vulnerabilities. The process involved inspecting the underlying code, using gobuster for directory enumeration, understanding the significance of robots.txt files, and recognizing the importance of secure coding practices.
 
 As a hacker, it's crucial to continuously explore and learn new techniques. Happy hacking, and never stop learning!
-
-dr0idbot out.
