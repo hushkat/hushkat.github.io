@@ -3,8 +3,8 @@ title: Privilege Escalation
 description: Mastering Privilege Escalation Techniques
 date: 2023-08-11 00:00:00+0000
 image: /assets/images/privilege-escalation/PriviledgeEscalation.jpg
-tags: [HackTheBox, SSH_Keys, PrivilegeEscalation]
-categories: [Easy, HackTheBox]
+tags: [HackTheBox, SSH_Keys, PrivilegeEscalation, Easy, HTB]
+categories: [Easy, HackTheBox, HTB,SSH_Keys, PrivilegeEscalation]
 ---
 This image is courtesy of [CyberHoot](https://cyberhoot.com/cybrary/privilege-escalation-attack/)
 ### Introduction
@@ -207,5 +207,3 @@ HTB{pr1v1l363_**********_2_r007}
 In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging SSH keys, directory permissions, and sudo privileges, we elevate our access and seize the flag.
 
 Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.
-
-dr0idbot signing off.
