@@ -1,21 +1,34 @@
 ---
 layout: home
 ---
-
 <style>
   #threejs-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
   }
-  .main-content, #main, .container {
-    background-color: rgba(255, 255, 255, 0.9);
-    position: relative;
-    z-index: 1;
+  
+  #threejs-bg canvas {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  
+  /* Make content background semi-transparent */
+  .main-content, #main, .container, .post-content {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  /* Test visibility - remove this after confirming it works */
+  #threejs-bg {
+    border: 2px solid red !important;
   }
 </style>
 
@@ -24,18 +37,27 @@ layout: home
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('Starting Three.js animation...');
+    
     const container = document.getElementById('threejs-bg');
+    if (!container) {
+      console.error('Container #threejs-bg not found!');
+      return;
+    }
+    
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     camera.position.z = 3;
     
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
-      alpha: true
+      alpha: false  // Changed to false to make background visible
     });
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x001122, 1);  // Dark blue background instead of transparent
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
+    
+    console.log('Canvas created and added to container');
     
     const geometry = new THREE.IcosahedronGeometry(1, 1);
     const material = new THREE.MeshBasicMaterial({
@@ -59,5 +81,7 @@ layout: home
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
+    
+    console.log('Animation started successfully');
   });
 </script>
