@@ -28,6 +28,9 @@ webmaster_verifications:
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
 
+head_scripts:
+  - assets/js/test.js
+
 # Web Analytics Settings
 analytics:
   google:
