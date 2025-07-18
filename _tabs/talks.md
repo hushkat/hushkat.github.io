@@ -1,7 +1,8 @@
 ---
 title: Talks
-icon: fas fa-chalkboard-teacher  # Font Awesome icon
-order: 2                         # Adjust tab order if needed
+icon: fas fa-chalkboard-teacher 
+order: 2
+comments: true
 ---
 
 # 🗣️ Talks & Presentations
