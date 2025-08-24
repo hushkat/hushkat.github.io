@@ -220,8 +220,10 @@ Flag: `brunner{I_like_Baking_More_That_Programming}`
 The challenge gave a fun story:
 After all that cake, it's time for a drink 🍸. But wait, the bartender added a strange “secret ingredient.” Can we figure out what it is?
 We were also provided with some scrambled text:
-```
+
+```plaintext
 🍸 wg`{{pgna}&J{!x&2fJWg`{{&g;;;_!x&fJWg`{{&gh 🍸
+
 ```
 and a Python script that performed the encryption.
 
