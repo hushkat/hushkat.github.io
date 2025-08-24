@@ -222,8 +222,9 @@ After all that cake, it's time for a drink 🍸. But wait, the bartender added a
 We were also provided with some scrambled text:
 
 ```plaintext
+{% raw %}
 🍸 wg`{{pgna}&J{!x&2fJWg`{{&g;;;_!x&fJWg`{{&gh 🍸
-
+{% endraw %}
 ```
 and a Python script that performed the encryption.
 
