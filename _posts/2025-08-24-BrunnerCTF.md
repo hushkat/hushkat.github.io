@@ -357,7 +357,7 @@ This was the challenge description:
 
 We were given an instance to connect to and a file to download. The file had some code in C:
 
-```C
+```
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -489,7 +489,7 @@ The program asks how many of a flavour you want to buy, calculates the total cos
 ## Spot the vulnerability
 
 Here’s the key code from shop.c:
-```C
+```
 int buy(int balance, int price) {
     unsigned int qty;
     scanf("%u", &qty);           // user enters quantity
@@ -991,5 +991,6 @@ flag: `brunner{5uD0_pR1V1L3g35_T00_h0t_F0r_J4v4_J4CK!}`
 
 
 Wrapping up, BrunnerCTF 2025 was a fun and insightful experience that sharpened my problem-solving skills and deepened my understanding of core cybersecurity concepts. The “Shake & Bake” challenges were perfect for practicing fundamentals while still offering a few clever twists to keep things exciting. I’m looking forward to tackling more advanced challenges next time and continuing to refine my skills. Until then — happy hacking, and see you in the next CTF! 🚩
+
 
 
