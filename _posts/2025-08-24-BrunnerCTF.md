@@ -221,6 +221,7 @@ The challenge gave a fun story:
 After all that cake, it's time for a drink 🍸. But wait, the bartender added a strange “secret ingredient.” Can we figure out what it is?
 We were also provided with some scrambled text:
 ![EncryptedText](https://gist.github.com/user-attachments/assets/c102a48c-07ce-4b29-aa3b-27a2de6025af)
+
 and a Python script that performed the encryption.
 
 ## Looking at the Code
@@ -262,20 +263,10 @@ So, if we don’t know the key - brute-forcing all 256 possibilities is quick an
 ## Brute-forcing the Key
 
 Here’s the brute-force script I used:
-```
-cipher = "wg`{{pgna}&J{!x&2fJWg`{{&g;;;_!x&fJWg`{{&gh"
-cipher_bytes = cipher.encode()
-
-for key in range(256):
-    decoded = ''.join(chr(b ^ key) for b in cipher_bytes)
-    if "flag" in decoded or "{" in decoded:
-        print(f"Key: {key} => {decoded}")
-```
+![Script](https://gist.github.com/user-attachments/assets/c1783039-50a1-4f45-9a99-94f2475cda11)
 
 When running it, the readable candidate that stood out was:
-```
-Key 21: brunner{th3_n4m3's_Brunn3r...J4m3s_Brunn3r}
-```
+![Flag](https://gist.github.com/user-attachments/assets/dfb3fb4b-8854-4358-95e6-0816e786f7c3)
 
 And just like that - we have the flag!
 
@@ -996,6 +987,5 @@ I therefore went ahead and supplied the file name of the file we are required to
 ![root_flag](https://gist.github.com/user-attachments/assets/ab154124-c226-440d-bc0e-184d981f7de0)
 
 flag: `brunner{5uD0_pR1V1L3g35_T00_h0t_F0r_J4v4_J4CK!}`
-
 
 Wrapping up, BrunnerCTF 2025 was a fun and insightful experience that sharpened my problem-solving skills and deepened my understanding of core cybersecurity concepts. The “Shake & Bake” challenges were perfect for practicing fundamentals while still offering a few clever twists to keep things exciting. I’m looking forward to tackling more advanced challenges next time and continuing to refine my skills. Until then — happy hacking, and see you in the next CTF! 🚩
