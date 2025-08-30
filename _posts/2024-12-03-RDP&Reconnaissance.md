@@ -2,7 +2,6 @@
 title: "RDP & Reconnaissance"
 date: 2024-12-03 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: CyberGon Writeups
 image: /assets/images/CyberGon/CyberGon.png
 categories: [Reconnaissance, ThreatIntelligence, Easy, CyberGonCTF]
@@ -59,3 +58,4 @@ openssl x509 -inform DER -in certificate.der -noout -enddate
 notAfter=Nov 24 20:38:00 2039 GMT
 ```
 I therefore constructed the flag to look like so: `CYBERGON_CTF2024{2039:11:24:20:38:00}` and submitted it.
+
