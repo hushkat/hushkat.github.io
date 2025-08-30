@@ -2,7 +2,6 @@
 title: "Tryhackme Industrial Intrusion"
 date: 2025-06-30 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: Tryhackme Industrial Intrusion Writeups
 image: /assets/images/THM/Industrial_Intrusion.jpg
 categories: [Web, Misc, OSINT, B2R, Boot2Root, Easy, Tryhackme, THM, Forensics, ICS, Industrial Control Systems]
@@ -758,3 +757,4 @@ sudo vi -c ':!/bin/bash'
 1. **LFI in `view.php`** → Allowed reading system files.
 2. **Exposed SSH Key** → Gained initial shell access.
 3. **Misconfigured Sudo (`vi` with NOPASSWD)** → Privilege escalation to root.
+
