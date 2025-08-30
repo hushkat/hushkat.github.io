@@ -2,7 +2,6 @@
 title: Keep it Simple
 date: 2023-06-21 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: The answer is simple
 image: /assets/images/keep-it-simple/The eye.jpg
 categories: [Digital Forensics, Easy, CyberTalents, Exiftool, Diff]
