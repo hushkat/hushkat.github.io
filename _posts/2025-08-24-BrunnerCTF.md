@@ -2,7 +2,6 @@
 title: "Brunner CTF"
 date: 2025-08-24 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: A beginner-friendly journey through BrunnerCTF 2025’s “Shake & Bake” challenges, covering misc, OSINT, web, crypto, forensics, boot2root, pwn, and reverse engineering.
 image: /assets/images/BrunnerCTF/Banner.png
 categories: [misc, osint, web, crypto, forensics, boot2root, pwn, reverse engineering, B2R]
@@ -991,6 +990,7 @@ flag: `brunner{5uD0_pR1V1L3g35_T00_h0t_F0r_J4v4_J4CK!}`
 
 
 Wrapping up, BrunnerCTF 2025 was a fun and insightful experience that sharpened my problem-solving skills and deepened my understanding of core cybersecurity concepts. The “Shake & Bake” challenges were perfect for practicing fundamentals while still offering a few clever twists to keep things exciting. I’m looking forward to tackling more advanced challenges next time and continuing to refine my skills. Until then — happy hacking, and see you in the next CTF! 🚩
+
 
 
 
