@@ -2,7 +2,6 @@
 title: "The Silent Threat in Your AWS Environment: IAM Privilege Escalation via Policy Rollback"
 date: 2025-06-30 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: IAM Privilege Escalation via Policy Rollback
 image: /assets/images/CloudGoat/CloudGoat.png
 categories: [AWS, IAM, PRIVILEGE ESCALATION, Cloudgoat]
@@ -308,3 +307,4 @@ aws configure set aws_access_key_id "" && aws configure set
 aws_secret_access_key ""
 ```
 Happy hacking, see you on the next post.
+
