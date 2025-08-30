@@ -3,7 +3,6 @@ title: Web Enumeration
 description: Everything you need to log in is given to you
 date: 2023-07-29 00:00:00+0000
 comments: true
-author: [hushkat]
 image: /assets/images/web-enumeration/Web.jpg
 tags: [HackTheBox, Web Security, Easy, Gobuster, Wordpress, HTB]
 categories: [Web Security, Easy, HackTheBox, Gobuster, Wordpress, HTB]
