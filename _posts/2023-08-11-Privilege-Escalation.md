@@ -2,7 +2,6 @@
 title: Privilege Escalation
 description: Mastering Privilege Escalation Techniques
 date: 2023-08-11 00:00:00+0000
-author: [hushkat]
 comments: true
 image: /assets/images/privilege-escalation/PriviledgeEscalation.jpg
 tags: [HackTheBox, SSH_Keys, PrivilegeEscalation, Easy, HTB]
