@@ -2,7 +2,6 @@
 title: "KenyaCyberlympics"
 date: 2025-06-01 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: KenyaCyberlympics Writeups
 image: /assets/images/KenyaCyberlympics/Cyberlympics.png
 categories: [WEB, Cryptography, Easy, KenyaCyberlympics]
@@ -160,3 +159,4 @@ python3 crypt.py
 [+] Key found: my_secure_aeskey
 [+] Plaintext: acdfCTF{34sy_43S_3ncrypt10n}
 ```
+
