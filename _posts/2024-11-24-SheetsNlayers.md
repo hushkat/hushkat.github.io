@@ -2,7 +2,6 @@
 title: "SheetsNLayers"
 date: 2024-11-24 01:09:33 +0300
 comments: true
-author: [hushkat]
 description: P3rf3ctr00t CTF Writeups
 image: /assets/images/PerfectRoot/SheetsNLayers/PerfectRootLogo.png
 categories: [Misc, PerfectRoot]
