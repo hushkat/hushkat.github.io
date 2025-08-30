@@ -3,7 +3,6 @@ title: SimpleCTF
 description: Beginner Level CTF
 date: 2023-12-31 00:00:00+0000
 comments: true
-author: [hushkat]
 image: /assets/images/simpleCTF/Banner.png
 tags: [TryHackMe, Privilege Escalation, Gobuster, NMAP, ssh]
 categories: [Easy, TryHackMe, Gobuster, NMAP, ssh]
