@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wordpress on HushKat&#39;s Cyber Den</title>
+    <link>http://localhost:1313/tags/wordpress/</link>
+    <description>Recent content in Wordpress on HushKat&#39;s Cyber Den</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 HushKat. All rights reserved.</copyright>
+    <lastBuildDate>Wed, 02 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Public Exploits</title>
+      <link>http://localhost:1313/posts/2023-08-02-public-exploits/2023-08-02-public-exploits/</link>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/2023-08-02-public-exploits/2023-08-02-public-exploits/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Welcome to yet another writeup where I cover an important tool used by hackers to exploit vulnerabilities on different systems: &lt;a
+  href=&#34;https://www.metasploit.com/&#34;
+    target=&#34;_blank&#34;
+  &gt;Metasploit&lt;/a&gt; In this challenge, part of the &amp;ldquo;Getting started&amp;rdquo; series on HackTheBox Academy, we will be delving into the realm of public exploits and uncovering the power of Metasploit.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Web Enumeration</title>
+      <link>http://localhost:1313/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</link>
+      <pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Welcome to another writeup from a challenge discovered at one of the best learning platforms for hackers &lt;a
+  href=&#34;https://academy.hackthebox.com/&#34;
+    target=&#34;_blank&#34;
+  &gt;HackTheBox&lt;/a&gt;. This challenge is part of the &lt;strong&gt;Getting Started&lt;/strong&gt; module and can be found &lt;a
+  href=&#34;https://academy.hackthebox.com/course/preview/getting-started&#34;
+    target=&#34;_blank&#34;
+  &gt;here&lt;/a&gt;.  It is an excellent starting point for those interested in offensive security or red teaming.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

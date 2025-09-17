@@ -1,0 +1,90 @@
+# Theme parameters
+colorScheme = "auto" # auto, light, dark, ocean, forest, princess, fire, ruby
+defaultAppearance = "dark" # light or dark
+autoSwitchAppearance = true
+mainSections = ["posts"]
+
+enableSearch = true
+enableCodeCopy = true
+enableImageOptimization = true
+
+# Main menu
+showPagination = true
+showReadingTime = true
+showTableOfContents = true
+showTaxonomies = false
+showWordCount = true
+showSummary = true
+sharingLinks = [ "linkedin", "twitter", "whatsapp", "reddit", "facebook"]
+
+[header]
+  layout = "basic" # basic, fixed, fixed-fill, fixed-fill-blur
+
+[homepage]
+  layout = "background" # card layout shows recent posts with thumbnails
+  homepageImage = "img/background.svg"
+  showRecent = true
+  showRecentItems = 10
+  showMoreLink = true
+  showMoreLinkDest = "/posts"
+  cardView = true
+  cardViewScreenWidth = false
+  layoutBackgroundBlur = true
+
+[article]
+  showDate = true
+  showViews = false
+  showLikes = false
+  showDateUpdated = false
+  showAuthor = true
+  showHero = true
+  heroStyle = "background"
+  layoutBackgroundBlur = true
+  layoutBackgroundHeaderSpace = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showEdit = false
+  showSummary = false
+  showTableOfContents = true
+  showWordCount = true
+  showReadingTime = true
+  sharingLinks = [ "linkedin", "twitter", "reddit", "facebook"]
+
+[list]
+  showHero = false
+  heroStyle = "basic"
+  layoutBackgroundBlur = true
+  layoutBackgroundHeaderSpace = true
+  showBreadcrumbs = false
+  showSummary = false
+  showViews = false
+  showLikes = false
+  showTableOfContents = false
+  showCards = true
+  groupByYear = true
+  cardView = true
+  cardViewScreenWidth = false
+
+[sitemap]
+  excludedKinds = ["taxonomy", "term"]
+
+[taxonomy]
+  showTermCount = true
+  showHero = false
+  heroStyle = "background"
+  showBreadcrumbs = false
+  showViews = false
+  showLikes = false
+  showTableOfContents = true
+  cardView = false
+
+[term]
+  showHero = false
+  heroStyle = "background"
+  showBreadcrumbs = false
+  showViews = false
+  showLikes = false
+  showTableOfContents = true
+  groupByYear = false
+  cardView = true
+  cardViewScreenWidth = false

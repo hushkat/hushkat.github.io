@@ -1,0 +1,27 @@
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "HushKat's Cyber Den"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  logo = "/images/avatar.png"
+  secondaryLogo = "static/images/avatar.png"
+  description = "Cybersecurity enthusiast sharing CTF writeups, tutorials, and security insights"
+  copyright = "© 2025 HushKat. All rights reserved."
+
+[author]
+  name = "HushKat"
+  image = "/images/avatar.png"
+  headline = "Cybersecurity Enthusiast & CTF Player"
+  bio = "Passionate about cybersecurity analysis, and ethical hacking. Sharing knowledge through CTF writeups and tutorials."
+  links = [
+    { email = "samykat46@gmail.com" },
+    { link = "https://hushkat.github.io" },
+    { github = "https://github.com/hushkat" },
+    { linkedin = "https://www.linkedin.com/in/katanasamuel/" },
+    { twitter = "https://x.com/dr0idbot" },
+  ]

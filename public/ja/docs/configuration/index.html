@@ -1,0 +1,3285 @@
+<!doctype html>
+<html
+  lang="ja"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="ja">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  <title>設定 &middot; Blowfish</title>
+    <meta name="title" content="設定 &middot; Blowfish">
+
+  
+  <meta name="description" content="Blowfish で使えるすべての設定変数">
+  <meta name="keywords" content="config,docs,">
+  
+  
+  <link rel="canonical" href="http://localhost:1313/ja/docs/configuration/">
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.f875dda8a6dc16f33adb8873681506c07444631be7e42b7575718d40698db0db7cd237ac4306f361ed9daaa2f828ff344a9fc7f845cf0217dcbc9360d395f0f9.css"
+    integrity="sha512-&#43;HXdqKbcFvM624hzaBUGwHREYxvn5Ct1dXGNQGmNsNt80jesQwbzYe2dqqL4KP80Sp/H&#43;EXPAhfcvJNg05Xw&#43;Q==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+    
+    
+    
+  
+  
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.f99aa39bcfb5d16a28ec2236bd358df5e465058a67f58b42534a3b15882a6a3513791fd27248c6b5b5cef06337f714070d4784fb776f44d930309b64cce1a2e0.js"
+      integrity="sha512-&#43;Zqjm8&#43;10Woo7CI2vTWN9eRlBYpn9YtCU0o7FYgqajUTeR/SckjGtbXO8GM39xQHDUeE&#43;3dvRNkwMJtkzOGi4A=="
+      data-copy="コピー"
+      data-copied="コピーしました"></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/ja/docs/configuration/">
+  <meta property="og:site_name" content="Blowfish">
+  <meta property="og:title" content="設定">
+  <meta property="og:description" content="Blowfish で使えるすべての設定変数">
+  <meta property="og:locale" content="ja">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:tag" content="Config">
+    <meta property="article:tag" content="Docs">
+    <meta property="og:image" content="http://localhost:1313/docs/configuration/featured.svg">
+      <meta property="og:see_also" content="http://localhost:1313/ja/docs/welcome/">
+      <meta property="og:see_also" content="http://localhost:1313/ja/docs/installation/">
+      <meta property="og:see_also" content="http://localhost:1313/ja/docs/getting-started/">
+      <meta property="og:see_also" content="http://localhost:1313/ja/docs/homepage-layout/">
+      <meta property="og:see_also" content="http://localhost:1313/ja/docs/shortcodes/">
+      <meta property="og:see_also" content="http://localhost:1313/ja/docs/front-matter/">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/docs/configuration/featured.svg">
+  <meta name="twitter:title" content="設定">
+  <meta name="twitter:description" content="Blowfish で使えるすべての設定変数">
+<meta name="twitter:image" content="http://localhost:1313/docs/configuration/featured.svg">
+    <meta property="og:image" content="http://localhost:1313/docs/configuration/featured.svg">
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "ドキュメント",
+    "name": "設定",
+    "headline": "設定",
+    "description": "Blowfish で使えるすべての設定変数",
+    "abstract": "\u003cp\u003eBlowfish は高度にカスタマイズ可能なテーマであり、最新の Hugo 機能を使用して設定方法をシンプルにしています。\u003c\/p\u003e\n\u003cp\u003eこのテーマには、基本的なブログまたは静的サイトをすぐに立ち上げて実行できるデフォルト設定が付属しています。\u003c\/p\u003e\n\n  \n\n\n\n\u003cdiv\n  \n    class=\u0022flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900\u0022\n  \n  \u003e\n  \u003cspan\n    \n      class=\u0022text-primary-400 pe-3 flex items-center\u0022\n    \n    \u003e\n    \u003cspan class=\u0022relative block icon\u0022\u003e\u003csvg xmlns=\u0022http:\/\/www.w3.org\/2000\/svg\u0022 viewBox=\u00220 0 448 512\u0022\u003e\n\u003cpath fill=\u0022currentColor\u0022  d=\u0022M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z\u0022\/\u003e\u003c\/svg\u003e\u003c\/span\u003e\n  \u003c\/span\u003e\n\n  \u003cspan\n    \n      class=\u0022dark:text-neutral-300\u0022\n    \n    \u003e\u003cp\u003eBlowfish を簡単に使い始められるように、新しい CLI ツールをリリースしました。インストールと設定に役立ちます。 グローバルに CLI ツールをインストールするには、以下を使用します。\u003c\/p\u003e",
+    "inLanguage": "ja",
+    "url" : "http:\/\/localhost:1313\/ja\/docs\/configuration\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Blowfish"
+    },
+    
+    
+    
+    
+    
+    
+    "keywords": ["config","docs"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1050"
+  }]
+  </script>
+
+
+
+  
+  
+    <meta name="author" content="Blowfish">
+  
+  
+    
+      
+        
+          <link href="https://twitter.com/burufugu" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://github.com/nunocoracao/blowfish" rel="me">
+        
+      
+    
+  
+
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        メインコンテンツへスキップ
+      </a>
+    </div>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div
+  class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start gap-x-3 pt-[2px] pr-0 pb-[3px] pl-0">
+  
+  
+    
+    
+      <div>
+        <a href="/ja/" class="flex">
+          <span class="sr-only">Blowfish</span>
+          
+            <img
+              src="/img/blowfish_logo_transparent.png"
+              width="1000"
+              height="1000"
+              class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom"
+              alt="Blowfish">
+          
+        </a>
+      </div>
+    
+
+  <div class="flex flex-1 items-center justify-between">
+    <nav class="flex space-x-3">
+      
+        <a href="/ja/" class="text-base font-medium">
+          Blowfish
+        </a>
+      
+    </nav>
+    
+  <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+    
+      
+        
+  <a
+  href="/ja/docs/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="ドキュメント">
+    ドキュメント
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="/ja/docs/shortcodes/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="ショートコード">
+    ショートコード
+  </p>
+</a>
+
+
+
+      
+        
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a
+      
+      class="text-base font-medium hover:text-primary-600 dark:hover:text-primary-400"
+      title="">
+      <p>
+        例
+      </p>
+    </a>
+    <span>
+      <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+          <a
+            href="/ja/samples/"
+            
+            class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+            
+            <p class="text-sm font-sm" title="サンプル">
+              サンプル
+            </p>
+          </a>
+        
+          <a
+            href="/ja/examples/"
+            
+            class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+            
+            <p class="text-sm font-sm" title="ショーケース">
+              ショーケース
+            </p>
+          </a>
+        
+          <a
+            href=""
+            
+            class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+            
+            <p class="text-sm font-sm" title="">
+              レシピ
+            </p>
+          </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      
+        
+  <a
+  href=""
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="">
+    ユーザー
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://www.teepublic.com/user/blowfish-store/t-shirts"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+  <p class="text-base font-medium" title="">
+    グッズ
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://twitter.com/burufugu"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+    <span >
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+    </span>
+  
+  <p class="text-base font-medium" title="">
+    
+  </p>
+</a>
+
+
+
+      
+        
+  <a
+  href="https://github.com/nunocoracao/blowfish"
+  target="_blank"
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+  
+    <span >
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+    </span>
+  
+  <p class="text-base font-medium" title="">
+    
+  </p>
+</a>
+
+
+
+      
+    
+
+    
+  <div>
+    <div class="cursor-pointer flex items-center nested-menu">
+      <span class="me-1">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+    <path fill="currentColor" d="M0 128C0 92.7 28.7 64 64 64H256h48 16H576c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H320 304 256 64c-35.3 0-64-28.7-64-64V128zm320 0V384H576V128H320zM178.3 175.9c-3.2-7.2-10.4-11.9-18.3-11.9s-15.1 4.7-18.3 11.9l-64 144c-4.5 10.1 .1 21.9 10.2 26.4s21.9-.1 26.4-10.2l8.9-20.1h73.6l8.9 20.1c4.5 10.1 16.3 14.6 26.4 10.2s14.6-16.3 10.2-26.4l-64-144zM160 233.2L179 276H141l19-42.8zM448 164c11 0 20 9 20 20v4h44 16c11 0 20 9 20 20s-9 20-20 20h-2l-1.6 4.5c-8.9 24.4-22.4 46.6-39.6 65.4c.9 .6 1.8 1.1 2.7 1.6l18.9 11.3c9.5 5.7 12.5 18 6.9 27.4s-18 12.5-27.4 6.9l-18.9-11.3c-4.5-2.7-8.8-5.5-13.1-8.5c-10.6 7.5-21.9 14-34 19.4l-3.6 1.6c-10.1 4.5-21.9-.1-26.4-10.2s.1-21.9 10.2-26.4l3.6-1.6c6.4-2.9 12.6-6.1 18.5-9.8l-12.2-12.2c-7.8-7.8-7.8-20.5 0-28.3s20.5-7.8 28.3 0l14.6 14.6 .5 .5c12.4-13.1 22.5-28.3 29.8-45H448 376c-11 0-20-9-20-20s9-20 20-20h52v-4c0-11 9-20 20-20z"/></svg></span>
+      </span>
+      <div
+        class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400"
+        title="設定">JA</div>
+    </div>
+    <div class="absolute menuhide">
+      <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+        <div class="flex flex-col space-y-3">
+          
+            <a href="/docs/configuration/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="Configuration">
+                EN
+              </p>
+            </a>
+          
+            <a href="/it/docs/configurazioni/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="Configurazione">
+                Italiano
+              </p>
+            </a>
+          
+            <a href="/ja/docs/configuration/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="設定">
+                日本語
+              </p>
+            </a>
+          
+            <a href="/zh-cn/docs/configuration/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="配置">
+                简体中文
+              </p>
+            </a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+
+    
+      <button
+        id="search-button"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="検索 (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <div class=" flex items-center">
+        <button
+          id="appearance-switcher"
+          aria-label="Dark mode switcher"
+          type="button"
+          class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+          <div class="flex items-center justify-center dark:hidden">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+          </div>
+          <div class="items-center justify-center hidden dark:flex">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+          </div>
+        </button>
+      </div>
+    
+  </nav>
+
+    
+  <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+    <span></span>
+
+    
+  <div>
+    <div class="cursor-pointer flex items-center nested-menu">
+      <span class="me-1">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+    <path fill="currentColor" d="M0 128C0 92.7 28.7 64 64 64H256h48 16H576c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H320 304 256 64c-35.3 0-64-28.7-64-64V128zm320 0V384H576V128H320zM178.3 175.9c-3.2-7.2-10.4-11.9-18.3-11.9s-15.1 4.7-18.3 11.9l-64 144c-4.5 10.1 .1 21.9 10.2 26.4s21.9-.1 26.4-10.2l8.9-20.1h73.6l8.9 20.1c4.5 10.1 16.3 14.6 26.4 10.2s14.6-16.3 10.2-26.4l-64-144zM160 233.2L179 276H141l19-42.8zM448 164c11 0 20 9 20 20v4h44 16c11 0 20 9 20 20s-9 20-20 20h-2l-1.6 4.5c-8.9 24.4-22.4 46.6-39.6 65.4c.9 .6 1.8 1.1 2.7 1.6l18.9 11.3c9.5 5.7 12.5 18 6.9 27.4s-18 12.5-27.4 6.9l-18.9-11.3c-4.5-2.7-8.8-5.5-13.1-8.5c-10.6 7.5-21.9 14-34 19.4l-3.6 1.6c-10.1 4.5-21.9-.1-26.4-10.2s.1-21.9 10.2-26.4l3.6-1.6c6.4-2.9 12.6-6.1 18.5-9.8l-12.2-12.2c-7.8-7.8-7.8-20.5 0-28.3s20.5-7.8 28.3 0l14.6 14.6 .5 .5c12.4-13.1 22.5-28.3 29.8-45H448 376c-11 0-20-9-20-20s9-20 20-20h52v-4c0-11 9-20 20-20z"/></svg></span>
+      </span>
+      <div
+        class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400"
+        title="設定">JA</div>
+    </div>
+    <div class="absolute menuhide">
+      <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+        <div class="flex flex-col space-y-3">
+          
+            <a href="/docs/configuration/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="Configuration">
+                EN
+              </p>
+            </a>
+          
+            <a href="/it/docs/configurazioni/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="Configurazione">
+                Italiano
+              </p>
+            </a>
+          
+            <a href="/ja/docs/configuration/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="設定">
+                日本語
+              </p>
+            </a>
+          
+            <a href="/zh-cn/docs/configuration/" class="flex items-center">
+              <p
+                class="text-sm font-sm hover:text-primary-600 dark:hover:text-primary-400"
+                title="配置">
+                简体中文
+              </p>
+            </a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+
+    
+      <button
+        id="search-button-mobile"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="検索 (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <button
+        id="appearance-switcher-mobile"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400 me-1">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    
+  </div>
+
+  </div>
+  
+  <div class="-my-2 md:hidden">
+    <div id="menu-button" class="block">
+      
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50 pt-[5px]">
+          <ul
+            class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none text-end max-w-7xl">
+            <li id="menu-close-button">
+              <span
+                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+              </span>
+            </li>
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/ja/docs/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="ドキュメント">
+      ドキュメント
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/ja/docs/shortcodes/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="ショートコード">
+      ショートコード
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href=""
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="">
+      例
+    </p>
+    <span>
+      <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+    </span>
+  </a>
+</li>
+
+  <li class="mt-1">
+    <a
+      href="/ja/samples/"
+      
+      class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+      
+      <p class="text-sm font-small" title="サンプル">
+        サンプル
+      </p>
+    </a>
+  </li>
+
+  <li class="mt-1">
+    <a
+      href="/ja/examples/"
+      
+      class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+      
+      <p class="text-sm font-small" title="ショーケース">
+        ショーケース
+      </p>
+    </a>
+  </li>
+
+  <li class="mt-1">
+    <a
+      href=""
+      
+      class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+      
+      <p class="text-sm font-small" title="">
+        レシピ
+      </p>
+    </a>
+  </li>
+
+<li class="mb-2"></li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href=""
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="">
+      ユーザー
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://www.teepublic.com/user/blowfish-store/t-shirts"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-bg font-bg" title="">
+      グッズ
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://twitter.com/burufugu"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+      <div >
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+      </div>
+    
+    <p class="text-bg font-bg" title="">
+      
+    </p>
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="https://github.com/nunocoracao/blowfish"
+    
+      target="_blank"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400">
+    
+      <div >
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+      </div>
+    
+    <p class="text-bg font-bg" title="">
+      
+    </p>
+  </a>
+</li>
+
+
+
+            
+
+          </ul>
+          
+        </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        設定
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <span>1050 文字</span><span class="px-2 text-primary-500">&middot;</span><span title="読むのに必要な時間">5 分</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+      
+        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-10">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目次
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#サイト設定">サイト設定</a></li>
+    <li><a href="#サムネイル">サムネイル</a></li>
+    <li><a href="#言語と-i18n">言語と i18n</a>
+      <ul>
+        <li><a href="#設定">設定</a>
+          <ul>
+            <li><a href="#グローバル">グローバル</a></li>
+            <li><a href="#パラメーター">パラメーター</a></li>
+            <li><a href="#著者author">著者(Author)</a></li>
+          </ul>
+        </li>
+        <li><a href="#メニューmenus">メニュー(Menus)</a></li>
+      </ul>
+    </li>
+    <li><a href="#テーマパラメーターtheme-parameters">テーマパラメーター(Theme parameters)</a>
+      <ul>
+        <li><a href="#グローバル-1">グローバル</a></li>
+        <li><a href="#ヘッダーheader">ヘッダー(Header)</a></li>
+        <li><a href="#フッターfooter">フッター(Footer)</a></li>
+        <li><a href="#ホームページhomepage">ホームページ(Homepage)</a></li>
+        <li><a href="#記事article">記事(Article)</a></li>
+        <li><a href="#リストlist">リスト(List)</a></li>
+        <li><a href="#サイトマップsitemap">サイトマップ(Sitemap)</a></li>
+        <li><a href="#タクソノミーtaxonomy">タクソノミー(Taxonomy)</a></li>
+        <li><a href="#タームterm">ターム(Term)</a></li>
+        <li><a href="#firebase">Firebase</a></li>
+        <li><a href="#fathom-analytics">Fathom Analytics</a></li>
+        <li><a href="#umami-analytics">Umami Analytics</a></li>
+        <li><a href="#seline-analytics">Seline Analytics</a></li>
+        <li><a href="#buymeacoffee">BuyMeACoffee</a></li>
+        <li><a href="#verification">verification</a></li>
+        <li><a href="#rssnext">RSSNext</a></li>
+        <li><a href="#advertisement">Advertisement</a></li>
+      </ul>
+    </li>
+    <li><a href="#その他の設定ファイル">その他の設定ファイル</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目次
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#サイト設定">サイト設定</a></li>
+    <li><a href="#サムネイル">サムネイル</a></li>
+    <li><a href="#言語と-i18n">言語と i18n</a>
+      <ul>
+        <li><a href="#設定">設定</a>
+          <ul>
+            <li><a href="#グローバル">グローバル</a></li>
+            <li><a href="#パラメーター">パラメーター</a></li>
+            <li><a href="#著者author">著者(Author)</a></li>
+          </ul>
+        </li>
+        <li><a href="#メニューmenus">メニュー(Menus)</a></li>
+      </ul>
+    </li>
+    <li><a href="#テーマパラメーターtheme-parameters">テーマパラメーター(Theme parameters)</a>
+      <ul>
+        <li><a href="#グローバル-1">グローバル</a></li>
+        <li><a href="#ヘッダーheader">ヘッダー(Header)</a></li>
+        <li><a href="#フッターfooter">フッター(Footer)</a></li>
+        <li><a href="#ホームページhomepage">ホームページ(Homepage)</a></li>
+        <li><a href="#記事article">記事(Article)</a></li>
+        <li><a href="#リストlist">リスト(List)</a></li>
+        <li><a href="#サイトマップsitemap">サイトマップ(Sitemap)</a></li>
+        <li><a href="#タクソノミーtaxonomy">タクソノミー(Taxonomy)</a></li>
+        <li><a href="#タームterm">ターム(Term)</a></li>
+        <li><a href="#firebase">Firebase</a></li>
+        <li><a href="#fathom-analytics">Fathom Analytics</a></li>
+        <li><a href="#umami-analytics">Umami Analytics</a></li>
+        <li><a href="#seline-analytics">Seline Analytics</a></li>
+        <li><a href="#buymeacoffee">BuyMeACoffee</a></li>
+        <li><a href="#verification">verification</a></li>
+        <li><a href="#rssnext">RSSNext</a></li>
+        <li><a href="#advertisement">Advertisement</a></li>
+      </ul>
+    </li>
+    <li><a href="#その他の設定ファイル">その他の設定ファイル</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+            
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+  <details
+    class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5"
+    >
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    Documentation -
+    この記事は連載の一部です
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/welcome/">
+          パート 1:
+          Blowfish へようこそ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/installation/">
+          パート 2:
+          インストール
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/getting-started/">
+          パート 3:
+          始める
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        パート 4:
+        この記事
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/homepage-layout/">
+          パート 5:
+          ホームページレイアウト
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/thumbnails/">
+          パート 6:
+          サムネイル
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/front-matter/">
+          パート 7:
+          フロントマター
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/shortcodes/">
+          パート 8:
+          ショートコード
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/partials/">
+          パート 9:
+          パーシャル
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/multi-author/">
+          パート 10:
+          複数の著者
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/series/">
+          パート 11:
+          シリーズ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/content-examples/">
+          パート 12:
+          コンテンツの例
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/advanced-customisation/">
+          パート 13:
+          高度なカスタマイズ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/hosting-deployment/">
+          パート 14:
+          ホスティングとデプロイ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/firebase-views/">
+          パート 15:
+          Firebase: 閲覧数といいね
+        </a>
+      </div>
+    
+  
+
+
+  </details>
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>Blowfish は高度にカスタマイズ可能なテーマであり、最新の Hugo 機能を使用して設定方法をシンプルにしています。</p>
+<p>このテーマには、基本的なブログまたは静的サイトをすぐに立ち上げて実行できるデフォルト設定が付属しています。</p>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<path fill="currentColor"  d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z"/></svg></span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><p>Blowfish を簡単に使い始められるように、新しい CLI ツールをリリースしました。インストールと設定に役立ちます。 グローバルに CLI ツールをインストールするには、以下を使用します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npx blowfish-tools
+</span></span></code></pre></div></span>
+</div>
+
+<blockquote>
+<p>テーマにバンドルされている設定ファイルは、デフォルトの Hugo 構文である TOML 形式で提供されています。必要に応じて、設定を YAML または JSON に変換できます。</p></blockquote>
+<p>デフォルトのテーマ設定は各ファイルに記載されているため、必要に応じて設定を自由に調整できます。</p>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><a
+  href="http://localhost:1313/ja/docs/installation/#set-up-theme-configuration-files"
+    target="_blank"
+  >インストール手順</a>で概説されているように、Hugo プロジェクトの <code>config/_default/</code> フォルダ内のファイルを修正し、プロジェクトルートの <code>config.toml</code> ファイルを削除することで、テーマ設定を調整する必要があります。</span>
+</div>
+
+
+<h2 class="relative group">サイト設定 
+    <div id="サイト設定" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%b5%e3%82%a4%e3%83%88%e8%a8%ad%e5%ae%9a" aria-label="アンカー">#</a>
+    </span>        
+    
+</h2>
+<p>テーマ全体で標準の Hugo 設定変数が適用されますが、最適なエクスペリエンスを得るために設定する必要がある特定の事項があります。</p>
+<p>サイト設定は <code>config/_default/config.toml</code> ファイルで管理されます。 下の表は、Blowfish が活用するすべての設定の概要を示しています。</p>
+<p>この表で提供されている変数名は、TOML データ構造を簡素化するためにドット表記を使用していることに注意してください（つまり、 <code>outputs.home</code> は <code>[outputs] home</code> を指します）。</p>
+<!-- prettier-ignore-start -->
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>theme</code></td>
+          <td><code>&quot;blowfish&quot;</code></td>
+          <td>Hugo Modules を使用している場合は、この設定値を削除する必要があります。 他のすべてのインストールタイプでは、テーマが機能するためにこれを <code>blowfish</code> に設定する必要があります。</td>
+      </tr>
+      <tr>
+          <td><code>baseURL</code></td>
+          <td><em>未設定</em></td>
+          <td>ウェブサイトのルートへの URL です。</td>
+      </tr>
+      <tr>
+          <td><code>defaultContentLanguage</code></td>
+          <td><code>&quot;en&quot;</code></td>
+          <td>この値は、テーマコンポーネントとコンテンツのデフォルト言語を決定します。 サポートされている言語コードについては、以下の<a
+  href="#%e8%a8%80%e8%aa%9e%e3%81%a8-i18n">言語と i18n</a> セクションを参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>enableRobotsTXT</code></td>
+          <td><code>true</code></td>
+          <td>有効にすると、検索エンジンがサイト全体をクロールできるようにする <code>robots.txt</code> ファイルがサイトルートに作成されます。 あらかじめ作成した独自の <code>robots.txt</code> を提供する場合は、<code>false</code> に設定し、ファイルを <code>static</code> ディレクトリに配置します。 完全に制御するには、このファイルを生成するための<a
+  href="http://localhost:1313/ja/docs/content-examples/#カスタムレイアウト">カスタムレイアウト</a>を提供できます。</td>
+      </tr>
+      <tr>
+          <td><code>pagination.pagerSize</code></td>
+          <td><code>10</code></td>
+          <td>記事リストの各ページにリストされる記事の数です。</td>
+      </tr>
+      <tr>
+          <td><code>summaryLength</code></td>
+          <td><code>0</code></td>
+          <td><a
+  href="http://localhost:1313/ja/docs/front-matter/">フロントマター</a>で提供されていない場合に、記事の概要を生成するために使用される単語の数です。 値 <code>0</code> は最初の文を使用します。 概要が非表示になっている場合、この値は効果がありません。</td>
+      </tr>
+      <tr>
+          <td><code>outputs.home</code></td>
+          <td><code>[&quot;HTML&quot;, &quot;RSS&quot;, &quot;JSON&quot;]</code></td>
+          <td>サイト用に生成される出力形式です。 Blowfish では、すべてのテーマコンポーネントが正しく機能するために HTML、RSS、JSON が必要です。</td>
+      </tr>
+      <tr>
+          <td><code>permalinks</code></td>
+          <td><em>未設定</em></td>
+          <td>パーマリンクの設定については、<a
+  href="https://gohugo.io/configuration/permalinks/"
+    target="_blank"
+  >Hugo ドキュメント</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomies</code></td>
+          <td><em>未設定</em></td>
+          <td>分類の設定については、<a
+  href="http://localhost:1313/ja/docs/getting-started/#コンテンツの整理">コンテンツの整理</a>セクションを参照してください。</td>
+      </tr>
+  </tbody>
+</table>
+<!-- prettier-ignore-end -->
+
+<h2 class="relative group">サムネイル 
+    <div id="サムネイル" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%b5%e3%83%a0%e3%83%8d%e3%82%a4%e3%83%ab" aria-label="アンカー">#</a>
+    </span>        
+    
+</h2>
+<p>Blowfish は、記事に視覚的なサポートを簡単に追加できるように構築されています。Hugo の記事構造に慣れている場合は、記事フォルダ内に <code>feature*</code> で始まる画像ファイル（ほとんどすべての形式がサポートされていますが、<code>.png</code> または <code>.jpg</code> をお勧めします）を配置するだけです。これで、Blowfish はサイト内でサムネイルとして画像を使用したり、ソーシャルプラットフォーム全体で <a target="_blank" href="https://oembed.com/">oEmbed</a> カードに使用したりできます。</p>
+<p><a
+  href="http://localhost:1313/ja/docs/thumbnails/">こちら</a>には、より詳細な情報と、どのように設定できるかを確認したい場合の<a
+  href="http://localhost:1313/ja/samples/thumbnail_sample/">サンプル</a>を含むガイドもあります。</p>
+
+<h2 class="relative group">言語と i18n 
+    <div id="言語と-i18n" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e8%a8%80%e8%aa%9e%e3%81%a8-i18n" aria-label="アンカー">#</a>
+    </span>        
+    
+</h2>
+<p>Blowfish は多言語ウェブサイト向けに最適化されており、テーマアセットはすぐに使えるように複数の言語に翻訳されています。 言語設定を使用すると、コンテンツの複数のバージョンを生成して、訪問者に母国語でカスタマイズされたエクスペリエンスを提供できます。</p>
+<p>このテーマは現在、デフォルトで次の言語をサポートしています:</p>
+<table>
+  <thead>
+      <tr>
+          <th>言語</th>
+          <th>コード</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>アラビア語</td>
+          <td><code>ar</code></td>
+      </tr>
+      <tr>
+          <td>ブルガリア語</td>
+          <td><code>bg</code></td>
+      </tr>
+      <tr>
+          <td>ベンガル語</td>
+          <td><code>bn</code></td>
+      </tr>
+      <tr>
+          <td>カタロニア語</td>
+          <td><code>ca</code></td>
+      </tr>
+      <tr>
+          <td>チェコ語</td>
+          <td><code>cs</code></td>
+      </tr>
+      <tr>
+          <td>ドイツ語</td>
+          <td><code>de</code></td>
+      </tr>
+      <tr>
+          <td>英語</td>
+          <td><code>en</code></td>
+      </tr>
+      <tr>
+          <td>エスペラント語</td>
+          <td><code>eo</code></td>
+      </tr>
+      <tr>
+          <td>スペイン語（スペイン）</td>
+          <td><code>es</code></td>
+      </tr>
+      <tr>
+          <td>フィンランド語</td>
+          <td><code>fi</code></td>
+      </tr>
+      <tr>
+          <td>フランス語</td>
+          <td><code>fr</code></td>
+      </tr>
+      <tr>
+          <td>ヘブライ語</td>
+          <td><code>he</code></td>
+      </tr>
+      <tr>
+          <td>クロアチア語</td>
+          <td><code>hr</code></td>
+      </tr>
+      <tr>
+          <td>ハンガリー語</td>
+          <td><code>hu</code></td>
+      </tr>
+      <tr>
+          <td>インドネシア語</td>
+          <td><code>id</code></td>
+      </tr>
+      <tr>
+          <td>イタリア語</td>
+          <td><code>it</code></td>
+      </tr>
+      <tr>
+          <td>日本語</td>
+          <td><code>ja</code></td>
+      </tr>
+      <tr>
+          <td>韓国語</td>
+          <td><code>ko</code></td>
+      </tr>
+      <tr>
+          <td>オランダ語</td>
+          <td><code>nl</code></td>
+      </tr>
+      <tr>
+          <td>ポーランド語</td>
+          <td><code>pl</code></td>
+      </tr>
+      <tr>
+          <td>ポルトガル語（ブラジル）</td>
+          <td><code>pt-br</code></td>
+      </tr>
+      <tr>
+          <td>ポルトガル語（ポルトガル）</td>
+          <td><code>pt-pt</code></td>
+      </tr>
+      <tr>
+          <td>ルーマニア語</td>
+          <td><code>ro</code></td>
+      </tr>
+      <tr>
+          <td>タイ人</td>
+          <td><code>th</code></td>
+      </tr>
+      <tr>
+          <td>ロシア語</td>
+          <td><code>ru</code></td>
+      </tr>
+      <tr>
+          <td>トルコ語</td>
+          <td><code>tr</code></td>
+      </tr>
+      <tr>
+          <td>ベトナム語</td>
+          <td><code>vi</code></td>
+      </tr>
+      <tr>
+          <td>中国語（簡体字）</td>
+          <td><code>zh-cn</code></td>
+      </tr>
+      <tr>
+          <td>中国語（繁体字）</td>
+          <td><code>zh-tw</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>デフォルトの翻訳は、翻訳文字列を含むカスタムファイル <code>i18n/[言語コード].yaml</code> を作成することでオーバーライドできます。 この方法を使用して新しい言語を追加することもできます。 新しい翻訳をコミュニティと共有したい場合は、<a
+  href="https://github.com/nunocoracao/blowfish/pulls"
+    target="_blank"
+  >プルリクエストを開いて</a>ください。</p>
+
+<h3 class="relative group">設定 
+    <div id="設定" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e8%a8%ad%e5%ae%9a" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<p>可能な限り柔軟に対応するために、ウェブサイトの各言語の言語設定ファイルを作成する必要があります。デフォルトでは、Blowfish には <code>config/_default/languages.en.toml</code> に英語の言語設定が含まれています。</p>
+<p>デフォルトのファイルは、追加の言語を作成するためのテンプレートとして使用することも、英語以外の言語でウェブサイトを作成する場合は名前を変更することもできます。<code>languages.[言語コード].toml</code> 形式を使用してファイルに名前を付けるだけです。</p>
+
+  
+
+
+
+<div
+  
+    class="flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><strong>注:</strong> <a
+  href="#%e3%82%b5%e3%82%a4%e3%83%88%e8%a8%ad%e5%ae%9a">サイト設定</a>の <code>defaultContentLanguage</code> パラメータが、言語設定ファイル名の言語コードと一致していることを確認してください。</span>
+</div>
+
+
+<h4 class="relative group">グローバル 
+    <div id="グローバル" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%b0%e3%83%ad%e3%83%bc%e3%83%90%e3%83%ab" aria-label="アンカー">#</a>
+    </span>        
+    
+</h4>
+<!-- prettier-ignore-start -->
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>languageCode</code></td>
+          <td><code>&quot;en&quot;</code></td>
+          <td>このファイルの Hugo 言語コードです。トップレベル言語（例： <code>en</code>）またはサブバリアント（例： <code>en-au</code>）にすることができ、ファイル名の言語コードと一致する必要があります。Hugo はこの値が常に小文字であることを想定しています。適切な HTML 準拠のために、大文字と小文字を区別する <code>isoCode</code> パラメータを設定します。</td>
+      </tr>
+      <tr>
+          <td><code>languageName</code></td>
+          <td><code>&quot;English&quot;</code></td>
+          <td>言語の名前です。</td>
+      </tr>
+      <tr>
+          <td><code>weight</code></td>
+          <td><code>1</code></td>
+          <td>重みは、多言語サイトを構築するときの言語の順序を決定します。</td>
+      </tr>
+      <tr>
+          <td><code>title</code></td>
+          <td><code>&quot;Blowfish&quot;</code></td>
+          <td>ウェブサイトのタイトルです。これは、サイトのヘッダーとフッターに表示されます。</td>
+      </tr>
+  </tbody>
+</table>
+<!-- prettier-ignore-end -->
+
+<h4 class="relative group">パラメーター 
+    <div id="パラメーター" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%83%bc" aria-label="アンカー">#</a>
+    </span>        
+    
+</h4>
+<!-- prettier-ignore-start -->
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>params.displayName</code></td>
+          <td><code>&quot;EN&quot;</code></td>
+          <td>ウェブサイトに言語が表示されるときに使用される名前です。</td>
+      </tr>
+      <tr>
+          <td><code>params.isoCode</code></td>
+          <td><code>&quot;en&quot;</code></td>
+          <td>HTML メタデータ用の ISO 言語コードです。トップレベル言語（例： <code>en</code>）またはサブバリアント（例： <code>en-AU</code>）にすることができます。</td>
+      </tr>
+      <tr>
+          <td><code>params.rtl</code></td>
+          <td><code>false</code></td>
+          <td>これが RTL 言語かどうかです。<code>true</code> に設定すると、コンテンツが右から左に並べ替えられます。 Blowfish は RTL 言語と LTR 言語の同時使用を完全にサポートしており、両方に動的に調整されます。</td>
+      </tr>
+      <tr>
+          <td><code>params.dateFormat</code></td>
+          <td><code>&quot;2 January 2006&quot;</code></td>
+          <td>この言語での日付のフォーマット方法です。使用できる形式については、<a
+  href="https://gohugo.io/functions/time/format/#layout-string"
+    target="_blank"
+  >Hugo ドキュメント</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>params.logo</code></td>
+          <td><em>未設定</em></td>
+          <td><code>assets/</code> フォルダ内のサイトロゴファイルへの相対パスです。ロゴファイルは2倍の解像度で提供する必要があり、あらゆる画像サイズをサポートしています。</td>
+      </tr>
+      <tr>
+          <td><code>params.secondaryLogo</code></td>
+          <td><em>未設定</em></td>
+          <td><code>assets/</code> フォルダ内のセカンダリサイトロゴファイルへの相対パスです。 ロゴファイルは2倍の解像度で提供する必要があり、あらゆる画像サイズをサポートしています。 これは、<code>logo</code> とは反転/対照的なカラースキームである必要があります。設定されている場合、このロゴは、ユーザーが <code>defaultAppearance</code> モードから切り替えたときに表示されます。</td>
+      </tr>
+      <tr>
+          <td><code>params.description</code></td>
+          <td><em>未設定</em></td>
+          <td>ウェブサイトの説明です。これはサイトのメタデータで使用されます。</td>
+      </tr>
+      <tr>
+          <td><code>params.copyright</code></td>
+          <td><em>未設定</em></td>
+          <td>サイトフッターの著作権メッセージの Markdown 文字列には、プレースホルダ { year } を含めて現在の年を動的に挿入できます。指定されていない場合、Blowfish はサイト <code>title</code> を使用して著作権文字列を自動的に生成します。</td>
+      </tr>
+  </tbody>
+</table>
+<!-- prettier-ignore-end -->
+
+<h4 class="relative group">著者(Author) 
+    <div id="著者author" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e8%91%97%e8%80%85author" aria-label="アンカー">#</a>
+    </span>        
+    
+</h4>
+<!-- prettier-ignore-start -->
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>author.name</code></td>
+          <td><em>未設定</em></td>
+          <td>著者の名前です。これは、記事のフッターと、プロフィールレイアウトが使用されている場合はホームページに表示されます。</td>
+      </tr>
+      <tr>
+          <td><code>author.image</code></td>
+          <td><em>未設定</em></td>
+          <td>著者の画像ファイルへのパスです。画像は縦横比 1:1 である必要があります。画像は、サイトの <code>assets/</code> フォルダに配置することも、外部 URL にすることもできます。</td>
+      </tr>
+      <tr>
+          <td><code>author.headline</code></td>
+          <td><em>未設定</em></td>
+          <td>著者の見出しを含む Markdown 文字列です。プロフィールホームページの著者の名前に下に表示されます。</td>
+      </tr>
+      <tr>
+          <td><code>author.bio</code></td>
+          <td><em>未設定</em></td>
+          <td>著者の略歴を含む Markdown 文字列です。記事のフッターに表示されます。</td>
+      </tr>
+      <tr>
+          <td><code>author.links</code></td>
+          <td><em>未設定</em></td>
+          <td>著者の詳細と一緒に表示するリンクです。設定ファイルには、コメントを外すだけで有効になるリンクの例が含まれています。リンクが表示される順序は、配列に表示される順序によって決まります。<code>assets/icons/</code> に対応する SVG アイコンアセットを提供することで、カスタムリンクを追加できます。</td>
+      </tr>
+  </tbody>
+</table>
+<!-- prettier-ignore-end -->
+
+<h3 class="relative group">メニュー(Menus) 
+    <div id="メニューmenus" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%a1%e3%83%8b%e3%83%a5%e3%83%bcmenus" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<p>Blowfish は、言語固有のメニュー設定もサポートしています。メニュー設定ファイルは、言語ファイルと同じ命名形式に従います。ファイル名に言語コードを指定するだけで、Hugo はファイルがどの言語に関連しているかを認識します。</p>
+<p>メニュー設定ファイルの名前は、 <code>menus.[language-code].toml</code> 形式です。メニュー設定で使用される言語コードが言語設定と一致していることを常に確認してください。</p>
+<p><a
+  href="http://localhost:1313/ja/docs/getting-started/#menus">はじめに</a>セクションでは、このファイルの構造について詳しく説明しています。詳細な設定例については、<a
+  href="https://gohugo.io/content-management/menus/"
+    target="_blank"
+  >Hugo メニュー ドキュメント</a>も参照できます。</p>
+
+<h2 class="relative group">テーマパラメーター(Theme parameters) 
+    <div id="テーマパラメーターtheme-parameters" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%86%e3%83%bc%e3%83%9e%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%83%bctheme-parameters" aria-label="アンカー">#</a>
+    </span>        
+    
+</h2>
+<p>Blowfish は、テーマの機能を制御する多数の設定パラメータを提供します。下の表は、<code>config/_default/params.toml</code> ファイルで使用可能なすべてのパラメータの概要を示しています。</p>
+<p>ここにある記事のデフォルトの多くは、フロントマターで指定することで、記事ごとにオーバーライドできます。詳細については、<a
+  href="http://localhost:1313/ja/docs/front-matter/">フロントマター</a>セクションを参照してください。</p>
+<!-- prettier-ignore-start -->
+
+<h3 class="relative group">グローバル 
+    <div id="グローバル-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%b0%e3%83%ad%e3%83%bc%e3%83%90%e3%83%ab-1" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>colorScheme</code></td>
+          <td><code>&quot;blowfish&quot;</code></td>
+          <td>使用するテーマのカラースキームです。有効な値は、<code>blowfish</code>（デフォルト）、<code>avocado</code>、<code>fire</code>、<code>ocean</code>、<code>forest</code>、<code>princess</code>、<code>neon</code>、<code>bloody</code>、<code>terminal</code>、<code>marvel</code>、<code>noir</code>、<code>autumn</code>、<code>congo</code>、<code>slate</code> です。詳細については、<a
+  href="http://localhost:1313/ja/docs/getting-started/#カラースキーム">カラースキーム</a>セクションを参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>defaultAppearance</code></td>
+          <td><code>&quot;light&quot;</code></td>
+          <td>デフォルトのテーマの外観です。<code>light</code> または <code>dark</code> のいずれかです。</td>
+      </tr>
+      <tr>
+          <td><code>autoSwitchAppearance</code></td>
+          <td><code>true</code></td>
+          <td>訪問者のオペレーティングシステムの設定に基づいてテーマの外観を自動的に切り替えるかどうかです。<code>false</code> に設定すると、サイトは常に <code>defaultAppearance</code> を使用します。</td>
+      </tr>
+      <tr>
+          <td><code>enableA11y</code></td>
+          <td><code>false</code></td>
+          <td>アクセシビリティ切り替えボタンを有効にするかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>enableSearch</code></td>
+          <td><code>false</code></td>
+          <td>サイト内検索が有効かどうかです。<code>true</code> に設定すると、検索機能が有効になります。検索機能は、<a
+  href="#%e3%82%b5%e3%82%a4%e3%83%88%e8%a8%ad%e5%ae%9a">サイト設定</a>の <code>outputs.home</code> 設定が正しく設定されているかどうかに依存することに注意してください。</td>
+      </tr>
+      <tr>
+          <td><code>enableCodeCopy</code></td>
+          <td><code>false</code></td>
+          <td><code>&lt;code&gt;</code> ブロックのクリップボードへのコピーボタンを有効にするかどうかです。コードコピーが正しく機能するには、<code>highlight.noClasses</code> パラメータを <code>false</code> に設定する必要があります。以下の<a
+  href="#%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab">その他の設定ファイル</a>について読んでください。</td>
+      </tr>
+      <tr>
+          <td><code>mainSections</code></td>
+          <td><em>未設定</em></td>
+          <td>最近の記事リストに表示するセクションです。指定しない場合は、記事数が最も多いセクションが使用されます。</td>
+      </tr>
+      <tr>
+          <td><code>showViews</code></td>
+          <td><em>未設定</em></td>
+          <td>記事とリストの表示回数を表示するかどうかです。これには Firebase 統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>showLikes</code></td>
+          <td><em>未設定</em></td>
+          <td>記事とリストのいいねを表示するかどうかです。これには Firebase 統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>robots</code></td>
+          <td><em>未設定</em></td>
+          <td>ロボットがサイトをどのように処理するかを示す文字列です。設定されている場合、ページヘッダーに出力されます。有効な値については、<a
+  href="https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives"
+    target="_blank"
+  >Google のドキュメント</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>disableImageZoom</code></td>
+          <td><code>false</code></td>
+          <td>サイト内のすべての画像の画像ズーム機能を無効にします。</td>
+      </tr>
+      <tr>
+          <td><code>disableImageOptimization</code></td>
+          <td><code>false</code></td>
+          <td>サイト内のすべての画像の画像サイズ変更と最適化機能を無効にします。Markdown 記法（例：<code>![](image.jpg)</code>）の画像は対象外です。</td>
+      </tr>
+      <tr>
+          <td><code>disableImageOptimizationMD</code></td>
+          <td><code>false</code></td>
+          <td>Markdown 記法（例：<code>![](image.jpg)</code>）の画像の画像サイズ変更と最適化機能のみを無効にします。他の画像には適用されます。</td>
+      </tr>
+      <tr>
+          <td><code>disableTextInHeader</code></td>
+          <td><code>false</code></td>
+          <td>ヘッダーのテキストを無効にします。ロゴベースのヘッダーに役立ちます。</td>
+      </tr>
+      <tr>
+          <td><code>defaultBackgroundImage</code></td>
+          <td><em>未設定</em></td>
+          <td><code>background</code> ホームページレイアウトと <code>background</code> ヒーロースタイルの両方のデフォルトの背景画像です。</td>
+      </tr>
+      <tr>
+          <td><code>defaultFeaturedImage</code></td>
+          <td><em>未設定</em></td>
+          <td>記事全体のすべての <code>featured</code> 画像のデフォルトの背景画像です。ローカルの <code>featured</code> 画像によってオーバーライドされます。</td>
+      </tr>
+      <tr>
+          <td><code>defaultSocialImage</code></td>
+          <td><em>未設定</em></td>
+          <td>ソーシャルメディア共有（Open Graph と Twitter）用のデフォルト画像。ローカルの <code>featured</code> 画像によってオーバーライドされます。</td>
+      </tr>
+      <tr>
+          <td><code>highlightCurrentMenuArea</code></td>
+          <td><em>未設定</em></td>
+          <td>メインメニューのメニュー項目が選択されているときにマークを付けます。</td>
+      </tr>
+      <tr>
+          <td><code>smartTOC</code></td>
+          <td><em>未設定</em></td>
+          <td>スマート目次をアクティブにします。表示されている項目が強調表示されます。</td>
+      </tr>
+      <tr>
+          <td><code>smartTOCHideUnfocusedChildren</code></td>
+          <td><em>未設定</em></td>
+          <td>スマート目次がオンになっている場合、フォーカスされていないときに、テーブルのより深いレベルが非表示になります。</td>
+      </tr>
+      <tr>
+          <td><code>fingerprintAlgorithm</code></td>
+          <td><code>&quot;sha512&quot;</code></td>
+          <td>CSS/JSファイルのフィンガープリントに使用するハッシュアルゴリズム。ブラウザキャッシュの問題を防ぎます。有効値は <code>sha512</code>（デフォルト）、<code>sha384</code>、<code>sha256</code>。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">ヘッダー(Header) 
+    <div id="ヘッダーheader" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%98%e3%83%83%e3%83%80%e3%83%bcheader" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>header.layout</code></td>
+          <td><code>&quot;basic&quot;</code></td>
+          <td>サイト全体のヘッダーを定義します。サポートされている値は、<code>basic</code>、<code>fixed</code>、<code>fixed-fill</code>、<code>fixed-fill-blur</code> です。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">フッター(Footer) 
+    <div id="フッターfooter" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%95%e3%83%83%e3%82%bf%e3%83%bcfooter" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>footer.showMenu</code></td>
+          <td><code>true</code></td>
+          <td>フッターメニューを表示/非表示にします。これは、<code>config/_default/menus.en.toml</code> ファイルの <code>[[footer]]</code> セクションで設定できます。</td>
+      </tr>
+      <tr>
+          <td><code>footer.showCopyright</code></td>
+          <td><code>true</code></td>
+          <td>サイトのフッターに著作権文字列を表示するかどうかです。文字列自体は、<a
+  href="#%e8%a8%80%e8%aa%9e%e3%81%a8-i18n">言語設定</a> の <code>copyright</code> パラメータを使用してカスタマイズできることに注意してください。</td>
+      </tr>
+      <tr>
+          <td><code>footer.showThemeAttribution</code></td>
+          <td><code>true</code></td>
+          <td>サイトのフッターに「powered by」というテーマの帰属を表示するかどうかです。このメッセージを無効にする場合は、サイトの他の場所（たとえば、about ページ）でテーマの帰属を検討してください。</td>
+      </tr>
+      <tr>
+          <td><code>footer.showAppearanceSwitcher</code></td>
+          <td><code>false</code></td>
+          <td>サイトのフッターに外観スイッチャーを表示するかどうかです。 ブラウザのローカルストレージを使用して、訪問者の設定が保持されます。</td>
+      </tr>
+      <tr>
+          <td><code>footer.showScrollToTop</code></td>
+          <td><code>true</code></td>
+          <td><code>true</code> に設定すると、トップへスクロールの矢印が表示されます。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">ホームページ(Homepage) 
+    <div id="ホームページhomepage" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%9b%e3%83%bc%e3%83%a0%e3%83%9a%e3%83%bc%e3%82%b8homepage" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>homepage.layout</code></td>
+          <td><code>&quot;profile&quot;</code></td>
+          <td>ホームページのレイアウトです。有効な値は、<code>page</code>、<code>profile</code>、<code>hero</code>、<code>card</code>、<code>background</code>、<code>custom</code> です。<code>custom</code> に設定した場合、<code>/layouts/partials/home/custom.html</code> ファイルを作成して独自のレイアウトを提供する必要があります。詳細については、<a
+  href="http://localhost:1313/ja/docs/homepage-layout/">ホームページレイアウト</a> セクションを参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.homepageImage</code></td>
+          <td><em>未設定</em></td>
+          <td><code>hero</code> レイアウトと <code>card</code> レイアウトで使用される画像です。アセットディレクトリからのローカル画像または外部画像 URL として設定できます。詳細については、<a
+  href="http://localhost:1313/ja/docs/homepage-layout/">ホームページレイアウト</a> セクションを参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.showRecent</code></td>
+          <td><code>false</code></td>
+          <td>ホームページに最近の記事リストを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.showRecentItems</code></td>
+          <td>5</td>
+          <td>showRecent が true の場合に表示する記事の数です。変数が0に設定されている場合、または定義されていない場合は、システムはデフォルトで5つの記事に設定されます。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.showMoreLink</code></td>
+          <td><code>false</code></td>
+          <td>ユーザーを事前に定義された場所に移動する「もっと見る」リンクを投稿の最後に表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.showMoreLinkDest</code></td>
+          <td><code>/posts</code></td>
+          <td>「もっと見る」ボタンの移動先です。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.cardView</code></td>
+          <td><code>false</code></td>
+          <td>最近の記事をカードのギャラリーとして表示します。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.cardViewScreenWidth</code></td>
+          <td><code>false</code></td>
+          <td>最近の記事カードギャラリーの幅を拡張して、利用可能な幅全体を使用します。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.layoutBackgroundBlur</code></td>
+          <td><code>false</code></td>
+          <td>ホームページレイアウトの背景画像をスクロールに合わせてぼかします。</td>
+      </tr>
+      <tr>
+          <td><code>homepage.disableHeroImageFilter</code></td>
+          <td><code>false</code></td>
+          <td>ホームページの背景画像にフィルターを適用するかどうか。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">記事(Article) 
+    <div id="記事article" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e8%a8%98%e4%ba%8barticle" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>article.showDate</code></td>
+          <td><code>true</code></td>
+          <td>記事の日付を表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showViews</code></td>
+          <td><code>false</code></td>
+          <td>記事の表示回数を表示するかどうかです。これには Firebase 統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>article.showLikes</code></td>
+          <td><code>false</code></td>
+          <td>記事のいいねを表示するかどうかです。これには Firebase 統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>article.showDateOnlyInArticle</code></td>
+          <td><code>false</code></td>
+          <td>記事リスト/カードに表示されていない場合でも、記事内に日付を表示します。</td>
+      </tr>
+      <tr>
+          <td><code>article.showDateUpdated</code></td>
+          <td><code>false</code></td>
+          <td>記事が更新された日付を表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showAuthor</code></td>
+          <td><code>true</code></td>
+          <td>記事のフッターに著者ボックスを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showAuthorBottom</code></td>
+          <td><code>false</code></td>
+          <td>著者ボックスは、各ページの上部ではなく下部に表示されます。</td>
+      </tr>
+      <tr>
+          <td><code>article.showHero</code></td>
+          <td><code>false</code></td>
+          <td>サムネイル画像を各記事ページ内でヒーロー画像として表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.heroStyle</code></td>
+          <td><em>未設定</em></td>
+          <td>ヒーロー画像を表示するスタイルです。有効なオプションは、<code>basic</code>、<code>big</code>、<code>background</code>、<code>thumbAndBackground</code> です。</td>
+      </tr>
+      <tr>
+          <td><code>article.layoutBackgroundBlur</code></td>
+          <td><code>true</code></td>
+          <td>背景記事 heroStyle の背景画像をスクロールに合わせてぼかします。</td>
+      </tr>
+      <tr>
+          <td><code>article.layoutBackgroundHeaderSpace</code></td>
+          <td><code>true</code></td>
+          <td>ヘッダーと本文の間にスペースを追加します。</td>
+      </tr>
+      <tr>
+          <td><code>article.showBreadcrumbs</code></td>
+          <td><code>false</code></td>
+          <td>記事のヘッダーにパンくずリストを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showDraftLabel</code></td>
+          <td><code>true</code></td>
+          <td>サイトが <code>--buildDrafts</code> でビルドされたときに、記事の横にドラフトインジケータを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showEdit</code></td>
+          <td><code>false</code></td>
+          <td>記事コンテンツを編集するためのリンクを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.editURL</code></td>
+          <td><em>未設定</em></td>
+          <td><code>article.showEdit</code> がアクティブな場合、編集リンクの URL です。</td>
+      </tr>
+      <tr>
+          <td><code>article.editAppendPath</code></td>
+          <td><code>true</code></td>
+          <td><code>article.showEdit</code> がアクティブな場合、現在の記事へのパスを <code>article.editURL</code> で設定された URL に追加するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.seriesOpened</code></td>
+          <td><code>false</code></td>
+          <td>シリーズモジュールがデフォルトで開いた状態で表示されるかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showHeadingAnchors</code></td>
+          <td><code>true</code></td>
+          <td>記事内の見出しの横にアンカーリンク見出しを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showPagination</code></td>
+          <td><code>true</code></td>
+          <td>記事のフッターに次/前の記事リンクを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.invertPagination</code></td>
+          <td><code>false</code></td>
+          <td>次/前の記事リンクの方向を反転するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showReadingTime</code></td>
+          <td><code>true</code></td>
+          <td>記事の読了時間を表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showTableOfContents</code></td>
+          <td><code>false</code></td>
+          <td>記事に目次を表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showRelatedContent</code></td>
+          <td><code>false</code></td>
+          <td>各投稿の関連記事を表示します。<code>config.toml</code> に追加の設定が必要になる場合があります。この機能を有効にする場合は、テーマの <code>config.toml</code> を確認し、関連するすべての <em>related</em> エントリをコピーしてください。また、関連記事については <a
+  href="https://gohugo.io/content-management/related/"
+    target="_blank"
+  >Hugo のドキュメント</a> も確認してください。</td>
+      </tr>
+      <tr>
+          <td><code>article.relatedContentLimit</code></td>
+          <td><code>3</code></td>
+          <td><code>showRelatedContent</code> がオンになっている場合に表示する関連記事の上限です。</td>
+      </tr>
+      <tr>
+          <td><code>article.showTaxonomies</code></td>
+          <td><code>false</code></td>
+          <td>この記事に関連するタクソノミーを表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showAuthorsBadges</code></td>
+          <td><code>false</code></td>
+          <td><code>authors</code> タクソノミーを記事またはリストのヘッダーに表示するかどうかです。これには、「複数の著者」と <code>authors</code> タクソノミーの設定が必要です。この機能の設定方法の詳細については、<a
+  href="http://localhost:1313/ja/docs/multi-author/">このページ</a> を確認してください。</td>
+      </tr>
+      <tr>
+          <td><code>article.showWordCount</code></td>
+          <td><code>false</code></td>
+          <td>記事の単語数を表示するかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.showComments</code></td>
+          <td><code>false</code></td>
+          <td>記事のフッターの後に <a
+  href="http://localhost:1313/ja/docs/partials/#コメント">コメントパーシャル</a> を含めるかどうかです。</td>
+      </tr>
+      <tr>
+          <td><code>article.sharingLinks</code></td>
+          <td><em>未設定</em></td>
+          <td>各記事の最後に表示する共有リンクです。指定されていないか、<code>false</code> に設定されている場合、リンクは表示されません。使用可能な値は、&ldquo;bluesky&rdquo;、&ldquo;email&rdquo;、&ldquo;facebook&rdquo;、&ldquo;line&rdquo;、&ldquo;linkedin&rdquo;、&ldquo;mastodon&rdquo;、&ldquo;pinterest&rdquo;、&ldquo;reddit&rdquo;、&ldquo;telegram&rdquo;、&ldquo;twitter&rdquo;、&ldquo;whatsapp&quot;です。</td>
+      </tr>
+      <tr>
+          <td><code>article.showZenMode</code></td>
+          <td><code>false</code></td>
+          <td>記事のZenモードリーダー機能を有効にするフラグです。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">リスト(List) 
+    <div id="リストlist" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%83%aa%e3%82%b9%e3%83%88list" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>list.showHero</code></td>
+          <td><code>false</code></td>
+          <td>各リストページ内でサムネイル画像をヒーロー画像として表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>list.heroStyle</code></td>
+          <td><em>未設定</em></td>
+          <td>ヒーロー画像の表示スタイル。有効なオプションは <code>basic</code>、<code>big</code>、<code>background</code>、<code>thumbAndBackground</code> です。</td>
+      </tr>
+      <tr>
+          <td><code>list.showBreadcrumbs</code></td>
+          <td><code>false</code></td>
+          <td>リストページのヘッダーにパンくずリストを表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>list.layoutBackgroundBlur</code></td>
+          <td><code>true</code></td>
+          <td><code>background</code> リストの heroStyle の背景画像をスクロールでぼかします。</td>
+      </tr>
+      <tr>
+          <td><code>list.layoutBackgroundHeaderSpace</code></td>
+          <td><code>true</code></td>
+          <td>ヘッダーと本文の間にスペースを追加します。</td>
+      </tr>
+      <tr>
+          <td><code>list.showTableOfContents</code></td>
+          <td><code>false</code></td>
+          <td>リストページに目次を表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>list.showSummary</code></td>
+          <td><code>false</code></td>
+          <td>リストページに記事の要約を表示するかどうか。<a
+  href="http://localhost:1313/ja/docs/front-matter/">フロントマター</a> で要約が提供されていない場合、<a
+  href="#%e3%82%b5%e3%82%a4%e3%83%88%e8%a8%ad%e5%ae%9a">サイト設定</a> の <code>summaryLength</code> パラメータを使用して自動的に生成されます。</td>
+      </tr>
+      <tr>
+          <td><code>list.showViews</code></td>
+          <td><code>false</code></td>
+          <td>リストの閲覧数を表示するかどうか。これを有効にするには、Firebase の統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>list.showLikes</code></td>
+          <td><code>false</code></td>
+          <td>リストのいいね数を表示するかどうか。これを有効にするには、Firebase の統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>list.showCards</code></td>
+          <td><code>false</code></td>
+          <td>各記事をカードとして表示するか、シンプルなインラインテキストとして表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>list.orderByWeight</code></td>
+          <td><code>false</code></td>
+          <td>記事を<a
+  href="https://gohugo.io/methods/page/weight/"
+    target="_blank"
+  >重み</a>で並べ替えるかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>list.groupByYear</code></td>
+          <td><code>true</code></td>
+          <td>リストページで記事を年別にグループ化するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>list.cardView</code></td>
+          <td><code>false</code></td>
+          <td>リストをカードのギャラリーとして表示します。</td>
+      </tr>
+      <tr>
+          <td><code>list.cardViewScreenWidth</code></td>
+          <td><code>false</code></td>
+          <td>リスト内のカードギャラリーの幅を、利用可能な全幅を使用するように拡張します。</td>
+      </tr>
+      <tr>
+          <td><code>list.constrainItemsWidth</code></td>
+          <td><code>false</code></td>
+          <td>読みやすくするために、アイテムの幅を <code>prose</code> に制限します。フィーチャー画像が利用できない場合に役立ちます。</td>
+      </tr>
+      <tr>
+          <td><code>list.showTableOfContents</code></td>
+          <td><code>false</code></td>
+          <td>記事に目次を表示するかどうか。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">サイトマップ(Sitemap) 
+    <div id="サイトマップsitemap" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%b5%e3%82%a4%e3%83%88%e3%83%9e%e3%83%83%e3%83%97sitemap" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>sitemap.excludedKinds</code></td>
+          <td><code>[&quot;taxonomy&quot;, &quot;term&quot;]</code></td>
+          <td>生成された <code>/sitemap.xml</code> ファイルから除外するコンテンツの種類。許容される値については、<a
+  href="https://gohugo.io/methods/page/kind/"
+    target="_blank"
+  >Hugo のドキュメント</a>を参照してください。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">タクソノミー(Taxonomy) 
+    <div id="タクソノミーtaxonomy" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%bf%e3%82%af%e3%82%bd%e3%83%8e%e3%83%9f%e3%83%bctaxonomy" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>taxonomy.showTermCount</code></td>
+          <td><code>true</code></td>
+          <td>タクソノミーリストにタクソノミー用語内の記事数を表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.showHero</code></td>
+          <td><code>false</code></td>
+          <td>各タクソノミーページ内でサムネイル画像をヒーロー画像として表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.heroStyle</code></td>
+          <td><em>未設定</em></td>
+          <td>ヒーロー画像の表示スタイル。有効なオプションは <code>basic</code>、<code>big</code>、<code>background</code>、<code>thumbAndBackground</code> です。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.showBreadcrumbs</code></td>
+          <td><code>false</code></td>
+          <td>タクソノミーのヘッダーにパンくずリストを表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.showViews</code></td>
+          <td><code>false</code></td>
+          <td>記事の閲覧数を表示するかどうか。これを有効にするには、Firebase の統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.showLikes</code></td>
+          <td><code>false</code></td>
+          <td>記事のいいね数を表示するかどうか。これを有効にするには、Firebase の統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.showTableOfContents</code></td>
+          <td><code>false</code></td>
+          <td>タクソノミーに目次を表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>taxonomy.cardView</code></td>
+          <td><code>false</code></td>
+          <td>リストをカードのギャラリーとして表示します。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">ターム(Term) 
+    <div id="タームterm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%82%bf%e3%83%bc%e3%83%a0term" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>term.showHero</code></td>
+          <td><code>false</code></td>
+          <td>各タームページ内でサムネイル画像をヒーロー画像として表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>term.heroStyle</code></td>
+          <td><em>未設定</em></td>
+          <td>ヒーロー画像の表示スタイル。有効なオプションは <code>basic</code>、<code>big</code>、<code>background</code>、<code>thumbAndBackground</code> です。</td>
+      </tr>
+      <tr>
+          <td><code>term.showBreadcrumbs</code></td>
+          <td><code>false</code></td>
+          <td>タームのヘッダーにパンくずリストを表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>term.showViews</code></td>
+          <td><code>false</code></td>
+          <td>記事の閲覧数を表示するかどうか。これを有効にするには、Firebase の統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>term.showLikes</code></td>
+          <td><code>false</code></td>
+          <td>記事のいいね数を表示するかどうか。これを有効にするには、Firebase の統合を有効にする必要があります。以下をご覧ください。</td>
+      </tr>
+      <tr>
+          <td><code>term.showTableOfContents</code></td>
+          <td><code>false</code></td>
+          <td>タームに目次を表示するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>term.groupByYear</code></td>
+          <td><code>false</code></td>
+          <td>タームページで記事を年別にグループ化するかどうか。</td>
+      </tr>
+      <tr>
+          <td><code>term.cardView</code></td>
+          <td><code>false</code></td>
+          <td>リストをカードのギャラリーとして表示します。</td>
+      </tr>
+      <tr>
+          <td><code>term.cardViewScreenWidth</code></td>
+          <td><code>false</code></td>
+          <td>リスト内のカードギャラリーの幅を、利用可能な全幅を使用するように拡張します。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">Firebase 
+    <div id="firebase" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#firebase" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>firebase.apiKey</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase API キー。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>firebase.authDomain</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase 認証ドメイン。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>firebase.projectId</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase プロジェクト ID。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>firebase.storageBucket</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase ストレージバケット。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>firebase.messagingSenderId</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase メッセージング送信者 ID。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>firebase.appId</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase アプリ ID。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>firebase.measurementId</code></td>
+          <td><em>未設定</em></td>
+          <td>Firebase との統合に必要な Firebase 測定 ID。Firebase を Blowfish に統合する方法については、<a
+  href="http://localhost:1313/ja/docs/firebase-views/">このページ</a>を参照してください。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">Fathom Analytics 
+    <div id="fathom-analytics" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#fathom-analytics" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>fathomAnalytics.site</code></td>
+          <td><em>未設定</em></td>
+          <td>ウェブサイト用に Fathom Analytics によって生成されたサイトコード。詳細については、<a
+  href="http://localhost:1313/ja/docs/partials/#アナリティクス">Analytics のドキュメント</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>fathomAnalytics.domain</code></td>
+          <td><em>未設定</em></td>
+          <td>Fathom Analytics でカスタムドメインを使用している場合、ここに指定して、<code>script.js</code> をカスタムドメインから配信します。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">Umami Analytics 
+    <div id="umami-analytics" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#umami-analytics" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>umamiAnalytics.websiteid</code></td>
+          <td><em>未設定</em></td>
+          <td>ウェブサイト用に Umami Analytics によって生成されたサイトコード。詳細については、<a
+  href="http://localhost:1313/ja/docs/partials/#アナリティクス">Analytics のドキュメント</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>umamiAnalytics.domain</code></td>
+          <td><em>未設定</em></td>
+          <td>Umami Analytics でカスタムドメインを使用している場合、ここに指定して、<code>script.js</code> をカスタムドメインから配信します。</td>
+      </tr>
+      <tr>
+          <td><code>umamiAnalytics.dataDomains</code></td>
+          <td><em>未設定</em></td>
+          <td>トラッカーを特定のドメインでのみ実行したい場合は、トラッカースクリプトに指定します。これは、ドメイン名のカンマ区切りリストです。例えば &ldquo;yoursite.com,yoursite2.com&rdquo; のようになります。</td>
+      </tr>
+      <tr>
+          <td><code>umamiAnalytics.scriptName</code></td>
+          <td>script.js</td>
+          <td>アンチ広告ブロックに使用される <code>script.js</code> の名前は、環境変数 <code>TRACKER_SCRIPT_NAME</code> で設定されます。</td>
+      </tr>
+      <tr>
+          <td><code>umamiAnalytics.enableTrackEvent</code></td>
+          <td><code>true</code></td>
+          <td><code>true</code> に設定すると、トラックイベントが自動的に追加されます。トラックイベントを追加したくない場合は、<code>false</code> に設定してください。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">Seline Analytics 
+    <div id="seline-analytics" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#seline-analytics" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>selineAnalytics.token</code></td>
+          <td><em>未設定</em></td>
+          <td>ウェブサイト用に Seline Analytics によって生成されたトークン。詳細については、<a
+  href="http://localhost:1313/ja/docs/partials/#アナリティクス">Analytics のドキュメント</a>を参照してください。</td>
+      </tr>
+      <tr>
+          <td><code>selineAnalytics.enableTrackEvent</code></td>
+          <td><code>true</code></td>
+          <td><code>true</code> に設定すると、トラックイベントが自動的に追加されます。トラックイベントを追加したくない場合は、<code>false</code> に設定してください。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">BuyMeACoffee 
+    <div id="buymeacoffee" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#buymeacoffee" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>buymeacoffee.identifier</code></td>
+          <td><em>未設定</em></td>
+          <td>ターゲットの buymeacoffee アカウントの識別子。</td>
+      </tr>
+      <tr>
+          <td><code>buymeacoffee.globalWidget</code></td>
+          <td><em>未設定</em></td>
+          <td>グローバル buymeacoffee ウィジェットを有効にします。</td>
+      </tr>
+      <tr>
+          <td><code>buymeacoffee.globalWidgetMessage</code></td>
+          <td><em>未設定</em></td>
+          <td>新しいユーザーが初めてサイトにアクセスしたときに表示されるメッセージ。</td>
+      </tr>
+      <tr>
+          <td><code>buymeacoffee.globalWidgetColor</code></td>
+          <td><em>未設定</em></td>
+          <td>ウィジェットの色（16進数形式）。</td>
+      </tr>
+      <tr>
+          <td><code>buymeacoffee.globalWidgetPosition</code></td>
+          <td><em>未設定</em></td>
+          <td>ウィジェットの位置。例えば &ldquo;Left&rdquo; または &ldquo;Right&rdquo;</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">verification 
+    <div id="verification" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#verification" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>verification.google</code></td>
+          <td><em>未設定</em></td>
+          <td>サイトメタデータに含まれる、Google が提供するサイト確認文字列。</td>
+      </tr>
+      <tr>
+          <td><code>verification.bing</code></td>
+          <td><em>未設定</em></td>
+          <td>サイトメタデータに含まれる、Bing が提供するサイト確認文字列。</td>
+      </tr>
+      <tr>
+          <td><code>verification.pinterest</code></td>
+          <td><em>未設定</em></td>
+          <td>サイトメタデータに含まれる、Pinterest が提供するサイト確認文字列。</td>
+      </tr>
+      <tr>
+          <td><code>verification.yandex</code></td>
+          <td><em>未設定</em></td>
+          <td>サイトメタデータに含まれる、Yandex が提供するサイト確認文字列。</td>
+      </tr>
+  </tbody>
+</table>
+<!-- prettier-ignore-end -->
+
+<h3 class="relative group">RSSNext 
+    <div id="rssnext" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#rssnext" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>rssnext.feedId</code></td>
+          <td><em>未設定</em></td>
+          <td><a
+  href="https://follow.is/"
+    target="_blank"
+  >RSSNext/Follow</a> によって提供される rss <code>feedId</code> 文字列。<code>rss.xml</code> に含まれ、rss フィードを自身のものとしてクレームするのに役立ちます。</td>
+      </tr>
+      <tr>
+          <td><code>rssnext.userId</code></td>
+          <td><em>未設定</em></td>
+          <td><a
+  href="https://follow.is/"
+    target="_blank"
+  >RSSNext/Follow</a> によって提供される rss <code>userId</code> 文字列。<code>rss.xml</code> に含まれ、rss フィードを自身のものとしてクレームするのに役立ちます。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">Advertisement 
+    <div id="advertisement" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#advertisement" aria-label="アンカー">#</a>
+    </span>        
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>デフォルト</th>
+          <th>説明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>advertisement.adsense</code></td>
+          <td><em>未設定</em></td>
+          <td>Google AdSense パブリッシャー ID （例：<code>ca-pub-1234567890abcdef</code>）。このパラメータを設定すると、サイト上で AdSense 広告が有効になります。</td>
+      </tr>
+  </tbody>
+</table>
+
+<h2 class="relative group">その他の設定ファイル 
+    <div id="その他の設定ファイル" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab" aria-label="アンカー">#</a>
+    </span>        
+    
+</h2>
+<p>このテーマには <code>markup.toml</code> 設定ファイルも含まれています。このファイルには、Hugo が Blowfish で構築されたサイトを正しく生成するために重要なパラメータがいくつか含まれています。</p>
+<p>このファイルが常に config ディレクトリに存在し、必要な値が設定されていることを確認してください。そうしないと、特定の機能が正しく機能せず、意図しない動作を引き起こす可能性があります。</p>
+
+          
+          
+          
+        </div>
+        
+        
+  <details class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5">
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    Documentation -
+    この記事は連載の一部です
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/welcome/">
+          パート 1:
+          Blowfish へようこそ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/installation/">
+          パート 2:
+          インストール
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/getting-started/">
+          パート 3:
+          始める
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        パート 4:
+        この記事
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/homepage-layout/">
+          パート 5:
+          ホームページレイアウト
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/thumbnails/">
+          パート 6:
+          サムネイル
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/front-matter/">
+          パート 7:
+          フロントマター
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/shortcodes/">
+          パート 8:
+          ショートコード
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/partials/">
+          パート 9:
+          パーシャル
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/multi-author/">
+          パート 10:
+          複数の著者
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/series/">
+          パート 11:
+          シリーズ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/content-examples/">
+          パート 12:
+          コンテンツの例
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/advanced-customisation/">
+          パート 13:
+          高度なカスタマイズ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/hosting-deployment/">
+          パート 14:
+          ホスティングとデプロイ
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/ja/docs/firebase-views/">
+          パート 15:
+          Firebase: 閲覧数といいね
+        </a>
+      </div>
+    
+  
+
+
+  </details>
+
+
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/ja/docs/configuration/&amp;title=%e8%a8%ad%e5%ae%9a"
+          title="LinkedInでシェアする"
+          aria-label="LinkedInでシェアする">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/ja/docs/configuration/&amp;text=%e8%a8%ad%e5%ae%9a"
+          title="Twitterに投稿する"
+          aria-label="Twitterに投稿する">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://api.whatsapp.com/send?text=http://localhost:1313/ja/docs/configuration/&amp;resubmit=true&amp;title=%e8%a8%ad%e5%ae%9a"
+          title="WhatsAppでシェアする"
+          aria-label="WhatsAppでシェアする">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://reddit.com/submit/?url=http://localhost:1313/ja/docs/configuration/&amp;resubmit=true&amp;title=%e8%a8%ad%e5%ae%9a"
+          title="Redditに投稿する"
+          aria-label="Redditに投稿する">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span>
+        </a>
+      
+    
+      
+        <a
+          target="_blank"
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/ja/docs/configuration/&amp;quote=%e8%a8%ad%e5%ae%9a"
+          title="Facebookでシェアする"
+          aria-label="Facebookでシェアする">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span>
+        </a>
+      
+    
+  </section>
+
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_docs/configuration/index.md"
+          data-oid-likes="likes_docs/configuration/index.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+      
+      
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/ja/docs/getting-started/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >始める</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/ja/docs/homepage-layout/">
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >ホームページレイアウト</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0 z-10">
+  <a
+    href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="TOPへスクロール"
+    title="TOPへスクロール">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+      
+      
+        
+          
+          
+      
+      
+      
+      <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400 ">
+        <ul class="flex list-none flex-col sm:flex-row">
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/ja/tags/"
+                title="タグ">
+                
+                タグ
+              </a>
+            </li>
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/ja/authors/"
+                title="著者のタクソノミーリストの例">
+                
+                著者
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2025
+          Blowfish
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> で構築されています
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+    <a rel="me" href="https://masto.ai/@blowfish"></a>
+
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="http://localhost:1313/ja/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="検索"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="閉じる (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>

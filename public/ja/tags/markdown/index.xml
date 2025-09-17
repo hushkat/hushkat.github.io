@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on Blowfish</title>
+    <link>http://localhost:1313/ja/tags/markdown/</link>
+    <description>Recent content in Markdown on Blowfish</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>nuno@n9o.xyz (Blowfish)</managingEditor>
+    <webMaster>nuno@n9o.xyz (Blowfish)</webMaster>
+    <copyright>© 2025 Blowfish</copyright>
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/ja/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Markdown</title>
+      <link>http://localhost:1313/ja/samples/markdown/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <author>nuno@n9o.xyz (Blowfish)</author>
+      <guid>http://localhost:1313/ja/samples/markdown/</guid>
+      <description>&lt;p&gt;この記事は Blowfish を利用した基本的な Markdown フォーマットのサンプルを提供し、また基本的な HTML 要素がどのように装飾できるのかを示しています。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>代用語文</title>
+      <link>http://localhost:1313/ja/samples/placeholder-text/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      <author>nuno@n9o.xyz (Blowfish)</author>
+      <guid>http://localhost:1313/ja/samples/placeholder-text/</guid>
+      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

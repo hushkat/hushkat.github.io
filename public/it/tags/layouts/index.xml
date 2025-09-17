@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Layouts on Blowfish</title>
+    <link>http://localhost:1313/it/tags/layouts/</link>
+    <description>Recent content in Layouts on Blowfish</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>it</language>
+    <copyright>© 2025 Blowfish</copyright>
+    <atom:link href="http://localhost:1313/it/tags/layouts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Homepage Layout</title>
+      <link>http://localhost:1313/it/docs/homepage-layout/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/homepage-layout/</guid>
+      <description>&lt;p&gt;Blowfish fornisce un layout della home page completamente flessibile. Sono disponibili due modelli principali tra cui scegliere con impostazioni aggiuntive per adattare il design. In alternativa, puoi anche fornire il tuo modello e avere il controllo completo sul contenuto della home page.&lt;/p&gt;
+&lt;p&gt;Il layout della home page è controllato dall&amp;rsquo;impostazione &lt;code&gt;homepage.layout&lt;/code&gt; nel file di configurazione &lt;code&gt;params.toml&lt;/code&gt;. Inoltre, tutti i layout hanno la possibilità di includere un elenco di &lt;a
+  href=&#34;#articoli-recenti&#34;&gt;articoli recenti&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Profile layout 
+    &lt;div id=&#34;profile-layout&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#profile-layout&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Il layout predefinito è quello del profilo, ideale per i siti web e i blog personali. Mette i dettagli dell&amp;rsquo;autore in primo piano, fornendo un&amp;rsquo;immagine e i link ai profili sociali.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/homepage-layout/featured.svg" />
+    </item>
+    
+  </channel>
+</rss>
