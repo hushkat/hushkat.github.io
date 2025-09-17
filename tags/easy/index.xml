@@ -84,6 +84,127 @@ Whether you&amp;rsquo;re new to TryHackMe or curious about the crossover between
     </item>
     
     <item>
+      <title>Kenya Cyberlympics 2025</title>
+      <link>https://hushkat.github.io/posts/2025-06-01-kenyacyberlympics/kenya-cyberlympics-2025/</link>
+      <pubDate>Sun, 01 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-06-01-kenyacyberlympics/kenya-cyberlympics-2025/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;OwntheLib: Ado0re 
+    &lt;div id=&#34;ownthelib-ado0re&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#ownthelib-ado0re&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Description 
+    &lt;div id=&#34;description&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#description&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Points: 100&lt;/li&gt;
+&lt;li&gt;Web URL: http://173.212.253.48:6061&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This was an easy web challenge focused on IDOR vulnerability.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;What is IDOR? 
+    &lt;div id=&#34;what-is-idor&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#what-is-idor&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;IDOR stands for Insecure Direct Object Reference. Its a type of access control vulnerability that occurs when an application exposes a reference to an internal object (like a file, database record, or user ID) without properly verifying whether the user is authorized to access it.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>BITSCTF 2025</title>
+      <link>https://hushkat.github.io/posts/2025-02-10-bitsctf/bitsctf-2025/</link>
+      <pubDate>Mon, 10 Feb 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-02-10-bitsctf/bitsctf-2025/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;WELCOME - SANITY CHECK 
+    &lt;div id=&#34;welcome---sanity-check&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#welcome---sanity-check&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;This was an easy challenge to test the player&amp;rsquo;s sanity. I joined the BITSCTF Discord server and found the flag.
+
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Discord Flag&#34; src=&#34;https://hushkat.github.io/images/BITSCTF/SanityCheck.png&#34;&gt;
+
+  
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 class=&#34;relative group&#34;&gt;BABY DFIR - DFIR 
+    &lt;div id=&#34;baby-dfir---dfir&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#baby-dfir---dfir&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;This was an easy challenge in the DFIR category. The description read:
+I promise this is actually easy.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>RDP &amp; Reconnaissance</title>
+      <link>https://hushkat.github.io/posts/2024-12-03-rdpreconnaissance/rdp-reconnaissance/</link>
+      <pubDate>Tue, 03 Dec 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2024-12-03-rdpreconnaissance/rdp-reconnaissance/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;RDP - TI 
+    &lt;div id=&#34;rdp---ti&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#rdp---ti&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;This was an interesting challenge on Threat Intelligence. I extracted most of the flag parts from &lt;a
+  href=&#34;https://www.microsoft.com/en-us/security/blog/2024/10/29/midnight-blizzard-conducts-large-scale-spear-phishing-campaign-using-rdp-files/&#34;
+    target=&#34;_blank&#34;
+  &gt;this&lt;/a&gt; website.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Instructions 
+    &lt;div id=&#34;instructions&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#instructions&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Midnight Blizzard launched a spear-phishing campaign to distribute malicious RDP files. Are you familiar with the signature identified by Microsoft Defender for this campaign ? Additionally, do you know the number of well-known RDP files, number of the sender domain, and the APT designation associated with Midnight Blizzard ?&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>DNA &amp; Design</title>
       <link>https://hushkat.github.io/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/</link>
       <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>

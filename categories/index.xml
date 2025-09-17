@@ -7,7 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 31 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Sep 2025 10:10:00 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Incident Response</title>
+      <link>https://hushkat.github.io/categories/incident-response/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/incident-response/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SOC</title>
+      <link>https://hushkat.github.io/categories/soc/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/soc/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Web Security</title>
+      <link>https://hushkat.github.io/categories/web-security/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/web-security/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>B2R</title>
@@ -360,6 +390,46 @@
     </item>
     
     <item>
+      <title>Cryptography</title>
+      <link>https://hushkat.github.io/categories/cryptography/</link>
+      <pubDate>Sun, 01 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/cryptography/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>CTF</title>
+      <link>https://hushkat.github.io/categories/ctf/</link>
+      <pubDate>Sun, 01 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/ctf/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>DFIR</title>
+      <link>https://hushkat.github.io/categories/dfir/</link>
+      <pubDate>Mon, 10 Feb 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/dfir/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ThreatIntelligence</title>
+      <link>https://hushkat.github.io/categories/threatintelligence/</link>
+      <pubDate>Tue, 03 Dec 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/threatintelligence/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>GlacierCTF</title>
       <link>https://hushkat.github.io/categories/glacierctf/</link>
       <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
@@ -475,16 +545,6 @@
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
       
       <guid>https://hushkat.github.io/categories/wordpress/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Web Security</title>
-      <link>https://hushkat.github.io/categories/web-security/</link>
-      <pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://hushkat.github.io/categories/web-security/</guid>
       <description></description>
       
     </item>

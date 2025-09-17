@@ -7,7 +7,57 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 31 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Sep 2025 10:10:00 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Incident Response</title>
+      <link>https://hushkat.github.io/tags/incident-response/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/incident-response/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>LetsDefend</title>
+      <link>https://hushkat.github.io/tags/letsdefend/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/letsdefend/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>LFI</title>
+      <link>https://hushkat.github.io/tags/lfi/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/lfi/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SOC Analysis</title>
+      <link>https://hushkat.github.io/tags/soc-analysis/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/soc-analysis/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Web Security</title>
+      <link>https://hushkat.github.io/tags/web-security/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/web-security/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>B2R</title>
@@ -380,6 +430,86 @@
     </item>
     
     <item>
+      <title>Cryptography</title>
+      <link>https://hushkat.github.io/tags/cryptography/</link>
+      <pubDate>Sun, 01 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/cryptography/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>KenyaCyberlympics</title>
+      <link>https://hushkat.github.io/tags/kenyacyberlympics/</link>
+      <pubDate>Sun, 01 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/kenyacyberlympics/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>BITSCTF</title>
+      <link>https://hushkat.github.io/tags/bitsctf/</link>
+      <pubDate>Mon, 10 Feb 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/bitsctf/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>DFIR</title>
+      <link>https://hushkat.github.io/tags/dfir/</link>
+      <pubDate>Mon, 10 Feb 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/dfir/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>WELCOME</title>
+      <link>https://hushkat.github.io/tags/welcome/</link>
+      <pubDate>Mon, 10 Feb 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/welcome/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>CyberGonCTF</title>
+      <link>https://hushkat.github.io/tags/cybergonctf/</link>
+      <pubDate>Tue, 03 Dec 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/cybergonctf/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Reconnaissance</title>
+      <link>https://hushkat.github.io/tags/reconnaissance/</link>
+      <pubDate>Tue, 03 Dec 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/reconnaissance/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ThreatIntelligence</title>
+      <link>https://hushkat.github.io/tags/threatintelligence/</link>
+      <pubDate>Tue, 03 Dec 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/threatintelligence/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>GlacierCTF</title>
       <link>https://hushkat.github.io/tags/glacierctf/</link>
       <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
@@ -515,16 +645,6 @@
       <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
       
       <guid>https://hushkat.github.io/tags/wordpress/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Web Security</title>
-      <link>https://hushkat.github.io/tags/web-security/</link>
-      <pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://hushkat.github.io/tags/web-security/</guid>
       <description></description>
       
     </item>

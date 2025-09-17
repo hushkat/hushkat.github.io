@@ -10,18 +10,24 @@
   </url>
   <url>
     <loc>https://hushkat.github.io/posts/</loc>
-    <lastmod>2025-08-31T01:09:33+03:00</lastmod>
+    <lastmod>2025-09-14T10:10:00+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</loc>
-    <lastmod>2025-08-31T01:09:33+03:00</lastmod>
+    <loc>https://hushkat.github.io/posts/2025-09-14-soc170-passwd-found-in-requested-url/soc170-passwd-lfi-attack/</loc>
+    <lastmod>2025-09-14T10:10:00+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://hushkat.github.io/</loc>
+    <lastmod>2025-09-14T10:10:00+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</loc>
     <lastmod>2025-08-31T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -65,6 +71,24 @@
   <url>
     <loc>https://hushkat.github.io/posts/2025-06-30-industrial-intrusion.md/2025-06-30-industrial-intrusion/</loc>
     <lastmod>2025-06-30T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-06-01-kenyacyberlympics/kenya-cyberlympics-2025/</loc>
+    <lastmod>2025-06-01T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-02-10-bitsctf/bitsctf-2025/</loc>
+    <lastmod>2025-02-10T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2024-12-03-rdpreconnaissance/rdp-reconnaissance/</loc>
+    <lastmod>2024-12-03T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
