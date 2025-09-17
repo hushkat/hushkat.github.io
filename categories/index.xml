@@ -120,11 +120,101 @@
     </item>
     
     <item>
+      <title>Burpsuite</title>
+      <link>https://hushkat.github.io/categories/burpsuite/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/burpsuite/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Crypto</title>
+      <link>https://hushkat.github.io/categories/crypto/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/crypto/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Easy</title>
       <link>https://hushkat.github.io/categories/easy/</link>
-      <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
       
       <guid>https://hushkat.github.io/categories/easy/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Forensics</title>
+      <link>https://hushkat.github.io/categories/forensics/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/forensics/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Misc</title>
+      <link>https://hushkat.github.io/categories/misc/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/misc/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Osint</title>
+      <link>https://hushkat.github.io/categories/osint/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/osint/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Pwn</title>
+      <link>https://hushkat.github.io/categories/pwn/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/pwn/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Reverse Engineering</title>
+      <link>https://hushkat.github.io/categories/reverse-engineering/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/reverse-engineering/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQLi</title>
+      <link>https://hushkat.github.io/categories/sqli/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/sqli/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQLMAP</title>
+      <link>https://hushkat.github.io/categories/sqlmap/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/sqlmap/</guid>
       <description></description>
       
     </item>
@@ -180,16 +270,6 @@
     </item>
     
     <item>
-      <title>OSINT</title>
-      <link>https://hushkat.github.io/categories/osint/</link>
-      <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
-      
-      <guid>https://hushkat.github.io/categories/osint/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>POP3</title>
       <link>https://hushkat.github.io/categories/pop3/</link>
       <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
@@ -220,11 +300,61 @@
     </item>
     
     <item>
-      <title>Crypto</title>
-      <link>https://hushkat.github.io/categories/crypto/</link>
-      <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
+      <title>AWS</title>
+      <link>https://hushkat.github.io/categories/aws/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
       
-      <guid>https://hushkat.github.io/categories/crypto/</guid>
+      <guid>https://hushkat.github.io/categories/aws/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Cloudgoat</title>
+      <link>https://hushkat.github.io/categories/cloudgoat/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/cloudgoat/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>IAM</title>
+      <link>https://hushkat.github.io/categories/iam/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/iam/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ICS</title>
+      <link>https://hushkat.github.io/categories/ics/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/ics/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Industrial Control Systems</title>
+      <link>https://hushkat.github.io/categories/industrial-control-systems/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/industrial-control-systems/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>PRIVILEGE ESCALATION</title>
+      <link>https://hushkat.github.io/categories/privilege-escalation/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/privilege-escalation/</guid>
       <description></description>
       
     </item>
@@ -235,16 +365,6 @@
       <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
       
       <guid>https://hushkat.github.io/categories/glacierctf/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Misc</title>
-      <link>https://hushkat.github.io/categories/misc/</link>
-      <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
-      
-      <guid>https://hushkat.github.io/categories/misc/</guid>
       <description></description>
       
     </item>
@@ -290,21 +410,31 @@
     </item>
     
     <item>
-      <title>Gobuster</title>
-      <link>https://hushkat.github.io/categories/gobuster/</link>
-      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      <title>HackTheBox</title>
+      <link>https://hushkat.github.io/categories/hackthebox/</link>
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://hushkat.github.io/categories/gobuster/</guid>
+      <guid>https://hushkat.github.io/categories/hackthebox/</guid>
       <description></description>
       
     </item>
     
     <item>
-      <title>HackTheBox</title>
-      <link>https://hushkat.github.io/categories/hackthebox/</link>
-      <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
+      <title>Starting-Point</title>
+      <link>https://hushkat.github.io/categories/starting-point/</link>
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://hushkat.github.io/categories/hackthebox/</guid>
+      <guid>https://hushkat.github.io/categories/starting-point/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Gobuster</title>
+      <link>https://hushkat.github.io/categories/gobuster/</link>
+      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/categories/gobuster/</guid>
       <description></description>
       
     </item>

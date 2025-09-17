@@ -120,11 +120,101 @@
     </item>
     
     <item>
+      <title>Burpsuite</title>
+      <link>https://hushkat.github.io/tags/burpsuite/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/burpsuite/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Crypto</title>
+      <link>https://hushkat.github.io/tags/crypto/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/crypto/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Easy</title>
       <link>https://hushkat.github.io/tags/easy/</link>
-      <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
       
       <guid>https://hushkat.github.io/tags/easy/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Forensics</title>
+      <link>https://hushkat.github.io/tags/forensics/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/forensics/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Misc</title>
+      <link>https://hushkat.github.io/tags/misc/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/misc/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Osint</title>
+      <link>https://hushkat.github.io/tags/osint/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/osint/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Pwn</title>
+      <link>https://hushkat.github.io/tags/pwn/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/pwn/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Reverse Engineering</title>
+      <link>https://hushkat.github.io/tags/reverse-engineering/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/reverse-engineering/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQLi</title>
+      <link>https://hushkat.github.io/tags/sqli/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/sqli/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SQLMAP</title>
+      <link>https://hushkat.github.io/tags/sqlmap/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/sqlmap/</guid>
       <description></description>
       
     </item>
@@ -190,16 +280,6 @@
     </item>
     
     <item>
-      <title>OSINT</title>
-      <link>https://hushkat.github.io/tags/osint/</link>
-      <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
-      
-      <guid>https://hushkat.github.io/tags/osint/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>POP3</title>
       <link>https://hushkat.github.io/tags/pop3/</link>
       <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
@@ -250,11 +330,51 @@
     </item>
     
     <item>
-      <title>Crypto</title>
-      <link>https://hushkat.github.io/tags/crypto/</link>
-      <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
+      <title>AWS</title>
+      <link>https://hushkat.github.io/tags/aws/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
       
-      <guid>https://hushkat.github.io/tags/crypto/</guid>
+      <guid>https://hushkat.github.io/tags/aws/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Cloudgoat</title>
+      <link>https://hushkat.github.io/tags/cloudgoat/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/cloudgoat/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>IAM</title>
+      <link>https://hushkat.github.io/tags/iam/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/iam/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ICS</title>
+      <link>https://hushkat.github.io/tags/ics/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/ics/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Industrial Control Systems</title>
+      <link>https://hushkat.github.io/tags/industrial-control-systems/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/industrial-control-systems/</guid>
       <description></description>
       
     </item>
@@ -265,16 +385,6 @@
       <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
       
       <guid>https://hushkat.github.io/tags/glacierctf/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Misc</title>
-      <link>https://hushkat.github.io/tags/misc/</link>
-      <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
-      
-      <guid>https://hushkat.github.io/tags/misc/</guid>
       <description></description>
       
     </item>
@@ -320,21 +430,41 @@
     </item>
     
     <item>
-      <title>Gobuster</title>
-      <link>https://hushkat.github.io/tags/gobuster/</link>
-      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      <title>HackTheBox</title>
+      <link>https://hushkat.github.io/tags/hackthebox/</link>
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://hushkat.github.io/tags/gobuster/</guid>
+      <guid>https://hushkat.github.io/tags/hackthebox/</guid>
       <description></description>
       
     </item>
     
     <item>
-      <title>HackTheBox</title>
-      <link>https://hushkat.github.io/tags/hackthebox/</link>
-      <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
+      <title>Smbclient</title>
+      <link>https://hushkat.github.io/tags/smbclient/</link>
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://hushkat.github.io/tags/hackthebox/</guid>
+      <guid>https://hushkat.github.io/tags/smbclient/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Starting-Point</title>
+      <link>https://hushkat.github.io/tags/starting-point/</link>
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/starting-point/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Gobuster</title>
+      <link>https://hushkat.github.io/tags/gobuster/</link>
+      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/tags/gobuster/</guid>
       <description></description>
       
     </item>
