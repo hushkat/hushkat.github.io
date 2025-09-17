@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome to HushKat&#39;s Cyber Den on HushKat&#39;s Cyber Den</title>
+    <link>https://hushkat.github.io/</link>
+    <description>Recent content in Welcome to HushKat&#39;s Cyber Den on HushKat&#39;s Cyber Den</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 HushKat. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 31 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>WIFI Hacking 101</title>
+      <link>https://hushkat.github.io/posts/2024-03-19-wifi-hacking-101/2024-03-19-wifi-hacking-101/</link>
+      <pubDate>Tue, 19 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2024-03-19-wifi-hacking-101/2024-03-19-wifi-hacking-101/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;We all use Wi-Fi on a day-to-day basis. There is a lot that happens under the hood of this technology that we are all fond of and rely on every day. This room goes through some of the basics of this technology before we start learning about how to attack such network setups. Let’s dig in. If you wish to follow through, check out the room on TryHackMe called &lt;a
+  href=&#34;https://tryhackme.com/room/wifihacking101&#34;
+    target=&#34;_blank&#34;
+  &gt;WIFIHacking101&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>StuxCTF</title>
+      <link>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</link>
+      <pubDate>Sun, 31 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;StuxCTF - Complete Beginner&amp;rsquo;s Writeup 
+    &lt;div id=&#34;stuxctf---complete-beginners-writeup&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#stuxctf---complete-beginners-writeup&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Welcome to this step-by-step walkthrough of the StuxCTF challenge! This writeup is designed for beginners who want to understand each technique used. We&amp;rsquo;ll cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Network reconnaissance with Nmap&lt;/li&gt;
+&lt;li&gt;Web enumeration and directory discovery&lt;/li&gt;
+&lt;li&gt;Diffie-Hellman cryptography&lt;/li&gt;
+&lt;li&gt;Local File Inclusion (LFI) vulnerabilities&lt;/li&gt;
+&lt;li&gt;PHP Object Injection attacks&lt;/li&gt;
+&lt;li&gt;Privilege escalation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s dive in!&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Ignition</title>
+      <link>https://hushkat.github.io/posts/2025-08-30-ignition/2025-08-30-ignition/</link>
+      <pubDate>Sat, 30 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-08-30-ignition/2025-08-30-ignition/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;HTB Ignition - Beginner Penetration Testing Walkthrough 
+    &lt;div id=&#34;htb-ignition---beginner-penetration-testing-walkthrough&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#htb-ignition---beginner-penetration-testing-walkthrough&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;What is This? 
+    &lt;div id=&#34;what-is-this&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#what-is-this&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;This is a step-by-step guide for solving the &amp;ldquo;Ignition&amp;rdquo; challenge from Hack The Box (HTB). This walkthrough is designed for beginners who are new to penetration testing and cybersecurity.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Prerequisites 
+    &lt;div id=&#34;prerequisites&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#prerequisites&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic knowledge of Linux command line&lt;/li&gt;
+&lt;li&gt;Understanding of what IP addresses and ports are&lt;/li&gt;
+&lt;li&gt;Familiarity with web browsers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Phase 1: Enumeration (Information Gathering) 
+    &lt;div id=&#34;phase-1-enumeration-information-gathering&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#phase-1-enumeration-information-gathering&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+
+&lt;h3 class=&#34;relative group&#34;&gt;What is Enumeration? 
+    &lt;div id=&#34;what-is-enumeration&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#what-is-enumeration&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Enumeration is the process of gathering information about a target system. Think of it like reconnaissance - we&amp;rsquo;re trying to learn as much as possible about what services are running and how we might gain access.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Three</title>
+      <link>https://hushkat.github.io/posts/2025-08-28-three/2025-08-28-three/</link>
+      <pubDate>Thu, 28 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-08-28-three/2025-08-28-three/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;Three 
+    &lt;div id=&#34;three&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#three&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Description 
+    &lt;div id=&#34;description&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#description&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Three&lt;/strong&gt; is a Linux machine hosting a website that uses an &lt;strong&gt;AWS S3 bucket&lt;/strong&gt; as its cloud storage.&lt;br&gt;
+The bucket is misconfigured, allowing us to upload a malicious file.&lt;br&gt;
+By executing this file through the website, we can gain remote access to the system and retrieve the flag.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Fowsniff</title>
+      <link>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</link>
+      <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;Fowsniff CTF - Complete Beginner&amp;rsquo;s Walkthrough 
+    &lt;div id=&#34;fowsniff-ctf---complete-beginners-walkthrough&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#fowsniff-ctf---complete-beginners-walkthrough&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;What is This? 
+    &lt;div id=&#34;what-is-this&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#what-is-this&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Fowsniff&lt;/strong&gt; is a beginner-friendly boot2root CTF (Capture The Flag) challenge hosted on TryHackMe. In this challenge, we&amp;rsquo;ll learn fundamental penetration testing skills by exploiting a vulnerable Linux machine to gain root access and capture the flag.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>DNA &amp; Design</title>
+      <link>https://hushkat.github.io/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/</link>
+      <pubDate>Fri, 29 Nov 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;DNA 
+    &lt;div id=&#34;dna&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#dna&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;The challenge provided this image:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;DNAENCRYPTED&#34; src=&#34;https://hushkat.github.io/images/GlacierCTF/DNA.png&#34;&gt;
+
+  
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Extracted the string by reading the characters from left to right starting from the top going down. The resulting extracted string from the image: &lt;code&gt;TCATAGGCTAGCTACACTCGTTGTACACTAGACAGCTACACTCTCTGAAGCTAGCTATGAAGCGTCCTACTCCTATGA&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The challenge also has the following instructions
+&lt;code&gt;There are some pretty unusual encoding methods. Find the flag PS: Replace spaces with “_”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;From research this seems to be some kind of DNA type of encryption. I also learnt that I need to break the string into 3s, so that made it look like this:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>SheetsNLayers</title>
+      <link>https://hushkat.github.io/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</link>
+      <pubDate>Sun, 24 Nov 2024 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</guid>
+      <description>&lt;p&gt;This was a 4-part series of challenges linked to each other. I will explain my approach on solving the challenge below as I captured the first to last flag in that series.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;SheetsNLayers1 
+    &lt;div id=&#34;sheetsnlayers1&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#sheetsnlayers1&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;What is flag 1?&lt;/p&gt;
+&lt;p&gt;We are given a file to download which happened to be a zip file.
+
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;TaskFile&#34; src=&#34;https://hushkat.github.io/images/PerfectRoot/SheetsNLayers/TaskFile.png&#34;&gt;
+
+  
+&lt;/figure&gt;
+
+I went ahead to unzip the file and found a &lt;code&gt;SheetsNlayers.vhdx&lt;/code&gt; file, this is a file format used for virtual hard disks. I then mounted the disk on my host machine to explore it further.
+
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Flag1 Files&#34; src=&#34;https://hushkat.github.io/images/PerfectRoot/SheetsNLayers/Flag1&amp;amp;Files.png&#34;&gt;
+
+  
+&lt;/figure&gt;
+
+I noticed that it contained three more files, one which just happens to be our first flag, so on opening it, this is what I found: &lt;code&gt;=03YkNTNlNzYjZjYmVGMmFWZ4MTO1QWY0AzM0MmNhdjMzsHdwAjc&lt;/code&gt;. Looks like a Base64 encoded string. I decoded this string from &lt;a
+  href=&#34;https://www.dcode.fr/base-64-encoding&#34;
+    target=&#34;_blank&#34;
+  &gt;dcode&lt;/a&gt; and noticed that it was in reversed form, giving us the flag: &lt;code&gt;r00t{327a6c4304ad5938eaf0efb6cc3e53dc}&lt;/code&gt; This has been illustrated below:
+
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Flag1&#34; src=&#34;https://hushkat.github.io/images/PerfectRoot/SheetsNLayers/Flag1.png&#34;&gt;
+
+  
+&lt;/figure&gt;
+&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>SimpleCTF</title>
+      <link>https://hushkat.github.io/posts/2023-12-31-simplectf/2023-12-31-simplectf/</link>
+      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2023-12-31-simplectf/2023-12-31-simplectf/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Hello guys, it has been quite some time since I made a CTF writeup and I figured it&amp;rsquo;s time to share some of my notes with you. Like many of you, I am a beginner and I am still learning and exploring stuff in cyber security. Just recently I got interviewed by &lt;a
+  href=&#34;https://cybershujaa.co.ke/&#34;
+    target=&#34;_blank&#34;
+  &gt;CyberShujaa&lt;/a&gt; as I had applied to be a scholar in their program for the Security Analyst path. I am happy to say that I have been shortlisted for the program. As part of the admission process, I was required to try out this beginner-level CTF challenge and I thought it wise to take some notes while solving it. You can find the challenge &lt;a
+  href=&#34;https://tryhackme.com/room/easyctf#&#34;
+    target=&#34;_blank&#34;
+  &gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Privilege Escalation</title>
+      <link>https://hushkat.github.io/posts/2023-08-11-privilege-escalation/2023-08-11-privilege-escalation/</link>
+      <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2023-08-11-privilege-escalation/2023-08-11-privilege-escalation/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;After breaching a target&amp;rsquo;s defenses and exploiting system vulnerabilities, hackers often find themselves with limited privileges. To overcome this, privilege escalation becomes essential to navigate through defenses and gain the muscle needed to carry out a successful attack.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Public Exploits</title>
+      <link>https://hushkat.github.io/posts/2023-08-02-public-exploits/2023-08-02-public-exploits/</link>
+      <pubDate>Wed, 02 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2023-08-02-public-exploits/2023-08-02-public-exploits/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Welcome to yet another writeup where I cover an important tool used by hackers to exploit vulnerabilities on different systems: &lt;a
+  href=&#34;https://www.metasploit.com/&#34;
+    target=&#34;_blank&#34;
+  &gt;Metasploit&lt;/a&gt; In this challenge, part of the &amp;ldquo;Getting started&amp;rdquo; series on HackTheBox Academy, we will be delving into the realm of public exploits and uncovering the power of Metasploit.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Web Enumeration</title>
+      <link>https://hushkat.github.io/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</link>
+      <pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Welcome to another writeup from a challenge discovered at one of the best learning platforms for hackers &lt;a
+  href=&#34;https://academy.hackthebox.com/&#34;
+    target=&#34;_blank&#34;
+  &gt;HackTheBox&lt;/a&gt;. This challenge is part of the &lt;strong&gt;Getting Started&lt;/strong&gt; module and can be found &lt;a
+  href=&#34;https://academy.hackthebox.com/course/preview/getting-started&#34;
+    target=&#34;_blank&#34;
+  &gt;here&lt;/a&gt;.  It is an excellent starting point for those interested in offensive security or red teaming.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Disclaimer: The content presented in this article is for educational purposes only and does not endorse or encourage any form of unauthorized access or malicious activity.&lt;/em&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://hushkat.github.io/about/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://hushkat.github.io/about/</guid>
+      <description>&lt;p&gt;
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Welcome to HushKat&amp;rsquo;s Cyber Den&#34; src=&#34;https://hushkat.github.io/about/img/cover.webp&#34;&gt;
+
+  
+    &lt;figcaption&gt;Welcome to my cybersecurity journey&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+  
+
+
+
+&lt;div
+  
+    class=&#34;flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900&#34;
+  
+  &gt;
+  &lt;span
+    
+      class=&#34;text-primary-400 pe-3 flex items-center&#34;
+    
+    &gt;
+    &lt;span class=&#34;relative block icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path fill=&#34;currentColor&#34; d=&#34;M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z&#34;/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+  &lt;/span&gt;
+
+  &lt;span
+    
+      class=&#34;dark:text-neutral-300&#34;
+    
+    &gt;&lt;strong&gt;Welcome to HushKat&amp;rsquo;s Cyber Den&lt;/strong&gt; - Where curiosity meets cybersecurity, and every challenge is an opportunity to learn!&lt;/span&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Keep it Simple</title>
+      <link>https://hushkat.github.io/posts/2023-06-21-keep-it-simple/2023-06-21-keep-it-simple/</link>
+      <pubDate>Wed, 21 Jun 2023 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2023-06-21-keep-it-simple/2023-06-21-keep-it-simple/</guid>
+      <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
+    &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#introduction&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;Welcome to another exciting journey into the world of Cybersec and its mysteries! In this blog post, we&amp;rsquo;ll explore a captivating gamified challenge in the field of Digital Forensics. Join me as we dive into the intriguing world of &lt;a
+  href=&#34;https://en.wikipedia.org/wiki/Capture_the_flag_%28cybersecurity%29&#34;
+    target=&#34;_blank&#34;
+  &gt;Capture The Flag&lt;/a&gt; and unravel the secrets behind the challenge titled &amp;lsquo;Keep it Simple.&amp;rsquo; This challenge is part of the &lt;strong&gt;Introduction to Cybersecurity (Online)&lt;/strong&gt; series that I have been looking into over the past few days and can be found &lt;a
+  href=&#34;https://cybertalents.com/challenges/forensics/keep-it-simple&#34;
+    target=&#34;_blank&#34;
+  &gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

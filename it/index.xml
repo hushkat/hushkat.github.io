@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Benvenuti a Blowfish! on Blowfish</title>
+    <link>http://localhost:1313/it/</link>
+    <description>Recent content in Benvenuti a Blowfish! on Blowfish</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>it</language>
+    <copyright>© 2025 Blowfish</copyright>
+    <lastBuildDate>Mon, 02 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/it/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Benvenuti a Blowfish</title>
+      <link>http://localhost:1313/it/docs/welcome/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/welcome/</guid>
+      <description>&lt;div class=&#34;lead text-neutral-500 dark:text-neutral-400 !mb-9 text-xl&#34;&gt;
+  Blowfish è ricco di tantissime funzionalità.
+&lt;/div&gt;
+
+&lt;p&gt;Lo scopo originale di Blowfish era quello di sviluppare un tema semplice e leggero. Il tema è un fork del &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/nunocoracao/congo&#34;&gt;Congo&lt;/a&gt; e ne espande la visione iniziale.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Tailwind CSS 3.0 
+    &lt;div id=&#34;tailwind-css-30&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#tailwind-css-30&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Tailwind CSS è il cuore di Blowfish e questa versione contiene l&amp;rsquo;ultima &lt;a
+  href=&#34;https://tailwindcss.com/blog/tailwindcss-v3&#34;
+    target=&#34;_blank&#34;
+  &gt;Tailwind CSS versione 3&lt;/a&gt;. Porta con sé ottimizzazioni delle prestazioni e supporto per alcune nuove fantastiche funzionalità CSS.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/welcome/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Installazione</title>
+      <link>http://localhost:1313/it/docs/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/installation/</guid>
+      <description>&lt;p&gt;Segui semplicemente la procedura standard &lt;a
+  href=&#34;https://gohugo.io/getting-started/quick-start/&#34;
+    target=&#34;_blank&#34;
+  &gt;Avvio Rapido&lt;/a&gt; di Hugo per iniziare subito.&lt;/p&gt;
+&lt;p&gt;Sono riportate le istruzioni dettagliate per l&amp;rsquo;installazione. Sono disponibili anche le istruzioni per &lt;a
+  href=&#34;#installazione-degli-aggiornamenti&#34;&gt;aggiornare il tema&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Installazione 
+    &lt;div id=&#34;installazione&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#installazione&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Queste istruzioni ti consentiranno di iniziare a utilizzare Hugo e Blowfish partendo da uno stato completamente vuoto. La maggior parte delle dipendenze menzionate in questa guida possono essere installate utilizzando il gestore pacchetti corretti per la tua piattaforma.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/installation/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Per iniziare</title>
+      <link>http://localhost:1313/it/docs/per-iniziare/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/per-iniziare/</guid>
+      <description>&lt;div
+  
+    class=&#34;flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900&#34;
+  
+  &gt;
+  &lt;span
+    
+      class=&#34;text-primary-400 pe-3 flex items-center&#34;
+    
+    &gt;
+    &lt;span class=&#34;relative block icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path fill=&#34;currentColor&#34; d=&#34;M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z&#34;/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+  &lt;/span&gt;
+
+  &lt;span
+    
+      class=&#34;dark:text-neutral-300&#34;
+    
+    &gt;Questa sezione presuppone che tu abbia già &lt;a
+  href=&#34;http://localhost:1313/it/docs/installation/&#34;
+    target=&#34;_blank&#34;
+  &gt;installato il tema Blowfish&lt;/a&gt;.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/br&gt;
+
+  
+
+
+
+&lt;div
+  
+    class=&#34;flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900&#34;
+  
+  &gt;
+  &lt;span
+    
+      class=&#34;text-primary-400 pe-3 flex items-center&#34;
+    
+    &gt;
+    &lt;span class=&#34;relative block icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 448 512&#34;&gt;
+&lt;path fill=&#34;currentColor&#34;  d=&#34;M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/span&gt;
+
+  &lt;span
+    
+      class=&#34;dark:text-neutral-300&#34;
+    
+    &gt;&lt;p&gt;Abbiamo appena lanciato uno strumento CLI per aiutarvi a iniziare con Blowfish. Vi aiuterà con l&amp;rsquo;installazione e la configurazione. Installate lo strumento CLI a livello globale utilizzando:&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/getting-started/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Configurazione</title>
+      <link>http://localhost:1313/it/docs/configurazioni/</link>
+      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/configurazioni/</guid>
+      <description>&lt;p&gt;Blowfish è un tema altamente personalizzabile e utilizza alcune delle più recenti funzionalità di Hugo per semplificarne la configurazione.&lt;/p&gt;
+&lt;p&gt;Il tema viene fornito con una configurazione predefinita che ti consente di essere operativo con un blog di base o un sito Web statico.&lt;/p&gt;
+
+  
+
+
+
+&lt;div
+  
+    class=&#34;flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900&#34;
+  
+  &gt;
+  &lt;span
+    
+      class=&#34;text-primary-400 pe-3 flex items-center&#34;
+    
+    &gt;
+    &lt;span class=&#34;relative block icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 448 512&#34;&gt;
+&lt;path fill=&#34;currentColor&#34;  d=&#34;M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/span&gt;
+
+  &lt;span
+    
+      class=&#34;dark:text-neutral-300&#34;
+    
+    &gt;&lt;p&gt;We just launched a CLI tool to help you get started with Blowfish. It will help you with installation and configuration. Install the CLI tool globally using:&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/configuration/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Homepage Layout</title>
+      <link>http://localhost:1313/it/docs/homepage-layout/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/homepage-layout/</guid>
+      <description>&lt;p&gt;Blowfish fornisce un layout della home page completamente flessibile. Sono disponibili due modelli principali tra cui scegliere con impostazioni aggiuntive per adattare il design. In alternativa, puoi anche fornire il tuo modello e avere il controllo completo sul contenuto della home page.&lt;/p&gt;
+&lt;p&gt;Il layout della home page è controllato dall&amp;rsquo;impostazione &lt;code&gt;homepage.layout&lt;/code&gt; nel file di configurazione &lt;code&gt;params.toml&lt;/code&gt;. Inoltre, tutti i layout hanno la possibilità di includere un elenco di &lt;a
+  href=&#34;#articoli-recenti&#34;&gt;articoli recenti&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Profile layout 
+    &lt;div id=&#34;profile-layout&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#profile-layout&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Il layout predefinito è quello del profilo, ideale per i siti web e i blog personali. Mette i dettagli dell&amp;rsquo;autore in primo piano, fornendo un&amp;rsquo;immagine e i link ai profili sociali.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/homepage-layout/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Shortcodes</title>
+      <link>http://localhost:1313/it/docs/shortcodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/shortcodes/</guid>
+      <description>&lt;p&gt;In addition to all the &lt;a
+  href=&#34;https://gohugo.io/content-management/shortcodes/&#34;
+    target=&#34;_blank&#34;
+  &gt;default Hugo shortcodes&lt;/a&gt;, Blowfish adds a few extras for additional functionality.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Alert 
+    &lt;div id=&#34;alert&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#alert&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;alert&lt;/code&gt; outputs its contents as a stylised message box within your article. It&amp;rsquo;s useful for drawing attention to important information that you don&amp;rsquo;t want the reader to miss.&lt;/p&gt;
+&lt;!-- prettier-ignore-start --&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Parameter&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;icon&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Optional.&lt;/strong&gt; the icon to display on the left side.&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; &lt;code&gt;triangle-exclamation&lt;/code&gt; (Check out the &lt;a
+  href=&#34;#icon&#34;&gt;icon shortcode&lt;/a&gt; for more details on using icons.)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;iconColor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Optional.&lt;/strong&gt; the color for the icon in basic CSS style.&lt;br&gt;Can be either hex values (&lt;code&gt;#FFFFFF&lt;/code&gt;) or color names (&lt;code&gt;white&lt;/code&gt;)&lt;br&gt;By default chosen based on the current color theme .&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;cardColor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Optional.&lt;/strong&gt; the color for the card background in basic CSS style.&lt;br&gt;Can be either hex values (&lt;code&gt;#FFFFFF&lt;/code&gt;) or color names (&lt;code&gt;white&lt;/code&gt;)&lt;br&gt;By default chosen based on the current color theme .&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;textColor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Optional.&lt;/strong&gt; the color for the text in basic CSS style.&lt;br&gt;Can be either hex values (&lt;code&gt;#FFFFFF&lt;/code&gt;) or color names (&lt;code&gt;white&lt;/code&gt;)&lt;br&gt;By default chosen based on the current color theme .&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;!-- prettier-ignore-end --&gt;
+&lt;p&gt;The input is written in Markdown so you can format it however you please.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/shortcodes/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Front Matter</title>
+      <link>http://localhost:1313/it/docs/front-matter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/front-matter/</guid>
+      <description>&lt;p&gt;Oltre ai &lt;a
+  href=&#34;https://gohugo.io/content-management/front-matter/#front-matter-variables&#34;
+    target=&#34;_blank&#34;
+  &gt;parametri predefiniti della parte frontale di Hugo&lt;/a&gt;, Blowfish aggiunge una serie di opzioni aggiuntive per personalizzare la presentazione dei singoli articoli . Tutti i parametri disponibili per la parte frontale del tema sono elencati di seguito.&lt;/p&gt;
+&lt;p&gt;I valori predefiniti dei parametri del front metter vengono ereditati dalla &lt;a
+  href=&#34;http://localhost:1313/it/docs/configurazioni/&#34;&gt;configurazione di base&lt;/a&gt; del tema, quindi devi specificare questi parametri nella parte iniziale solo quando desideri sovrascrivere quelli predefiniti.&lt;/p&gt;
+&lt;!-- prettier-ignore-start --&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;Default&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;title&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Il nome dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;description&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;La descrizione testuale dell&amp;rsquo;articolo. Viene utilizzato nei metadati HTML.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;externalUrl&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Se questo articolo è pubblicato su un sito Web di terze parti, l&amp;rsquo;URL di questo articolo. Fornire un URL impedirà la generazione di una pagina di contenuto e qualsiasi riferimento a questo articolo si collegherà direttamente al sito Web di terze parti.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;editURL&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.editURL&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Quando &amp;ldquo;showEdit&amp;rdquo; è attivo, l&amp;rsquo;URL per il collegamento di modifica.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;editAppendPath&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.editAppendPath&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Quando &amp;ldquo;showEdit&amp;rdquo; è attivo, indica se il percorso dell&amp;rsquo;articolo corrente deve essere aggiunto o meno all&amp;rsquo;URL impostato in &amp;ldquo;editURL&amp;rdquo;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;groupByYear&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;list.groupByYear&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se gli articoli sono raggruppati o meno per anno nelle pagine di elenco.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;menu&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Quando viene fornito un valore, nei menu denominati verrà visualizzato un collegamento a questo articolo. I valori validi sono &amp;ldquo;main&amp;rdquo; o &amp;ldquo;footer&amp;rdquo;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;robots&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Stringa che indica come i robots dovrebbero gestire questo articolo. Se impostato, verrà visualizzato nell&amp;rsquo;intestazione della pagina. Fare riferimento ai &lt;a
+  href=&#34;https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives&#34;
+    target=&#34;_blank&#34;
+  &gt;documenti di Google&lt;/a&gt; per i valori validi.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;sharingLinks&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.sharingLinks&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Quali link di condivisione visualizzare alla fine di questo articolo. Se non fornito o impostato su &amp;ldquo;false&amp;rdquo;, non verrà visualizzato alcun collegamento.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showAuthor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showAuthor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se la casella dell&amp;rsquo;autore predefinito viene visualizzata o meno nel piè di pagina dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;authors&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Matrice di valori per gli autori, se impostata sovrascrive le impostazioni di &amp;ldquo;showAuthor&amp;rdquo; per la pagina o il sito. Utilizzato nella funzionalità per più autori, controlla &lt;a
+  href=&#34;http://localhost:1313/it/docs/multi-author/&#34;&gt;questa pagina&lt;/a&gt; per maggiori dettagli su come configurare tale funzionalità.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showAuthorsBadges&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showAuthorsBadges&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se le tassonomie degli &amp;ldquo;autori&amp;rdquo; vengono visualizzate nell&amp;rsquo;articolo o nell&amp;rsquo;intestazione dell&amp;rsquo;elenco. Ciò richiede l&amp;rsquo;impostazione di &amp;ldquo;autori multipli&amp;rdquo; e la tassonomia degli &amp;ldquo;autori&amp;rdquo;. Controlla &lt;a
+  href=&#34;http://localhost:1313/it/docs/multi-author/&#34;&gt;questa pagina&lt;/a&gt; per maggiori dettagli su come configurare questa funzione.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;featureimage&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;URL esterno per l&amp;rsquo;immagine in primo piano&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;featureimagecaption&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Didascalia per l&amp;rsquo;immagine in primo piano. Visualizzato solo in heroStyle &amp;ldquo;big&amp;rdquo;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showHero&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showHero&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se l&amp;rsquo;immagine in miniatura verrà mostrata come immagine hero all&amp;rsquo;interno della pagina dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;heroStyle&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.heroStyle&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Stile per visualizzare l&amp;rsquo;immagine hero, le opzioni valide sono: &lt;code&gt;basic&lt;/code&gt;, &lt;code&gt;big&lt;/code&gt;, &lt;code&gt; background&lt;/code&gt;, &lt;code&gt;thumbAndBackground&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showBreadcrumbs&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showBreadcrumbs&lt;/code&gt; or &lt;code&gt;list.showBreadcrumbs&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se i breadcrumb vengono visualizzati nell&amp;rsquo;articolo o nell&amp;rsquo;intestazione dell&amp;rsquo;elenco.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showDate&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showDate&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se viene visualizzata o meno la data dell&amp;rsquo;articolo. La data viene impostata utilizzando il parametro &amp;ldquo;data&amp;rdquo;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showDateUpdated&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showDateUpdated&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se viene visualizzata o meno la data di aggiornamento dell&amp;rsquo;articolo. La data viene impostata utilizzando il parametro &amp;ldquo;lastmod&amp;rdquo;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showEdit&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showEdit&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se deve essere visualizzato o meno il collegamento per modificare il contenuto dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showHeadingAnchors&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showHeadingAnchors&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se i collegamenti di ancoraggio dei titoli vengono visualizzati o meno insieme ai titoli all&amp;rsquo;interno di questo articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se i collegamenti all&amp;rsquo;articolo successivo/precedente vengono visualizzati o meno nel piè di pagina dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;invertPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.invertPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se invertire o meno la direzione dei collegamenti all&amp;rsquo;articolo successivo/precedente.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showReadingTime&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showReadingTime&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se viene visualizzato o meno il tempo di lettura dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showTaxonomies&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showTaxonomies&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se vengono visualizzate o meno le tassonomie correlate a questo articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showTableOfContents&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showTableOfContents&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se il sommario viene visualizzato o meno in questo articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showWordCount&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showWordCount&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se viene visualizzato o meno il conteggio delle parole dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showComments&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showComments&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se il &lt;a
+  href=&#34;http://localhost:1313/it/docs/partials/#comments&#34;&gt;commenti parziali&lt;/a&gt; è incluso o meno dopo il piè di pagina dell&amp;rsquo;articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showSummary&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;list.showSummary&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se il riepilogo dell&amp;rsquo;articolo deve essere visualizzato o meno nelle pagine di elenco.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showViews&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showViews&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se le visualizzazioni degli articoli devono essere visualizzate o meno negli elenchi e nella visualizzazione dettagliata. Ciò richiede un&amp;rsquo;integrazione Firebase. Controlla &lt;a
+  href=&#34;http://localhost:1313/it/docs/firebase-views/&#34;&gt;questa pagina&lt;/a&gt; per una guida su come integrare Firebase in Blowfish&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showLikes&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showLikes&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se l&amp;rsquo;articolo piace o meno deve essere visualizzato negli elenchi e nella vista dettagliata. Ciò richiede un&amp;rsquo;integrazione Firebase. Controlla &lt;a
+  href=&#34;http://localhost:1313/it/docs/firebase-views/&#34;&gt;questa pagina&lt;/a&gt; per una guida su come integrare Firebase in Blowfish&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;seriesOpened&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.seriesOpened&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se il modulo della serie verrà visualizzato aperto per impostazione predefinita o meno.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;series&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Matrice di serie a cui appartiene l&amp;rsquo;articolo, si consiglia di utilizzare una sola serie per articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;series_order&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Numero dell&amp;rsquo;articolo all&amp;rsquo;interno della serie.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;summary&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Auto generated using &lt;code&gt;summaryLength&lt;/code&gt; (see &lt;a
+  href=&#34;http://localhost:1313/it/docs/configurazioni/#site-configuration&#34;&gt;site configuration&lt;/a&gt;)&lt;/td&gt;
+          &lt;td&gt;Quando &amp;ldquo;showSummary&amp;rdquo; è abilitato, questa è la stringa Markdown da utilizzare come riepilogo per questo articolo.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;xml&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;true&lt;/code&gt; unless excluded by &lt;code&gt;sitemap.excludedKinds&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Se questo articolo è incluso o meno nel file &lt;code&gt;/sitemap.xml&lt;/code&gt; generato.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;layoutBackgroundBlur&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Rende l&amp;rsquo;immagine di sfondo sullo sfondo heroStyle sfocata con lo scorrimento.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;layoutBackgroundHeaderSpace&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Aggiungi spazio tra l&amp;rsquo;intestazione e il body.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;title&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;The name of the article.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;description&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;The text description for the article. It is used in the HTML metadata.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;externalUrl&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;If this article is published on a third-party website, the URL to this article. Providing a URL will prevent a content page being generated and any references to this article will link directly to the third-party website.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;editURL&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.editURL&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;When &lt;code&gt;showEdit&lt;/code&gt; is active, the URL for the edit link.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;editAppendPath&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.editAppendPath&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;When &lt;code&gt;showEdit&lt;/code&gt; is active, whether or not the path to the current article should be appended to the URL set at &lt;code&gt;editURL&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;groupByYear&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;list.groupByYear&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not articles are grouped by year on list pages.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;menu&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;When a value is provided, a link to this article will appear in the named menus. Valid values are &lt;code&gt;main&lt;/code&gt; or &lt;code&gt;footer&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;robots&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;String that indicates how robots should handle this article. If set, it will be output in the page head. Refer to &lt;a
+  href=&#34;https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives&#34;
+    target=&#34;_blank&#34;
+  &gt;Google&amp;rsquo;s docs&lt;/a&gt; for valid values.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;sharingLinks&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.sharingLinks&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Which sharing links to display at the end of this article. When not provided, or set to &lt;code&gt;false&lt;/code&gt; no links will be displayed.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showAuthor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showAuthor&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the author box for the default author is displayed in the article footer.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showAuthorBottom&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showAuthorBottom&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Author boxes are displayed at the bottom of each page instead of the top.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;authors&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Array of values for authors, if set it overrides &lt;code&gt;showAuthor&lt;/code&gt; settings for page or site. Used on the multiple authors feature, check &lt;a
+  href=&#34;http://localhost:1313/it/docs/multi-author/&#34;&gt;this page&lt;/a&gt; for more details on how to configure that feature.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showAuthorsBadges&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showAuthorsBadges&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether the &lt;code&gt;authors&lt;/code&gt; taxonomies are are displayed in the article or list header. This requires the setup of &lt;code&gt;multiple authors&lt;/code&gt; and the &lt;code&gt;authors&lt;/code&gt; taxonomy. Check &lt;a
+  href=&#34;http://localhost:1313/it/docs/multi-author/&#34;&gt;this page&lt;/a&gt; for more details on how to configure that feature.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;featureimage&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;External URL for feature image&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;featureimagecaption&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Caption for feature image. Only displayed in heroStyle &lt;code&gt;big&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showHero&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showHero&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether the thumbnail image will be shown as a hero image within the article page.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;heroStyle&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.heroStyle&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Style to display the hero image, valid options are: &lt;code&gt;basic&lt;/code&gt;, &lt;code&gt;big&lt;/code&gt;, &lt;code&gt;background&lt;/code&gt;, &lt;code&gt;thumbAndBackground&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showBreadcrumbs&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showBreadcrumbs&lt;/code&gt; or &lt;code&gt;list.showBreadcrumbs&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether the breadcrumbs are displayed in the article or list header.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showDate&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showDate&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the article date is displayed. The date is set using the &lt;code&gt;date&lt;/code&gt; parameter.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showDateUpdated&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showDateUpdated&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the date the article was updated is displayed. The date is set using the &lt;code&gt;lastmod&lt;/code&gt; parameter.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showEdit&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showEdit&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the link to edit the article content should be displayed.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showHeadingAnchors&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showHeadingAnchors&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not heading anchor links are displayed alongside headings within this article.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the next/previous article links are displayed in the article footer.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;invertPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.invertPagination&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not to flip the direction of the next/previous article links.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showReadingTime&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showReadingTime&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the article reading time is displayed.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showTaxonomies&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showTaxonomies&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the taxonomies that relate to this article are displayed.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showTableOfContents&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showTableOfContents&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the table of contents is displayed on this article.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showWordCount&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showWordCount&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the article word count is displayed.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showComments&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showComments&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the &lt;a
+  href=&#34;http://localhost:1313/it/docs/partials/#comments&#34;&gt;comments partial&lt;/a&gt; is included after the article footer.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showSummary&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;list.showSummary&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the article summary should be displayed on list pages.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showViews&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showViews&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the article views should be displayed in lists and detailed view. This requires a firebase integration. Check &lt;a
+  href=&#34;http://localhost:1313/it/docs/firebase-views/&#34;&gt;this page&lt;/a&gt; for a guide on how to integrate Firebase into Blowfish&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;showLikes&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.showLikes&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the article likes should be displayed in lists and detailed view. This requires a firebase integration. Check &lt;a
+  href=&#34;http://localhost:1313/it/docs/firebase-views/&#34;&gt;this page&lt;/a&gt; for a guide on how to integrate Firebase into Blowfish&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;seriesOpened&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;article.seriesOpened&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not the series module will be displayed open by default or not.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;series&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Array of series the article belongs to, we recommend using only one series per article.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;series_order&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;em&gt;Not set&lt;/em&gt;&lt;/td&gt;
+          &lt;td&gt;Number of the article within the series.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;summary&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Auto generated using &lt;code&gt;summaryLength&lt;/code&gt; (see &lt;a
+  href=&#34;http://localhost:1313/it/docs/configurazioni/#site-configuration&#34;&gt;site configuration&lt;/a&gt;)&lt;/td&gt;
+          &lt;td&gt;When &lt;code&gt;showSummary&lt;/code&gt; is enabled, this is the Markdown string to be used as the summary for this article.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;xml&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;true&lt;/code&gt; unless excluded by &lt;code&gt;sitemap.excludedKinds&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Whether or not this article is included in the generated &lt;code&gt;/sitemap.xml&lt;/code&gt; file.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;layoutBackgroundBlur&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Makes the background image in the background heroStyle blur with the scroll&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;layoutBackgroundHeaderSpace&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Add space between the header and the body.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;!-- prettier-ignore-end --&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/front-matter/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Multiple Authors</title>
+      <link>http://localhost:1313/it/docs/multi-author/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/multi-author/</guid>
+      <description>&lt;p&gt;Some websites have more than one author contributing with content and therefore require more than a single default author across the entire website. For those use-cases, Blowfish allows users to extend the list of authors using the multiple authors feature.&lt;/p&gt;
+&lt;p&gt;To keep everything backwards compatible, this feature only allows the definition of extra authors and does not change in any way the previous author functionality which is used via config files.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/multi-author/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Partials</title>
+      <link>http://localhost:1313/it/docs/partials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/partials/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;Analytics 
+    &lt;div id=&#34;analytics&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#analytics&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Blowfish provides built-in support for Fathom Analytics and Google Analytics. Fathom is a paid alternative to Google Analytics that respects user privacy.&lt;/p&gt;
+
+&lt;h3 class=&#34;relative group&#34;&gt;Fathom Analytics 
+    &lt;div id=&#34;fathom-analytics&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#fathom-analytics&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h3&gt;
+&lt;p&gt;To enable Fathom Analytics support, simply provide your Fathom site code in the &lt;code&gt;config/_default/params.toml&lt;/code&gt; file. If you also use the custom domain feature of Fathom and would like to serve their script from your domain, you can also additionally provide the &lt;code&gt;domain&lt;/code&gt; configuration value. If you don&amp;rsquo;t provide a &lt;code&gt;domain&lt;/code&gt; value, the script will load directly from Fathom DNS.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/partials/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Thumbnails</title>
+      <link>http://localhost:1313/it/docs/thumbnails/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/thumbnails/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;Thumbnails 
+    &lt;div id=&#34;thumbnails&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#thumbnails&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Blowfish was enhanced in order to make it easy to add visual support to your posts. To do so, you just need to place an image file (almost all formats are supported but we recommend &lt;code&gt;.png&lt;/code&gt; or &lt;code&gt;.jpg&lt;/code&gt;) that starts with &lt;code&gt;feature*&lt;/code&gt; inside your article&amp;rsquo;s main directory, as shown in the example below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── awesome_article
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── index.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └── featured.png
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will tell Blowfish that this article has a feature image that can be used both as a thumbnail across your website as well as for &lt;a target=&#34;_blank&#34; href=&#34;https://oembed.com/&#34;&gt;oEmbed&lt;/a&gt; cards across social platforms.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/thumbnails/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Content Examples</title>
+      <link>http://localhost:1313/it/docs/content-examples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/content-examples/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;ve been reading the documentation in order, you should now know about all the features and configurations available in Blowfish. This page is designed to pull everything together and offer some worked examples that you might like to use in your Hugo project.&lt;/p&gt;
+
+  
+
+
+
+&lt;div
+  
+    class=&#34;flex px-4 py-3 rounded-md bg-primary-100 dark:bg-primary-900&#34;
+  
+  &gt;
+  &lt;span
+    
+      class=&#34;text-primary-400 pe-3 flex items-center&#34;
+    
+    &gt;
+    &lt;span class=&#34;relative block icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path fill=&#34;currentColor&#34; d=&#34;M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z&#34;/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+  &lt;/span&gt;
+
+  &lt;span
+    
+      class=&#34;dark:text-neutral-300&#34;
+    
+    &gt;&lt;strong&gt;Tip:&lt;/strong&gt; If you&amp;rsquo;re new to Hugo, be sure to check out the &lt;a
+  href=&#34;https://gohugo.io/content-management/page-bundles/&#34;
+    target=&#34;_blank&#34;
+  &gt;official docs&lt;/a&gt; to learn more about the concept of page bundles and resources.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The examples on this page can all be adapted to different scenarios but hopefully give you some ideas about how to approach formatting a particular content item for your individual project.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/content-examples/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Series</title>
+      <link>http://localhost:1313/it/docs/series/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/series/</guid>
+      <description>&lt;p&gt;Blowfish provides a feature to group a set of articles together under a &amp;ldquo;series&amp;rdquo;. Placing an article under a series will display the rest of the series articles in each single page and provide a quick way to navigate amongst them. You can see an example of this above.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Create Taxonomy 
+    &lt;div id=&#34;create-taxonomy&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#create-taxonomy&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;The first step to enable series is to create the &lt;code&gt;series&lt;/code&gt; taxonomy. For doing this just add the &lt;code&gt;series&lt;/code&gt; taxonomy to your taxonomy list in the &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/series/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Advanced Customisation</title>
+      <link>http://localhost:1313/it/docs/advanced-customisation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/advanced-customisation/</guid>
+      <description>&lt;p&gt;There are many ways you can make advanced changes to Blowfish. Read below to learn more about what can be customised and the best way of achieving your desired result.&lt;/p&gt;
+&lt;p&gt;If you need further advice, post your questions on &lt;a
+  href=&#34;https://github.com/nunocoracao/blowfish/discussions&#34;
+    target=&#34;_blank&#34;
+  &gt;GitHub Discussions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;Hugo project structure 
+    &lt;div id=&#34;hugo-project-structure&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#hugo-project-structure&#34; aria-label=&#34;Ancora&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;Before leaping into it, first a quick note about &lt;a
+  href=&#34;https://gohugo.io/getting-started/directory-structure/&#34;
+    target=&#34;_blank&#34;
+  &gt;Hugo project structure&lt;/a&gt; and best practices for managing your content and theme customisations.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/advanced-customisation/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Hosting &amp; Deployment</title>
+      <link>http://localhost:1313/it/docs/hosting-deployment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/hosting-deployment/</guid>
+      <description>&lt;p&gt;There are many ways to deploy your Hugo website built with Blowfish. The theme is designed to be flexible in almost any deployment scenario.&lt;/p&gt;
+&lt;p&gt;Blowfish is built using relative URLs throughout the theme. This enables sites to easily be deployed to sub-folders and hosts like GitHub Pages. There&amp;rsquo;s usually no special configuration required for this to work as long as the &lt;code&gt;baseURL&lt;/code&gt; parameter has been configured in the &lt;code&gt;config.toml&lt;/code&gt; file.&lt;/p&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/hosting-deployment/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Firebase: Views &amp; Likes</title>
+      <link>http://localhost:1313/it/docs/firebase-views/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/docs/firebase-views/</guid>
+      <description>&lt;p&gt;In order to be able to support dynamic data across your website we&amp;rsquo;ve added the support to integrate Firebase. This will allow you to use the views feature across lists and posts.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to &lt;a target=&#34;_blank&#34; href=&#34;https://firebase.com&#34;&gt;Firebase website&lt;/a&gt; and create an account for free&lt;/li&gt;
+&lt;li&gt;Create a new project&lt;/li&gt;
+&lt;li&gt;Select analytics location&lt;/li&gt;
+&lt;li&gt;Setup firebase in Blowfish by getting the variables for your project and setting them inside &lt;code&gt;params.toml&lt;/code&gt; file. More details can be found in &lt;a target=&#34;_blank&#34; href=&#34;http://localhost:1313/it/docs/configurazioni/#theme-parameters&#34;&gt;this page&lt;/a&gt;. You can find an example of the file Firebase will provide below, notice the parameters within the FirebaseConfig object.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Import the functions you need from the SDKs you need
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initializeApp&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;firebase/app&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;getAnalytics&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;firebase/analytics&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// TODO: Add SDKs for Firebase products that you want to use
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// https://firebase.google.com/docs/web/setup#available-libraries
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Your web app&amp;#39;s Firebase configuration
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;firebaseConfig&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;apiKey&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;AIzaSyB5tqlqDky77Vb4Tc4apiHV4hRZI18KGiY&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;authDomain&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;blowfish-21fff.firebaseapp.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;projectId&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;blowfish-21fff&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;storageBucket&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;blowfish-21fff.appspot.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;messagingSenderId&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;60108104191&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;appId&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;1:60108104191:web:039842ebe1370698b487ca&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;measurementId&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;G-PEDMYR1V0K&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Initialize Firebase
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initializeApp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;firebaseConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;analytics&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;getAnalytics&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;Setup Firestore - Select Build and open Firestore. Create a new database and choose to start in production mode. Select server location and wait. Once that is started you need to configure the rules. Just copy and paste the file below and press publish.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rules_version = &amp;#39;2&amp;#39;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service cloud.firestore {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  match /databases/{database}/documents {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    match /{document=**} {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      allow read, write: if request.auth != null;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;Enable anonymous authorization - Select Build and open Authentication. Select get started, click Anonymous and turn it on, save.&lt;/li&gt;
+&lt;li&gt;Enjoy - you can now activate views and likes on Blowfish for all (or specific) articles.&lt;/li&gt;
+&lt;/ol&gt;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/docs/firebase-views/featured.svg" />
+    </item>
+    
+    <item>
+      <title>Multiple Authors</title>
+      <link>http://localhost:1313/it/samples/multiple-authors/</link>
+      <pubDate>Wed, 12 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/multiple-authors/</guid>
+      <description>A quick example of how multiple authors could be used.</description>
+      
+    </item>
+    
+    <item>
+      <title>Thumbnails</title>
+      <link>http://localhost:1313/it/samples/thumbnail_sample/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/thumbnail_sample/</guid>
+      <description>A quick example of how to start using Thumbnails in your artciles.</description>
+      
+    </item>
+    
+    <item>
+      <title>Icons</title>
+      <link>http://localhost:1313/it/samples/icons/</link>
+      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/icons/</guid>
+      <description>&lt;p&gt;Blowfish has built-in support for a number of &lt;a
+  href=&#34;https://fontawesome.com/icons&#34;
+    target=&#34;_blank&#34;
+  &gt;FontAwesome 6&lt;/a&gt; icons. These can be included in your website through either the &lt;a
+  href=&#34;http://localhost:1313/it/docs/partials/#icon&#34;&gt;icon partial&lt;/a&gt; or &lt;a
+  href=&#34;http://localhost:1313/it/docs/shortcodes/#icon&#34;&gt;icon shortcode&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Additionally, custom icons are also fully supported. Simply provide your own SVG icon assets by placing them in the &lt;code&gt;assets/icons/&lt;/code&gt; directory in the root of your project. Any icons in the icons directory will then be available to use throughout the theme. In order achieve automatic color filling every SVG path needs fill=&amp;ldquo;currentColor&amp;rdquo; XML attribute.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>http://localhost:1313/it/samples/markdown/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/markdown/</guid>
+      <description>&lt;p&gt;This article offers a sample of basic Markdown formatting that can be used in Blowfish, also it shows how some basic HTML elements are decorated.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Rich Content</title>
+      <link>http://localhost:1313/it/samples/rich-content/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/rich-content/</guid>
+      <description>This is an &lt;em&gt;example&lt;/em&gt; of a &lt;strong&gt;rich&lt;/strong&gt; content summary.</description>
+      
+    </item>
+    
+    <item>
+      <title>Placeholder Text</title>
+      <link>http://localhost:1313/it/samples/placeholder-text/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/placeholder-text/</guid>
+      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Mathematical notation</title>
+      <link>http://localhost:1313/it/samples/mathematical-notation/</link>
+      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/mathematical-notation/</guid>
+      <description>&lt;p&gt;KaTeX can be used to render mathematical notation within articles.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Charts</title>
+      <link>http://localhost:1313/it/samples/charts/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/charts/</guid>
+      <description>Blowfish includes Chart.js for powerful charts and data visualisations.</description>
+      
+    </item>
+    
+    <item>
+      <title>Diagrams and Flowcharts</title>
+      <link>http://localhost:1313/it/samples/diagrams-flowcharts/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/diagrams-flowcharts/</guid>
+      <description>It&amp;rsquo;s easy to add diagrams and flowcharts to articles using Mermaid.</description>
+      
+    </item>
+    
+    <item>
+      <title>Emoji :parachute:</title>
+      <link>http://localhost:1313/it/samples/emoji/</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/it/samples/emoji/</guid>
+      <description>📖🏞️🧗🏽🐉🧙🏽‍♂️🧚🏽👸</description>
+      
+    </item>
+    
+  </channel>
+</rss>

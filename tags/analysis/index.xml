@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Analysis on HushKat&#39;s Cyber Den</title>
+    <link>http://localhost:1313/tags/analysis/</link>
+    <description>Recent content in Analysis on HushKat&#39;s Cyber Den</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 HushKat. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 14 Sep 2025 10:10:00 +0300</lastBuildDate><atom:link href="http://localhost:1313/tags/analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SOC170 - Passwd Found in Requested URL - Possible LFI</title>
+      <link>http://localhost:1313/posts/2025-09-14-soc170---passwd-found-in-requested-url---possible-lfi-attack/</link>
+      <pubDate>Sun, 14 Sep 2025 10:10:00 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/2025-09-14-soc170---passwd-found-in-requested-url---possible-lfi-attack/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;Beginner&amp;rsquo;s Guide: SOC170 - Passwd Found in Requested URL - Possible LFI 
+    &lt;div id=&#34;beginners-guide-soc170---passwd-found-in-requested-url---possible-lfi&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#beginners-guide-soc170---passwd-found-in-requested-url---possible-lfi&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;🚨 What Happened? 
+    &lt;div id=&#34;-what-happened&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#-what-happened&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;On March 1, 2022, at 10:10 AM, our security system detected a suspicious web request that looked like someone was trying to break into one of our servers.&lt;/p&gt;
+
+&lt;h2 class=&#34;relative group&#34;&gt;📋 The Alert Details 
+    &lt;div id=&#34;-the-alert-details&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#-the-alert-details&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Basic Information:&lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

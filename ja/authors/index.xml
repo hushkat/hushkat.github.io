@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>著者のタクソノミーリストの例 on Blowfish</title>
+    <link>http://localhost:1313/ja/authors/</link>
+    <description>Recent content in 著者のタクソノミーリストの例 on Blowfish</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>nuno@n9o.xyz (Blowfish)</managingEditor>
+    <webMaster>nuno@n9o.xyz (Blowfish)</webMaster>
+    <copyright>© 2025 Blowfish</copyright>
+    <lastBuildDate>Wed, 12 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/ja/authors/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2人目のダミー作者</title>
+      <link>http://localhost:1313/ja/authors/secondauthor/</link>
+      <pubDate>Wed, 12 Oct 2022 00:00:00 +0000</pubDate>
+      <author>nuno@n9o.xyz (Blowfish)</author>
+      <guid>http://localhost:1313/ja/authors/secondauthor/</guid>
+      <description>&lt;p&gt;2人目のダミー作者の素晴らしいダミープロフィールです。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Nuno Coração</title>
+      <link>http://localhost:1313/ja/authors/nunocoracao/</link>
+      <pubDate>Wed, 12 Oct 2022 00:00:00 +0000</pubDate>
+      <author>nuno@n9o.xyz (Blowfish)</author>
+      <guid>http://localhost:1313/ja/authors/nunocoracao/</guid>
+      <description>&lt;p&gt;Nuno の素晴らしいダミープロフィールです。&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
