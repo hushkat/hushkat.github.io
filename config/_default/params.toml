@@ -22,7 +22,7 @@ sharingLinks = [ "linkedin", "twitter", "whatsapp", "reddit", "facebook"]
 
 [homepage]
   layout = "background" # card layout shows recent posts with thumbnails
-  homepageImage = "img/paint.png"
+  homepageImage = "img/rain.svg"
   showRecent = true
   showRecentItems = 10
   showMoreLink = true
