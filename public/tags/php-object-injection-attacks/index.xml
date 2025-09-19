@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PHP Object Injection Attacks on HushKat&#39;s Cyber Den</title>
-    <link>http://localhost:1313/tags/php-object-injection-attacks/</link>
+    <link>https://hushkat.github.io/tags/php-object-injection-attacks/</link>
     <description>Recent content in PHP Object Injection Attacks on HushKat&#39;s Cyber Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 31 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="http://localhost:1313/tags/php-object-injection-attacks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/tags/php-object-injection-attacks/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>StuxCTF</title>
-      <link>http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</link>
+      <link>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</link>
       <pubDate>Sun, 31 Aug 2025 01:09:33 +0300</pubDate>
       
-      <guid>http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</guid>
+      <guid>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</guid>
       <description>&lt;h1 class=&#34;relative group&#34;&gt;StuxCTF - Complete Beginner&amp;rsquo;s Writeup 
     &lt;div id=&#34;stuxctf---complete-beginners-writeup&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PerfectRoot on HushKat&#39;s Cyber Den</title>
-    <link>http://localhost:1313/tags/perfectroot/</link>
+    <link>https://hushkat.github.io/tags/perfectroot/</link>
     <description>Recent content in PerfectRoot on HushKat&#39;s Cyber Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 24 Nov 2024 01:09:33 +0300</lastBuildDate><atom:link href="http://localhost:1313/tags/perfectroot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Nov 2024 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/tags/perfectroot/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>SheetsNLayers</title>
-      <link>http://localhost:1313/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</link>
+      <link>https://hushkat.github.io/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</link>
       <pubDate>Sun, 24 Nov 2024 01:09:33 +0300</pubDate>
       
-      <guid>http://localhost:1313/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</guid>
+      <guid>https://hushkat.github.io/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</guid>
       <description>&lt;p&gt;This was a 4-part series of challenges linked to each other. I will explain my approach on solving the challenge below as I captured the first to last flag in that series.&lt;/p&gt;
 
 &lt;h2 class=&#34;relative group&#34;&gt;SheetsNLayers1 
@@ -36,7 +36,7 @@
 
 
 &lt;figure&gt;
-    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;TaskFile&#34; src=&#34;http://localhost:1313/images/PerfectRoot/SheetsNLayers/TaskFile.png&#34;&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;TaskFile&#34; src=&#34;https://hushkat.github.io/images/PerfectRoot/SheetsNLayers/TaskFile.png&#34;&gt;
 
   
 &lt;/figure&gt;
@@ -50,7 +50,7 @@ I went ahead to unzip the file and found a &lt;code&gt;SheetsNlayers.vhdx&lt;/co
 
 
 &lt;figure&gt;
-    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Flag1 Files&#34; src=&#34;http://localhost:1313/images/PerfectRoot/SheetsNLayers/Flag1&amp;amp;Files.png&#34;&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Flag1 Files&#34; src=&#34;https://hushkat.github.io/images/PerfectRoot/SheetsNLayers/Flag1&amp;amp;Files.png&#34;&gt;
 
   
 &lt;/figure&gt;
@@ -67,7 +67,7 @@ I noticed that it contained three more files, one which just happens to be our f
 
 
 &lt;figure&gt;
-    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Flag1&#34; src=&#34;http://localhost:1313/images/PerfectRoot/SheetsNLayers/Flag1.png&#34;&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Flag1&#34; src=&#34;https://hushkat.github.io/images/PerfectRoot/SheetsNLayers/Flag1.png&#34;&gt;
 
   
 &lt;/figure&gt;

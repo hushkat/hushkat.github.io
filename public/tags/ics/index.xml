@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ICS on HushKat&#39;s Cyber Den</title>
+    <link>https://hushkat.github.io/tags/ics/</link>
+    <description>Recent content in ICS on HushKat&#39;s Cyber Den</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2025 HushKat. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 30 Jun 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/tags/ics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tryhackme Industrial Intrusion</title>
+      <link>https://hushkat.github.io/posts/2025-06-30-industrial-intrusion.md/2025-06-30-industrial-intrusion/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-06-30-industrial-intrusion.md/2025-06-30-industrial-intrusion/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Over the weekend, I took on the challenge to participate in Industrial Intrusion CTF by TryHackMe, it was a challenge that blends classic offensive security tactics with the niche world of Industrial Control Systems (ICS).
+It offered a fun and insightful mix of categories including Web exploitation, OSINT, Forensics, and a light Boot2Root (B2R) experienceâ€&amp;ldquo;perfect for anyone looking to dip their toes into ICS-focused challenges.
+These writeups walk through my step-by-step approach in solving some of the easiest challenges, how I navigated each section, and what made this ICS-themed room both accessible and educational.
+Whether you&amp;rsquo;re new to TryHackMe or curious about the crossover between IT and OT security, this is a solid place to start.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gobuster on HushKat&#39;s Cyber Den</title>
-    <link>http://localhost:1313/tags/gobuster/</link>
+    <link>https://hushkat.github.io/tags/gobuster/</link>
     <description>Recent content in Gobuster on HushKat&#39;s Cyber Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 31 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/gobuster/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://hushkat.github.io/tags/gobuster/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>SimpleCTF</title>
-      <link>http://localhost:1313/posts/2023-12-31-simplectf/2023-12-31-simplectf/</link>
+      <link>https://hushkat.github.io/posts/2023-12-31-simplectf/2023-12-31-simplectf/</link>
       <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/2023-12-31-simplectf/2023-12-31-simplectf/</guid>
+      <guid>https://hushkat.github.io/posts/2023-12-31-simplectf/2023-12-31-simplectf/</guid>
       <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
     &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     
@@ -36,10 +36,10 @@
     
     <item>
       <title>Web Enumeration</title>
-      <link>http://localhost:1313/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</link>
+      <link>https://hushkat.github.io/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</link>
       <pubDate>Sat, 29 Jul 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</guid>
+      <guid>https://hushkat.github.io/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</guid>
       <description>&lt;h3 class=&#34;relative group&#34;&gt;Introduction 
     &lt;div id=&#34;introduction&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     

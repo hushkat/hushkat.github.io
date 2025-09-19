@@ -3,91 +3,145 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/posts/2024-03-19-wifi-hacking-101/2024-03-19-wifi-hacking-101/</loc>
+    <loc>https://hushkat.github.io/posts/2024-03-19-wifi-hacking-101/2024-03-19-wifi-hacking-101/</loc>
     <lastmod>2024-03-19T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://hushkat.github.io/posts/</loc>
+    <lastmod>2025-09-14T10:10:00+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-09-14-soc170-passwd-found-in-requested-url/soc170-passwd-lfi-attack/</loc>
+    <lastmod>2025-09-14T10:10:00+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/</loc>
+    <lastmod>2025-09-14T10:10:00+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</loc>
     <lastmod>2025-08-31T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2025-08-31-stuxctf/2025-08-31-stuxctf/</loc>
-    <lastmod>2025-08-31T01:09:33+03:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-08-31T01:09:33+03:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/posts/2025-08-30-ignition/2025-08-30-ignition/</loc>
+    <loc>https://hushkat.github.io/posts/2025-08-30-ignition/2025-08-30-ignition/</loc>
     <lastmod>2025-08-30T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2025-08-28-three/2025-08-28-three/</loc>
+    <loc>https://hushkat.github.io/posts/2025-08-28-three/2025-08-28-three/</loc>
     <lastmod>2025-08-28T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</loc>
+    <loc>https://hushkat.github.io/posts/2025-08-26-bee.md/2025-08-26-bee/</loc>
+    <lastmod>2025-08-24T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-08-24-brunnerctf.md/2025-08-24-brunnerctf/</loc>
+    <lastmod>2025-08-24T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</loc>
     <lastmod>2025-08-22T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/</loc>
+    <loc>https://hushkat.github.io/posts/2025-07-02-cloudgoat.md/2025-07-02-cloudgoat/</loc>
+    <lastmod>2025-06-30T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-06-30-industrial-intrusion.md/2025-06-30-industrial-intrusion/</loc>
+    <lastmod>2025-06-30T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-06-01-kenyacyberlympics/kenya-cyberlympics-2025/</loc>
+    <lastmod>2025-06-01T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2025-02-10-bitsctf/bitsctf-2025/</loc>
+    <lastmod>2025-02-10T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2024-12-03-rdpreconnaissance/rdp-reconnaissance/</loc>
+    <lastmod>2024-12-03T01:09:33+03:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2024-11-29-dnadesign/2024-11-29-dnadesign/</loc>
     <lastmod>2024-11-29T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</loc>
+    <loc>https://hushkat.github.io/posts/2024-11-24-sheetsnlayers/2024-11-24-sheetsnlayers/</loc>
     <lastmod>2024-11-24T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2023-12-31-simplectf/2023-12-31-simplectf/</loc>
+    <loc>https://hushkat.github.io/posts/2024-02-25-dancing.md/2024-02-25-dancing/</loc>
+    <lastmod>2024-02-25T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hushkat.github.io/posts/2023-12-31-simplectf/2023-12-31-simplectf/</loc>
     <lastmod>2023-12-31T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2023-08-11-privilege-escalation/2023-08-11-privilege-escalation/</loc>
+    <loc>https://hushkat.github.io/posts/2023-08-11-privilege-escalation/2023-08-11-privilege-escalation/</loc>
     <lastmod>2023-08-11T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2023-08-02-public-exploits/2023-08-02-public-exploits/</loc>
+    <loc>https://hushkat.github.io/posts/2023-08-02-public-exploits/2023-08-02-public-exploits/</loc>
     <lastmod>2023-08-02T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</loc>
+    <loc>https://hushkat.github.io/posts/2023-07-29-web-enumeration/2023-07-29-web-enumeration/</loc>
     <lastmod>2023-07-29T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://hushkat.github.io/about/</loc>
     <lastmod>2023-06-21T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/2023-06-21-keep-it-simple/2023-06-21-keep-it-simple/</loc>
+    <loc>https://hushkat.github.io/posts/2023-06-21-keep-it-simple/2023-06-21-keep-it-simple/</loc>
     <lastmod>2023-06-21T01:09:33+03:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

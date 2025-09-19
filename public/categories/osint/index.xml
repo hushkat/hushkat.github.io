@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>OSINT on HushKat&#39;s Cyber Den</title>
-    <link>http://localhost:1313/categories/osint/</link>
-    <description>Recent content in OSINT on HushKat&#39;s Cyber Den</description>
+    <title>Osint on HushKat&#39;s Cyber Den</title>
+    <link>https://hushkat.github.io/categories/osint/</link>
+    <description>Recent content in Osint on HushKat&#39;s Cyber Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 22 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="http://localhost:1313/categories/osint/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/categories/osint/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Brunner CTF</title>
+      <link>https://hushkat.github.io/posts/2025-08-24-brunnerctf.md/2025-08-24-brunnerctf/</link>
+      <pubDate>Sun, 24 Aug 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-08-24-brunnerctf.md/2025-08-24-brunnerctf/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;Cooking Flags with BrunnerCTF 2025 - A Beginnerâ€™s Feast 
+    &lt;div id=&#34;cooking-flags-with-brunnerctf-2025---a-beginnerâs-feast&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#cooking-flags-with-brunnerctf-2025---a-beginner%c3%a2s-feast&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;Get your aprons on and terminals ready - the BrunnerCTF has just served up its very first edition, and I couldnâ€™t resist grabbing a plate! ðŸ½ï¸&lt;/p&gt;
+&lt;p&gt;This CTF brought a flavorful mix of challenges, from web and OSINT to forensics, crypto, reverse engineering, and even some pwn and boot2root fun. While there were plenty of spicy dishes for the seasoned pros, I stuck to the â€œShake &amp;amp; Bakeâ€ menu - a perfect selection of beginner-friendly challenges designed to teach and entertain.&lt;/p&gt;</description>
+      
+    </item>
     
     <item>
       <title>Fowsniff</title>
-      <link>http://localhost:1313/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</link>
+      <link>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</link>
       <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
       
-      <guid>http://localhost:1313/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</guid>
+      <guid>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</guid>
       <description>&lt;h1 class=&#34;relative group&#34;&gt;Fowsniff CTF - Complete Beginner&amp;rsquo;s Walkthrough 
     &lt;div id=&#34;fowsniff-ctf---complete-beginners-walkthrough&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     
@@ -35,6 +55,64 @@
     
 &lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Fowsniff&lt;/strong&gt; is a beginner-friendly boot2root CTF (Capture The Flag) challenge hosted on TryHackMe. In this challenge, we&amp;rsquo;ll learn fundamental penetration testing skills by exploiting a vulnerable Linux machine to gain root access and capture the flag.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Tryhackme Industrial Intrusion</title>
+      <link>https://hushkat.github.io/posts/2025-06-30-industrial-intrusion.md/2025-06-30-industrial-intrusion/</link>
+      <pubDate>Mon, 30 Jun 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-06-30-industrial-intrusion.md/2025-06-30-industrial-intrusion/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Over the weekend, I took on the challenge to participate in Industrial Intrusion CTF by TryHackMe, it was a challenge that blends classic offensive security tactics with the niche world of Industrial Control Systems (ICS).
+It offered a fun and insightful mix of categories including Web exploitation, OSINT, Forensics, and a light Boot2Root (B2R) experienceâ€&amp;ldquo;perfect for anyone looking to dip their toes into ICS-focused challenges.
+These writeups walk through my step-by-step approach in solving some of the easiest challenges, how I navigated each section, and what made this ICS-themed room both accessible and educational.
+Whether you&amp;rsquo;re new to TryHackMe or curious about the crossover between IT and OT security, this is a solid place to start.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>BITSCTF 2025</title>
+      <link>https://hushkat.github.io/posts/2025-02-10-bitsctf/bitsctf-2025/</link>
+      <pubDate>Mon, 10 Feb 2025 01:09:33 +0300</pubDate>
+      
+      <guid>https://hushkat.github.io/posts/2025-02-10-bitsctf/bitsctf-2025/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;WELCOME - SANITY CHECK 
+    &lt;div id=&#34;welcome---sanity-check&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#welcome---sanity-check&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;This was an easy challenge to test the player&amp;rsquo;s sanity. I joined the BITSCTF Discord server and found the flag.
+
+
+
+
+
+
+
+&lt;figure&gt;
+    &lt;img class=&#34;my-0 rounded-md&#34; loading=&#34;lazy&#34; alt=&#34;Discord Flag&#34; src=&#34;https://hushkat.github.io/images/BITSCTF/SanityCheck.png&#34;&gt;
+
+  
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 class=&#34;relative group&#34;&gt;BABY DFIR - DFIR 
+    &lt;div id=&#34;baby-dfir---dfir&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
+    
+    &lt;span
+        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;
+        &lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline&#34; href=&#34;#baby-dfir---dfir&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;
+    &lt;/span&gt;        
+    
+&lt;/h1&gt;
+&lt;p&gt;This was an easy challenge in the DFIR category. The description read:
+I promise this is actually easy.&lt;/p&gt;</description>
       
     </item>
     

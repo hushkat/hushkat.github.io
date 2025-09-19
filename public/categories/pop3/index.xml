@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>POP3 on HushKat&#39;s Cyber Den</title>
-    <link>http://localhost:1313/categories/pop3/</link>
+    <link>https://hushkat.github.io/categories/pop3/</link>
     <description>Recent content in POP3 on HushKat&#39;s Cyber Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 HushKat. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 22 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="http://localhost:1313/categories/pop3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Aug 2025 01:09:33 +0300</lastBuildDate><atom:link href="https://hushkat.github.io/categories/pop3/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Fowsniff</title>
-      <link>http://localhost:1313/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</link>
+      <link>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</link>
       <pubDate>Fri, 22 Aug 2025 01:09:33 +0300</pubDate>
       
-      <guid>http://localhost:1313/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</guid>
+      <guid>https://hushkat.github.io/posts/2025-08-22-fowsniff/2025-08-22-fowsniff/</guid>
       <description>&lt;h1 class=&#34;relative group&#34;&gt;Fowsniff CTF - Complete Beginner&amp;rsquo;s Walkthrough 
     &lt;div id=&#34;fowsniff-ctf---complete-beginners-walkthrough&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;
     
