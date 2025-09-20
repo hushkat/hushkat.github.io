@@ -1,4 +1,17 @@
-# Beginner's Guide to Unix Log Analysis: SSH Brute Force Investigation
+---
+title: "Brutus"
+date: 2025-09-21T10:10:00+03:00
+draft: false
+description: "Beginner's Guide to Unix Log Analysis: SSH Brute Force Investigation"
+slug: "brutus-unix-log-analysis-ssh-brute-force"
+tags: ["SSH", "Brute Force", "Unix Logs", "auth.log", "wtmp", "Incident Response", "Log Analysis", "MITRE ATT&CK"]
+categories: ["SOC", "System Administration", "Incident Response", "Digital Forensics"]
+showAuthor: true
+showDate: true
+showReadingTime: true
+showWordCount: true
+featureimage: "[https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-1.webcatalog.io%2Fcatalog%2Fletsdefend%2Fletsdefend-icon-filled-256.png%3Fv%3D1689174393569&f=1&nofb=1&ipt=639bea3b3bfd879f4808fdec6fb7fca8c2b94cb332c042fd238f5723c4db9f59](https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/challenges/b7bb35b9c6ca2aee2df08cf09d7016c2.png)"
+---
 
 ## 🎯 What You'll Learn
 This guide walks you through a real cybersecurity investigation where we analyze Unix system logs to track how an attacker broke into a server and what they did afterward. Don't worry if you're new to this - we'll explain everything step by step!
