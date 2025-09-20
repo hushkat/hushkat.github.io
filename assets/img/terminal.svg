@@ -1,0 +1,278 @@
+<svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="mainBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff41;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#00ff41;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00ff41;stop-opacity:0" />
+    </linearGradient>
+    
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#00ffff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0" />
+    </linearGradient>
+    
+    <!-- Filters for glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Main background -->
+  <rect width="1920" height="1080" fill="url(#mainBg)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00ff41" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Floating code snippets -->
+  <g opacity="0.3" fill="#00ff41" font-family="monospace" font-size="12">
+    <text x="100" y="150" filter="url(#glow)">#!/bin/bash</text>
+    <text x="100" y="170" filter="url(#glow)">while true; do</text>
+    <text x="120" y="190" filter="url(#glow)">echo "ACCESSING MAINFRAME..."</text>
+    <text x="120" y="210" filter="url(#glow)">sleep 0.1</text>
+    <text x="100" y="230" filter="url(#glow)">done</text>
+    
+    <text x="1400" y="200" filter="url(#glow)">&lt;html&gt;</text>
+    <text x="1420" y="220" filter="url(#glow)">&lt;head&gt;&lt;title&gt;SECURE&lt;/title&gt;&lt;/head&gt;</text>
+    <text x="1420" y="240" filter="url(#glow)">&lt;body class="encrypted"&gt;</text>
+    
+    <text x="300" y="800" filter="url(#glow)">function decrypt(data) {</text>
+    <text x="320" y="820" filter="url(#glow)">return btoa(data.reverse());</text>
+    <text x="300" y="840" filter="url(#glow)">}</text>
+    
+    <text x="1200" y="750" filter="url(#glow)">SELECT * FROM users WHERE</text>
+    <text x="1220" y="770" filter="url(#glow)">access_level = 'admin';</text>
+  </g>
+  
+  <!-- Binary streams -->
+  <g opacity="0.15" fill="#00ffff" font-family="monospace" font-size="10">
+    <text x="50" y="100">101010100111010101001110101010</text>
+    <text x="50" y="120">110101010100111010101010101001</text>
+    <text x="50" y="140">010101001110101010101010100111</text>
+    
+    <text x="1500" y="400">111000101010101001110101010101</text>
+    <text x="1500" y="420">001110101010101010011101010101</text>
+    <text x="1500" y="440">101010100111010101010101001110</text>
+    
+    <text x="800" y="950">010101001110101010101010011101</text>
+    <text x="800" y="970">101010101010011101010101010101</text>
+    <text x="800" y="990">001110101010101010100111010101</text>
+  </g>
+  
+  <!-- Circuit board traces -->
+  <g stroke="#00ff41" stroke-width="1" fill="none" opacity="0.4">
+    <!-- Horizontal traces -->
+    <line x1="0" y1="300" x2="400" y2="300" filter="url(#glow)"/>
+    <line x1="0" y1="500" x2="600" y2="500" filter="url(#glow)"/>
+    <line x1="1300" y1="200" x2="1920" y2="200" filter="url(#glow)"/>
+    <line x1="1000" y1="800" x2="1920" y2="800" filter="url(#glow)"/>
+    
+    <!-- Vertical traces -->
+    <line x1="200" y1="0" x2="200" y2="400" filter="url(#glow)"/>
+    <line x1="1600" y1="100" x2="1600" y2="600" filter="url(#glow)"/>
+    <line x1="800" y1="600" x2="800" y2="1080" filter="url(#glow)"/>
+    
+    <!-- Connection nodes -->
+    <circle cx="200" cy="300" r="3" fill="#00ff41" filter="url(#strongGlow)"/>
+    <circle cx="400" cy="300" r="3" fill="#00ff41" filter="url(#strongGlow)"/>
+    <circle cx="1600" cy="200" r="3" fill="#00ff41" filter="url(#strongGlow)"/>
+    <circle cx="800" cy="800" r="3" fill="#00ff41" filter="url(#strongGlow)"/>
+  </g>
+  
+  <!-- Hexagonal patterns -->
+  <g stroke="#00ffff" stroke-width="0.5" fill="none" opacity="0.2">
+    <polygon points="100,50 130,35 160,50 160,80 130,95 100,80" filter="url(#glow)"/>
+    <polygon points="1700,400 1730,385 1760,400 1760,430 1730,445 1700,430" filter="url(#glow)"/>
+    <polygon points="900,150 930,135 960,150 960,180 930,195 900,180" filter="url(#glow)"/>
+    <polygon points="500,700 530,685 560,700 560,730 530,745 500,730" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Full Screen Terminal -->
+  <g opacity="0.9">
+    <!-- Main Terminal filling entire SVG -->
+    <rect x="40" y="40" width="1840" height="1000" fill="#0a0a0a" stroke="#00ff41" stroke-width="4" rx="12"/>
+    <!-- Terminal header bar -->
+    <rect x="40" y="40" width="1840" height="50" fill="#00ff41" opacity="0.3" rx="12 12 0 0"/>
+    <circle cx="70" cy="65" r="8" fill="#ff0000"/>
+    <circle cx="100" cy="65" r="8" fill="#ffff00"/>
+    <circle cx="130" cy="65" r="8" fill="#00ff00"/>
+    <text x="160" y="72" fill="#00ff41" font-family="monospace" font-size="20" font-weight="bold">SECURE TERMINAL v2.1 - HUSHKAT AUTHORIZED SESSION</text>
+    
+    <!-- Terminal content with animations -->
+    <g font-family="monospace" font-size="24">
+      <!-- Initial login attempts -->
+      <text x="80" y="140" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0s" fill="freeze"/>
+        hushkat@blackbox:~$ ssh admin@mainframe.corp
+      </text>
+      <text x="80" y="180" fill="#ff4444" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1s" fill="freeze"/>
+        Password: ****************
+      </text>
+      <text x="80" y="220" fill="#ff4444" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2s" fill="freeze"/>
+        ACCESS DENIED - Invalid credentials [Attempt 1/3]
+      </text>
+      
+      <text x="80" y="280" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3s" fill="freeze"/>
+        hushkat@blackbox:~$ ssh admin@mainframe.corp --force
+      </text>
+      <text x="80" y="320" fill="#ff4444" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4s" fill="freeze"/>
+        Password: ****************
+      </text>
+      <text x="80" y="360" fill="#ff4444" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5s" fill="freeze"/>
+        ACCESS DENIED - Invalid credentials [Attempt 2/3]
+      </text>
+      
+      <text x="80" y="420" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="6.5s" fill="freeze"/>
+        hushkat@blackbox:~$ ./neural_bypass.sh --target mainframe.corp
+      </text>
+      <text x="80" y="460" fill="#00ffff" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="7.5s" fill="freeze"/>
+        Initiating quantum neural network bypass...
+      </text>
+      <text x="80" y="500" fill="#00ffff" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8s" fill="freeze"/>
+        Analyzing security patterns...
+      </text>
+      <text x="80" y="540" fill="#00ffff" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8.5s" fill="freeze"/>
+        Exploiting buffer overflow in auth module...
+      </text>
+      
+      <!-- Progress bar with animation -->
+      <text x="80" y="600" fill="#00ffff" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="9s" fill="freeze"/>
+        Penetration Progress: 
+      </text>
+      <rect x="400" y="580" width="800" height="20" fill="none" stroke="#00ffff" stroke-width="2">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="9s" fill="freeze"/>
+      </rect>
+      <rect x="404" y="584" width="0" height="12" fill="#00ff41">
+        <animate attributeName="width" values="0;792" dur="3s" begin="9.5s" fill="freeze"/>
+      </rect>
+      <text x="1220" y="595" fill="#00ff41" filter="url(#glow)" font-size="18">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="12.5s" fill="freeze"/>
+        [100%] COMPLETE
+      </text>
+      
+      <!-- Success message with delayed appearance -->
+      <text x="80" y="680" fill="#00ff41" font-weight="bold" filter="url(#strongGlow)" font-size="28">
+        <animate attributeName="opacity" values="0;1" dur="0.8s" begin="13s" fill="freeze"/>
+        ✓ FIREWALL BYPASSED ✓ ENCRYPTION CRACKED ✓ ROOT ACCESS ACHIEVED
+      </text>
+      <text x="80" y="730" fill="#00ff41" filter="url(#glow)" font-size="20">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="14s" fill="freeze"/>
+        Welcome back, hushkat - All systems compromised
+      </text>
+      <text x="80" y="770" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="14.5s" fill="freeze"/>
+        ACCESS GRANTED - Administrator privileges enabled
+      </text>
+      
+      <!-- Command prompt with cursor -->
+      <text x="80" y="830" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="15s" fill="freeze"/>
+        hushkat@mainframe:/root# 
+      </text>
+      <rect x="480" y="810" width="20" height="28" fill="#00ff41">
+        <animate attributeName="opacity" values="0;1;0;1" dur="1s" begin="15.5s" repeatCount="indefinite"/>
+      </rect>
+      
+      <!-- Advanced hacking commands appearing -->
+      <text x="80" y="890" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="16.5s" fill="freeze"/>
+        hushkat@mainframe:/root# find /var/log -name "*.log" | xargs grep "failed"
+      </text>
+      <text x="80" y="930" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="17s" fill="freeze"/>
+        /var/log/auth.log:127 failed login attempts detected
+      </text>
+      <text x="80" y="970" fill="#00ff41" filter="url(#glow)">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="17.5s" fill="freeze"/>
+        hushkat@mainframe:/root# echo "Game Over" > /etc/motd
+      </text>
+    </g>
+    
+    <!-- Matrix-style falling characters overlay across terminal -->
+    <g opacity="0.08" fill="#00ff41" font-family="monospace" font-size="16">
+      <text x="200" y="150">1</text>
+      <text x="400" y="200">0</text>
+      <text x="600" y="250">1</text>
+      <text x="800" y="180">1</text>
+      <text x="1000" y="220">0</text>
+      <text x="1200" y="170">1</text>
+      <text x="1400" y="240">0</text>
+      <text x="1600" y="190">1</text>
+      <animate attributeName="opacity" values="0.08;0.2;0.08" dur="3s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  
+  <!-- Scan lines -->
+  <g opacity="0.1">
+    <defs>
+      <pattern id="scanlines" x="0" y="0" width="1" height="4" patternUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="1" height="2" fill="#00ff41"/>
+      </pattern>
+    </defs>
+    <rect x="0" y="0" width="1920" height="1080" fill="url(#scanlines)"/>
+  </g>
+  
+  <!-- Data streams -->
+  <g opacity="0.4" stroke="#00ffff" stroke-width="1" fill="none">
+    <path d="M0,600 Q200,550 400,600 T800,600" filter="url(#glow)">
+      <animate attributeName="d" values="M0,600 Q200,550 400,600 T800,600;M0,600 Q200,650 400,600 T800,600;M0,600 Q200,550 400,600 T800,600" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M1920,400 Q1720,350 1520,400 T1120,400" filter="url(#glow)">
+      <animate attributeName="d" values="M1920,400 Q1720,350 1520,400 T1120,400;M1920,400 Q1720,450 1520,400 T1120,400;M1920,400 Q1720,350 1520,400 T1120,400" dur="4s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Glitch effect bars -->
+  <g opacity="0.3">
+    <rect x="0" y="250" width="1920" height="2" fill="#00ff41">
+      <animate attributeName="y" values="250;280;250" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="0" y="750" width="1920" height="1" fill="#ff0080">
+      <animate attributeName="y" values="750;770;750" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  
+  <!-- Corner accent elements -->
+  <g stroke="#00ff41" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M0,0 L50,0 L50,50 M0,50 L50,50" filter="url(#strongGlow)"/>
+    <path d="M1870,0 L1920,0 L1920,50 M1870,50 L1920,50" filter="url(#strongGlow)"/>
+    <path d="M0,1030 L50,1030 L50,1080 M0,1080 L50,1080" filter="url(#strongGlow)"/>
+    <path d="M1870,1030 L1920,1030 L1920,1080 M1870,1080 L1920,1080" filter="url(#strongGlow)"/>
+  </g>
+</svg>
