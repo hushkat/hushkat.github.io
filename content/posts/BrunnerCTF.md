@@ -2,20 +2,20 @@
 title: "Brunner CTF"
 date: 2025-08-24 01:09:33 +0300
 comments: true
-description: A beginner-friendly journey through BrunnerCTF 2025â€™s â€œShake & Bakeâ€ challenges, covering misc, OSINT, web, crypto, forensics, boot2root, pwn, and reverse engineering.
+description: A beginner-friendly journey through BrunnerCTF 2025 Shake & Bake challenges, covering misc, OSINT, web, crypto, forensics, boot2root, pwn, and reverse engineering.
 image: /images/BrunnerCTF/Banner.png
 categories: [misc, osint, web, crypto, forensics, boot2root, pwn, reverse engineering, B2R]
 tags:  [misc, osint, web, crypto, forensics, boot2root, pwn, reverse engineering, B2R]
 featureimage: "https://ctftime.org/media/team/logo_-_v1010x.png"
 ---
 
-# Cooking Flags with BrunnerCTF 2025 - A Beginnerâ€™s Feast
+# Cooking Flags with BrunnerCTF 2025 - A Beginner Feast
 
-Get your aprons on and terminals ready - the BrunnerCTF has just served up its very first edition, and I couldnâ€™t resist grabbing a plate! ðŸ½ï¸
+Get your aprons on and terminals ready - the BrunnerCTF has just served up its very first edition, and I could NOT resist grabbing a plate!
 
-This CTF brought a flavorful mix of challenges, from web and OSINT to forensics, crypto, reverse engineering, and even some pwn and boot2root fun. While there were plenty of spicy dishes for the seasoned pros, I stuck to the â€œShake & Bakeâ€ menu - a perfect selection of beginner-friendly challenges designed to teach and entertain.
+This CTF brought a flavorful mix of challenges, from web and OSINT to forensics, crypto, reverse engineering, and even some pwn and boot2root fun. While there were plenty of spicy dishes for the seasoned pros, I stuck to the Shake & Bake menu - a perfect selection of beginner-friendly challenges designed to teach and entertain.
 
-In this post, Iâ€™ll walk you through my journey solving most of the beginner tasks across categories like misc, OSINT, web, crypto, forensics, boot2root, pwn, and reverse engineering. Along the way, Iâ€™ll share my thought process, lessons learned, and tips you can use if youâ€™re just getting started with CTFs.
+In this post, I will walk you through my journey solving most of the beginner tasks across categories like misc, OSINT, web, crypto, forensics, boot2root, pwn, and reverse engineering. Along the way, I will share my thought process, lessons learned, and tips you can use if you are just getting started with CTFs.
 
 # Sanity Check - misc
 
@@ -97,7 +97,7 @@ To reverse the encoding, just reverse the steps:
 
 ## The Decoder Script
 
-Hereâ€™s the script that worked:
+Here is the script that worked:
 ```python
 def decode_layer(encoded_text, base):
     """Decode one layer of the encoding for a given base."""
@@ -177,7 +177,7 @@ It then turns letter casing into binary (0s and 1s)
 
 Example:
 
-"iUseD" â†' "0 1 0 1 1"
+"iUseD" = "0 1 0 1 1"
 
 At this point, the script has a very long chain of binary digits (1s and 0s).
 
@@ -204,9 +204,9 @@ print(decoded)
 ```
 Each 8-bit binary number is converted into its ASCII character.
 
-- "01000001" â†' A
-- "01100010" â†' b
-- "01100011" â†' c
+- "01000001" = A
+- "01100010" = b
+- "01100011" = c
 
 This reveals the hidden message.
 When I saved and ran the script, it outputted this:
@@ -227,7 +227,7 @@ and a Python script that performed the encryption.
 
 ## Looking at the Code
 
-Hereâ€™s the core part of the script that does the â€œmixingâ€:
+Here is the core part of the script that does the mixing:
 ```python
 shaker = 0
 for ingredient in ingredients:
@@ -257,13 +257,13 @@ XOR encryption is being used.
 
 The shaker (key) is just a number.
 
-Even though random.randrange(18) is called, thereâ€™s no seed specified. But importantly, the final key will always be a number between 0 and 255 because of how XOR works with bytes.
+Even though random.randrange(18) is called, there is no seed specified. But importantly, the final key will always be a number between 0 and 255 because of how XOR works with bytes.
 
-So, if we donâ€™t know the key - brute-forcing all 256 possibilities is quick and easy.
+So, if we don not know the key - brute-forcing all 256 possibilities is quick and easy.
 
 ## Brute-forcing the Key
 
-Hereâ€™s the brute-force script I used:
+Here is the brute-force script I used:
 ![Script](https://gist.github.com/user-attachments/assets/c1783039-50a1-4f45-9a99-94f2475cda11)
 
 When running it, the readable candidate that stood out was:
@@ -474,21 +474,21 @@ int main() {
 
 You have an online cake shop program. You start with $15:
 
-You can â€œsampleâ€ different cake flavours:
+You can sample different cake flavours:
 
 - Brunner ($10)
 
 - Chocolate ($7)
 
-- DrÃ¸mmekage ($5)
+- mekage ($5)
 
-- Flag Flavour ($100) â€" this is what we want.
+- Flag Flavour ($100) this is what we want.
 
 The program asks how many of a flavour you want to buy, calculates the total cost, and checks if you can afford it.
 
 ## Spot the vulnerability
 
-Hereâ€™s the key code from shop.c:
+Here is the key code from shop.c:
 ```
 int buy(int balance, int price) {
     unsigned int qty;
@@ -518,7 +518,7 @@ Think of integers in C as containers with a maximum size. For a 32-bit signed in
 
 If you calculate a number larger than 2,147,483,647, it wraps around and becomes negative.
 
-- Example: 2,147,483,648 â†' -2,147,483,648
+- Example: 2,147,483,648 to -2,147,483,648
 
 This is like an odometer rolling over.
 
@@ -584,7 +584,7 @@ void secret_dough_recipe(void) {
 }
 ```
 
-If we overwrite the return address to point to this function, weâ€™ll get the flag.
+If we overwrite the return address to point to this function, we will get the flag.
 
 ## Static Binary Analysis
 
@@ -598,9 +598,9 @@ NX:         NX enabled
 PIE:        No PIE (0x400000)
 ```
 
-- NX enabled â†' we canâ€™t inject shellcode, but we can reuse code (return-to-function).
-- No PIE â†' function addresses donâ€™t change between runs.
-- No canary â†' no stack protections to bypass.
+- NX enabled we cannot inject shellcode, but we can reuse code (return-to-function).
+- No PIE function addresses do not change between runs.
+- No canary, no stack protections to bypass.
 
 This screamed classic ret2win.
 
@@ -614,7 +614,7 @@ From the source:
 
 ## Writing the Exploit
 
-Hereâ€™s the final Python exploit with pwntools:
+Here is the final Python exploit with pwntools:
 ```python
 #!/usr/bin/env python3
 from pwn import *
@@ -664,7 +664,7 @@ Output:
 brunner{b1n4ry_eXpLoiTatioN_iS_CooL}
 ```
 
-Success â€" we hijacked the return pointer and jumped straight into the secret_dough_recipe function, printing the flag.
+Success we hijacked the return pointer and jumped straight into the secret_dough_recipe function, printing the flag.
 Flag: `brunner{b1n4ry_eXpLoiTatioN_iS_CooL}`
 
 # Baker Brian - reverse engineering
@@ -794,12 +794,12 @@ if not (
 Let's break this down:
 
 - Length must be 5: _ _ _ _ _
-- Position 0: b â†' b_ _ _ _
-- Position 1: e â†' be_ _ _
-- Positions 2-3: rr â†' berr_
-- Position 4 (last char): must equal last char of word2 ("memory" â†' 'y') â†' berry
+- Position 0: b is b_ _ _ _
+- Position 1: e is be_ _ _
+- Positions 2-3: rr is berr_
+- Position 4 (last char): must equal last char of word2 ("memory" is 'y')
 
-âœ… Word 3 = berry
+ Word 3 = berry
 
 ## Word 4 Analysis
 ```python
@@ -810,9 +810,9 @@ if not (
 ```
 Break down the concatenation:
 
-- words[0][:2] = First 2 chars of "red" â†' "re"
-- words[1][:3] = First 3 chars of "memory" â†' "mem"
-- words[2][:3] = First 3 chars of "berry" â†' "ber"
+- words[0][:2] = First 2 chars of "red" are "re"
+- words[1][:3] = First 3 chars of "memory" are "mem"
+- words[2][:3] = First 3 chars of "berry" are "ber"
 
 Combine: "re" + "mem" + "ber" = "remember"
 
@@ -843,7 +843,7 @@ File: rolling_pin (64-bit ELF)
 
 ## Recon (Understanding the Binary)
 
-First, check what kind of file weâ€™re dealing with:
+First, check what kind of file we are dealing with:
 ```bash
 file rolling_pin
 ```
@@ -990,6 +990,6 @@ I therefore went ahead and supplied the file name of the file we are required to
 flag: `brunner{5uD0_pR1V1L3g35_T00_h0t_F0r_J4v4_J4CK!}`
 
 
-Wrapping up, BrunnerCTF 2025 was a fun and insightful experience that sharpened my problem-solving skills and deepened my understanding of core cybersecurity concepts. The â€œShake & Bakeâ€ challenges were perfect for practicing fundamentals while still offering a few clever twists to keep things exciting. Iâ€™m looking forward to tackling more advanced challenges next time and continuing to refine my skills. Until then â€" happy hacking, and see you in the next CTF!
+Wrapping up, BrunnerCTF 2025 was a fun and insightful experience that sharpened my problem-solving skills and deepened my understanding of core cybersecurity concepts. The â€œShake & Bakeâ€ challenges were perfect for practicing fundamentals while still offering a few clever twists to keep things exciting. Iâ€™m looking forward to tackling more advanced challenges next time and continuing to refine my skills. Until then, happy hacking, and see you in the next CTF!
 
 ---
