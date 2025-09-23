@@ -80,7 +80,5 @@ We have our flag for this challenge. That also leaves us with all the answers  t
 ### Conclusion
 In summary, the SMB protocol is very useful in sharing resources between hosts. However, a big security risk is onboarded if this protocol is misconfigured. This room has shown me how easy it can be to gain access to shares within an SMB if there are few to no strict security measures associated with it.
 
-hushkat signing off.
-
 ---
 
