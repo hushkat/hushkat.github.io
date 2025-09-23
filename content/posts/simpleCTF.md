@@ -109,5 +109,3 @@ We gain access to the root shell after  finding out that he can access vim as ro
 In summary, this challenge underscores the significance of privilege escalation techniques for unearthing concealed data and vulnerabilities. By leveraging the use of tools and exploits, directory permissions, and sudo privileges, we elevate our access and seize the flags.
 
 Remember, relentless learning and exploration are paramount to mastering hacking skills. Embrace the journey, and let the quest for knowledge fuel your hacking endeavors.
-
-dr0idbot signing off.
