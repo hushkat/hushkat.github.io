@@ -35,7 +35,7 @@ $dest = "C:\Tools\EZTools"
 New-Item -Path $dest -ItemType Directory -Force
 ```
 
-### 2. Download and extract Get-ZimmermanTools
+### 2. Download and extract ZimmermanTools
 ```powershell
 Invoke-WebRequest -Uri "https://github.com/EricZimmerman/Get-ZimmermanTools/archive/refs/heads/master.zip" -OutFile "$env:TEMP\Get-ZimmermanTools.zip"
 Expand-Archive -Path "$env:TEMP\Get-ZimmermanTools.zip" -DestinationPath $env:TEMP -Force
