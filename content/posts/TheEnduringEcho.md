@@ -231,7 +231,7 @@ This sophisticated backdoor script creates legitimate-looking service accounts, 
 
 ### Created Local Account
 Filtering Security logs for Event ID 4720 (User Account Created) revealed creation of the **svc_netupd** account.
-![creation_of_a_local_acc](/images/TheEnduringEcho/Picture5.png)
+![creation_of_a_local_acc](/images/TheEnduringEcho/image1.png)
 
 The attacker chose "svc_netupd" (service network update) from their predefined list, designed to blend in with legitimate Windows service accounts.
 
