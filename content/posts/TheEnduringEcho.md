@@ -13,7 +13,7 @@ featureimage: "https://imgs.search.brave.com/__3Bmc79Wm-FBcqxV_MhzYS7Ntz98gIrsbU
 ---
 
 ## Introduction
-This investigation explores how an attacker gained initial access to a Windows system using Impacket's tools. We will identify the attacker's IP address, analyze how they leveraged WMI remote execution to spawn commands, and track their activities, including:
+This investigation explores how an attacker gained initial access to a Windows system. We will identify the attacker's IP address, analyze how they leveraged remote execution of commands, and track their activities, including:
 1. Local reconnaissance
 2. Modification of the hosts file
 3. Credential exfiltration
@@ -24,10 +24,10 @@ This investigation explores how an attacker gained initial access to a Windows s
 The analysis demonstrates a complete attack chain from initial access through persistence, privilege escalation, and lateral movement, while blending in with legitimate Windows services and system activities.
 
 ## Scenario overview
-The investigation drops us into LeStrade's mystery where they have been able to identify a breach point showing abnormal CPU activity and process log anomalies. Our mission is to analyze Windows Event Logs (EVTX files) to uncover the attacker's complete attack chain, from initial access to persistence and lateral movement. Let's wear our investigative hats and start digging. You can obtain the provided artifacts from here.
+The investigation drops us into LeStrade's mystery where they have been able to identify a breach point showing abnormal CPU activity and process log anomalies. Our mission is to analyze the given artifact to uncover the attacker's complete attack chain, from initial access to persistence and lateral movement. Let's wear our investigative hats and start digging. 
 
 ## Tools & Setup
-Before diving into the investigation, we need proper forensic tools. I used Eric Zimmerman's excellent suite for this investigation. To quicky set up everything, run the following commands in the given order:
+Before diving into the investigation, we need proper forensic tools. I used Eric Zimmerman's excellent suite for this investigation. To quicky set up everything, run the following commands in the given order from powershell:
 
 ### 1. Create tools directory
 ```powershell
