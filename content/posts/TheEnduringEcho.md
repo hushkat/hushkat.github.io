@@ -81,12 +81,12 @@ Every action gets written down:
 
 Because of the number of log sources we have from the given artifact, we need to have a hawk's eye view of them all in one place to make it easy for us to analyze the attacker's activities. 
 
-To do that, go to the location where the tools were downloaded, typically in: C:\Tools\EZTools\, navigate to: C:\Tools\EZTools\net6\EvtxeCmd, and can run the following command:
+To do that, go to the location where the tools were downloaded, typically in: `C:\Tools\EZTools\`, navigate to: `C:\Tools\EZTools\net6\EvtxeCmd`, and can run the following command:
 ```
 EvtxECmd.exe -f "C:\path\to\your\evtx\file.evtx" --csv "C:\output\directory" --csvf output_filename.csv
 ```
 
-Once that's done, you can navigate to: C:\Tools\EZTools\net6\TimelineExplorer and run the TimelineExplorer.exe file then Select File>Open and navigate to the output location of your CSV file from the step above.
+Once that's done, you can navigate to: `C:\Tools\EZTools\net6\TimelineExplorer` and run the `TimelineExplorer.exe` file then Select `File > Open` and navigate to the output location of your CSV file from the step above.
 
 ## Investigation & Analysis
 
@@ -115,12 +115,12 @@ Event IDs are like numbered codes that Windows uses to categorize different type
 | 1074 | System Restart | "Computer was restarted by user" |
 
 ## Initial Reconnaissance Command
-Opening Timeline Explorer and filtering for Event ID 4688 (that is the ID for Process Creation), I discovered the attacker's first reconnaissance command:
+Opening Timeline Explorer and filtering for Event ID `4688` (that is the ID for Process Creation), I discovered the attacker's first reconnaissance command:
 ```
 C:\Windows\System32\cmd.exe cmd.exe /Q /c systeminfo 1> \\127.0.0.1\ADMIN$\__1756075857.955773 2>&1
 ```
 
-The systeminfo command discovered above, is classic post-exploitation reconnaissance, gathering system information for further attacks. The unusual output redirection to \\127.0.0.1\ADMIN$\__1756075857.955773 is a telltale sign of remote execution tools. This discovery has been illustrated below:
+The systeminfo command discovered above, is classic post-exploitation reconnaissance, gathering system information for further attacks. The unusual output redirection to `\\127.0.0.1\ADMIN$\__1756075857.955773` is a telltale sign of remote execution tools. This discovery has been illustrated below:
 ![initial_recon_command](/images/TheEnduringEcho/Picture1.png)
 
 ### Parent Process Identification
@@ -129,7 +129,7 @@ Timeline Explorer revealed the parent process in the "Payload data 1" field:
 Parent process: C:\Windows\System32\wbem\WmiPrvSE.exe
 ```
 
-WmiPrvSE.exe (WMI Provider Host) being the parent process strongly indicates WMI-based remote execution. WmiPrvSE.exe stands for "WMI Provider Service Host" - think of it as Windows' "remote control receiver" that allows other computers to manage and control your system over the network.
+WmiPrvSE.exe (WMI Provider Host) being the parent process strongly indicates WMI-based remote execution. `WmiPrvSE.exe` stands for "WMI Provider Service Host" - think of it as Windows' "remote control receiver" that allows other computers to manage and control your system over the network.
 
 **Breaking Down the Name:**
 - **WMI** = Windows Management Instrumentation
@@ -142,16 +142,16 @@ The image below shows the Parent Process from the column mentioned above:
 
 ### Remote Execution Tool
 Based on the evidence:
-- Parent process: WmiPrvSE.exe (WMI Provider Host)
+- Parent process: `WmiPrvSE.exe` (WMI Provider Host)
 - Command output redirection to network share
 - Administrative share usage (ADMIN$)
 
 This signature matches **Impacket's wmiexec.py** - a popular Python tool for WMI-based remote execution.
 
-wmiexec.py leverages WMI for remote code execution, explaining the WmiPrvSE.exe parent process and the characteristic output redirection pattern.
+`wmiexec.py` leverages WMI for remote code execution, explaining the WmiPrvSE.exe parent process and the characteristic output redirection pattern.
 
 ### Attacker's IP Address
-Searching for the unique string __1756075857.955773 across Security logs when using Windows Event Viewer, revealed suspicious activity from a specific IP. You can open the logs from event viewer by double clicking the file Security.evtx. Go ahead and use the find utility to search for the unique string mentioned earlier. You'll notice the attacker attempted to modify the hosts file and adding their IP address: **10.129.242.110** by running:
+Searching for the unique string `__1756075857.955773` across Security logs when using Windows Event Viewer, revealed suspicious activity from a specific IP. You can open the logs from event viewer by double clicking the file Security.evtx. Go ahead and use the find utility to search for the unique string mentioned earlier. You'll notice the attacker attempted to modify the hosts file and adding their IP address: **10.129.242.110** by running:
 ```
 cmd.exe /Q /c cmd /C "echo 10.129.242.110 NapoleonsBlackPearl.htb >> C:\Windows\System32\drivers\etc\hosts" 1> \\127.0.0.1\ADMIN$\__1756075857.955773 2>&1
 ```
@@ -168,7 +168,7 @@ The hosts file is like your computer's personal phone book - it tells your compu
 - Your personal address book - Overrides the city's official directory
 
 ### Persistence Mechanism
-Once again, filtering for Event ID 4688 (that is the ID for Process Creation), I found the scheduled task creation command:
+Once again, filtering for Event ID `4688` (that is the ID for Process Creation), I found the scheduled task creation command:
 ```
 C:\Windows\System32\schtasks.exe schtasks /create /tn "SysHelper Update" /tr "powershell -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\Users\Werni\Appdata\Local\JM.ps1" /sc minute /mo 2 /ru SYSTEM /f
 ```
@@ -184,7 +184,7 @@ The attacker used scheduled tasks for persistence, disguising malicious activity
 ![persistence_mechanism](/images/TheEnduringEcho/Picture4.png)
 
 ### Persistence Script Location
-From the scheduled task command above, the script path is clearly visible: **C:\Users\Werni\Appdata\Local\JM.ps1**
+From the scheduled task command above, the script path is clearly visible: `C:\Users\Werni\Appdata\Local\JM.ps1`
 
 Examining the actual script file revealed sophisticated backdoor functionality. From the downloaded artifact that we were handed, we can visit the location above to open the file using an editor like notepad. 
 
@@ -250,7 +250,7 @@ $timestamp = (Get-Date).ToString("yyyyMMddHHmmss")
 $password = "Watson_$timestamp"
 ```
 
-By examining the account creation timestamp in Event ID 4720 and converting it to the appropriate timezone (UTC-7), the password becomes: **Watson_20250824160509**.
+By examining the account creation timestamp in Event ID `4720` and converting it to the appropriate timezone (UTC-7), the password becomes: **Watson_20250824160509**.
 
 Time-based password generation provides uniqueness while maintaining a predictable pattern for the attacker to reconstruct if needed. When investigating digital forensics, timestamps can be tricky because they might be stored in different timezones than when the actual event occurred.
 
@@ -258,7 +258,7 @@ Time-based password generation provides uniqueness while maintaining a predictab
 - This becomes part of the password immediately
 
 **The Windows Event Log:**
-- Event ID 4720 (account creation) gets logged
+- Event ID `4720` (account creation) gets logged
 - Windows logs might store timestamps in UTC (Universal Coordinated Time)
 - But the password was generated using local time
 
@@ -272,7 +272,7 @@ The computer we are currently investigating is physically located in Pacific Tim
 5. Geographic Context - Where was the attack happening?
 
 ### Lateral Movement Target
-Filtering for Event ID 4688 revealed a port forwarding command:
+Filtering for Event ID `4688` revealed a port forwarding command:
 ```
 netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=9999 connectaddress=192.168.1.101 connectport=22
 ```
@@ -290,7 +290,7 @@ From the same netsh command above: **9999**
 Port 9999 is commonly used by attackers as it's typically not monitored and appears to be a development or testing port.
 
 ### Registry Persistence Path
-Windows Operating System stores netsh portproxy configurations in the registry at: **HKLM\SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4\tcp**
+Windows Operating System stores netsh portproxy configurations in the registry at: `HKLM\SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4\tcp`
 
 This registry location persists port forwarding rules across reboots, making it an effective persistence mechanism for lateral movement. You can find more details about that here: https://woshub.com/port-forwarding-in-windows/
 
@@ -313,7 +313,7 @@ This technique allows attackers to proxy traffic through compromised systems, by
 ### Administrator's Audit Configuration
 Part of what might have led us to conduct this investigation successfully is the evidence we collected that might have been the result of the Administrator's decision to ensure users' command-line activity is captured. But how do we know that?
 
-By Examining the Administrator's PowerShell history at: **C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt**
+By Examining the Administrator's PowerShell history at: `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt`
 
 Found this critical command:
 ```
@@ -321,11 +321,11 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /
 ```
 
 **Command Breakdown:**
-- **Target:** HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit
+- **Target:** `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit`
 - **Value:** ProcessCreationIncludeCmdLine_Enabled
 - **Type:** REG_DWORD
 - **Data:** 1 (enabled)
-- **Effect:** Forces Windows to log complete command lines in Event ID 4688
+- **Effect:** Forces Windows to log complete command lines in Event ID `4688`
 
 This proactive security measure by the administrator was crucial for our investigation, providing detailed command line arguments that revealed the complete attack chain.
 
@@ -345,7 +345,7 @@ This proactive security measure by the administrator was crucial for our investi
 ## Key Takeaways
 
 ### Attack Techniques Used
-1. **Initial Access:** WMI remote execution (wmiexec.py)
+1. **Initial Access:** WMI remote execution (`wmiexec.py`)
 2. **Reconnaissance:** System information gathering
 3. **Persistence:** Scheduled tasks with SYSTEM privileges
 4. **Privilege Escalation:** Administrative group membership
@@ -354,7 +354,7 @@ This proactive security measure by the administrator was crucial for our investi
 7. **Exfiltration:** Base64-encoded credential theft
 
 ## Detection Opportunities
-- WmiPrvSE.exe spawning cmd.exe with suspicious arguments
+- `WmiPrvSE.exe` spawning cmd.exe with suspicious arguments
 - Frequent scheduled task execution (every 2 minutes)
 - New local account creation with admin privileges
 - Unusual netsh portproxy configurations
