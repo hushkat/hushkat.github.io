@@ -157,7 +157,7 @@ cmd.exe /Q /c cmd /C "echo 10.129.242.110 NapoleonsBlackPearl.htb >> C:\Windows\
 ```
 
 Attackers often modify the hosts file to redirect domain names to their controlled infrastructure, facilitating C2 communications and data exfiltration. 
-![attackers_ip](/images/TheEnduringEcho/Picture3.png)
+![attackers_ip](/images/TheEnduringEcho/image.png)
 
 The hosts file is like your computer's personal phone book - it tells your computer which IP address to go to when you type in a website name, and it gets checked BEFORE asking the internet's phone book (DNS servers).
 
