@@ -83,8 +83,9 @@ Because of the number of log sources we have from the given artifact, we need to
 
 To do that, go to the location where the tools were downloaded, typically in: `C:\Tools\EZTools\`, navigate to: `C:\Tools\EZTools\net6\EvtxeCmd`, and can run the following command:
 ```
-EvtxECmd.exe -f "C:\path\to\your\evtx\file.evtx" --csv "C:\output\directory" --csvf output_filename.csv
+.\EvtxECmd.exe -d "D:\Users\hushkat\Downloads\The_Enduring_Echo\The_Enduring_Echo\C\Windows\System32\winevt\logs" --csv "D:\Users\hushkat\Downloads\The_Enduring_Echo\The_Enduring_Echo" --csvf evtx.csv
 ```
+**Note:** Remember to adjust the paths as they are from your own local system. 
 
 Once that's done, you can navigate to: `C:\Tools\EZTools\net6\TimelineExplorer` and run the `TimelineExplorer.exe` file then Select `File > Open` and navigate to the output location of your CSV file from the step above.
 
@@ -121,7 +122,7 @@ C:\Windows\System32\cmd.exe cmd.exe /Q /c systeminfo 1> \\127.0.0.1\ADMIN$\__175
 ```
 
 The systeminfo command discovered above, is classic post-exploitation reconnaissance, gathering system information for further attacks. The unusual output redirection to `\\127.0.0.1\ADMIN$\__1756075857.955773` is a telltale sign of remote execution tools. This discovery has been illustrated below:
-![initial_recon_command](/images/TheEnduringEcho/Picture1.png)
+![initial_recon_command](/images/TheEnduringEcho/SystemInfo.png)
 
 ### Parent Process Identification
 Timeline Explorer revealed the parent process in the "Payload data 1" field:
@@ -138,7 +139,7 @@ WmiPrvSE.exe (WMI Provider Host) being the parent process strongly indicates WMI
 - **.exe** = Executable program
 
 The image below shows the Parent Process from the column mentioned above:
-![parent_process_identification](/images/TheEnduringEcho/Picture2.png)
+![parent_process_identification](/images/TheEnduringEcho/ParentProcess.png)
 
 ### Remote Execution Tool
 Based on the evidence:
@@ -151,13 +152,13 @@ This signature matches **Impacket's wmiexec.py** - a popular Python tool for WMI
 `wmiexec.py` leverages WMI for remote code execution, explaining the WmiPrvSE.exe parent process and the characteristic output redirection pattern.
 
 ### Attacker's IP Address
-Searching for the unique string `__1756075857.955773` across Security logs when using Windows Event Viewer, revealed suspicious activity from a specific IP. You can open the logs from event viewer by double clicking the file Security.evtx. Go ahead and use the find utility to search for the unique string mentioned earlier. You'll notice the attacker attempted to modify the hosts file and adding their IP address: **10.129.242.110** by running:
+Searching for the unique string `__1756075857.955773` across Security logs when using Windows Event Viewer, revealed suspicious activity from a specific IP. You can open the logs from event viewer by double clicking the file `Security.evtx`. Go ahead and use the find utility to search for the unique string mentioned earlier. You'll notice the attacker attempted to modify the hosts file and adding their IP address: **10.129.242.110** by running:
 ```
 cmd.exe /Q /c cmd /C "echo 10.129.242.110 NapoleonsBlackPearl.htb >> C:\Windows\System32\drivers\etc\hosts" 1> \\127.0.0.1\ADMIN$\__1756075857.955773 2>&1
 ```
 
 Attackers often modify the hosts file to redirect domain names to their controlled infrastructure, facilitating C2 communications and data exfiltration. 
-![attackers_ip](/images/TheEnduringEcho/image.png)
+![attackers_ip](/images/TheEnduringEcho/AttackersIP.png)
 
 The hosts file is like your computer's personal phone book - it tells your computer which IP address to go to when you type in a website name, and it gets checked BEFORE asking the internet's phone book (DNS servers).
 
@@ -181,7 +182,7 @@ C:\Windows\System32\schtasks.exe schtasks /create /tn "SysHelper Update" /tr "po
 - **Stealth:** Hidden window, bypassed execution policy
 
 The attacker used scheduled tasks for persistence, disguising malicious activity as legitimate system updates. Running every 2 minutes ensures rapid re-compromise if detected. You can see the discovery of this command from Timeline Explorer:
-![persistence_mechanism](/images/TheEnduringEcho/Picture4.png)
+![persistence_mechanism](/images/TheEnduringEcho/Persistence.png)
 
 ### Persistence Script Location
 From the scheduled task command above, the script path is clearly visible: `C:\Users\Werni\Appdata\Local\JM.ps1`
@@ -276,7 +277,7 @@ Filtering for Event ID `4688` revealed a port forwarding command:
 ```
 netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=9999 connectaddress=192.168.1.101 connectport=22
 ```
-![lateral_movement](/images/TheEnduringEcho/Picture6.png)
+![lateral_movement](/images/TheEnduringEcho/LateralMovement.png)
 
 This command creates a port proxy that:
 - Listens on all interfaces (0.0.0.0) on port 9999
