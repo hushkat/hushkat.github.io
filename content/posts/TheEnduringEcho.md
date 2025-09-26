@@ -55,11 +55,11 @@ Pop-Location
 - **Windows Event Viewer** - Built-in log analysis
 
 ## Evidence Structure
-The evidence package contains multiple EVTX files from various Windows logs (C:\Windows\System32\winevt\logs\) like:
+The evidence package contains multiple EVTX files from various Windows logs `C:\Windows\System32\winevt\logs\` like:
 - **Security.evtx** for Authentication & security events
 - **System.evtx** for System-level events
 - **Application.evtx** for Application events
-- **Additional logs...** like Windows Defender Logs stored here: The_Enduring_Echo\C\ProgramData\Microsoft\Windows Defender\Support]
+- **Additional logs...** like Windows Defender Logs stored here: `The_Enduring_Echo\C\ProgramData\Microsoft\Windows Defender\Support`
 
 ## What Are Logs? Definition
 Logs are like a computer diary - they record everything that happens on a system, just like how you might write down what you did each day in a personal journal.
