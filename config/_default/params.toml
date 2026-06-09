@@ -21,7 +21,7 @@ sharingLinks = [ "linkedin", "twitter", "whatsapp", "reddit", "facebook"]
   layout = "basic" # basic, fixed, fixed-fill, fixed-fill-blur
 
 [homepage]
-  layout = "card" # card layout shows recent posts with thumbnails
+  layout = "page" # card layout shows recent posts with thumbnails
   homepageImage = "img/bg.jpg"
   showRecent = true
   showRecentItems = 10
