@@ -13,4 +13,4 @@ Ready to see what this journey is all about? Check out one of my latest videos:
 
 Whether you're a seasoned pro or just starting out like I once was, there's something here for everyone. Dive into my [latest posts](/posts/), explore different [categories](/categories/), or learn more [about me](/about/) and this blog's mission.
 
-**Happy hacking!** 🔐
+**Happy hacking!**
