@@ -73,20 +73,16 @@ for base in range(10, 1, -1):
     text = " ".join(encode_char(ch, base) for ch in text)
 ```
 
-- First, each character is turned into a number (ord(ch) gives the ASCII number).
-
-- Then, itâ€™s converted into base 10, then base 9, then base 8, and so onâ€¦ until base 2.
-
+First, each character is turned into a number (ord(ch) gives the ASCII number).
+Then, it’s converted into base 10, then base 9, then base 8, and so on… until base 2.
 At every step, numbers are joined with spaces.
 
 Example of encoding a single letter:
-
-- 'A' â†' 65 (base 10)
-- 65 â†' 71 (base 9)
-- 71 â†' 105 (base 8)
-...
-
+‘A’ → 65 (base 10)
+65 → 71 (base 9)
+71 → 105 (base 8) …
 eventually a string of 1s and 0s for base 2.
+...
 
 ## Plan for Decoding
 
@@ -132,7 +128,7 @@ We're given the text:
 i UseD to coDE liKe A sLEEp-dEprIVed SqUirRel smasHInG keYs HOPinG BugS would dISApPear THrOugh fEAr tHeN i sPilled cOFfeE On mY LaPTop sCReameD iNTerNALly And bakeD BanaNa bREAd oUt oF PAnIc TuRNs OUT doUGh IS EasIEr tO dEbUG ThaN jaVASCrIPt Now I whIsPeR SWEEt NOtHIngs TO sOurDoUGh StARtERs aNd ThReATEN CrOissaNts IF they DoN'T rIsE My OVeN haS fEWeR CRasHEs tHaN mY oLD DEV sErvER aNd WHeN THInGS BurN i jUSt cAlL iT cARAMElIzEd FeatUReS no moRE meetInGS ThAt coUlD HAVE bEeN emailS JUst MufFInS THAt COulD HAvE BEen CupCAkes i OnCE tRIeD tO GiT PuSh MY cInnAmON rOLLs aND paNICkED WHEn I coUldn't reVErt ThEm NOw i liVe IN PeaCE uNLESs tHe yEast getS IDeas abOVe iTs StATion oR a COOkiE TrIES To sEgfAult my toOTH FILlings
 ```
 
-The phrase â€œbit by bitâ€ is the key hint: think binary. The oddly mixed upper/lower casing suggests a case-stego scheme (uppercase to 1, lowercase to 0). ChatGPT was able to come up with a script to decode this:
+The phrase “bit by bit” is the key hint: think binary. The oddly mixed upper/lower casing suggests a case-stego scheme (uppercase to 1, lowercase to 0). ChatGPT was able to come up with a script to decode this:
 
 ```python
 text = ("i UseD to coDE liKe A sLEEp-dEprIVed SqUirRel smasHInG keYs HOPinG BugS would dISApPear "
@@ -163,7 +159,7 @@ The script is looking for a hidden message in the weirdly capitalized paragraph.
 To keep only letters:
 ```letters = [c for c in text if c.isalpha()]```
 
-The script removes everything thatâ€™s not a letter (like spaces or punctuation).
+The script removes everything that is not a letter (like spaces or punctuation).
 
 So "i UseD to coDE..." becomes a long string like:
 "iUseDtocoDEliKe..."
@@ -171,9 +167,8 @@ So "i UseD to coDE..." becomes a long string like:
 It then turns letter casing into binary (0s and 1s)
 ```bits = ''.join('1' if c.isupper() else '0' for c in letters)```
 
-- Every uppercase letter â†' 1
-
-- Every lowercase letter â†' 0
+- Every uppercase letter → 1
+- Every lowercase letter → 0
 
 Example:
 
@@ -187,11 +182,11 @@ bytes8 = [bits[i:i+8] for i in range(0, len(bits), 8)]
 bytes8 = [b for b in bytes8 if len(b) == 8]
 ```
 
-Computers read text in bytes â€" groups of 8 bits.
+Computers read text in bytes - groups of 8 bits.
 
 This step splits the binary string into 8-bit groups.
 
-Any extra bits at the end that donâ€™t make a full byte are thrown away.
+Any extra bits at the end that do not make a full byte are thrown away.
 
 Example:
 
@@ -285,7 +280,7 @@ I downloaded the file and extracted it to find this image:
 I used the image to do a reverse image search on google and found a hit for visual matches with the name of the bridge:
 ![visual_match](https://gist.github.com/user-attachments/assets/0c334bc2-4351-41c4-9b9b-0b29f749f88f)
 
-I found a hit. So I submitted the flag: `brunner{storebÃ¦ltsbroen}`
+I found a hit. So I submitted the flag: `brunner{storebæltsbroen}`
 
 # Train Mania - osint
 
@@ -333,7 +328,7 @@ The ZIP file provided, contained two files, `traffic.pcap` file and another file
 
 I then decided to try and use the other file as the key to decrypt the traffic. To do that I followed these steps:
 
-- Go to `Edit â†' Preferences â†' Protocols â†' TLS`
+- Go to `Edit → Preferences → Protocols → TLS`
 - Set (Pre)-Master-Secret log filename to the path of keys.log
 
 This has partly been illustrated below:
@@ -550,7 +545,10 @@ Flag: `brunner{wh0_kn3w_int3g3rs_c0uld_m4k3_y0u_rich}`
 
 # Dat Overflow Dough - pwn
 
-Challenge Link: ncat --ssl dat-overflow-dough-b9ac089d9249f9ee.challs.brunnerne.xyz 443
+Challenge Link: 
+```
+ncat --ssl dat-overflow-dough-b9ac089d9249f9ee.challs.brunnerne.xyz 443
+```
 
 ## Reading the Challenge
 
@@ -559,7 +557,7 @@ The description hinted at something familiar in binary exploitation:
 `"Intern wrote C code using unsafe functions... accidentally pushed to production... could leak our secret recipe."`
 
 Translation?
-`Somewhere in the binary, there's a buffer overflow â€" most likely caused by using gets() or similar unsafe functions. Perfect for a ret2func exploit.`
+`Somewhere in the binary, there's a buffer overflow - most likely caused by using gets() or similar unsafe functions. Perfect for a ret2func exploit.`
 
 ## Inspecting the Source Code
 
@@ -575,8 +573,8 @@ void vulnerable_dough_recipe() {
 Key things to note:
 
 - Buffer size is 16 bytes.
-- Uses gets(), which doesnâ€™t stop reading, allowing overflow.
-- Thereâ€™s a hidden function:
+- Uses gets(), which does not stop reading, allowing overflow.
+- There is a hidden function:
 ```
 void secret_dough_recipe(void) {
     int fd = open("flag.txt", O_RDONLY);
@@ -768,7 +766,7 @@ if not (
     words[0] == "red"  # Direct comparison
 ):
 ```
-âœ… Word 1 = `red` (exact match required)
+- Word 1 = `red` (exact match required)
 
 ## Word 2 Analysis
 ```python
@@ -778,7 +776,7 @@ if not (
 ):
 Reverse "yromem" = "memory" (Python string reversal: [::-1])
 ```
-âœ… Word 2 = memory
+- Word 2 = memory
 
 ### Word 3 Analysis (Most Complex)
 ```python
@@ -799,7 +797,7 @@ Let's break this down:
 - Positions 2-3: rr is berr_
 - Position 4 (last char): must equal last char of word2 ("memory" is 'y')
 
- Word 3 = berry
+- Word 3 = berry
 
 ## Word 4 Analysis
 ```python
@@ -816,7 +814,7 @@ Break down the concatenation:
 
 Combine: "re" + "mem" + "ber" = "remember"
 
-âœ… Word 4 = remember
+- Word 4 = remember
 
 ## Final Password Construction
 Combine all words with hyphens:
@@ -829,7 +827,7 @@ Word 3: berry
 
 Word 4: remember
 
-âœ… Password = red-memory-berry-remember
+- Password = red-memory-berry-remember
 
 I then keyed this in and got the flag:
 ![flag](https://gist.github.com/user-attachments/assets/1c795c1a-769c-4306-81c4-a309a05b9132)
@@ -849,7 +847,7 @@ file rolling_pin
 ```
 Output: `ELF 64-bit LSB executable, x86-64, dynamically linked, ...`
 
-Cool â€" itâ€™s a 64-bit Linux executable.
+Cool - it’s a 64-bit Linux executable.
 
 ## Load it into radare2
 
