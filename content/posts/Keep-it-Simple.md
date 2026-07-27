@@ -43,7 +43,7 @@ To look at the metadata of both the images we type the command *exiftool* follow
 
 ![Flag](/images/keep-it-simple/KeepitSimple33.png)
 
-**Kudos!!** We now captured the flag.I have obfuscated the flag to keep the integrity of the challenge.
+**Kudos!!** Flag captured. I have obfuscated the flag to keep the integrity of the challenge.
 
 ### Conclusion
 
