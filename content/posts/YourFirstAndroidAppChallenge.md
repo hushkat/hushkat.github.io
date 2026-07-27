@@ -76,7 +76,7 @@ The idea is simple: pause the app right at the line where `counter` gets increme
 
 **Step 1 - Attach the debugger.** Click the debug icon (the little bug) in the top toolbar and wait for the app to install and launch on the emulator.
 
-![attaching_debugger](/assets/img/DebuggingApp.png)
+![initial_recon_command](/images/YourFirstAndroidApp/DebuggingApp.png)
 
 **Step 2 - Set a breakpoint.** Click in the gutter next to the `counter++;` line so a red dot appears there. This tells the debugger to pause execution exactly when that line is about to run.
 
