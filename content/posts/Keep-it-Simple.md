@@ -41,7 +41,7 @@ We are seeing here that the two files actually differ, which makes me more curio
 
 To look at the metadata of both the images we type the command *exiftool* followed by the filename. See the image below for output comparison.
 
-![Flag](/images/keep-it-simple/KeepitSimple33.png).
+![Flag](/images/keep-it-simple/KeepitSimple33.png)
 
 **Kudos!!** We now captured the flag.I have obfuscated the flag to keep the integrity of the challenge.
 
