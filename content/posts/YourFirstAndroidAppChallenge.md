@@ -1,12 +1,16 @@
-\---
+---
 
 title: "Your First Android App: Beating Hextree Challenge 1 with the Debugger"
 date: 2026-07-27
 draft: false
 description: "A beginner-friendly walkthrough of Hextree's Android Challenge 1."
-tags: \["android", "mobile-security", "reverse-engineering", "beginner"]
-categories: \["Android"]
-showToc: true
+tags: ["android", "mobile-security", "reverse-engineering", "beginner", "mobile-pentesting", "hextree"]
+categories: ["android", "mobile-security", "reverse-engineering", "beginner", "mobile-pentesting", "hextree"]
+showAuthor: true
+showDate: true
+showReadingTime: true
+showWordCount: true
+featureimage: "https://storage.googleapis.com/hextree_prod_image_uploads/media/uploads/generated/first-android-app-progress-aed9a28b81da-dab02b36.jpeg"
 ---
 
 If you're just getting started with Android app security, [Hextree's android-challenge1](https://github.com/hextreeio/android-challenge1) is a great first stop. It doesn't need Frida, Jadx, or any heavyweight reversing tools — everything you need is already sitting inside Android Studio. All we're going to do here is **read the source code carefully** and use the built-in **debugger** to skip past a couple of annoying checks.
