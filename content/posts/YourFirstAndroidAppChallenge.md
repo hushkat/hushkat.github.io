@@ -13,7 +13,7 @@ showWordCount: true
 featureimage: "https://storage.googleapis.com/hextree_prod_image_uploads/media/uploads/generated/first-android-app-progress-aed9a28b81da-dab02b36.jpeg"
 ---
 
-If you're just getting started with Android app security, [Hextree's android-challenge1](https://github.com/hextreeio/android-challenge1) is a great first stop. It doesn't need Frida, Jadx, or any heavyweight reversing tools — everything you need is already sitting inside Android Studio. All we're going to do here is **read the source code carefully** and use the built-in **debugger** to skip past a couple of annoying checks.
+If you're just getting started with Android app security, [Hextree's android-challenge1](https://github.com/hextreeio/android-challenge1) is a great first stop. It doesn't need Frida, Jadx, or any heavyweight reversing tools - everything you need is already sitting inside Android Studio. All we're going to do here is **read the source code carefully** and use the built-in **debugger** to skip past a couple of annoying checks.
 
 Let's get into it.
 
@@ -25,7 +25,7 @@ Clone the repo and open it in Android Studio:
 git clone https://github.com/hextreeio/android-challenge1
 ```
 
-Once the project loads, the first place to look isn't the Java code — it's `AndroidManifest.xml`. This file tells you which screens (Activities) exist in the app, and which ones are allowed to be launched from outside the app.
+Once the project loads, the first place to look isn't the Java code - it's `AndroidManifest.xml`. This file tells you which screens (Activities) exist in the app, and which ones are allowed to be launched from outside the app.
 
 ```xml
 <activity
@@ -46,9 +46,9 @@ Once the project loads, the first place to look isn't the Java code — it's `An
 
 So the app has three screens:
 
-* **MainActivity** — the launcher screen, `exported="true"`, so this is the only one we can open directly.
-* **ChallengeActivity** — internal, `exported="false"`.
-* **FlagActivity** — internal, `exported="false"`.
+* **MainActivity** - the launcher screen, `exported="true"`, so this is the only one we can open directly.
+* **ChallengeActivity** - internal, `exported="false"`.
+* **FlagActivity** - internal, `exported="false"`.
 
 Since the two interesting activities can't be triggered from outside the app, we'll have to earn our way into them from inside `MainActivity` itself.
 
@@ -57,7 +57,7 @@ Since the two interesting activities can't be triggered from outside the app, we
 Opening `MainActivity.java`, this is the part that matters:
 
 ```java
-TextView text = findViewById(R.id.main\_text);
+TextView text = findViewById(R.id.main_text);
 text.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -70,23 +70,23 @@ text.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
-Every tap on the text view increments `counter`, and once it passes 9999, the app launches `ChallengeActivity`. Technically you *could* just tap the screen ten thousand times, but that's a great way to lose interest in Android security on day one. Instead, let's cheat — with the debugger.
+Every tap on the text view increments `counter`, and once it passes 9999, the app launches `ChallengeActivity`. Technically you *could* just tap the screen ten thousand times, but that's a great way to lose interest in Android security on day one. Instead, let's cheat - with the debugger.
 
 The idea is simple: pause the app right at the line where `counter` gets incremented, manually change the value of that variable to something bigger than 9999, then let the app continue running as if nothing happened.
 
-**Step 1 — Attach the debugger.** Click the debug icon (the little bug) in the top toolbar and wait for the app to install and launch on the emulator.
+**Step 1 - Attach the debugger.** Click the debug icon (the little bug) in the top toolbar and wait for the app to install and launch on the emulator.
 
-!\[Debugger attached to MainActivity, waiting on the Find the Flag screen](images/DebuggingApp.png)
+![attaching_debugger](/assets/img/DebuggingApp.png)
 
-**Step 2 — Set a breakpoint.** Click in the gutter next to the `counter++;` line so a red dot appears there. This tells the debugger to pause execution exactly when that line is about to run.
+**Step 2 - Set a breakpoint.** Click in the gutter next to the `counter++;` line so a red dot appears there. This tells the debugger to pause execution exactly when that line is about to run.
 
-**Step 3 — Trigger it.** Tap the text view on the emulator once. The app will freeze at your breakpoint, and the **Threads \& Variables** tab at the bottom of Android Studio will show you the current value of `counter`.
+**Step 3 - Trigger it.** Tap the text view on the emulator once. The app will freeze at your breakpoint, and the **Threads \& Variables** tab at the bottom of Android Studio will show you the current value of `counter`.
 
-**Step 4 — Override the value.** Right-click on `counter` in that panel and choose to set its value. Type in anything above 9999 — 10000 works fine.
+**Step 4 - Override the value.** Right-click on `counter` in that panel and choose to set its value. Type in anything above 9999 — 10000 works fine.
 
 !\[Setting the counter variable to 10000 from the debugger's Threads \& Variables panel](images/OverridingCounter.png)
 
-**Step 5 — Resume.** Mute the breakpoint (so it doesn't keep stopping you) and hit Resume. The `if(counter>9999)` check now passes instantly, and the app jumps straight into `ChallengeActivity`.
+**Step 5 - Resume.** Mute the breakpoint (so it doesn't keep stopping you) and hit Resume. The `if(counter>9999)` check now passes instantly, and the app jumps straight into `ChallengeActivity`.
 
 !\[ChallengeActivity reached, showing ten buttons](images/ChallengeActivity.png)
 
