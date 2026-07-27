@@ -15,21 +15,31 @@ The challenge provided this image:
 ![DNAENCRYPTED](/images/GlacierCTF/DNA.png)
 
 
-Extracted the string by reading the characters from left to right starting from the top going down. The resulting extracted string from the image: `TCATAGGCTAGCTACACTCGTTGTACACTAGACAGCTACACTCTCTGAAGCTAGCTATGAAGCGTCCTACTCCTATGA`
+Extracted the string by reading the characters from left to right starting from the top going down. The resulting extracted string from the image:
+```
+TCATAGGCTAGCTACACTCGTTGTACACTAGACAGCTACACTCTCTGAAGCTAGCTATGAAGCGTCCTACTCCTATGA
+```
 
 The challenge also has the following instructions 
 `There are some pretty unusual encoding methods. Find the flag PS: Replace spaces with “_”`
 
 From research this seems to be some kind of DNA type of encryption. I also learnt that I need to break the string into 3s, so that made it look like this:
 
-`TCA TAG GCT AGC TAC ACT CGT TGT ACA CTA GAC AGC TAC ACT CTC TGA AGC TAG CTA TGA AGC GTC CTA CTC CTA TGA`
+```
+TCA TAG GCT AGC TAC ACT CGT TGT ACA CTA GAC AGC TAC ACT CTC TGA AGC TAG CTA TGA AGC GTC CTA CTC CTA TGA
+```
 
 One of my team leads gave me this link that has mappings that could decode the above string. Managed to decode from [here](https://earthsciweb.org/js/bio/dna-writer/index.html?seq=CGTCTAATCATCTGTAGCGTCGATGACTGA#base_to_text)
 
-The resulting string: `CTF DAHOMEY DANS TES GENES`
+The resulting string: 
+```
+CTF DAHOMEY DANS TES GENES
+```
 
 I then replaced the spaces (" ") with underscores as per the instructions, then embedded the flag prefix to the string.
-`NGCCTF{CTF_DAHOMEY_DANS_TES_GENES}`
+```
+NGCCTF{CTF_DAHOMEY_DANS_TES_GENES}
+```
 
 ## DESIGN
 This was yet another interesting misc challenge. We were presented with [this](https://drive.google.com/file/d/1zds3ymqwPkKuR8SXGeMiKuuKTr1gqoRb/view?usp=sharing) CSV file. The instructions simply asked:
@@ -80,4 +90,7 @@ Then managed to retrieve this image:
 
 ![flag](/images/GlacierCTF/Figure_1.png)
 
-I therefore just added the flag prefix and submitted the final flag as: `NGCCTF{CTF_Navigating_the_Digital_Maze_4f8ae63f9}`
+I therefore just added the flag prefix and submitted the final flag as: 
+```
+NGCCTF{CTF_Navigating_the_Digital_Maze_4f8ae63f9}
+```
