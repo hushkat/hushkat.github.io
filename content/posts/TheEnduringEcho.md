@@ -9,7 +9,7 @@ showAuthor: true
 showDate: true
 showReadingTime: true
 showWordCount: true
-featureimage: "https://imgs.search.brave.com/__3Bmc79Wm-FBcqxV_MhzYS7Ntz98gIrsbUnh1oeUR8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ldmVu/dHMuZGZpcmRpdmEu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI1LzA4L0hUQkhv/bG1lc0NURi5qcGc"
+featureimage: "https://github.com/hackthebox/holmes-2025/raw/main/assets/ChallengeBanner.jpg"
 ---
 
 ## Introduction
