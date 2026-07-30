@@ -2,7 +2,7 @@
 title: "CVE-2026-48493 (SNIPE-IT): I Thought This Was Going To Be Easy"
 date: 2026-08-01
 draft: false
-description: "A privilege escalation bug in Snipe-IT's API — and the story of a Tuesday afternoon that turned into a very long night."
+description: "A privilege escalation bug in Snipe-IT's API - and the story of a Tuesday afternoon that turned into a very long night."
 tags: ["cve-recreation", "vulnerability-research", "snipe-it", "privilege-escalation", "mass-assignment", "broken-access-control", "api-security", "owasp-api3", "bopla", "php", "laravel", "docker", "beginner"]
 categories: ["vulnerability-research", "web-security", "api-security", "cve-recreation"]
 showAuthor: true
