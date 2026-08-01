@@ -10,7 +10,7 @@ showAuthor: true
 showDate: true
 showReadingTime: true
 showWordCount: true
-featureimage: "https://storage.googleapis.com/hextree_prod_image_uploads/media/uploads/generated/first-android-app-progress-aed9a28b81da-dab02b36.jpeg"
+featureimage: "https://imgs.search.brave.com/ey5GA4-zGNbHrz6HzEPp7AgoqXneBF941wbucbidcrE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9idWdm/ZW5kZXIuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI2LzA3/L0RlYnVnZ2luZy1p/bi1BbmRyb2lkLVN0/dWRpby1Ub29scy1U/ZWNobmlxdWVzLWFu/ZC1Xb3JrZmxvdy53/ZWJw"
 ---
 
 If you're just getting started with Android app security, [Hextree's android-challenge1](https://github.com/hextreeio/android-challenge1) is a great first stop. It doesn't need Frida, Jadx, or any heavyweight reversing tools - everything you need is already sitting inside Android Studio. All we're going to do here is **read the source code carefully** and use the built-in **debugger** to skip past a couple of annoying checks.
