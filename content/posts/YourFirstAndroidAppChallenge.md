@@ -1,103 +1,189 @@
 ---
-title: "CVE-2026-48493 (SNIPE-IT): I Thought This Was Going To Be Easy"
-date: 2026-07-28
+
+title: "Your First Android App: Beating Hextree Challenge 1 with the Debugger"
+date: 2026-07-27
 draft: false
-description: "A privilege escalation bug in Snipe-IT's API — and the story of a Tuesday afternoon that turned into a very long night."
-tags: ["cve-recreation", "vulnerability-research", "snipe-it", "privilege-escalation", "mass-assignment", "broken-access-control", "api-security", "owasp-api3", "bopla", "php", "laravel", "docker", "beginner"]
-categories: ["vulnerability-research", "web-security", "api-security", "cve-recreation"]
+description: "A beginner-friendly walkthrough of Hextree's Android Challenge 1."
+tags: ["android", "mobile-security", "reverse-engineering", "beginner", "mobile-pentesting", "hextree"]
+categories: ["android", "mobile-security", "reverse-engineering", "beginner", "mobile-pentesting", "hextree"]
 showAuthor: true
 showDate: true
 showReadingTime: true
 showWordCount: true
-featureimage: "https://imgs.search.brave.com/VoOh77OXWDTz0t_CgKaaiwHrl38YRRsja1uHqs8Pe1s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbm92/YXRlY2h5LmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMy8x/MC9TbmlwZUlUQmxv/Zy5qcGc"
+featureimage: "https://storage.googleapis.com/hextree_prod_image_uploads/media/uploads/generated/first-android-app-progress-aed9a28b81da-dab02b36.jpeg"
 ---
 
-## Tuesday, 16:25
+If you're just getting started with Android app security, [Hextree's android-challenge1](https://github.com/hextreeio/android-challenge1) is a great first stop. It doesn't need Frida, Jadx, or any heavyweight reversing tools - everything you need is already sitting inside Android Studio. All we're going to do here is **read the source code carefully** and use the built-in **debugger** to skip past a couple of annoying checks.
 
-I was minding my business when the message came in.
+Let's get into it.
 
-Winter — our team cap — was putting together a vulnerability research group. The idea was straightforward: pick a real CVE, try to find the bug yourself like you never read the advisory, share notes, learn together. No pressure, no set pace. Just people who wanted to get better at this, doing it together.
+## Setting up
 
-The requirements to join? Just basics. Show up. Commit.
+Clone the repo and open it in Android Studio:
 
-I looked at the message. I looked at the target — a medium-severity bug in some open-source asset management tool. I thought about it for approximately four seconds.
+```bash
+git clone https://github.com/hextreeio/android-challenge1
+```
 
-*This is going to be easy.*
+Once the project loads, the first place to look isn't the Java code - it's `AndroidManifest.xml`. This file tells you which screens (Activities) exist in the app, and which ones are allowed to be launched from outside the app.
 
-Reader, it was not easy.
+```xml
+<activity
+    android:name=".FlagActivity"
+    android:exported="false" />
+<activity
+    android:name=".ChallengeActivity"
+    android:exported="false" />
+<activity
+    android:name=".MainActivity"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+```
 
----
+So the app has three screens:
 
-## The Part Where I Got Humbled By a Settings File
+* **MainActivity** - the launcher screen, `exported="true"`, so this is the only one we can open directly.
+* **ChallengeActivity** - internal, `exported="false"`.
+* **FlagActivity** - internal, `exported="false"`.
 
-Before you can break into something, you have to actually get it running. That was my first lesson, and it arrived faster than I expected.
+Since the two interesting activities can't be triggered from outside the app, we'll have to earn our way into them from inside `MainActivity` itself.
 
-I won't bore you with every detail, but imagine spending the better part of an evening absolutely convinced you've set everything up correctly — only to realise, quietly and with great personal embarrassment, that you've been attacking the wrong version of the software the entire time. The patched one. The one where the bug is already fixed. The one that was never going to show you anything interesting no matter what you tried.
+## Stage 1: Getting past the counter
 
-One blank field in one configuration file. That's all it was. The software just silently swapped in the latest version — bug-free, patched, completely useless to me — and said nothing about it.
+Opening `MainActivity.java`, this is the part that matters:
 
-No error. No warning. Just nothing working and me wondering what I was doing wrong.
+```java
+TextView text = findViewById(R.id.main_text);
+text.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        counter++;
+        text.setText("Counter: "+counter);
+        if(counter>9999) {
+            startActivity(new Intent(MainActivity.this, ChallengeActivity.class));
+        }
+    }
+});
+```
 
-When I finally figured it out, I sat there for a moment. Then I fixed the one line, restarted everything, and watched the correct version number appear on my screen. That version number was the most satisfying thing I had seen all evening.
+Every tap on the text view increments `counter`, and once it passes 9999, the app launches `ChallengeActivity`. Technically you *could* just tap the screen ten thousand times, but that's a great way to lose interest in Android security on day one. Instead, let's cheat - with the debugger.
 
-The first thing I wrote in my notes that night was: *always check what version you're actually running.*
+The idea is simple: pause the app right at the line where `counter` gets incremented, manually change the value of that variable to something bigger than 9999, then let the app continue running as if nothing happened.
 
-Obvious in hindsight. Everything is.
+**Step 1 - Attach the debugger.** Click the debug icon (the little bug) in the top toolbar and wait for the app to install and launch on the emulator.
 
----
+![debugging_app](/images/YourFirstAndroidApp/DebuggingApp.png)
 
-## Okay. Now The Actual Bug.
+**Step 2 - Set a breakpoint.** Click in the gutter next to the `counter++;` line so a red dot appears there. This tells the debugger to pause execution exactly when that line is about to run.
 
-Once the lab was properly up, I had to understand what I was actually looking for — because this exercise isn't "follow a tutorial." It's "read the advisory, understand the bug class, then go find it yourself."
+**Step 3 - Trigger it.** Tap the text view on the emulator once. The app will freeze at your breakpoint, and the **Threads \& Variables** tab at the bottom of Android Studio will show you the current value of `counter`.
 
-The short version of what CVE-2026-48493 is: imagine you work at a company and your boss gives you permission to update employee profiles. Names, contact details, that kind of thing. Normal HR stuff. But then you discover that when you submit those updates, you can also quietly slip in a line that says *"and also give me access to the financial reports."* And the system just... accepts it. No questions asked.
+**Step 4 - Override the value.** Right-click on `counter` in that panel and choose to set its value. Type in anything above 9999, 10000 works just fine.
 
-That's the bug. A user with limited permissions talking to the application's API and walking out with permissions they were never supposed to have. The application was checking whether you were allowed to edit user records — yes — but never stopping to ask whether you were allowed to grant yourself extra access in the process.
+![overriding_counter](/images/YourFirstAndroidApp/OverridingCounter.png)
 
-It's the kind of bug that makes you go *oh. oh no.* when you see it working.
+**Step 5 - Resume.** Mute the breakpoint (so it doesn't keep stopping you) and hit Resume. The `if(counter>9999)` check now passes instantly, and the app jumps straight into `ChallengeActivity`.
 
-And I saw it working. One request. The server said "success." The permissions I wasn't supposed to have were now mine. I ran a second check just to make sure it wasn't a fluke — it wasn't. It had written to the database. It was real.
+![challenge_activity](/images/YourFirstAndroidApp/ChallengeActivity.png)
 
-I stared at the screen for a moment.
+## Stage 2: Picking the right button
 
-Then I took my screenshots, wrote my notes, and felt something I can only describe as the specific satisfaction of understanding something you didn't understand before.
+`ChallengeActivity` throws ten buttons at you, and the code makes it look like a trap:
 
----
+```java
+View.OnClickListener failHandler = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(ChallengeActivity.this, MainActivity.class));
+    }
+};
 
-## Meanwhile, Winter Was Not Sleeping
+findViewById(R.id.button1).setOnClickListener(failHandler);
+findViewById(R.id.button2).setOnClickListener(failHandler);
+findViewById(R.id.button3).setOnClickListener(failHandler);
+findViewById(R.id.button4).setOnClickListener(failHandler);
+findViewById(R.id.button5).setOnClickListener(failHandler);
+findViewById(R.id.button6).setOnClickListener(failHandler);
+findViewById(R.id.button7).setOnClickListener(failHandler);
+findViewById(R.id.button8).setOnClickListener(failHandler);
+findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(ChallengeActivity.this, FlagActivity.class));
+    }
+});
+findViewById(R.id.button10).setOnClickListener(failHandler);
+```
 
-Here's the thing about doing this exercise alongside someone genuinely good at it: it's humbling in the best possible way.
+Nine of the ten buttons just bounce you straight back to `MainActivity` (`failHandler`). Only **Button 9** has its own listener, and it's the only one that opens `FlagActivity` - the screen we actually want. No guessing required once you've read the code; just tap Button 9.
 
-While I was wrestling with configuration files and chasing my tail in the wrong version of the software, Winter had already reproduced the original bug and kept going. He found two more issues in the same application — different angles, same neighbourhood of the codebase, same underlying question about whether the application was correctly controlling who could do what to whom.
+![flag_activity](/images/YourFirstAndroidApp/FlagctivityAfterButton9.png)
 
-He wrote them up properly. Formal vulnerability reports, sent directly to the Snipe-IT security team. The kind of thing that turns a research exercise into actual contribution.
+## Stage 3: Cracking the seek bar
 
-Oste ([@oste_ke](https://x.com/oste_ke)) was there for all of it — through the painful evenings, the wrong turns, the moments where nothing made sense. That's the other thing about doing this in a group: you don't have to sit alone with your confusion at midnight.
+`FlagActivity` hides the flag behind a `SeekBar` (a slider):
 
----
+```java
+int progressTracking = 0;
 
-## The Vendor Wrote Back
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity\_flag);
 
-This was the part that surprised me most. Winter sent the reports and the Snipe-IT security team actually responded — thoroughly, respectfully, and with a perspective none of us had fully considered.
+    TextView text = findViewById(R.id.flag\_text);
+    SeekBar bar = findViewById(R.id.seek\_bar);
+    bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            text.setText("Read the code: "+progress+"%");
+            progressTracking = progress;
+        }
 
-Their position, roughly: some of what was reported wasn't a bug. It was a design decision. The level of access Winter had demonstrated was, in their model, intentional — that type of user is *supposed* to have significant trust, because the role was built for people like HR staff and helpdesk administrators who need to manage user accounts across an organisation as part of their actual job. The application was working as intended, just not in a way that was immediately obvious from the outside.
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        }
 
-It's a genuinely interesting response because it reframes the question. Not "is the application broken?" but "is the trust model clearly communicated to the people deploying this software?" That's a harder problem. And it's the kind of nuance you only encounter when you go all the way through the process — report, respond, discuss — rather than stopping at "I found a thing."
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            if(progressTracking==42) {
+                text.setText(decryptFlag());
+            }
+        }
+    });
+}
+```
 
-Winter's reports are still being reviewed. We'll see where it lands.
+The flag only shows up if the slider's progress is **exactly 42%** at the moment you let go of it.
 
----
+{{< alert "circle-info" >}}
+Notice *where* that check lives: inside `onStopTrackingTouch`, not `onProgressChanged`. That means the comparison isn't happening while you're dragging the slider - it only fires the instant you release your finger (or mouse click) off the seek bar. Drag to 42%, and you can still overshoot it on release.
+{{< /alert >}}
 
-## What I'm Actually Taking Away From This
+There are two ways to solve this: drag the slider around very carefully until you land on exactly 42%, or just use the debugger again. Let's go with the debugger - it's more reliable and, frankly, more satisfying.
 
-I went into Tuesday thinking I'd knock out a quick CVE recreation before dinner. I came out the other side having spent multiple evenings debugging configuration files, reading code I didn't fully understand, and learning what it actually feels like to find something and then have to explain clearly and precisely *why* it's a problem.
+**Step 1 - Breakpoint on the check.** Set a breakpoint on the `if(progressTracking==42)` line.
 
-That last part is harder than finding the bug. Anyone can run a command and see an unexpected result. Explaining what it means, why it matters, and what a fix should look like — that's the skill. And it turns out you only build it by doing it, badly, several times, until it starts to click.
+**Step 2 - Trigger it.** Drag the slider a bit and release it. Execution pauses right at your breakpoint.
 
-This was the first target. There will be more. Winter says the difficulty comes later.
+**Step 3 - Override the variable.** In the Threads \& Variables panel, right-click `progressTracking` and set it to `42`, regardless of where the slider visually sits.
 
-I believe him now.
+![overriding__slider_variable](/images/YourFirstAndroidApp/SetSliderTo42.png)
 
----
+**Step 4 - Resume.** Mute the breakpoint, hit Resume, and the condition evaluates to true. `decryptFlag()` runs, and the flag is revealed on screen.
 
-*Written as part of a group vulnerability research series with Winter ([@byronchris25](https://x.com/byronchris25)) and Oste ([@oste_ke](https://x.com/oste_ke)). Next target TBD — and if our cap has anything to say about it, significantly less friendly.*
+![flag](/images/YourFirstAndroidApp/Flag.png)
+
+## Wrapping up
+
+That's the whole challenge:
+
+1. **MainActivity** - override `counter` past 9999 in the debugger instead of tapping 10,000 times.
+2. **ChallengeActivity** - read the code to find that only Button 9 leads anywhere useful.
+3. **FlagActivity** - override `progressTracking` to exactly 42 to satisfy the `onStopTrackingTouch` check.
+
+Nothing here needed decompiling an APK or writing a single line of exploit code - just reading the Java source closely and letting Android Studio's debugger do the boring work of "typing in the right number." That's honestly most of Android app security at the beginner level: the vulnerable logic is usually sitting in plain sight, and the debugger is one of the most underrated tools for proving it.
